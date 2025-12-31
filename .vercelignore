@@ -1,0 +1,15 @@
+server
+shared
+node_modules
+.git
+.gitignore
+README.md
+ideas.md
+patches
+pnpm-lock.yaml
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+components.json
+.prettierrc
+.prettierignore
