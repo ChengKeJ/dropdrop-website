@@ -253,10 +253,10 @@ export default function Home() {
             DropDrop 现已在 iOS 和 Android 上线。下载应用，开始你的习惯养成之旅。
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-primary flex items-center justify-center gap-2">
+            <a href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464" target="_blank" rel="noopener noreferrer" className="btn-primary flex items-center justify-center gap-2">
               <Download className="w-5 h-5" />
               App Store
-            </button>
+            </a>
             <button className="btn-primary flex items-center justify-center gap-2">
               <Download className="w-5 h-5" />
               Google Play
