@@ -34,13 +34,13 @@ export default function Home() {
             <span className="text-xl md:text-2xl font-bold text-[#1E293B]">DropDrop</span>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-[#64748B] hover:text-[#1E293B] transition">
+            <a href="#features" className="text-[#64748B] hover:text-[#4A89DC] transition-colors duration-200 font-medium">
               功能
             </a>
-            <a href="#download" className="text-[#64748B] hover:text-[#1E293B] transition">
+            <a href="#download" className="text-[#64748B] hover:text-[#4A89DC] transition-colors duration-200 font-medium">
               下载
             </a>
-            <a href="#about" className="text-[#64748B] hover:text-[#1E293B] transition">
+            <a href="#about" className="text-[#64748B] hover:text-[#4A89DC] transition-colors duration-200 font-medium">
               关于
             </a>
           </div>
@@ -48,7 +48,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 md:pt-40 pb-20 md:pb-32 relative overflow-hidden">
+      <section className="pt-32 md:pt-40 pb-20 md:pb-32 relative overflow-hidden bg-gradient-to-br from-white via-blue-50 to-white">
         <div className="absolute inset-0 opacity-50">
           <img
             src="/images/hero-background.png"
@@ -58,7 +58,7 @@ export default function Home() {
         </div>
         <div className="container relative z-10">
           <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-6xl font-bold text-[#1E293B] mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#1E293B] to-[#4A89DC] bg-clip-text text-transparent mb-6 leading-tight">
               养成好习惯
               <br />
               从每一滴开始
@@ -77,10 +77,10 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 md:py-32 bg-[#F8FAFB]">
+      <section id="features" className="py-24 md:py-40 bg-gradient-to-b from-white to-blue-50">
         <div className="container">
-          <div className="text-center mb-16 md:mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1E293B] mb-4">
+          <div className="text-center mb-20 md:mb-28">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1E293B] mb-6">
               强大的功能
             </h2>
             <p className="text-lg text-[#64748B] max-w-2xl mx-auto">
@@ -90,7 +90,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8 md:gap-6">
             {/* Feature 1: Tracking */}
-            <div className="bg-white rounded-2xl p-8 shadow-card hover:shadow-lg transition-shadow duration-300">
+            <div className="bg-white rounded-2xl p-8 shadow-card hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-blue-100">
               <div className="mb-6">
                 <img
                   src="/images/feature-tracking.png"
@@ -119,7 +119,7 @@ export default function Home() {
             </div>
 
             {/* Feature 2: Analytics */}
-            <div className="bg-white rounded-2xl p-8 shadow-card hover:shadow-lg transition-shadow duration-300">
+            <div className="bg-white rounded-2xl p-8 shadow-card hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-blue-100">
               <div className="mb-6">
                 <img
                   src="/images/feature-analytics.png"
@@ -148,7 +148,7 @@ export default function Home() {
             </div>
 
             {/* Feature 3: Reminders */}
-            <div className="bg-white rounded-2xl p-8 shadow-card hover:shadow-lg transition-shadow duration-300">
+            <div className="bg-white rounded-2xl p-8 shadow-card hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-blue-100">
               <div className="mb-6">
                 <img
                   src="/images/feature-reminders.png"
@@ -180,11 +180,11 @@ export default function Home() {
       </section>
 
       {/* Premium Features Section */}
-      <section className="py-20 md:py-32 bg-white">
+      <section className="py-24 md:py-40 bg-gradient-to-r from-white to-blue-50">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1E293B] mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1E293B] mb-8">
                 升级会员，解锁更多功能
               </h2>
               <p className="text-lg text-[#64748B] mb-8 leading-relaxed">
@@ -244,9 +244,9 @@ export default function Home() {
       </section>
 
       {/* Download Section */}
-      <section id="download" className="py-20 md:py-32 bg-[#F8FAFB]">
+      <section id="download" className="py-24 md:py-40 bg-gradient-to-b from-blue-50 to-white">
         <div className="container text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1E293B] mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#1E293B] mb-8">
             立即开始养成好习惯
           </h2>
           <p className="text-lg text-[#64748B] mb-12 max-w-2xl mx-auto">
