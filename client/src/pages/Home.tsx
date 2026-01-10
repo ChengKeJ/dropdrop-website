@@ -437,7 +437,7 @@ export default function Home() {
                 className="text-center group"
               >
                 <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 transform transition-transform duration-300 group-hover:scale-110">
-                  <feature.IconComponent size={window.innerWidth < 768 ? 80 : 96} />
+                  <feature.IconComponent size={isMobile ? 80 : 96} />
                 </div>
                 <h4 className="font-bold text-[#1E293B] mb-2 text-base md:text-lg">{feature.title}</h4>
                 <p className="text-sm md:text-base text-[#64748B]">{feature.desc}</p>
