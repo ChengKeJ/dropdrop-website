@@ -1,19 +1,26 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Download, Smartphone, TrendingUp, Bell, Menu, X } from "lucide-react";
+import { ArrowRight, Check, Download, Smartphone, TrendingUp, Bell, Menu, X, Sparkles, Zap, Target } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/useMobile";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
 /**
- * DropDrop Official Website
- * Design: Modern Mobile-First + Progressive Information Architecture
- * Color: Ocean Blue (#4A89DC) + Clean White
- * Typography: Playfair Display (titles) + Inter (body)
+ * DropDrop Official Website - Premium Edition
+ * Design: Ultra-Modern + Glassmorphism + Smooth Animations
+ * International: Chinese + English
  */
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
+  const { t } = useLanguage();
+  const { scrollYProgress } = useScroll();
+
+  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 150]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +31,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // Prevent scrolling when mobile menu is open
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -44,538 +50,811 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 90, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            rotate: [90, 0, 90],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-purple-400/10 to-blue-400/10 rounded-full blur-3xl"
+        />
+      </div>
+
+      {/* Navigation - Glassmorphism */}
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-white shadow-md" : "bg-white/95 backdrop-blur-sm"
+          isScrolled
+            ? "bg-white/80 backdrop-blur-xl shadow-lg border-b border-white/20"
+            : "bg-white/60 backdrop-blur-md"
         }`}
       >
         <div className="container flex items-center justify-between h-16 md:h-20">
-          <div className="flex items-center gap-2">
-            <img src="/images/logo.png" alt="DropDrop" className="w-8 h-8 md:w-10 md:h-10" />
-            <span className="text-xl md:text-2xl font-bold text-[#1E293B]">DropDrop</span>
-          </div>
+          <motion.div
+            className="flex items-center gap-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg blur-lg opacity-50" />
+              <img src="/images/logo.png" alt="DropDrop" className="relative w-8 h-8 md:w-10 md:h-10" />
+            </div>
+            <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              DropDrop
+            </span>
+          </motion.div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
-            <button onClick={() => scrollToSection('features')} className="text-[#64748B] hover:text-[#1E293B] transition">
-              功能
-            </button>
-            <button onClick={() => scrollToSection('showcase')} className="text-[#64748B] hover:text-[#1E293B] transition">
-              应用预览
-            </button>
-            <button onClick={() => scrollToSection('download')} className="text-[#64748B] hover:text-[#1E293B] transition">
-              下载
-            </button>
+          <div className="hidden md:flex items-center gap-6">
+            <motion.button
+              whileHover={{ scale: 1.05, color: "#1E293B" }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scrollToSection('features')}
+              className="text-[#64748B] hover:text-[#1E293B] transition-colors font-medium"
+            >
+              {t('nav.features')}
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05, color: "#1E293B" }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scrollToSection('showcase')}
+              className="text-[#64748B] hover:text-[#1E293B] transition-colors font-medium"
+            >
+              {t('nav.showcase')}
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05, color: "#1E293B" }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scrollToSection('download')}
+              className="text-[#64748B] hover:text-[#1E293B] transition-colors font-medium"
+            >
+              {t('nav.download')}
+            </motion.button>
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-[#1E293B] hover:bg-gray-100 rounded-lg transition"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <LanguageSwitcher />
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              className="p-2 text-[#1E293B] hover:bg-gray-100 rounded-lg transition"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <AnimatePresence mode="wait">
+                {isMobileMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="w-6 h-6" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="w-6 h-6" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t border-gray-100">
-            <div className="container py-4 space-y-2">
-              <button
-                onClick={() => scrollToSection('features')}
-                className="block w-full text-left px-4 py-3 text-[#64748B] hover:bg-gray-50 hover:text-[#1E293B] rounded-lg transition"
-              >
-                功能特点
-              </button>
-              <button
-                onClick={() => scrollToSection('showcase')}
-                className="block w-full text-left px-4 py-3 text-[#64748B] hover:bg-gray-50 hover:text-[#1E293B] rounded-lg transition"
-              >
-                应用预览
-              </button>
-              <button
-                onClick={() => scrollToSection('download')}
-                className="block w-full text-left px-4 py-3 text-[#64748B] hover:bg-gray-50 hover:text-[#1E293B] rounded-lg transition"
-              >
-                立即下载
-              </button>
-            </div>
-          </div>
-        )}
-      </nav>
-
-      {/* Hero Section - Enhanced for Mobile */}
-      <section className="pt-24 md:pt-32 pb-16 md:pb-24 relative overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-white">
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-block mb-4 px-4 py-2 bg-blue-100 text-[#4A89DC] rounded-full text-sm font-semibold">
-              专业习惯追踪应用
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-6 leading-tight">
-              养成好习惯
-              <br />
-              <span className="text-[#4A89DC]">从每一滴开始</span>
-            </h1>
-            <p className="text-base md:text-lg lg:text-xl text-[#64748B] mb-8 leading-relaxed px-4 md:px-0">
-              DropDrop 帮助你通过可视化进度、智能提醒和成就系统，
-              <br className="hidden md:block" />
-              坚持不懈地养成更好的习惯。
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 md:px-0">
-              <button
-                onClick={() => scrollToSection('download')}
-                className="btn-primary flex items-center justify-center gap-2 text-base md:text-lg py-3 md:py-4 px-6 md:px-8"
-              >
-                立即下载 <ArrowRight className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => scrollToSection('showcase')}
-                className="btn-secondary text-base md:text-lg py-3 md:py-4 px-6 md:px-8"
-              >
-                查看演示
-              </button>
-            </div>
-
-            {/* Stats Section */}
-            <div className="mt-12 md:mt-16 grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-[#4A89DC] mb-1">10万+</div>
-                <div className="text-xs md:text-sm text-[#64748B]">活跃用户</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-[#4A89DC] mb-1">500万+</div>
-                <div className="text-xs md:text-sm text-[#64748B]">习惯打卡</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-[#4A89DC] mb-1">4.8★</div>
-                <div className="text-xs md:text-sm text-[#64748B]">用户评分</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* App Showcase Section - NEW */}
-      <section id="showcase" className="py-16 md:py-24 bg-gradient-to-b from-white to-[#F8FAFB]">
-        <div className="container">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E293B] mb-4">
-              简洁优雅的设计
-            </h2>
-            <p className="text-base md:text-lg text-[#64748B] max-w-2xl mx-auto px-4">
-              精心打磨的界面，让习惯追踪成为一种享受
-            </p>
-          </div>
-
-          {/* App Screenshots Showcase */}
-          <div className="max-w-6xl mx-auto">
-            {/* Desktop View - Horizontal Scroll */}
-            <div className="hidden md:grid md:grid-cols-4 gap-6 mb-12">
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
-                <img
-                  src="/images/app-screenshot-1.png"
-                  alt="健康计划管理"
-                  className="w-full h-auto"
-                  onError={(e) => {
-                    e.currentTarget.src = '/images/feature-tracking.png';
-                  }}
-                />
-                <div className="p-4">
-                  <h3 className="font-semibold text-[#1E293B] mb-1">健康计划</h3>
-                  <p className="text-sm text-[#64748B]">定制专属成长路径</p>
-                </div>
-              </div>
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
-                <img
-                  src="/images/app-screenshot-2.png"
-                  alt="习惯选择"
-                  className="w-full h-auto"
-                  onError={(e) => {
-                    e.currentTarget.src = '/images/feature-analytics.png';
-                  }}
-                />
-                <div className="p-4">
-                  <h3 className="font-semibold text-[#1E293B] mb-1">丰富习惯库</h3>
-                  <p className="text-sm text-[#64748B]">多种习惯任你选择</p>
-                </div>
-              </div>
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
-                <img
-                  src="/images/app-screenshot-3.png"
-                  alt="每日打卡"
-                  className="w-full h-auto"
-                  onError={(e) => {
-                    e.currentTarget.src = '/images/feature-reminders.png';
-                  }}
-                />
-                <div className="p-4">
-                  <h3 className="font-semibold text-[#1E293B] mb-1">每日打卡</h3>
-                  <p className="text-sm text-[#64748B]">轻松完成每日目标</p>
-                </div>
-              </div>
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
-                <img
-                  src="/images/app-screenshot-4.png"
-                  alt="数据统计"
-                  className="w-full h-auto"
-                  onError={(e) => {
-                    e.currentTarget.src = '/images/feature-analytics.png';
-                  }}
-                />
-                <div className="p-4">
-                  <h3 className="font-semibold text-[#1E293B] mb-1">数据统计</h3>
-                  <p className="text-sm text-[#64748B]">可视化进度追踪</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile View - Carousel */}
-            <div className="md:hidden overflow-x-auto pb-4 -mx-4 px-4">
-              <div className="flex gap-4 w-max">
-                <div className="bg-white rounded-2xl shadow-lg overflow-hidden w-64 flex-shrink-0">
-                  <img
-                    src="/images/app-screenshot-1.png"
-                    alt="健康计划管理"
-                    className="w-full h-auto"
-                    onError={(e) => {
-                      e.currentTarget.src = '/images/feature-tracking.png';
-                    }}
-                  />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-[#1E293B] mb-1">健康计划</h3>
-                    <p className="text-sm text-[#64748B]">定制专属成长路径</p>
-                  </div>
-                </div>
-                <div className="bg-white rounded-2xl shadow-lg overflow-hidden w-64 flex-shrink-0">
-                  <img
-                    src="/images/app-screenshot-2.png"
-                    alt="习惯选择"
-                    className="w-full h-auto"
-                    onError={(e) => {
-                      e.currentTarget.src = '/images/feature-analytics.png';
-                    }}
-                  />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-[#1E293B] mb-1">丰富习惯库</h3>
-                    <p className="text-sm text-[#64748B]">多种习惯任你选择</p>
-                  </div>
-                </div>
-                <div className="bg-white rounded-2xl shadow-lg overflow-hidden w-64 flex-shrink-0">
-                  <img
-                    src="/images/app-screenshot-3.png"
-                    alt="每日打卡"
-                    className="w-full h-auto"
-                    onError={(e) => {
-                      e.currentTarget.src = '/images/feature-reminders.png';
-                    }}
-                  />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-[#1E293B] mb-1">每日打卡</h3>
-                    <p className="text-sm text-[#64748B]">轻松完成每日目标</p>
-                  </div>
-                </div>
-                <div className="bg-white rounded-2xl shadow-lg overflow-hidden w-64 flex-shrink-0">
-                  <img
-                    src="/images/app-screenshot-4.png"
-                    alt="数据统计"
-                    className="w-full h-auto"
-                    onError={(e) => {
-                      e.currentTarget.src = '/images/feature-analytics.png';
-                    }}
-                  />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-[#1E293B] mb-1">数据统计</h3>
-                    <p className="text-sm text-[#64748B]">可视化进度追踪</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Feature Highlights */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 px-4 md:px-0">
-              <div className="text-center">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl md:text-3xl">💧</span>
-                </div>
-                <h4 className="font-semibold text-[#1E293B] mb-1 text-sm md:text-base">每日打卡</h4>
-                <p className="text-xs md:text-sm text-[#64748B]">轻松记录进度</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl md:text-3xl">📊</span>
-                </div>
-                <h4 className="font-semibold text-[#1E293B] mb-1 text-sm md:text-base">数据分析</h4>
-                <p className="text-xs md:text-sm text-[#64748B]">可视化统计</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl md:text-3xl">🏆</span>
-                </div>
-                <h4 className="font-semibold text-[#1E293B] mb-1 text-sm md:text-base">成就系统</h4>
-                <p className="text-xs md:text-sm text-[#64748B]">解锁奖章</p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl md:text-3xl">⏰</span>
-                </div>
-                <h4 className="font-semibold text-[#1E293B] mb-1 text-sm md:text-base">智能提醒</h4>
-                <p className="text-xs md:text-sm text-[#64748B]">不错过任何时刻</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section - Enhanced Mobile */}
-      <section id="features" className="py-16 md:py-24 bg-[#F8FAFB]">
-        <div className="container px-4 md:px-0">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E293B] mb-4">
-              强大的功能
-            </h2>
-            <p className="text-base md:text-lg text-[#64748B] max-w-2xl mx-auto">
-              DropDrop 提供了一套完整的工具，帮助你更有效地管理和追踪日常习惯
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {/* Feature 1: Tracking */}
-            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-card hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div className="mb-6">
-                <img
-                  src="/images/feature-tracking.png"
-                  alt="Habit Tracking"
-                  className="w-full h-40 md:h-48 object-cover rounded-lg"
-                />
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-[#1E293B] mb-3">习惯追踪</h3>
-              <p className="text-[#64748B] mb-4 leading-relaxed text-sm md:text-base">
-                直观的圆形进度指示器实时显示你的完成度，每一次打卡都是向目标迈进的一步。
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-[#1E293B] text-sm md:text-base">
-                  <Check className="w-5 h-5 text-[#10B981] flex-shrink-0" />
-                  每日打卡提醒
-                </li>
-                <li className="flex items-center gap-2 text-[#1E293B] text-sm md:text-base">
-                  <Check className="w-5 h-5 text-[#10B981] flex-shrink-0" />
-                  连续天数统计
-                </li>
-                <li className="flex items-center gap-2 text-[#1E293B] text-sm md:text-base">
-                  <Check className="w-5 h-5 text-[#10B981] flex-shrink-0" />
-                  自定义目标设置
-                </li>
-              </ul>
-            </div>
-
-            {/* Feature 2: Analytics */}
-            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-card hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div className="mb-6">
-                <img
-                  src="/images/feature-analytics.png"
-                  alt="Advanced Analytics"
-                  className="w-full h-40 md:h-48 object-cover rounded-lg"
-                />
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-[#1E293B] mb-3">数据分析</h3>
-              <p className="text-[#64748B] mb-4 leading-relaxed text-sm md:text-base">
-                详细的统计图表和热力图帮助你深入了解习惯养成的规律和进度。
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-[#1E293B] text-sm md:text-base">
-                  <Check className="w-5 h-5 text-[#10B981] flex-shrink-0" />
-                  完成率统计
-                </li>
-                <li className="flex items-center gap-2 text-[#1E293B] text-sm md:text-base">
-                  <Check className="w-5 h-5 text-[#10B981] flex-shrink-0" />
-                  热力图展示
-                </li>
-                <li className="flex items-center gap-2 text-[#1E293B] text-sm md:text-base">
-                  <Check className="w-5 h-5 text-[#10B981] flex-shrink-0" />
-                  趋势分析
-                </li>
-              </ul>
-            </div>
-
-            {/* Feature 3: Reminders */}
-            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-card hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div className="mb-6">
-                <img
-                  src="/images/feature-reminders.png"
-                  alt="Smart Reminders"
-                  className="w-full h-40 md:h-48 object-cover rounded-lg"
-                />
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-[#1E293B] mb-3">智能提醒</h3>
-              <p className="text-[#64748B] mb-4 leading-relaxed text-sm md:text-base">
-                灵活的提醒设置确保你不会错过任何一个重要的习惯养成时刻。
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-[#1E293B] text-sm md:text-base">
-                  <Check className="w-5 h-5 text-[#10B981] flex-shrink-0" />
-                  自定义提醒时间
-                </li>
-                <li className="flex items-center gap-2 text-[#1E293B] text-sm md:text-base">
-                  <Check className="w-5 h-5 text-[#10B981] flex-shrink-0" />
-                  多种提醒方式
-                </li>
-                <li className="flex items-center gap-2 text-[#1E293B] text-sm md:text-base">
-                  <Check className="w-5 h-5 text-[#10B981] flex-shrink-0" />
-                  智能推送通知
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Premium Features Section - Enhanced Mobile */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container px-4 md:px-0">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E293B] mb-6">
-                升级会员
-                <br />
-                解锁更多功能
-              </h2>
-              <p className="text-base md:text-lg text-[#64748B] mb-8 leading-relaxed">
-                DropDrop Pro 会员提供无限习惯创建、云端同步、自定义主题等高级功能，帮助你更好地管理生活。
-              </p>
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <Smartphone className="w-5 h-5 md:w-6 md:h-6 text-[#4A89DC]" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-[#1E293B] mb-1 text-base md:text-lg">无限习惯创建</h3>
-                    <p className="text-[#64748B] text-sm md:text-base">创建无限数量的习惯，不受任何限制</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-[#10B981]" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-[#1E293B] mb-1 text-base md:text-lg">高级数据分析</h3>
-                    <p className="text-[#64748B] text-sm md:text-base">获取更详细的数据分析和趋势预测</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <Bell className="w-5 h-5 md:w-6 md:h-6 text-[#9333EA]" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-[#1E293B] mb-1 text-base md:text-lg">云端同步备份</h3>
-                    <p className="text-[#64748B] text-sm md:text-base">跨设备同步你的所有数据，永不丢失</p>
-                  </div>
-                </div>
-              </div>
-              <button className="btn-primary w-full md:w-auto">了解会员计划</button>
-            </div>
-            <div className="order-first md:order-last">
-              <div className="bg-gradient-to-br from-[#4A89DC] to-[#5A9AFF] rounded-3xl p-8 md:p-12 text-white">
-                <div className="space-y-4 md:space-y-6">
-                  <div className="bg-white/20 rounded-2xl p-4 md:p-6 backdrop-blur-sm">
-                    <p className="text-sm font-semibold opacity-80 mb-2">免费版</p>
-                    <p className="text-2xl md:text-3xl font-bold">¥0</p>
-                  </div>
-                  <div className="bg-white/20 rounded-2xl p-4 md:p-6 backdrop-blur-sm border-2 border-white/50">
-                    <p className="text-sm font-semibold opacity-80 mb-2">Pro 会员</p>
-                    <p className="text-2xl md:text-3xl font-bold">¥9.99/月</p>
-                    <p className="text-sm mt-2 opacity-90">或 ¥99/年，省 17%</p>
-                  </div>
-                  <div className="bg-white/20 rounded-2xl p-4 md:p-6 backdrop-blur-sm">
-                    <p className="text-sm font-semibold opacity-80 mb-2">14 天免费试用</p>
-                    <p className="text-base md:text-lg">立即体验所有功能</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Download Section - Enhanced Mobile */}
-      <section id="download" className="py-16 md:py-24 bg-gradient-to-b from-[#F8FAFB] to-white">
-        <div className="container text-center px-4 md:px-0">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E293B] mb-6">
-            立即开始养成好习惯
-          </h2>
-          <p className="text-base md:text-lg text-[#64748B] mb-12 max-w-2xl mx-auto">
-            DropDrop 现已在 iOS 和 Android 上线。下载应用，开始你的习惯养成之旅。
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto sm:max-w-none">
-            <a
-              href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary flex items-center justify-center gap-2 text-base md:text-lg py-3 md:py-4 px-6 md:px-8"
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100"
             >
-              <Download className="w-5 h-5" />
-              App Store
-            </a>
-            <button className="btn-primary flex items-center justify-center gap-2 text-base md:text-lg py-3 md:py-4 px-6 md:px-8">
-              <Download className="w-5 h-5" />
-              Google Play
-            </button>
+              <div className="container py-4 space-y-1">
+                {[
+                  { key: 'features', label: t('nav.features') },
+                  { key: 'showcase', label: t('nav.showcase') },
+                  { key: 'download', label: t('nav.download') },
+                ].map((item, index) => (
+                  <motion.button
+                    key={item.key}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    onClick={() => scrollToSection(item.key)}
+                    className="block w-full text-left px-4 py-3 text-[#64748B] hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1E293B] rounded-lg transition-all font-medium"
+                  >
+                    {item.label}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
+
+      {/* Hero Section - Ultra Premium */}
+      <motion.section
+        style={{ y: heroY, opacity: heroOpacity }}
+        className="pt-32 md:pt-40 pb-20 md:pb-32 relative overflow-hidden"
+      >
+        <div className="container relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-blue-200/30 rounded-full"
+            >
+              <Sparkles className="w-4 h-4 text-blue-500" />
+              <span className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                {t('hero.badge')}
+              </span>
+            </motion.div>
+
+            {/* Main Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#1E293B] mb-6 leading-tight"
+            >
+              {t('hero.title.main')}
+              <br />
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+                {t('hero.title.highlight')}
+              </span>
+            </motion.h1>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-lg md:text-xl text-[#64748B] mb-10 leading-relaxed max-w-2xl mx-auto px-4 md:px-0"
+            >
+              {t('hero.description')}
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center px-4 md:px-0 mb-16"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -10px rgba(74, 137, 220, 0.5)" }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollToSection('download')}
+                className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg overflow-hidden shadow-xl"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="relative flex items-center justify-center gap-2">
+                  {t('hero.cta.download')}
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollToSection('showcase')}
+                className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200 text-[#1E293B] rounded-xl font-semibold text-lg hover:bg-white hover:border-blue-300 transition-all shadow-lg"
+              >
+                {t('hero.cta.demo')}
+              </motion.button>
+            </motion.div>
+
+            {/* Stats - Glassmorphism Cards */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+              className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto"
+            >
+              {[
+                { value: '10万+', label: t('hero.stats.users') },
+                { value: '500万+', label: t('hero.stats.checkins') },
+                { value: '4.8★', label: t('hero.stats.rating') },
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ y: -5, scale: 1.05 }}
+                  className="p-6 bg-white/60 backdrop-blur-xl border border-white/40 rounded-2xl shadow-lg hover:shadow-2xl transition-all"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 1.2 + index * 0.1, type: "spring" }}
+                    className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2"
+                  >
+                    {stat.value}
+                  </motion.div>
+                  <div className="text-sm md:text-base text-[#64748B] font-medium">{stat.label}</div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Floating Decorative Elements */}
+        <motion.div
+          animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-10 w-16 h-16 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-2xl blur-xl"
+        />
+        <motion.div
+          animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 right-10 w-20 h-20 bg-gradient-to-br from-purple-400/20 to-blue-400/20 rounded-3xl blur-xl"
+        />
+      </motion.section>
+
+      {/* App Showcase Section - Premium */}
+      <section id="showcase" className="py-20 md:py-32 relative">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16 md:mb-20"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-block p-3 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl mb-6"
+            >
+              <Zap className="w-8 h-8 text-blue-600" />
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-6">
+              {t('showcase.title')}
+            </h2>
+            <p className="text-lg md:text-xl text-[#64748B] max-w-3xl mx-auto px-4">
+              {t('showcase.subtitle')}
+            </p>
+          </motion.div>
+
+          {/* Screenshots Grid - Desktop */}
+          <div className="hidden md:grid md:grid-cols-4 gap-6 lg:gap-8 mb-16 max-w-7xl mx-auto">
+            {[
+              { title: t('showcase.screen1.title'), desc: t('showcase.screen1.desc'), img: 'app-screenshot-1.png', color: 'from-blue-500/10 to-cyan-500/10' },
+              { title: t('showcase.screen2.title'), desc: t('showcase.screen2.desc'), img: 'app-screenshot-2.png', color: 'from-purple-500/10 to-pink-500/10' },
+              { title: t('showcase.screen3.title'), desc: t('showcase.screen3.desc'), img: 'app-screenshot-3.png', color: 'from-green-500/10 to-emerald-500/10' },
+              { title: t('showcase.screen4.title'), desc: t('showcase.screen4.desc'), img: 'app-screenshot-4.png', color: 'from-orange-500/10 to-red-500/10' },
+            ].map((screen, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="group relative"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${screen.color} rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <div className="relative bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
+                  <div className="aspect-[9/19] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+                    <img
+                      src={`/images/${screen.img}`}
+                      alt={screen.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      onError={(e) => {
+                        e.currentTarget.src = '/images/feature-tracking.png';
+                      }}
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-bold text-lg text-[#1E293B] mb-2 group-hover:text-blue-600 transition-colors">{screen.title}</h3>
+                    <p className="text-sm text-[#64748B]">{screen.desc}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
-          {/* QR Code Section for Mobile */}
-          <div className="mt-12 inline-block bg-white rounded-2xl p-6 shadow-lg">
-            <p className="text-sm text-[#64748B] mb-4">扫码下载</p>
-            <div className="w-32 h-32 bg-gray-100 rounded-lg mx-auto flex items-center justify-center">
-              <span className="text-4xl">📱</span>
+          {/* Screenshots Carousel - Mobile */}
+          <div className="md:hidden relative px-4 mb-16">
+            <div className="overflow-x-auto pb-6 -mx-4 px-4 scrollbar-hide">
+              <div className="flex gap-6 w-max">
+                {[
+                  { title: t('showcase.screen1.title'), desc: t('showcase.screen1.desc'), img: 'app-screenshot-1.png' },
+                  { title: t('showcase.screen2.title'), desc: t('showcase.screen2.desc'), img: 'app-screenshot-2.png' },
+                  { title: t('showcase.screen3.title'), desc: t('showcase.screen3.desc'), img: 'app-screenshot-3.png' },
+                  { title: t('showcase.screen4.title'), desc: t('showcase.screen4.desc'), img: 'app-screenshot-4.png' },
+                ].map((screen, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl overflow-hidden shadow-xl w-72 flex-shrink-0"
+                  >
+                    <div className="aspect-[9/19] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+                      <img
+                        src={`/images/${screen.img}`}
+                        alt={screen.title}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.src = '/images/feature-tracking.png';
+                        }}
+                      />
+                    </div>
+                    <div className="p-5">
+                      <h3 className="font-bold text-lg text-[#1E293B] mb-2">{screen.title}</h3>
+                      <p className="text-sm text-[#64748B]">{screen.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
+          </div>
+
+          {/* Feature Highlights */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto px-4 md:px-0"
+          >
+            {[
+              { icon: '💧', title: t('showcase.feature1.title'), desc: t('showcase.feature1.desc'), color: 'from-blue-500 to-cyan-500' },
+              { icon: '📊', title: t('showcase.feature2.title'), desc: t('showcase.feature2.desc'), color: 'from-purple-500 to-pink-500' },
+              { icon: '🏆', title: t('showcase.feature3.title'), desc: t('showcase.feature3.desc'), color: 'from-orange-500 to-red-500' },
+              { icon: '⏰', title: t('showcase.feature4.title'), desc: t('showcase.feature4.desc'), color: 'from-green-500 to-emerald-500' },
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, type: "spring" }}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="text-center group"
+              >
+                <motion.div
+                  whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                  transition={{ duration: 0.5 }}
+                  className={`w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-shadow`}
+                >
+                  <span className="text-3xl md:text-4xl">{feature.icon}</span>
+                </motion.div>
+                <h4 className="font-bold text-[#1E293B] mb-2 text-base md:text-lg">{feature.title}</h4>
+                <p className="text-sm md:text-base text-[#64748B]">{feature.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Add custom CSS for hiding scrollbar */}
+        <style>{`
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+          }
+          .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+          @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+          }
+          .animate-gradient {
+            animation: gradient 3s ease infinite;
+          }
+        `}</style>
+      </section>
+
+      {/* Features Section - Premium Cards */}
+      <section id="features" className="py-20 md:py-32 relative bg-gradient-to-b from-transparent to-white/50">
+        <div className="container px-4 md:px-0">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16 md:mb-20"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-block p-3 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl mb-6"
+            >
+              <Target className="w-8 h-8 text-purple-600" />
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-6">
+              {t('features.title')}
+            </h2>
+            <p className="text-lg md:text-xl text-[#64748B] max-w-3xl mx-auto">
+              {t('features.subtitle')}
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 max-w-7xl mx-auto">
+            {[
+              {
+                title: t('features.tracking.title'),
+                desc: t('features.tracking.desc'),
+                items: [t('features.tracking.item1'), t('features.tracking.item2'), t('features.tracking.item3')],
+                img: 'feature-tracking.png',
+                gradient: 'from-blue-500 to-cyan-500',
+                icon: '📈'
+              },
+              {
+                title: t('features.analytics.title'),
+                desc: t('features.analytics.desc'),
+                items: [t('features.analytics.item1'), t('features.analytics.item2'), t('features.analytics.item3')],
+                img: 'feature-analytics.png',
+                gradient: 'from-purple-500 to-pink-500',
+                icon: '📊'
+              },
+              {
+                title: t('features.reminders.title'),
+                desc: t('features.reminders.desc'),
+                items: [t('features.reminders.item1'), t('features.reminders.item2'), t('features.reminders.item3')],
+                img: 'feature-reminders.png',
+                gradient: 'from-orange-500 to-red-500',
+                icon: '🔔'
+              },
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2, duration: 0.6 }}
+                whileHover={{ y: -10 }}
+                className="group relative"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 rounded-3xl transition-opacity duration-500 blur-xl`} />
+                <div className="relative bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
+                  {/* Icon Badge */}
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className={`inline-block p-4 bg-gradient-to-br ${feature.gradient} rounded-2xl mb-6 shadow-lg`}
+                  >
+                    <span className="text-3xl">{feature.icon}</span>
+                  </motion.div>
+
+                  {/* Image */}
+                  <div className="mb-6 rounded-2xl overflow-hidden shadow-lg">
+                    <img
+                      src={`/images/${feature.img}`}
+                      alt={feature.title}
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                  </div>
+
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#1E293B] mb-4 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[#64748B] mb-6 leading-relaxed">
+                    {feature.desc}
+                  </p>
+                  <ul className="space-y-3">
+                    {feature.items.map((item, i) => (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 * i }}
+                        className="flex items-center gap-3 text-[#1E293B]"
+                      >
+                        <div className={`flex-shrink-0 w-6 h-6 bg-gradient-to-br ${feature.gradient} rounded-lg flex items-center justify-center`}>
+                          <Check className="w-4 h-4 text-white" />
+                        </div>
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Footer - Enhanced Mobile */}
-      <footer className="bg-[#1E293B] text-white py-12 md:py-16">
+      {/* Premium Section - Ultra Modern */}
+      <section className="py-20 md:py-32 relative overflow-hidden">
         <div className="container px-4 md:px-0">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            <div className="col-span-2 md:col-span-1">
-              <div className="flex items-center gap-2 mb-4">
-                <img src="/images/logo.png" alt="DropDrop" className="w-8 h-8 invert" />
-                <span className="text-lg font-bold">DropDrop</span>
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="inline-block p-3 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-2xl mb-6">
+                <Sparkles className="w-8 h-8 text-yellow-600" />
               </div>
-              <p className="text-[#94A3B8] text-sm">
-                养成好习惯，从每一滴开始
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-6">
+                {t('premium.title.line1')}
+                <br />
+                <span className="bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
+                  {t('premium.title.line2')}
+                </span>
+              </h2>
+              <p className="text-lg text-[#64748B] mb-8 leading-relaxed">
+                {t('premium.subtitle')}
+              </p>
+              <div className="space-y-6 mb-8">
+                {[
+                  { icon: Smartphone, title: t('premium.feature1.title'), desc: t('premium.feature1.desc'), color: 'from-blue-500 to-cyan-500' },
+                  { icon: TrendingUp, title: t('premium.feature2.title'), desc: t('premium.feature2.desc'), color: 'from-purple-500 to-pink-500' },
+                  { icon: Bell, title: t('premium.feature3.title'), desc: t('premium.feature3.desc'), color: 'from-green-500 to-emerald-500' },
+                ].map((feature, index) => {
+                  const Icon = feature.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ x: 10 }}
+                      className="flex items-start gap-4 group"
+                    >
+                      <div className={`flex-shrink-0 w-14 h-14 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-2xl group-hover:scale-110 transition-all`}>
+                        <Icon className="w-7 h-7 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-lg text-[#1E293B] mb-1 group-hover:text-blue-600 transition-colors">{feature.title}</h3>
+                        <p className="text-[#64748B]">{feature.desc}</p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -10px rgba(74, 137, 220, 0.5)" }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg shadow-xl w-full md:w-auto"
+              >
+                {t('premium.cta')}
+              </motion.button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-first md:order-last"
+            >
+              <div className="relative">
+                {/* Glowing Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl blur-3xl opacity-20" />
+
+                {/* Pricing Cards */}
+                <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-blue-600 rounded-3xl p-1 shadow-2xl">
+                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 md:p-12">
+                    <div className="space-y-6">
+                      {/* Free Plan */}
+                      <motion.div
+                        whileHover={{ scale: 1.02, x: 5 }}
+                        className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20"
+                      >
+                        <p className="text-sm font-semibold text-white/70 mb-2">{t('premium.plan.free')}</p>
+                        <p className="text-4xl font-bold text-white">¥0</p>
+                      </motion.div>
+
+                      {/* Pro Plan - Highlighted */}
+                      <motion.div
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl rounded-2xl p-6 border-2 border-white/40 shadow-2xl"
+                      >
+                        <div className="flex items-center justify-between mb-4">
+                          <p className="text-sm font-semibold text-white/90">{t('premium.plan.pro')}</p>
+                          <div className="px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full">
+                            <span className="text-xs font-bold text-gray-900">⭐ Popular</span>
+                          </div>
+                        </div>
+                        <p className="text-4xl font-bold text-white mb-2">¥9.99<span className="text-lg font-normal text-white/70">/月</span></p>
+                        <p className="text-sm text-white/70">{t('premium.plan.annual')}</p>
+                      </motion.div>
+
+                      {/* Trial */}
+                      <motion.div
+                        whileHover={{ scale: 1.02, x: 5 }}
+                        className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20"
+                      >
+                        <p className="text-sm font-semibold text-white/90 mb-2">{t('premium.plan.trial')}</p>
+                        <p className="text-lg text-white/80">{t('premium.plan.trial.desc')}</p>
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Download Section - Premium */}
+      <section id="download" className="py-20 md:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50" />
+        <div className="container text-center px-4 md:px-0 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-block p-3 bg-gradient-to-br from-green-500/10 to-blue-500/10 rounded-2xl mb-6">
+              <Download className="w-8 h-8 text-green-600" />
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-6">
+              {t('download.title')}
+            </h2>
+            <p className="text-lg md:text-xl text-[#64748B] mb-12 max-w-3xl mx-auto">
+              {t('download.subtitle')}
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center max-w-md mx-auto sm:max-w-none mb-16">
+              <motion.a
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group px-8 py-5 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-blue-500/50 transition-all"
+              >
+                <div className="flex items-center justify-center gap-3">
+                  <Download className="w-6 h-6 group-hover:animate-bounce" />
+                  <span>{t('download.appstore')}</span>
+                </div>
+              </motion.a>
+              <motion.button
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-purple-500/50 transition-all"
+              >
+                <div className="flex items-center justify-center gap-3">
+                  <Download className="w-6 h-6" />
+                  <span>{t('download.googleplay')}</span>
+                </div>
+              </motion.button>
+            </div>
+
+            {/* QR Code - Glassmorphism */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
+              className="inline-block bg-white/60 backdrop-blur-2xl border border-white/40 rounded-3xl p-8 shadow-2xl"
+            >
+              <p className="text-sm font-semibold text-[#64748B] mb-4">{t('download.qr')}</p>
+              <div className="w-40 h-40 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl mx-auto flex items-center justify-center shadow-inner">
+                <span className="text-6xl">📱</span>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer - Premium */}
+      <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-16 md:py-20 overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 animate-gradient" />
+        </div>
+
+        <div className="container px-4 md:px-0 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12">
+            <div className="col-span-2 md:col-span-1">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center gap-2 mb-6"
+              >
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg blur-lg opacity-75" />
+                  <img src="/images/logo.png" alt="DropDrop" className="relative w-10 h-10" />
+                </div>
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">DropDrop</span>
+              </motion.div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                {t('footer.slogan')}
               </p>
             </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-sm md:text-base">产品</h4>
-              <ul className="space-y-2 text-[#94A3B8] text-sm">
-                <li><button onClick={() => scrollToSection('features')} className="hover:text-white transition">功能</button></li>
-                <li><a href="#" className="hover:text-white transition">定价</a></li>
-                <li><button onClick={() => scrollToSection('download')} className="hover:text-white transition">下载</button></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-sm md:text-base">公司</h4>
-              <ul className="space-y-2 text-[#94A3B8] text-sm">
-                <li><a href="#" className="hover:text-white transition">关于我们</a></li>
-                <li><a href="#" className="hover:text-white transition">博客</a></li>
-                <li><a href="#" className="hover:text-white transition">联系我们</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-sm md:text-base">法律</h4>
-              <ul className="space-y-2 text-[#94A3B8] text-sm">
-                <li><a href="#" className="hover:text-white transition">隐私政策</a></li>
-                <li><a href="#" className="hover:text-white transition">服务条款</a></li>
-              </ul>
-            </div>
+
+            {[
+              {
+                title: t('footer.product'),
+                links: [
+                  { label: t('footer.features'), onClick: () => scrollToSection('features') },
+                  { label: t('footer.pricing'), href: '#' },
+                  { label: t('footer.download'), onClick: () => scrollToSection('download') },
+                ]
+              },
+              {
+                title: t('footer.company'),
+                links: [
+                  { label: t('footer.about'), href: '#' },
+                  { label: t('footer.blog'), href: '#' },
+                  { label: t('footer.contact'), href: '#' },
+                ]
+              },
+              {
+                title: t('footer.legal'),
+                links: [
+                  { label: t('footer.privacy'), href: '#' },
+                  { label: t('footer.terms'), href: '#' },
+                ]
+              },
+            ].map((section, index) => (
+              <div key={index}>
+                <h4 className="font-bold mb-4 text-lg bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">{section.title}</h4>
+                <ul className="space-y-3">
+                  {section.links.map((link, i) => (
+                    <li key={i}>
+                      {link.onClick ? (
+                        <motion.button
+                          whileHover={{ x: 5, color: "#fff" }}
+                          onClick={link.onClick}
+                          className="text-gray-400 hover:text-white transition-colors text-sm"
+                        >
+                          {link.label}
+                        </motion.button>
+                      ) : (
+                        <motion.a
+                          whileHover={{ x: 5, color: "#fff" }}
+                          href={link.href}
+                          className="text-gray-400 hover:text-white transition-colors text-sm"
+                        >
+                          {link.label}
+                        </motion.a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
-          <div className="border-t border-[#334155] pt-8">
-            <p className="text-[#94A3B8] text-sm text-center">
-              © 2025 DropDrop. All rights reserved.
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="border-t border-gray-700/50 pt-8"
+          >
+            <p className="text-gray-400 text-sm text-center">
+              {t('footer.copyright')}
             </p>
-          </div>
+          </motion.div>
         </div>
       </footer>
     </div>
