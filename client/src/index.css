@@ -1012,3 +1012,119 @@ img[loading="lazy"].loaded {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
+
+/* =========================================
+   PERFORMANCE OPTIMIZATIONS
+   ========================================= */
+
+/* GPU Acceleration - Use hardware acceleration for transforms and animations */
+.gpu-accelerated,
+[class*="motion-"],
+[class*="animate-"],
+.frosted-glass,
+.card-premium,
+.btn-luxury {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize scroll performance */
+* {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize rendering for animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Contain paint for better performance */
+.contain-paint {
+  contain: paint;
+}
+
+.contain-layout {
+  contain: layout;
+}
+
+.contain-strict {
+  contain: strict;
+}
+
+/* Reduce repaints and reflows */
+img,
+video,
+iframe {
+  content-visibility: auto;
+}
+
+/* Optimize font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga' 1, 'calt' 1, 'kern' 1;
+}
+
+/* Optimize backdrop-filter performance */
+.backdrop-blur {
+  -webkit-backdrop-filter: blur(var(--blur-amount, 12px));
+  backdrop-filter: blur(var(--blur-amount, 12px));
+  will-change: backdrop-filter;
+}
+
+/* Reduce layout shifts for images */
+img[loading="lazy"] {
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Performance hint for hover states */
+button:hover,
+a:hover,
+.group:hover {
+  will-change: transform, opacity;
+}
+
+/* Reset will-change after transition to free GPU resources */
+button,
+a,
+.group {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+button:not(:hover),
+a:not(:hover),
+.group:not(:hover) {
+  will-change: auto;
+}

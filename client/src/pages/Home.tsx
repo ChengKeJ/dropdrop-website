@@ -1,10 +1,22 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Download, Smartphone, TrendingUp, Bell, Menu, X, Sparkles, Zap, Target } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { useState, useEffect, useMemo, memo } from "react";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useThrottle } from "@/hooks/useThrottle";
+import {
+  DropIcon,
+  ChartIcon,
+  TrophyIcon,
+  ClockIcon,
+  TargetIcon,
+  SparklesIcon,
+  DownloadIcon,
+  SmartphoneIcon,
+  CheckIcon
+} from "@/components/IllustratedIcons";
 
 /**
  * DropDrop Official Website - Premium Edition
@@ -22,13 +34,15 @@ export default function Home() {
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 150]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
+  // Optimized scroll handler with throttling
+  const handleScroll = useThrottle(() => {
+    setIsScrolled(window.scrollY > 50);
+  }, 100);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -51,32 +65,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 overflow-hidden">
-      {/* Animated Background Elements */}
+      {/* Optimized Background Elements - CSS Animation */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            rotate: [90, 0, 90],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-purple-400/10 to-blue-400/10 rounded-full blur-3xl"
-        />
+        <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl animate-[float_30s_ease-in-out_infinite]" />
+        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-purple-400/10 to-blue-400/10 rounded-full blur-3xl animate-[float_30s_ease-in-out_infinite_reverse]" />
       </div>
 
       {/* Navigation - Glassmorphism */}
@@ -431,27 +423,22 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto px-4 md:px-0"
           >
             {[
-              { icon: '💧', title: t('showcase.feature1.title'), desc: t('showcase.feature1.desc'), color: 'from-blue-500 to-cyan-500' },
-              { icon: '📊', title: t('showcase.feature2.title'), desc: t('showcase.feature2.desc'), color: 'from-purple-500 to-pink-500' },
-              { icon: '🏆', title: t('showcase.feature3.title'), desc: t('showcase.feature3.desc'), color: 'from-orange-500 to-red-500' },
-              { icon: '⏰', title: t('showcase.feature4.title'), desc: t('showcase.feature4.desc'), color: 'from-green-500 to-emerald-500' },
+              { IconComponent: DropIcon, title: t('showcase.feature1.title'), desc: t('showcase.feature1.desc') },
+              { IconComponent: ChartIcon, title: t('showcase.feature2.title'), desc: t('showcase.feature2.desc') },
+              { IconComponent: TrophyIcon, title: t('showcase.feature3.title'), desc: t('showcase.feature3.desc') },
+              { IconComponent: ClockIcon, title: t('showcase.feature4.title'), desc: t('showcase.feature4.desc') },
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, type: "spring" }}
-                whileHover={{ scale: 1.05, y: -5 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: index * 0.08, duration: 0.4 }}
                 className="text-center group"
               >
-                <motion.div
-                  whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                  transition={{ duration: 0.5 }}
-                  className={`w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-shadow`}
-                >
-                  <span className="text-3xl md:text-4xl">{feature.icon}</span>
-                </motion.div>
+                <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 transform transition-transform duration-300 group-hover:scale-110">
+                  <feature.IconComponent size={window.innerWidth < 768 ? 80 : 96} />
+                </div>
                 <h4 className="font-bold text-[#1E293B] mb-2 text-base md:text-lg">{feature.title}</h4>
                 <p className="text-sm md:text-base text-[#64748B]">{feature.desc}</p>
               </motion.div>
@@ -459,7 +446,7 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Add custom CSS for hiding scrollbar */}
+        {/* Custom CSS for animations */}
         <style>{`
           .scrollbar-hide::-webkit-scrollbar {
             display: none;
@@ -471,6 +458,11 @@ export default function Home() {
           @keyframes gradient {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
+          }
+          @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
           }
           .animate-gradient {
             animation: gradient 3s ease infinite;
@@ -493,7 +485,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="inline-block p-3 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl mb-6"
             >
-              <Target className="w-8 h-8 text-purple-600" />
+              <TargetIcon size={48} />
             </motion.div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-6">
               {t('features.title')}
@@ -511,7 +503,7 @@ export default function Home() {
                 items: [t('features.tracking.item1'), t('features.tracking.item2'), t('features.tracking.item3')],
                 img: 'feature-tracking.png',
                 gradient: 'from-blue-500 to-cyan-500',
-                icon: '📈'
+                IconComponent: DropIcon
               },
               {
                 title: t('features.analytics.title'),
@@ -519,7 +511,7 @@ export default function Home() {
                 items: [t('features.analytics.item1'), t('features.analytics.item2'), t('features.analytics.item3')],
                 img: 'feature-analytics.png',
                 gradient: 'from-purple-500 to-pink-500',
-                icon: '📊'
+                IconComponent: ChartIcon
               },
               {
                 title: t('features.reminders.title'),
@@ -527,27 +519,22 @@ export default function Home() {
                 items: [t('features.reminders.item1'), t('features.reminders.item2'), t('features.reminders.item3')],
                 img: 'feature-reminders.png',
                 gradient: 'from-orange-500 to-red-500',
-                icon: '🔔'
+                IconComponent: ClockIcon
               },
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2, duration: 0.6 }}
-                whileHover={{ y: -10 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ delay: index * 0.15, duration: 0.5 }}
                 className="group relative"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 rounded-3xl transition-opacity duration-500 blur-xl`} />
-                <div className="relative bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
+                <div className="relative bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300">
                   {/* Icon Badge */}
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className={`inline-block p-4 bg-gradient-to-br ${feature.gradient} rounded-2xl mb-6 shadow-lg`}
-                  >
-                    <span className="text-3xl">{feature.icon}</span>
-                  </motion.div>
+                  <div className="inline-block mb-6">
+                    <feature.IconComponent size={64} />
+                  </div>
 
                   {/* Image */}
                   <div className="mb-6 rounded-2xl overflow-hidden shadow-lg">
@@ -566,19 +553,15 @@ export default function Home() {
                   </p>
                   <ul className="space-y-3">
                     {feature.items.map((item, i) => (
-                      <motion.li
+                      <li
                         key={i}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 * i }}
                         className="flex items-center gap-3 text-[#1E293B]"
                       >
-                        <div className={`flex-shrink-0 w-6 h-6 bg-gradient-to-br ${feature.gradient} rounded-lg flex items-center justify-center`}>
-                          <Check className="w-4 h-4 text-white" />
+                        <div className="flex-shrink-0 w-6 h-6">
+                          <CheckIcon size={24} />
                         </div>
                         <span>{item}</span>
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -598,8 +581,8 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-block p-3 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-2xl mb-6">
-                <Sparkles className="w-8 h-8 text-yellow-600" />
+              <div className="inline-block mb-6">
+                <SparklesIcon size={56} />
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-6">
                 {t('premium.title.line1')}
@@ -613,31 +596,23 @@ export default function Home() {
               </p>
               <div className="space-y-6 mb-8">
                 {[
-                  { icon: Smartphone, title: t('premium.feature1.title'), desc: t('premium.feature1.desc'), color: 'from-blue-500 to-cyan-500' },
-                  { icon: TrendingUp, title: t('premium.feature2.title'), desc: t('premium.feature2.desc'), color: 'from-purple-500 to-pink-500' },
-                  { icon: Bell, title: t('premium.feature3.title'), desc: t('premium.feature3.desc'), color: 'from-green-500 to-emerald-500' },
-                ].map((feature, index) => {
-                  const Icon = feature.icon;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{ x: 10 }}
-                      className="flex items-start gap-4 group"
-                    >
-                      <div className={`flex-shrink-0 w-14 h-14 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-2xl group-hover:scale-110 transition-all`}>
-                        <Icon className="w-7 h-7 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-lg text-[#1E293B] mb-1 group-hover:text-blue-600 transition-colors">{feature.title}</h3>
-                        <p className="text-[#64748B]">{feature.desc}</p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
+                  { IconComponent: SmartphoneIcon, title: t('premium.feature1.title'), desc: t('premium.feature1.desc') },
+                  { IconComponent: ChartIcon, title: t('premium.feature2.title'), desc: t('premium.feature2.desc') },
+                  { IconComponent: ClockIcon, title: t('premium.feature3.title'), desc: t('premium.feature3.desc') },
+                ].map((feature, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-4 group"
+                  >
+                    <div className="flex-shrink-0 w-14 h-14 transform transition-transform duration-300 group-hover:scale-110">
+                      <feature.IconComponent size={56} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg text-[#1E293B] mb-1">{feature.title}</h3>
+                      <p className="text-[#64748B]">{feature.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -10px rgba(74, 137, 220, 0.5)" }}
@@ -664,19 +639,13 @@ export default function Home() {
                   <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 md:p-12">
                     <div className="space-y-6">
                       {/* Free Plan */}
-                      <motion.div
-                        whileHover={{ scale: 1.02, x: 5 }}
-                        className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20"
-                      >
+                      <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 transition-transform duration-300 hover:scale-[1.02]">
                         <p className="text-sm font-semibold text-white/70 mb-2">{t('premium.plan.free')}</p>
                         <p className="text-4xl font-bold text-white">¥0</p>
-                      </motion.div>
+                      </div>
 
                       {/* Pro Plan - Highlighted */}
-                      <motion.div
-                        whileHover={{ scale: 1.05, y: -5 }}
-                        className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl rounded-2xl p-6 border-2 border-white/40 shadow-2xl"
-                      >
+                      <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl rounded-2xl p-6 border-2 border-white/40 shadow-2xl transition-transform duration-300 hover:scale-105">
                         <div className="flex items-center justify-between mb-4">
                           <p className="text-sm font-semibold text-white/90">{t('premium.plan.pro')}</p>
                           <div className="px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full">
@@ -685,16 +654,13 @@ export default function Home() {
                         </div>
                         <p className="text-4xl font-bold text-white mb-2">¥9.99<span className="text-lg font-normal text-white/70">/月</span></p>
                         <p className="text-sm text-white/70">{t('premium.plan.annual')}</p>
-                      </motion.div>
+                      </div>
 
                       {/* Trial */}
-                      <motion.div
-                        whileHover={{ scale: 1.02, x: 5 }}
-                        className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20"
-                      >
+                      <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 transition-transform duration-300 hover:scale-[1.02]">
                         <p className="text-sm font-semibold text-white/90 mb-2">{t('premium.plan.trial')}</p>
                         <p className="text-lg text-white/80">{t('premium.plan.trial.desc')}</p>
-                      </motion.div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -713,8 +679,8 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block p-3 bg-gradient-to-br from-green-500/10 to-blue-500/10 rounded-2xl mb-6">
-              <Download className="w-8 h-8 text-green-600" />
+            <div className="inline-block mb-6">
+              <DownloadIcon size={56} />
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-6">
               {t('download.title')}
@@ -725,25 +691,29 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center max-w-md mx-auto sm:max-w-none mb-16">
               <motion.a
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.03, y: -3 }}
+                whileTap={{ scale: 0.98 }}
                 href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group px-8 py-5 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-blue-500/50 transition-all"
+                className="px-8 py-5 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-blue-500/50 transition-all"
               >
                 <div className="flex items-center justify-center gap-3">
-                  <Download className="w-6 h-6 group-hover:animate-bounce" />
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+                    <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 17v2a2 2 0 002 2h10a2 2 0 002-2v-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                   <span>{t('download.appstore')}</span>
                 </div>
               </motion.a>
               <motion.button
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.03, y: -3 }}
+                whileTap={{ scale: 0.98 }}
                 className="px-8 py-5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-purple-500/50 transition-all"
               >
                 <div className="flex items-center justify-center gap-3">
-                  <Download className="w-6 h-6" />
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+                    <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 17v2a2 2 0 002 2h10a2 2 0 002-2v-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                   <span>{t('download.googleplay')}</span>
                 </div>
               </motion.button>
