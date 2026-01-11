@@ -1,9 +1,10 @@
-import { SVGProps } from 'react';
+import { SVGProps, useId } from 'react';
 
 /**
  * Illustrated Icons - Hand-drawn style SVG icons
  * Design: Soft, rounded, playful illustration style
  * Color: Gradient fills with depth
+ * Note: Uses useId() to generate unique gradient IDs and prevent conflicts
  */
 
 interface IconProps extends SVGProps<SVGSVGElement> {
@@ -12,6 +13,8 @@ interface IconProps extends SVGProps<SVGSVGElement> {
 
 // Water Drop - Habit tracking
 export function DropIcon({ size = 64, ...props }: IconProps) {
+  const gradientId = useId();
+
   return (
     <svg
       width={size}
@@ -22,7 +25,7 @@ export function DropIcon({ size = 64, ...props }: IconProps) {
       {...props}
     >
       <defs>
-        <linearGradient id="drop-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#4A89DC" />
           <stop offset="100%" stopColor="#5DADE2" />
         </linearGradient>
@@ -30,7 +33,7 @@ export function DropIcon({ size = 64, ...props }: IconProps) {
       {/* Main drop shape */}
       <path
         d="M32 8C32 8 18 22 18 34C18 42 24 48 32 48C40 48 46 42 46 34C46 22 32 8 32 8Z"
-        fill="url(#drop-gradient)"
+        fill={`url(#${gradientId})`}
         stroke="#3A6CB0"
         strokeWidth="2"
         strokeLinecap="round"
@@ -46,6 +49,8 @@ export function DropIcon({ size = 64, ...props }: IconProps) {
 
 // Chart - Statistics & Analytics
 export function ChartIcon({ size = 64, ...props }: IconProps) {
+  const gradientId = useId();
+
   return (
     <svg
       width={size}
@@ -56,17 +61,17 @@ export function ChartIcon({ size = 64, ...props }: IconProps) {
       {...props}
     >
       <defs>
-        <linearGradient id="chart-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#9333EA" />
           <stop offset="100%" stopColor="#EC4899" />
         </linearGradient>
       </defs>
       {/* Background card */}
-      <rect x="8" y="12" width="48" height="44" rx="8" fill="url(#chart-gradient)" opacity="0.1" />
+      <rect x="8" y="12" width="48" height="44" rx="8" fill={`url(#${gradientId})`} opacity="0.1" />
       {/* Bars */}
-      <rect x="14" y="36" width="8" height="14" rx="3" fill="url(#chart-gradient)" />
-      <rect x="28" y="28" width="8" height="22" rx="3" fill="url(#chart-gradient)" />
-      <rect x="42" y="20" width="8" height="30" rx="3" fill="url(#chart-gradient)" />
+      <rect x="14" y="36" width="8" height="14" rx="3" fill={`url(#${gradientId})`} />
+      <rect x="28" y="28" width="8" height="22" rx="3" fill={`url(#${gradientId})`} />
+      <rect x="42" y="20" width="8" height="30" rx="3" fill={`url(#${gradientId})`} />
       {/* Trend line */}
       <path
         d="M12 42 Q 22 32, 32 24 T 52 14"
@@ -86,6 +91,8 @@ export function ChartIcon({ size = 64, ...props }: IconProps) {
 
 // Trophy - Achievement & Goals
 export function TrophyIcon({ size = 64, ...props }: IconProps) {
+  const gradientId = useId();
+
   return (
     <svg
       width={size}
@@ -96,27 +103,27 @@ export function TrophyIcon({ size = 64, ...props }: IconProps) {
       {...props}
     >
       <defs>
-        <linearGradient id="trophy-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#F59E0B" />
           <stop offset="100%" stopColor="#EF4444" />
         </linearGradient>
       </defs>
       {/* Base */}
-      <rect x="22" y="48" width="20" height="4" rx="2" fill="url(#trophy-gradient)" />
-      <rect x="26" y="44" width="12" height="6" rx="2" fill="url(#trophy-gradient)" opacity="0.8" />
+      <rect x="22" y="48" width="20" height="4" rx="2" fill={`url(#${gradientId})`} />
+      <rect x="26" y="44" width="12" height="6" rx="2" fill={`url(#${gradientId})`} opacity="0.8" />
       {/* Cup stem */}
-      <rect x="28" y="38" width="8" height="8" rx="1" fill="url(#trophy-gradient)" />
+      <rect x="28" y="38" width="8" height="8" rx="1" fill={`url(#${gradientId})`} />
       {/* Cup body */}
       <path
         d="M20 12 L20 26 C20 32 24 36 32 36 C40 36 44 32 44 26 L44 12 L20 12Z"
-        fill="url(#trophy-gradient)"
+        fill={`url(#${gradientId})`}
         stroke="#D97706"
         strokeWidth="2"
         strokeLinecap="round"
       />
       {/* Handles */}
-      <path d="M18 16 C14 16 12 18 12 22 C12 24 13 26 16 26" stroke="url(#trophy-gradient)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-      <path d="M46 16 C50 16 52 18 52 22 C52 24 51 26 48 26" stroke="url(#trophy-gradient)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      <path d="M18 16 C14 16 12 18 12 22 C12 24 13 26 16 26" stroke={`url(#${gradientId})`} strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      <path d="M46 16 C50 16 52 18 52 22 C52 24 51 26 48 26" stroke={`url(#${gradientId})`} strokeWidth="2.5" fill="none" strokeLinecap="round" />
       {/* Star decoration */}
       <path d="M32 18 L34 23 L39 23 L35 26 L37 31 L32 28 L27 31 L29 26 L25 23 L30 23 Z" fill="white" opacity="0.4" />
     </svg>
@@ -125,6 +132,8 @@ export function TrophyIcon({ size = 64, ...props }: IconProps) {
 
 // Clock - Reminders & Schedule
 export function ClockIcon({ size = 64, ...props }: IconProps) {
+  const gradientId = useId();
+
   return (
     <svg
       width={size}
@@ -135,13 +144,13 @@ export function ClockIcon({ size = 64, ...props }: IconProps) {
       {...props}
     >
       <defs>
-        <linearGradient id="clock-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#10B981" />
           <stop offset="100%" stopColor="#059669" />
         </linearGradient>
       </defs>
       {/* Clock face */}
-      <circle cx="32" cy="34" r="22" fill="url(#clock-gradient)" stroke="#047857" strokeWidth="2" />
+      <circle cx="32" cy="34" r="22" fill={`url(#${gradientId})`} stroke="#047857" strokeWidth="2" />
       {/* Inner circle */}
       <circle cx="32" cy="34" r="18" fill="white" opacity="0.2" />
       {/* Hour markers */}
@@ -163,6 +172,8 @@ export function ClockIcon({ size = 64, ...props }: IconProps) {
 
 // Target - Goals & Focus
 export function TargetIcon({ size = 64, ...props }: IconProps) {
+  const gradientId = useId();
+
   return (
     <svg
       width={size}
@@ -173,19 +184,19 @@ export function TargetIcon({ size = 64, ...props }: IconProps) {
       {...props}
     >
       <defs>
-        <linearGradient id="target-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#9333EA" />
           <stop offset="100%" stopColor="#A855F7" />
         </linearGradient>
       </defs>
       {/* Outer ring */}
-      <circle cx="32" cy="32" r="24" stroke="url(#target-gradient)" strokeWidth="3" fill="none" opacity="0.3" />
+      <circle cx="32" cy="32" r="24" stroke={`url(#${gradientId})`} strokeWidth="3" fill="none" opacity="0.3" />
       {/* Middle ring */}
-      <circle cx="32" cy="32" r="16" stroke="url(#target-gradient)" strokeWidth="3" fill="none" opacity="0.5" />
+      <circle cx="32" cy="32" r="16" stroke={`url(#${gradientId})`} strokeWidth="3" fill="none" opacity="0.5" />
       {/* Inner ring */}
-      <circle cx="32" cy="32" r="8" fill="url(#target-gradient)" opacity="0.7" />
+      <circle cx="32" cy="32" r="8" fill={`url(#${gradientId})`} opacity="0.7" />
       {/* Bullseye */}
-      <circle cx="32" cy="32" r="4" fill="url(#target-gradient)" />
+      <circle cx="32" cy="32" r="4" fill={`url(#${gradientId})`} />
       {/* Arrow */}
       <path
         d="M48 16 L34 30"
@@ -200,6 +211,8 @@ export function TargetIcon({ size = 64, ...props }: IconProps) {
 
 // Sparkles - Premium & Special
 export function SparklesIcon({ size = 64, ...props }: IconProps) {
+  const gradientId = useId();
+
   return (
     <svg
       width={size}
@@ -210,7 +223,7 @@ export function SparklesIcon({ size = 64, ...props }: IconProps) {
       {...props}
     >
       <defs>
-        <linearGradient id="sparkle-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#FBBF24" />
           <stop offset="100%" stopColor="#F59E0B" />
         </linearGradient>
@@ -218,19 +231,19 @@ export function SparklesIcon({ size = 64, ...props }: IconProps) {
       {/* Large star */}
       <path
         d="M32 8 L35 22 L49 25 L35 28 L32 42 L29 28 L15 25 L29 22 Z"
-        fill="url(#sparkle-gradient)"
+        fill={`url(#${gradientId})`}
         stroke="#D97706"
         strokeWidth="1.5"
       />
       {/* Small star top right */}
       <path
         d="M48 14 L49 18 L53 19 L49 20 L48 24 L47 20 L43 19 L47 18 Z"
-        fill="url(#sparkle-gradient)"
+        fill={`url(#${gradientId})`}
       />
       {/* Small star bottom left */}
       <path
         d="M16 40 L17 44 L21 45 L17 46 L16 50 L15 46 L11 45 L15 44 Z"
-        fill="url(#sparkle-gradient)"
+        fill={`url(#${gradientId})`}
       />
       {/* Tiny sparkle */}
       <circle cx="50" cy="38" r="2" fill="#FBBF24" />
@@ -241,6 +254,8 @@ export function SparklesIcon({ size = 64, ...props }: IconProps) {
 
 // Download - App Download
 export function DownloadIcon({ size = 64, ...props }: IconProps) {
+  const gradientId = useId();
+
   return (
     <svg
       width={size}
@@ -251,7 +266,7 @@ export function DownloadIcon({ size = 64, ...props }: IconProps) {
       {...props}
     >
       <defs>
-        <linearGradient id="download-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#4A89DC" />
           <stop offset="100%" stopColor="#5DADE2" />
         </linearGradient>
@@ -259,7 +274,7 @@ export function DownloadIcon({ size = 64, ...props }: IconProps) {
       {/* Cloud */}
       <path
         d="M20 28 C16 28 12 32 12 36 C12 40 16 44 20 44 L44 44 C48 44 52 40 52 36 C52 32 48 28 44 28 C44 22 38 16 32 16 C26 16 20 22 20 28Z"
-        fill="url(#download-gradient)"
+        fill={`url(#${gradientId})`}
         stroke="#3A6CB0"
         strokeWidth="2"
         strokeLinecap="round"
@@ -275,6 +290,8 @@ export function DownloadIcon({ size = 64, ...props }: IconProps) {
 
 // Smartphone - Mobile App
 export function SmartphoneIcon({ size = 64, ...props }: IconProps) {
+  const gradientId = useId();
+
   return (
     <svg
       width={size}
@@ -285,13 +302,13 @@ export function SmartphoneIcon({ size = 64, ...props }: IconProps) {
       {...props}
     >
       <defs>
-        <linearGradient id="phone-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#6366F1" />
           <stop offset="100%" stopColor="#8B5CF6" />
         </linearGradient>
       </defs>
       {/* Phone body */}
-      <rect x="18" y="8" width="28" height="48" rx="4" fill="url(#phone-gradient)" stroke="#4F46E5" strokeWidth="2" />
+      <rect x="18" y="8" width="28" height="48" rx="4" fill={`url(#${gradientId})`} stroke="#4F46E5" strokeWidth="2" />
       {/* Screen */}
       <rect x="21" y="14" width="22" height="36" rx="2" fill="white" opacity="0.9" />
       {/* Notch */}
@@ -311,6 +328,8 @@ export function SmartphoneIcon({ size = 64, ...props }: IconProps) {
 
 // Check - Success & Completion
 export function CheckIcon({ size = 64, ...props }: IconProps) {
+  const gradientId = useId();
+
   return (
     <svg
       width={size}
@@ -321,13 +340,13 @@ export function CheckIcon({ size = 64, ...props }: IconProps) {
       {...props}
     >
       <defs>
-        <linearGradient id="check-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#10B981" />
           <stop offset="100%" stopColor="#059669" />
         </linearGradient>
       </defs>
       {/* Circle background */}
-      <circle cx="32" cy="32" r="24" fill="url(#check-gradient)" />
+      <circle cx="32" cy="32" r="24" fill={`url(#${gradientId})`} />
       {/* Check mark */}
       <path
         d="M20 32 L28 40 L44 24"
