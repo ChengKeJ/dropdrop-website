@@ -36,15 +36,21 @@ export default function Home() {
 
   // Optimized scroll handler with throttling
   const handleScroll = useThrottle(() => {
-    setIsScrolled(window.scrollY > 50);
+    if (typeof window !== 'undefined') {
+      setIsScrolled(window.scrollY > 50);
+    }
   }, 100);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -56,6 +62,8 @@ export default function Home() {
   }, [isMobileMenuOpen]);
 
   const scrollToSection = (id: string) => {
+    if (typeof document === 'undefined') return;
+
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
