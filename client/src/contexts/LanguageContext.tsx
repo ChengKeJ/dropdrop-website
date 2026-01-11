@@ -208,33 +208,41 @@ interface LanguageProviderProps {
 }
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
-  const [language, setLanguageState] = useState<Language>(() => {
+  // Initialize with default language (will be updated in useEffect)
+  const [language, setLanguageState] = useState<Language>('zh');
+
+  // Detect and set language on client side only
+  useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return;
+
     // Get saved language from localStorage or detect from browser
     const saved = localStorage.getItem('dropdrop-language') as Language;
     if (saved && (saved === 'zh' || saved === 'en')) {
-      return saved;
+      setLanguageState(saved);
+      document.documentElement.lang = saved === 'zh' ? 'zh-CN' : 'en';
+      return;
     }
 
     // Detect browser language
     const browserLang = navigator.language.toLowerCase();
-    return browserLang.startsWith('zh') ? 'zh' : 'en';
-  });
+    const detectedLang = browserLang.startsWith('zh') ? 'zh' : 'en';
+    setLanguageState(detectedLang);
+    document.documentElement.lang = detectedLang === 'zh' ? 'zh-CN' : 'en';
+  }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('dropdrop-language', lang);
-    // Update HTML lang attribute for SEO
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    // Only access localStorage and document on client side
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('dropdrop-language', lang);
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    }
   };
 
   const t = (key: string): string => {
     return translations[language][key] || key;
   };
-
-  useEffect(() => {
-    // Set initial HTML lang attribute
-    document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
-  }, []);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
