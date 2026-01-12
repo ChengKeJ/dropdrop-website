@@ -1,16 +1,20 @@
 import { Button } from "@/components/ui/button";
-import { 
-  Menu, X, ArrowRight, Sparkles, Zap, 
-  Droplets, Activity, Trophy, Bell, 
-  Target, Smartphone, CloudDownload, 
-  CheckCircle2, Star, ShieldCheck, Heart 
+import {
+  Menu, X, ArrowRight, Sparkles, Zap,
+  Droplets, Activity, Trophy, Bell,
+  Target, Smartphone, CloudDownload,
+  CheckCircle2, Star, ShieldCheck, Heart,
+  ChevronLeft, ChevronRight
 } from "lucide-react";
-import { useState, useEffect, useMemo, memo } from "react";
+import useEmblaCarousel from 'embla-carousel-react';
+import { useState, useEffect, useMemo, memo, useCallback } from "react";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useThrottle } from "@/hooks/useThrottle";
+import { SEOHead } from "@/components/SEO/SEOHead";
+import { organizationSchema, websiteSchema, mobileAppSchema } from "@/lib/structuredData";
 
 /**
  * DropDrop Official Website - Premium Edition
@@ -22,8 +26,13 @@ export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { scrollYProgress } = useScroll();
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: false, 
+    align: 'center',
+    containScroll: 'trimSnaps' 
+  });
 
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 150]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
@@ -66,7 +75,19 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-purple-50/10 overflow-hidden bg-noise selection:bg-blue-100 selection:text-blue-900 font-sans antialiased">
+    <>
+      <SEOHead
+        title={language === 'zh'
+          ? 'DropDrop - 养成好习惯，从现在开始 | 专业习惯追踪应用'
+          : 'DropDrop - Build Good Habits | Professional Habit Tracker App'}
+        description={language === 'zh'
+          ? 'DropDrop 是一款专业的习惯追踪应用，帮助你通过可视化进度、智能提醒和成就系统，坚持不懈地养成更好的习惯。支持iOS和Android平台。'
+          : 'DropDrop is a professional habit tracking app that helps you build better habits through visual progress, smart reminders, and achievement systems. Available on iOS and Android.'}
+        canonical="https://dropdrophabit.com/"
+        ogImage="https://dropdrophabit.com/images/og-dropdrop.png"
+        structuredData={[organizationSchema, websiteSchema, mobileAppSchema]}
+      />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-purple-50/10 overflow-hidden bg-noise selection:bg-blue-100 selection:text-blue-900 font-sans antialiased">
       {/* Optimized Background Elements - CSS Animation */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none select-none z-0">
         <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-gradient-to-br from-blue-400/10 via-purple-300/10 to-transparent rounded-full blur-[120px] animate-[float_20s_ease-in-out_infinite]" />
@@ -81,51 +102,49 @@ export default function Home() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
           isScrolled
-            ? "bg-white/70 backdrop-blur-2xl shadow-sm border-white/20 supports-[backdrop-filter]:bg-white/60"
-            : "bg-transparent backdrop-blur-none border-transparent py-2"
+            ? "bg-white/80 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.03)] border-white/40"
+            : "bg-transparent backdrop-blur-none border-transparent py-4"
         }`}
       >
         <div className="container flex items-center justify-between h-16 md:h-20">
           <motion.div
             className="flex items-center gap-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg blur-lg opacity-50" />
-              <img src="/images/logo.png" alt="DropDrop" className="relative w-8 h-8 md:w-10 md:h-10" />
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-40 group-hover:opacity-60 transition-opacity" />
+              <img src="/images/logo.png" alt="DropDrop" className="relative w-9 h-9 md:w-11 md:h-11 shadow-sm rounded-xl bg-white p-0.5" />
             </div>
-            <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-xl md:text-2xl font-bold font-serif tracking-tight text-slate-800">
               DropDrop
             </span>
           </motion.div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-8">
             <motion.button
-              whileHover={{ scale: 1.05, color: "#1E293B" }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ y: -1, color: "#0F172A" }}
               onClick={() => scrollToSection('features')}
-              className="text-[#64748B] hover:text-[#1E293B] transition-colors font-medium"
+              className="text-slate-500 hover:text-slate-900 transition-colors font-medium text-sm tracking-wide"
             >
               {t('nav.features')}
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.05, color: "#1E293B" }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ y: -1, color: "#0F172A" }}
               onClick={() => scrollToSection('showcase')}
-              className="text-[#64748B] hover:text-[#1E293B] transition-colors font-medium"
+              className="text-slate-500 hover:text-slate-900 transition-colors font-medium text-sm tracking-wide"
             >
               {t('nav.showcase')}
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.05, color: "#1E293B" }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ y: -1, color: "#0F172A" }}
               onClick={() => scrollToSection('download')}
-              className="text-[#64748B] hover:text-[#1E293B] transition-colors font-medium"
+              className="text-slate-500 hover:text-slate-900 transition-colors font-medium text-sm tracking-wide"
             >
               {t('nav.download')}
             </motion.button>
+            <div className="w-px h-4 bg-slate-200" />
             <LanguageSwitcher />
           </div>
 
@@ -201,8 +220,10 @@ export default function Home() {
       {/* Hero Section - Ultra Premium */}
       <motion.section
         style={{ y: heroY, opacity: heroOpacity }}
-        className="pt-32 md:pt-40 pb-20 md:pb-32 relative overflow-hidden"
+        className="pt-32 md:pt-44 pb-20 md:pb-36 relative overflow-hidden"
       >
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-soft-light" />
+        
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             {/* Badge */}
@@ -210,10 +231,10 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 bg-white rounded-full shadow-lg shadow-blue-500/5 border border-blue-50/50"
+              className="inline-flex items-center gap-2 mb-8 px-5 py-2.5 bg-white/50 backdrop-blur-sm rounded-full shadow-sm border border-white/60"
             >
               <Sparkles className="w-4 h-4 text-blue-500" />
-              <span className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-sm font-semibold tracking-wide bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 {t('hero.badge')}
               </span>
             </motion.div>
@@ -223,7 +244,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#1E293B] mb-6 leading-tight"
+              className="text-6xl md:text-7xl lg:text-8xl font-bold font-serif text-slate-900 mb-8 leading-[1.1] tracking-tight"
             >
               {t('hero.title.main')}
               <br />
@@ -237,7 +258,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-lg md:text-xl text-[#64748B] mb-10 leading-relaxed max-w-2xl mx-auto px-4 md:px-0"
+              className="text-lg md:text-xl text-slate-600 mb-12 leading-relaxed max-w-2xl mx-auto px-4 md:px-0 font-light"
             >
               {t('hero.description')}
             </motion.p>
@@ -498,90 +519,141 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 max-w-7xl mx-auto">
-            {[
-              {
-                title: t('features.tracking.title'),
-                desc: t('features.tracking.desc'),
-                items: [t('features.tracking.item1'), t('features.tracking.item2'), t('features.tracking.item3')],
-                img: 'feature-tracking.png',
-                gradient: 'from-blue-500 to-cyan-500',
-                Icon: Droplets,
-                color: 'text-blue-600',
-                bg: 'bg-blue-50'
-              },
-              {
-                title: t('features.analytics.title'),
-                desc: t('features.analytics.desc'),
-                items: [t('features.analytics.item1'), t('features.analytics.item2'), t('features.analytics.item3')],
-                img: 'feature-analytics.png',
-                gradient: 'from-purple-500 to-pink-500',
-                Icon: Activity,
-                color: 'text-purple-600',
-                bg: 'bg-purple-50'
-              },
-              {
-                title: t('features.reminders.title'),
-                desc: t('features.reminders.desc'),
-                items: [t('features.reminders.item1'), t('features.reminders.item2'), t('features.reminders.item3')],
-                img: 'feature-reminders.png',
-                gradient: 'from-orange-500 to-red-500',
-                Icon: Bell,
-                color: 'text-orange-600',
-                bg: 'bg-orange-50'
-              },
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ delay: index * 0.15, duration: 0.5 }}
-                className="group relative h-full"
+          <div className="relative max-w-7xl mx-auto">
+            {/* Carousel Navigation Buttons - Desktop */}
+            <div className="hidden md:flex justify-end gap-4 mb-8">
+              <button
+                onClick={() => emblaApi?.scrollPrev()}
+                className="p-3 rounded-full bg-white/50 border border-white/60 hover:bg-white hover:scale-110 transition-all shadow-sm backdrop-blur-sm text-slate-600 hover:text-blue-600"
+                aria-label="Previous slide"
               >
-                <div className="relative bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
-                  {/* Image Area */}
-                  <div className="mb-8 rounded-2xl overflow-hidden shadow-sm bg-gray-50/50 h-64 flex items-center justify-center border border-gray-100 relative group-hover:shadow-md transition-all">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-[0.03]`} />
-                    <img
-                      src={`/images/${feature.img}`}
-                      alt={feature.title}
-                      className="h-[90%] w-auto object-contain drop-shadow-xl group-hover:scale-105 transition-transform duration-700 relative z-10"
-                    />
-                  </div>
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={() => emblaApi?.scrollNext()}
+                className="p-3 rounded-full bg-white/50 border border-white/60 hover:bg-white hover:scale-110 transition-all shadow-sm backdrop-blur-sm text-slate-600 hover:text-blue-600"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
 
-                  {/* Header: Icon + Title */}
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className={`flex-shrink-0 p-3 ${feature.bg} rounded-2xl shadow-sm border border-white`}>
-                      <feature.Icon className={`w-7 h-7 ${feature.color}`} strokeWidth={1.5} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-[#1E293B] group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
-                      {feature.title}
-                    </h3>
-                  </div>
+            {/* Embla Carousel Viewport */}
+            <div className="overflow-visible" ref={emblaRef}>
+              <div className="flex -ml-6 md:-ml-8 touch-pan-y py-12">
+                {[
+                  {
+                    title: t('features.tracking.title'),
+                    desc: t('features.tracking.desc'),
+                    items: [t('features.tracking.item1'), t('features.tracking.item2'), t('features.tracking.item3')],
+                    img: 'today.png',
+                    secondaryImg: 'habit.png',
+                    gradient: 'from-blue-400 to-indigo-500',
+                    Icon: Droplets,
+                    color: 'text-blue-600',
+                    bg: 'bg-blue-50/50'
+                  },
+                  {
+                    title: t('features.analytics.title'),
+                    desc: t('features.analytics.desc'),
+                    items: [t('features.analytics.item1'), t('features.analytics.item2'), t('features.analytics.item3')],
+                    img: 'statics.png',
+                    secondaryImg: 'plan.png',
+                    gradient: 'from-purple-400 to-pink-500',
+                    Icon: Activity,
+                    color: 'text-purple-600',
+                    bg: 'bg-purple-50/50'
+                  },
+                  {
+                    title: t('features.reminders.title'),
+                    desc: t('features.reminders.desc'),
+                    items: [t('features.reminders.item1'), t('features.reminders.item2'), t('features.reminders.item3')],
+                    img: 'plan.png',
+                    secondaryImg: 'today.png',
+                    gradient: 'from-orange-400 to-rose-500',
+                    Icon: Bell,
+                    color: 'text-orange-600',
+                    bg: 'bg-orange-50/50'
+                  },
+                ].map((feature, index) => (
+                  <div className="flex-[0_0_100%] sm:flex-[0_0_420px] min-w-0 pl-6 md:pl-8" key={index}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ delay: index * 0.15, duration: 0.5 }}
+                      className="group relative h-full select-none"
+                    >
+                      <div className="relative bg-white/60 backdrop-blur-3xl rounded-[3rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_48px_80px_-16px_rgba(0,0,0,0.12)] transition-all duration-700 h-full flex flex-col overflow-hidden border border-white/60 cursor-grab active:cursor-grabbing hover:-translate-y-2">
+                        
+                        {/* Image Area - Ethereal & Clean */}
+                        <div className="relative h-[480px] w-full flex items-end justify-center pt-12">
+                          {/* Soft Atmosphere Background */}
+                          <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-gradient-to-br ${feature.gradient} opacity-[0.06] blur-[120px] rounded-full`} />
+                          
+                          {/* Layered Composition */}
+                          <div className="relative w-full h-full flex items-end justify-center px-8 pb-4">
+                            {/* Secondary Image - Background Layer */}
+                            <motion.img
+                              src={`/images/${feature.secondaryImg}`}
+                              alt=""
+                              className="absolute h-[75%] w-auto object-contain left-4 bottom-16 opacity-20 blur-[1px] -rotate-12 scale-90 transform group-hover:-translate-x-6 group-hover:-rotate-[15deg] transition-all duration-1000 ease-out pointer-events-none mix-blend-multiply"
+                            />
+                            
+                            {/* Primary Image - Center Layer */}
+                            <img
+                              src={`/images/${feature.img}`}
+                              alt={feature.title}
+                              className="h-[95%] w-auto object-contain object-bottom drop-shadow-[0_25px_50px_rgba(0,0,0,0.12)] transform group-hover:scale-[1.03] group-hover:drop-shadow-[0_35px_70px_rgba(0,0,0,0.18)] transition-all duration-1000 ease-out relative z-10 pointer-events-none"
+                            />
 
-                  {/* Description */}
-                  <p className="text-[#64748B] mb-8 leading-relaxed flex-grow pl-1">
-                    {feature.desc}
-                  </p>
+                            {/* Minimal Decorative Light */}
+                            <div className={`absolute top-32 right-16 w-32 h-32 rounded-full bg-gradient-to-br ${feature.gradient} opacity-20 blur-3xl`} />
+                          </div>
 
-                  {/* Feature List */}
-                  <ul className="space-y-3 pt-6 border-t border-gray-100/80">
-                    {feature.items.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex items-center gap-3 text-[#1E293B]"
-                      >
-                        <div className={`flex-shrink-0 w-6 h-6 rounded-full ${feature.bg} flex items-center justify-center`}>
-                          <CheckCircle2 className={`w-4 h-4 ${feature.color}`} />
+                          {/* Seamless Gradient Fade to Content */}
+                          <div className="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-white via-white/90 to-transparent z-20" />
                         </div>
-                        <span className="text-sm font-medium">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            ))}
+
+                        {/* Content Area - Centered & Elegant */}
+                        <div className="px-10 pb-14 pt-0 flex flex-col flex-grow relative z-30 bg-white">
+                          
+                          <div className="text-center">
+                            {/* Floating Minimal Icon */}
+                            <div className={`inline-flex p-4 rounded-3xl ${feature.bg} mb-6 shadow-sm group-hover:scale-110 transition-transform duration-500`}>
+                              <feature.Icon className={`w-8 h-8 ${feature.color}`} strokeWidth={1.5} />
+                            </div>
+
+                            {/* Serif Title */}
+                            <h3 className="text-3xl font-serif font-bold text-slate-800 mb-4 tracking-tight group-hover:text-blue-600 transition-colors">
+                              {feature.title}
+                            </h3>
+
+                            {/* Description */}
+                            <p className="text-slate-500 text-lg leading-relaxed mb-10 max-w-sm mx-auto">
+                              {feature.desc}
+                            </p>
+                          </div>
+
+                          {/* Feature List - Centered Pills */}
+                          <div className="flex flex-wrap justify-center gap-3 pt-8 border-t border-slate-100/80">
+                            {feature.items.map((item, i) => (
+                              <div
+                                key={i}
+                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-100 group/item hover:bg-white hover:shadow-sm transition-all"
+                              >
+                                <CheckCircle2 className={`w-4 h-4 ${feature.color}`} strokeWidth={2.5} />
+                                <span className="text-sm font-medium text-slate-600 group-hover/item:text-slate-900 transition-colors">{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -874,5 +946,6 @@ export default function Home() {
         </div>
       </footer>
     </div>
+    </>
   );
 }

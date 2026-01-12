@@ -91,6 +91,32 @@ const translations = {
     'download.googleplay': 'Google Play',
     'download.qr': '扫码下载',
 
+    // Blog
+    'blog.title': '博客',
+    'blog.subtitle': '探索习惯养成的科学方法',
+    'blog.readMore': '阅读更多',
+    'blog.backToBlog': '返回博客',
+    'blog.minuteRead': '分钟阅读',
+
+    // FAQ
+    'faq.title': '常见问题',
+    'faq.subtitle': '找到关于 DropDrop 的所有问题答案',
+    'faq.stillQuestions': '还有其他问题？',
+    'faq.contactSupport': '联系支持',
+
+    // About
+    'about.title': '关于我们',
+    'about.mission': '我们的使命',
+    'about.team': '团队介绍',
+
+    // Privacy
+    'privacy.title': '隐私政策',
+    'privacy.updated': '最后更新',
+
+    // Terms
+    'terms.title': '服务条款',
+    'terms.updated': '最后更新',
+
     // Footer
     'footer.slogan': '养成好习惯，从现在开始',
     'footer.product': '产品',
@@ -186,6 +212,32 @@ const translations = {
     'download.googleplay': 'Google Play',
     'download.qr': 'Scan to Download',
 
+    // Blog
+    'blog.title': 'Blog',
+    'blog.subtitle': 'Explore science-based habit building',
+    'blog.readMore': 'Read More',
+    'blog.backToBlog': 'Back to Blog',
+    'blog.minuteRead': 'min read',
+
+    // FAQ
+    'faq.title': 'FAQ',
+    'faq.subtitle': 'Find answers to all your questions',
+    'faq.stillQuestions': 'Still Have Questions?',
+    'faq.contactSupport': 'Contact Support',
+
+    // About
+    'about.title': 'About Us',
+    'about.mission': 'Our Mission',
+    'about.team': 'Meet the Team',
+
+    // Privacy
+    'privacy.title': 'Privacy Policy',
+    'privacy.updated': 'Last Updated',
+
+    // Terms
+    'terms.title': 'Terms of Service',
+    'terms.updated': 'Last Updated',
+
     // Footer
     'footer.slogan': 'Build good habits, by DropDrop',
     'footer.product': 'Product',
@@ -216,7 +268,18 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     // Only run on client side
     if (typeof window === 'undefined') return;
 
-    // Get saved language from localStorage or detect from browser
+    // Check URL parameter first (highest priority)
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang') as Language;
+
+    if (langParam && (langParam === 'zh' || langParam === 'en')) {
+      setLanguageState(langParam);
+      document.documentElement.lang = langParam === 'zh' ? 'zh-CN' : 'en';
+      localStorage.setItem('dropdrop-language', langParam);
+      return;
+    }
+
+    // Get saved language from localStorage
     const saved = localStorage.getItem('dropdrop-language') as Language;
     if (saved && (saved === 'zh' || saved === 'en')) {
       setLanguageState(saved);
@@ -224,7 +287,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
       return;
     }
 
-    // Detect browser language
+    // Detect browser language (lowest priority)
     const browserLang = navigator.language.toLowerCase();
     const detectedLang = browserLang.startsWith('zh') ? 'zh' : 'en';
     setLanguageState(detectedLang);
@@ -237,6 +300,11 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     if (typeof window !== 'undefined') {
       localStorage.setItem('dropdrop-language', lang);
       document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+      // Update URL parameter without reload
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.pushState({}, '', url);
     }
   };
 
