@@ -1,22 +1,16 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { 
+  Menu, X, ArrowRight, Sparkles, Zap, 
+  Droplets, Activity, Trophy, Bell, 
+  Target, Smartphone, CloudDownload, 
+  CheckCircle2, Star, ShieldCheck, Heart 
+} from "lucide-react";
 import { useState, useEffect, useMemo, memo } from "react";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useThrottle } from "@/hooks/useThrottle";
-import {
-  DropIcon,
-  ChartIcon,
-  TrophyIcon,
-  ClockIcon,
-  TargetIcon,
-  SparklesIcon,
-  DownloadIcon,
-  SmartphoneIcon,
-  CheckIcon
-} from "@/components/IllustratedIcons";
 
 /**
  * DropDrop Official Website - Premium Edition
@@ -72,22 +66,23 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-purple-50/10 overflow-hidden bg-noise selection:bg-blue-100 selection:text-blue-900 font-sans antialiased">
       {/* Optimized Background Elements - CSS Animation */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl animate-[float_30s_ease-in-out_infinite]" />
-        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-purple-400/10 to-blue-400/10 rounded-full blur-3xl animate-[float_30s_ease-in-out_infinite_reverse]" />
+      <div className="fixed inset-0 overflow-hidden pointer-events-none select-none z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-gradient-to-br from-blue-400/10 via-purple-300/10 to-transparent rounded-full blur-[120px] animate-[float_20s_ease-in-out_infinite]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-gradient-to-tl from-cyan-300/10 via-blue-300/10 to-transparent rounded-full blur-[100px] animate-[float_25s_ease-in-out_infinite_reverse]" />
+        <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-gradient-to-br from-pink-300/5 to-purple-300/5 rounded-full blur-[80px] animate-[pulse_15s_ease-in-out_infinite]" />
       </div>
 
       {/* Navigation - Glassmorphism */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
           isScrolled
-            ? "bg-white/80 backdrop-blur-xl shadow-lg border-b border-white/20"
-            : "bg-white/60 backdrop-blur-md"
+            ? "bg-white/70 backdrop-blur-2xl shadow-sm border-white/20 supports-[backdrop-filter]:bg-white/60"
+            : "bg-transparent backdrop-blur-none border-transparent py-2"
         }`}
       >
         <div className="container flex items-center justify-between h-16 md:h-20">
@@ -215,7 +210,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-blue-200/30 rounded-full"
+              className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 bg-white rounded-full shadow-lg shadow-blue-500/5 border border-blue-50/50"
             >
               <Sparkles className="w-4 h-4 text-blue-500" />
               <span className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -350,10 +345,10 @@ export default function Home() {
           {/* Screenshots Grid - Desktop */}
           <div className="hidden md:grid md:grid-cols-4 gap-6 lg:gap-8 mb-16 max-w-7xl mx-auto">
             {[
-              { title: t('showcase.screen1.title'), desc: t('showcase.screen1.desc'), img: 'app-screenshot-1.png', color: 'from-blue-500/10 to-cyan-500/10' },
-              { title: t('showcase.screen2.title'), desc: t('showcase.screen2.desc'), img: 'app-screenshot-2.png', color: 'from-purple-500/10 to-pink-500/10' },
-              { title: t('showcase.screen3.title'), desc: t('showcase.screen3.desc'), img: 'app-screenshot-3.png', color: 'from-green-500/10 to-emerald-500/10' },
-              { title: t('showcase.screen4.title'), desc: t('showcase.screen4.desc'), img: 'app-screenshot-4.png', color: 'from-orange-500/10 to-red-500/10' },
+              { title: t('showcase.screen1.title'), desc: t('showcase.screen1.desc'), img: 'plan.png', color: 'from-blue-500/10 to-cyan-500/10' },
+              { title: t('showcase.screen2.title'), desc: t('showcase.screen2.desc'), img: 'habit.png', color: 'from-purple-500/10 to-pink-500/10' },
+              { title: t('showcase.screen3.title'), desc: t('showcase.screen3.desc'), img: 'today.png', color: 'from-green-500/10 to-emerald-500/10' },
+              { title: t('showcase.screen4.title'), desc: t('showcase.screen4.desc'), img: 'statics.png', color: 'from-orange-500/10 to-red-500/10' },
             ].map((screen, index) => (
               <motion.div
                 key={index}
@@ -431,10 +426,10 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto px-4 md:px-0"
           >
             {[
-              { IconComponent: DropIcon, title: t('showcase.feature1.title'), desc: t('showcase.feature1.desc') },
-              { IconComponent: ChartIcon, title: t('showcase.feature2.title'), desc: t('showcase.feature2.desc') },
-              { IconComponent: TrophyIcon, title: t('showcase.feature3.title'), desc: t('showcase.feature3.desc') },
-              { IconComponent: ClockIcon, title: t('showcase.feature4.title'), desc: t('showcase.feature4.desc') },
+              { Icon: Droplets, color: 'text-blue-500', bg: 'bg-blue-50', title: t('showcase.feature1.title'), desc: t('showcase.feature1.desc') },
+              { Icon: Activity, color: 'text-purple-500', bg: 'bg-purple-50', title: t('showcase.feature2.title'), desc: t('showcase.feature2.desc') },
+              { Icon: Trophy, color: 'text-amber-500', bg: 'bg-amber-50', title: t('showcase.feature3.title'), desc: t('showcase.feature3.desc') },
+              { Icon: Bell, color: 'text-emerald-500', bg: 'bg-emerald-50', title: t('showcase.feature4.title'), desc: t('showcase.feature4.desc') },
             ].map((feature, index) => (
               <motion.div
                 key={index}
@@ -444,8 +439,8 @@ export default function Home() {
                 transition={{ delay: index * 0.08, duration: 0.4 }}
                 className="text-center group"
               >
-                <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 transform transition-transform duration-300 group-hover:scale-110">
-                  <feature.IconComponent size={isMobile ? 80 : 96} />
+                <div className={`w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 rounded-2xl ${feature.bg} flex items-center justify-center transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm`}>
+                  <feature.Icon className={`w-8 h-8 md:w-10 md:h-10 ${feature.color}`} strokeWidth={1.5} />
                 </div>
                 <h4 className="font-bold text-[#1E293B] mb-2 text-base md:text-lg">{feature.title}</h4>
                 <p className="text-sm md:text-base text-[#64748B]">{feature.desc}</p>
@@ -491,9 +486,9 @@ export default function Home() {
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              className="inline-block p-3 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl mb-6"
+              className="inline-block p-4 bg-white rounded-3xl shadow-xl shadow-purple-500/10 mb-6"
             >
-              <TargetIcon size={48} />
+              <Target className="w-10 h-10 text-purple-600" strokeWidth={1.5} />
             </motion.div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-6">
               {t('features.title')}
@@ -511,7 +506,9 @@ export default function Home() {
                 items: [t('features.tracking.item1'), t('features.tracking.item2'), t('features.tracking.item3')],
                 img: 'feature-tracking.png',
                 gradient: 'from-blue-500 to-cyan-500',
-                IconComponent: DropIcon
+                Icon: Droplets,
+                color: 'text-blue-600',
+                bg: 'bg-blue-50'
               },
               {
                 title: t('features.analytics.title'),
@@ -519,7 +516,9 @@ export default function Home() {
                 items: [t('features.analytics.item1'), t('features.analytics.item2'), t('features.analytics.item3')],
                 img: 'feature-analytics.png',
                 gradient: 'from-purple-500 to-pink-500',
-                IconComponent: ChartIcon
+                Icon: Activity,
+                color: 'text-purple-600',
+                bg: 'bg-purple-50'
               },
               {
                 title: t('features.reminders.title'),
@@ -527,7 +526,9 @@ export default function Home() {
                 items: [t('features.reminders.item1'), t('features.reminders.item2'), t('features.reminders.item3')],
                 img: 'feature-reminders.png',
                 gradient: 'from-orange-500 to-red-500',
-                IconComponent: ClockIcon
+                Icon: Bell,
+                color: 'text-orange-600',
+                bg: 'bg-orange-50'
               },
             ].map((feature, index) => (
               <motion.div
@@ -536,39 +537,45 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ delay: index * 0.15, duration: 0.5 }}
-                className="group relative"
+                className="group relative h-full"
               >
-                <div className="relative bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300">
-                  {/* Icon Badge */}
-                  <div className="inline-block mb-6">
-                    <feature.IconComponent size={64} />
-                  </div>
-
-                  {/* Image */}
-                  <div className="mb-6 rounded-2xl overflow-hidden shadow-lg">
+                <div className="relative bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
+                  {/* Image Area */}
+                  <div className="mb-8 rounded-2xl overflow-hidden shadow-sm bg-gray-50/50 h-64 flex items-center justify-center border border-gray-100 relative group-hover:shadow-md transition-all">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-[0.03]`} />
                     <img
                       src={`/images/${feature.img}`}
                       alt={feature.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="h-[90%] w-auto object-contain drop-shadow-xl group-hover:scale-105 transition-transform duration-700 relative z-10"
                     />
                   </div>
 
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#1E293B] mb-4 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
-                    {feature.title}
-                  </h3>
-                  <p className="text-[#64748B] mb-6 leading-relaxed">
+                  {/* Header: Icon + Title */}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`flex-shrink-0 p-3 ${feature.bg} rounded-2xl shadow-sm border border-white`}>
+                      <feature.Icon className={`w-7 h-7 ${feature.color}`} strokeWidth={1.5} />
+                    </div>
+                    <h3 className="text-2xl font-bold text-[#1E293B] group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">
+                      {feature.title}
+                    </h3>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-[#64748B] mb-8 leading-relaxed flex-grow pl-1">
                     {feature.desc}
                   </p>
-                  <ul className="space-y-3">
+
+                  {/* Feature List */}
+                  <ul className="space-y-3 pt-6 border-t border-gray-100/80">
                     {feature.items.map((item, i) => (
                       <li
                         key={i}
                         className="flex items-center gap-3 text-[#1E293B]"
                       >
-                        <div className="flex-shrink-0 w-6 h-6">
-                          <CheckIcon size={24} />
+                        <div className={`flex-shrink-0 w-6 h-6 rounded-full ${feature.bg} flex items-center justify-center`}>
+                          <CheckCircle2 className={`w-4 h-4 ${feature.color}`} />
                         </div>
-                        <span>{item}</span>
+                        <span className="text-sm font-medium">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -589,8 +596,8 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-block mb-6">
-                <SparklesIcon size={56} />
+              <div className="inline-block p-4 bg-white rounded-3xl shadow-xl shadow-amber-500/10 mb-6">
+                <Sparkles className="w-10 h-10 text-amber-500" strokeWidth={1.5} />
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-6">
                 {t('premium.title.line1')}
@@ -604,16 +611,16 @@ export default function Home() {
               </p>
               <div className="space-y-6 mb-8">
                 {[
-                  { IconComponent: SmartphoneIcon, title: t('premium.feature1.title'), desc: t('premium.feature1.desc') },
-                  { IconComponent: ChartIcon, title: t('premium.feature2.title'), desc: t('premium.feature2.desc') },
-                  { IconComponent: ClockIcon, title: t('premium.feature3.title'), desc: t('premium.feature3.desc') },
+                  { Icon: Smartphone, color: 'text-blue-500', bg: 'bg-blue-50', title: t('premium.feature1.title'), desc: t('premium.feature1.desc') },
+                  { Icon: Activity, color: 'text-purple-500', bg: 'bg-purple-50', title: t('premium.feature2.title'), desc: t('premium.feature2.desc') },
+                  { Icon: Bell, color: 'text-pink-500', bg: 'bg-pink-50', title: t('premium.feature3.title'), desc: t('premium.feature3.desc') },
                 ].map((feature, index) => (
                   <div
                     key={index}
                     className="flex items-start gap-4 group"
                   >
-                    <div className="flex-shrink-0 w-14 h-14 transform transition-transform duration-300 group-hover:scale-110">
-                      <feature.IconComponent size={56} />
+                    <div className={`flex-shrink-0 w-14 h-14 rounded-2xl ${feature.bg} flex items-center justify-center transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm`}>
+                      <feature.Icon className={`w-7 h-7 ${feature.color}`} strokeWidth={1.5} />
                     </div>
                     <div>
                       <h3 className="font-bold text-lg text-[#1E293B] mb-1">{feature.title}</h3>
@@ -622,6 +629,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -10px rgba(74, 137, 220, 0.5)" }}
                 whileTap={{ scale: 0.95 }}
@@ -636,38 +644,68 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="order-first md:order-last"
+              className="order-first md:order-last relative"
             >
-              <div className="relative">
-                {/* Glowing Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl blur-3xl opacity-20" />
+              <div className="relative group perspective-1000">
+                {/* Glowing Background - Dynamic */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-600/30 rounded-[2rem] blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-700" />
 
-                {/* Pricing Cards */}
-                <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-blue-600 rounded-3xl p-1 shadow-2xl">
-                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 md:p-12">
-                    <div className="space-y-6">
-                      {/* Free Plan */}
-                      <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 transition-transform duration-300 hover:scale-[1.02]">
-                        <p className="text-sm font-semibold text-white/70 mb-2">{t('premium.plan.free')}</p>
-                        <p className="text-4xl font-bold text-white">¥0</p>
+                {/* Main Glass Card */}
+                <div className="relative bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[2rem] p-1 shadow-2xl overflow-hidden transform transition-transform duration-700 group-hover:rotate-y-2">
+                  
+                  {/* Inner Dark Card */}
+                  <div className="bg-gradient-to-br from-slate-900/95 to-slate-800/95 backdrop-blur-xl rounded-[1.8rem] p-8 md:p-10 text-white relative overflow-hidden">
+                    
+                    {/* Decorative Shine */}
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
+                    
+                    <div className="space-y-6 relative z-10">
+                      {/* Header */}
+                      <div className="flex items-center justify-between mb-8">
+                        <div>
+                          <h3 className="text-xl font-bold text-white/90">Pro Access</h3>
+                          <p className="text-white/50 text-sm">Unlock full potential</p>
+                        </div>
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                          <Sparkles className="w-6 h-6 text-white" />
+                        </div>
                       </div>
 
-                      {/* Pro Plan - Highlighted */}
-                      <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl rounded-2xl p-6 border-2 border-white/40 shadow-2xl transition-transform duration-300 hover:scale-105">
-                        <div className="flex items-center justify-between mb-4">
-                          <p className="text-sm font-semibold text-white/90">{t('premium.plan.pro')}</p>
-                          <div className="px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full">
-                            <span className="text-xs font-bold text-gray-900">⭐ Popular</span>
+                      {/* Pricing Tier: Free */}
+                      <div className="group/item flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-default">
+                        <div>
+                          <p className="font-semibold text-white/90">{t('premium.plan.free')}</p>
+                          <p className="text-xs text-white/40">Basic features</p>
+                        </div>
+                        <span className="text-xl font-bold text-white/80 group-hover/item:text-white transition-colors">¥0</span>
+                      </div>
+
+                      {/* Pricing Tier: Pro (Featured) */}
+                      <div className="group/item relative p-5 rounded-2xl bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 scale-[1.02] shadow-lg shadow-blue-900/20">
+                        <div className="absolute -top-3 right-4">
+                          <span className="bg-gradient-to-r from-amber-300 to-orange-400 text-slate-900 text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">
+                            POPULAR
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="font-bold text-white text-lg">{t('premium.plan.pro')}</p>
+                            <p className="text-xs text-blue-200/60">{t('premium.plan.annual')}</p>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-3xl font-bold text-white">¥9.99</span>
+                            <span className="text-sm text-white/50">/mo</span>
                           </div>
                         </div>
-                        <p className="text-4xl font-bold text-white mb-2">¥9.99<span className="text-lg font-normal text-white/70">/月</span></p>
-                        <p className="text-sm text-white/70">{t('premium.plan.annual')}</p>
                       </div>
 
-                      {/* Trial */}
-                      <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 transition-transform duration-300 hover:scale-[1.02]">
-                        <p className="text-sm font-semibold text-white/90 mb-2">{t('premium.plan.trial')}</p>
-                        <p className="text-lg text-white/80">{t('premium.plan.trial.desc')}</p>
+                      {/* Pricing Tier: Trial */}
+                      <div className="group/item flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-default">
+                        <div>
+                          <p className="font-semibold text-white/90">{t('premium.plan.trial')}</p>
+                          <p className="text-xs text-white/40">{t('premium.plan.trial.desc')}</p>
+                        </div>
+                        <span className="text-sm font-medium text-emerald-400">Free 7 Days</span>
                       </div>
                     </div>
                   </div>
@@ -687,8 +725,8 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block mb-6">
-              <DownloadIcon size={56} />
+            <div className="inline-block p-4 bg-white rounded-3xl shadow-xl shadow-blue-500/10 mb-6">
+              <CloudDownload className="w-10 h-10 text-blue-600" strokeWidth={1.5} />
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-6">
               {t('download.title')}

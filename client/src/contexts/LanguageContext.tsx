@@ -20,7 +20,7 @@ const translations = {
     // Hero Section
     'hero.badge': '专业习惯追踪应用',
     'hero.title.main': '养成好习惯',
-    'hero.title.highlight': '从每一滴开始',
+    'hero.title.highlight': '从现在开始',
     'hero.description': 'DropDrop 帮助你通过可视化进度、智能提醒和成就系统，坚持不懈地养成更好的习惯。',
     'hero.cta.download': '立即下载',
     'hero.cta.demo': '查看演示',
@@ -92,7 +92,7 @@ const translations = {
     'download.qr': '扫码下载',
 
     // Footer
-    'footer.slogan': '养成好习惯，从每一滴开始',
+    'footer.slogan': '养成好习惯，从现在开始',
     'footer.product': '产品',
     'footer.features': '功能',
     'footer.pricing': '定价',
@@ -115,7 +115,7 @@ const translations = {
     // Hero Section
     'hero.badge': 'Professional Habit Tracker',
     'hero.title.main': 'Build Good Habits',
-    'hero.title.highlight': 'Drop by Drop',
+    'hero.title.highlight': 'by DropDrop',
     'hero.description': 'DropDrop helps you build better habits through visual progress tracking, smart reminders, and achievement systems.',
     'hero.cta.download': 'Download Now',
     'hero.cta.demo': 'View Demo',
@@ -187,7 +187,7 @@ const translations = {
     'download.qr': 'Scan to Download',
 
     // Footer
-    'footer.slogan': 'Build good habits, drop by drop',
+    'footer.slogan': 'Build good habits, by DropDrop',
     'footer.product': 'Product',
     'footer.features': 'Features',
     'footer.pricing': 'Pricing',
