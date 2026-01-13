@@ -180,36 +180,73 @@ export default function Home() {
           <div className="container">
             <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
               <motion.div {...fadeInUp} className="order-2 md:order-1">
-                <div className="relative aspect-square md:aspect-[4/3] bg-[#F8F9FA] rounded-3xl overflow-hidden p-8 flex items-center justify-center">
-                   {/* Abstract UI Composition representing data inputs */}
-                   <div className="relative w-full max-w-sm">
-                      <div className="absolute top-0 right-0 p-4 bg-white rounded-2xl shadow-sm animate-float-slow z-10">
+                <div className="relative min-h-[400px] md:min-h-[500px] bg-[#F8F9FA] rounded-3xl overflow-visible p-8 flex items-center justify-center">
+                   {/* Refined HRV Visualization - Focused Data Card (Hybrid: Code Title + Image Chart) */}
+                   <div className="relative w-full max-w-[380px]">
+                      
+                      {/* Main Data Insight Card */}
+                      <div className="relative h-[350px] w-full rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] border-2 border-white/80 bg-white z-10 group mx-auto transform transition-transform duration-700 hover:scale-[1.02]">
+                         
+                         {/* 1. Recreated Header (HTML/CSS) - Solid white top to mask image text */}
+                         <div className="absolute top-0 left-0 w-full pt-6 px-6 pb-8 z-20 flex justify-between items-start bg-[linear-gradient(to_bottom,#ffffff_80%,transparent)]">
+                            <div>
+                               <h3 className="text-lg font-bold text-gray-900 leading-tight">Daily HRV Trend</h3>
+                               <p className="text-xs text-gray-400 mt-1">Based on daily measurement average</p>
+                            </div>
+                            <div className="p-2 bg-gray-50 rounded-lg text-gray-400">
+                               <Activity size={16} />
+                            </div>
+                         </div>
+
+                         {/* 2. Focused Chart View (Image) */}
+                         <div className="w-full h-full relative overflow-hidden bg-white">
+                            <img 
+                              src="/images/hrv.png" 
+                              alt="HRV Trends" 
+                              className="w-full h-full object-cover object-[center_95%] scale-140 group-hover:scale-[1.45] transition-transform duration-700 ease-out" 
+                            />
+                            {/* Inner shadow & blends */}
+                            <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.02)] pointer-events-none" />
+                            
+                            {/* Bottom blend to hide UI artifacts */}
+                            <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-white to-transparent z-20" />
+                         </div>
+                      </div>
+
+                      {/* Floating Card 1: Readiness/Sun */}
+                      <div className="absolute top-2 -right-10 md:-right-16 p-4 bg-white/90 backdrop-blur-xl rounded-2xl shadow-[0_15px_35px_-10px_rgba(0,0,0,0.1)] border border-white/60 animate-float-slow z-20 min-w-[130px]">
                         <div className="flex items-center gap-3">
-                          <div className="p-2 bg-orange-50 text-orange-500 rounded-full"><Sun size={20} /></div>
-                          <div className="h-2 w-16 bg-gray-100 rounded-full overflow-hidden">
-                            <div className="h-full w-[70%] bg-orange-400" />
+                          <div className="p-2.5 bg-orange-50 text-orange-500 rounded-full relative shadow-sm">
+                            <Sun size={20} strokeWidth={2.5} />
+                          </div>
+                          <div>
+                             <div className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Readiness</div>
+                             <div className="text-base font-bold text-[#222222]">High</div>
                           </div>
                         </div>
                       </div>
-                      <div className="bg-white p-6 rounded-3xl shadow-md border border-gray-50 z-0 mt-8 ml-4">
-                         <div className="flex justify-between items-center mb-4">
-                           <span className="text-sm text-gray-400">Recovery</span>
-                           <span className="text-green-500 font-medium">85%</span>
-                         </div>
-                         <div className="h-32 flex items-end justify-between gap-2">
-                            {[40, 60, 45, 70, 85, 65, 50].map((h, i) => (
-                              <div key={i} className="w-full bg-green-50 rounded-t-sm relative">
-                                <div style={{height: `${h}%`}} className="absolute bottom-0 w-full bg-[#4CAF93] rounded-t-sm opacity-80" />
-                              </div>
-                            ))}
-                         </div>
-                      </div>
-                      <div className="absolute -bottom-6 -left-4 p-4 bg-white rounded-2xl shadow-sm animate-float-delayed z-20">
+
+                      {/* Floating Card 2: Stress/Load */}
+                      <div className="absolute -bottom-10 -left-10 md:-left-16 p-4 bg-white/90 backdrop-blur-xl rounded-2xl shadow-[0_15px_35px_-10px_rgba(0,0,0,0.1)] border border-white/60 animate-float-delayed z-20 min-w-[130px]">
                         <div className="flex items-center gap-3">
-                          <div className="p-2 bg-blue-50 text-blue-500 rounded-full"><Brain size={20} /></div>
-                          <div className="text-sm font-medium text-gray-700">Mindful</div>
+                          <div className="relative w-11 h-11">
+                             <svg className="w-full h-full -rotate-90">
+                               <circle cx="22" cy="22" r="18" fill="none" stroke="#F3F4F6" strokeWidth="4" />
+                               <circle cx="22" cy="22" r="18" fill="none" stroke="#3B82F6" strokeWidth="4" strokeDasharray="113" strokeDashoffset="34" strokeLinecap="round" />
+                             </svg>
+                             <div className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-gray-700">
+                               70%
+                             </div>
+                          </div>
+                          <div>
+                             <div className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Load</div>
+                             <div className="text-base font-bold text-[#222222]">Optimal</div>
+                          </div>
                         </div>
                       </div>
+                      
+                      {/* Decorative background blobs */}
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-gradient-to-tr from-[#4CAF93]/15 to-transparent rounded-full blur-3xl -z-10" />
                    </div>
                 </div>
               </motion.div>
