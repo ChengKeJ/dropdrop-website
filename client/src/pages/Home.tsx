@@ -15,6 +15,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useThrottle } from "@/hooks/useThrottle";
 import { SEOHead } from "@/components/SEO/SEOHead";
 import { organizationSchema, websiteSchema, mobileAppSchema } from "@/lib/structuredData";
+import { Link } from "wouter";
 
 /**
  * DropDrop Official Website - Premium Edition
@@ -114,7 +115,7 @@ export default function Home() {
           >
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-40 group-hover:opacity-60 transition-opacity" />
-              <img src="/images/logo.png" alt="DropDrop" className="relative w-9 h-9 md:w-11 md:h-11 shadow-sm rounded-xl bg-white p-0.5" />
+              <img src="/images/logo.png" alt="DropDrop Habit Tracker App Logo" className="relative w-9 h-9 md:w-11 md:h-11 shadow-sm rounded-xl bg-white p-0.5" />
             </div>
             <span className="text-xl md:text-2xl font-bold font-serif tracking-tight text-slate-800">
               DropDrop
@@ -364,41 +365,45 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Bento Grid */}
-          <div className="hidden md:grid md:grid-cols-12 gap-6 mb-16">
+          {/* Bento Grid - Desktop - Balanced Layout */}
+          <div className="hidden md:grid grid-cols-12 gap-8 mb-24 max-w-7xl mx-auto h-[680px]">
             {/* Large Card - Left (Main Feature) */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="col-span-6 bg-slate-50 rounded-[2.5rem] overflow-hidden relative group h-full flex items-center justify-center border border-slate-100/80"
+              className="col-span-6 bg-slate-50/50 rounded-[3rem] overflow-hidden relative group h-full flex flex-col items-center justify-end border border-white/60 shadow-2xl shadow-slate-200/40"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-indigo-50/30 to-white opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-indigo-50/40 to-white opacity-100" />
               
-              {/* Main Image with Phone Mockup */}
-              <div className="relative z-10 mt-12 transition-transform duration-700 group-hover:scale-[1.02] group-hover:-rotate-1">
-                <div className="relative rounded-[2.5rem] border-[8px] border-slate-900 bg-slate-900 shadow-2xl overflow-hidden h-[500px] w-auto ring-1 ring-white/20">
+              {/* Dynamic Halo */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-400/10 rounded-full blur-[80px] animate-pulse" />
+
+              {/* Text Label - Moved to Top Left for Visibility */}
+              <div className="absolute top-10 left-10 z-20 max-w-xs">
+                <div className="backdrop-blur-md bg-white/40 p-6 rounded-[2rem] border border-white/60 shadow-sm">
+                  <h3 className="text-3xl font-serif font-bold text-slate-900 mb-2 leading-tight">{t('showcase.screen1.title')}</h3>
+                  <p className="text-slate-600 font-light text-base">{t('showcase.screen1.desc')}</p>
+                </div>
+              </div>
+
+              {/* Main Image with Phone Mockup - Adjusted Positioning */}
+              <div className="relative z-10 translate-y-12 transition-transform duration-700 group-hover:scale-[1.02] group-hover:-rotate-1">
+                <div className="relative rounded-[3rem] border-[10px] border-slate-900 bg-slate-900 shadow-2xl overflow-hidden h-[580px] w-auto ring-1 ring-white/20">
                   <img
                     src="/images/plan.png"
-                    alt="Health Plan"
+                    alt="DropDrop habit planning screen showing weekly goal setting and customizable habit schedules"
                     className="h-full w-full object-cover bg-white"
+                    loading="eager"
                   />
                   {/* Screen Glare/Reflection */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none" />
                 </div>
               </div>
-              
-              {/* Floating Glass Label */}
-              <div className="absolute bottom-8 left-8 right-8 z-20">
-                <div className="backdrop-blur-xl bg-white/80 p-6 rounded-3xl border border-white/60 shadow-sm/5">
-                  <h3 className="text-2xl font-serif font-bold text-slate-900 mb-1">{t('showcase.screen1.title')}</h3>
-                  <p className="text-slate-500 font-light text-sm">{t('showcase.screen1.desc')}</p>
-                </div>
-              </div>
             </motion.div>
 
             {/* Right Column - Two Stacked Cards */}
-            <div className="col-span-6 flex flex-col gap-6 h-full">
+            <div className="col-span-6 flex flex-col gap-8 h-full">
               
               {/* Top Card */}
               <motion.div
@@ -406,25 +411,26 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="flex-1 bg-orange-50/30 rounded-[2.5rem] overflow-hidden relative group flex flex-row items-center border border-orange-100/50"
+                className="flex-1 bg-orange-50/40 rounded-[3rem] overflow-hidden relative group flex flex-row items-center border border-orange-100/60 shadow-xl shadow-orange-100/20"
               >
-                <div className="w-1/2 h-full flex flex-col justify-center p-8 z-10">
-                  <div className="bg-white/80 backdrop-blur-sm p-5 rounded-3xl border border-white/60 shadow-sm w-fit mb-2">
-                    <div className="p-2 bg-orange-100 rounded-xl w-fit mb-3">
-                      <Target className="w-5 h-5 text-orange-600" />
+                <div className="w-[45%] h-full flex flex-col justify-center pl-10 pr-2 z-10">
+                  <div className="bg-white/80 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-sm w-fit mb-4">
+                    <div className="p-3 bg-orange-100 rounded-2xl w-fit mb-3">
+                      <Target className="w-6 h-6 text-orange-600" strokeWidth={2} />
                     </div>
-                    <h3 className="text-xl font-serif font-bold text-slate-900">{t('showcase.screen2.title')}</h3>
+                    <h3 className="text-2xl font-serif font-bold text-slate-900 leading-tight">{t('showcase.screen2.title')}</h3>
                   </div>
-                  <p className="text-slate-500 font-light text-sm pl-1">{t('showcase.screen2.desc')}</p>
+                  <p className="text-slate-600 font-light text-sm pl-2 leading-relaxed">{t('showcase.screen2.desc')}</p>
                 </div>
-                <div className="w-1/2 h-full relative flex items-center justify-center">
-                  {/* Tilted Partial Mockup */}
-                  <div className="absolute h-[120%] w-auto top-8 right-[-20px] transition-transform duration-700 group-hover:translate-x-[-10px] group-hover:rotate-2">
-                    <div className="rounded-[2rem] border-[6px] border-slate-900/10 shadow-xl overflow-hidden h-full">
+                <div className="w-[55%] h-full relative flex items-center justify-center">
+                  {/* Tilted Partial Mockup - Pulled closer */}
+                  <div className="absolute h-[125%] w-auto top-12 right-[-10px] transition-transform duration-700 group-hover:translate-x-[-10px] group-hover:rotate-2 shadow-2xl origin-top-right">
+                    <div className="rounded-[2.5rem] border-[8px] border-slate-900/5 shadow-2xl overflow-hidden h-full bg-white">
                       <img
                         src="/images/habit.png"
-                        alt="Habit"
+                        alt="DropDrop today screen displaying daily habit check-ins with streak tracking and progress visualization"
                         className="h-full w-auto object-cover"
+                        loading="lazy"
                       />
                     </div>
                   </div>
@@ -437,27 +443,28 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="flex-1 bg-purple-50/30 rounded-[2.5rem] overflow-hidden relative group flex flex-row items-center border border-purple-100/50"
+                className="flex-1 bg-purple-50/40 rounded-[3rem] overflow-hidden relative group flex flex-row items-center border border-purple-100/60 shadow-xl shadow-purple-100/20"
               >
-                <div className="w-1/2 h-full relative flex items-center justify-center order-2">
-                   <div className="absolute h-[115%] w-auto top-6 left-4 transition-transform duration-700 group-hover:scale-105">
-                     <div className="rounded-[2rem] border-[6px] border-slate-900/10 shadow-xl overflow-hidden h-full">
+                <div className="w-[55%] h-full relative flex items-center justify-center order-2">
+                   <div className="absolute h-[120%] w-auto top-10 left-0 transition-transform duration-700 group-hover:scale-105 shadow-2xl origin-top-left">
+                     <div className="rounded-[2.5rem] border-[8px] border-slate-900/5 shadow-2xl overflow-hidden h-full bg-white">
                       <img
                         src="/images/statics.png"
-                        alt="Stats"
+                        alt="DropDrop statistics dashboard with charts showing habit completion rates and detailed analytics"
                         className="h-full w-auto object-cover"
+                        loading="lazy"
                       />
                      </div>
                    </div>
                 </div>
-                <div className="w-1/2 h-full flex flex-col justify-center items-end p-8 z-10 order-1 text-right">
-                  <div className="bg-white/80 backdrop-blur-sm p-5 rounded-3xl border border-white/60 shadow-sm w-fit mb-2 flex flex-col items-end">
-                    <div className="p-2 bg-purple-100 rounded-xl w-fit mb-3">
-                      <Activity className="w-5 h-5 text-purple-600" />
+                <div className="w-[45%] h-full flex flex-col justify-center items-end pr-10 pl-2 z-10 order-1 text-right">
+                  <div className="bg-white/80 backdrop-blur-md p-6 rounded-[2rem] border border-white/60 shadow-sm w-fit mb-4 flex flex-col items-end">
+                    <div className="p-3 bg-purple-100 rounded-2xl w-fit mb-3">
+                      <Activity className="w-6 h-6 text-purple-600" strokeWidth={2} />
                     </div>
-                    <h3 className="text-xl font-serif font-bold text-slate-900">{t('showcase.screen4.title')}</h3>
+                    <h3 className="text-2xl font-serif font-bold text-slate-900 leading-tight">{t('showcase.screen4.title')}</h3>
                   </div>
-                  <p className="text-slate-500 font-light text-sm pr-1">{t('showcase.screen4.desc')}</p>
+                  <p className="text-slate-600 font-light text-sm pr-2 leading-relaxed">{t('showcase.screen4.desc')}</p>
                 </div>
               </motion.div>
             </div>
@@ -480,8 +487,9 @@ export default function Home() {
                     <div className="aspect-[4/5] overflow-hidden flex items-center justify-center bg-slate-50">
                       <img
                         src={`/images/${screen.img}`}
-                        alt={screen.title}
+                        alt={`${screen.title} - ${screen.desc}`}
                         className="h-[90%] w-auto object-contain drop-shadow-lg"
+                        loading="lazy"
                       />
                     </div>
                     <div className="p-6">
@@ -666,8 +674,9 @@ export default function Home() {
                               <div className="rounded-[2.5rem] border-[6px] border-slate-900 bg-slate-900 shadow-2xl overflow-hidden h-full ring-1 ring-white/20">
                                 <img
                                   src={`/images/${feature.img}`}
-                                  alt={feature.title}
+                                  alt={`${feature.title} - ${feature.desc}`}
                                   className="h-full w-auto object-cover bg-white"
+                                  loading="lazy"
                                 />
                                 {/* Screen Glare */}
                                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none" />
@@ -938,7 +947,7 @@ export default function Home() {
               >
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-xl blur opacity-60 group-hover:opacity-100 transition-opacity" />
-                  <img src="/images/logo.png" alt="DropDrop" className="relative w-12 h-12 shadow-2xl rounded-xl bg-white p-0.5" />
+                  <img src="/images/logo.png" alt="DropDrop Habit Tracker App Logo" className="relative w-12 h-12 shadow-2xl rounded-xl bg-white p-0.5" loading="lazy" />
                 </div>
                 <span className="text-3xl font-serif font-bold tracking-tight text-white">DropDrop</span>
               </motion.div>
@@ -952,23 +961,23 @@ export default function Home() {
                 title: t('footer.product'),
                 links: [
                   { label: t('footer.features'), onClick: () => scrollToSection('features') },
-                  { label: t('footer.pricing'), href: '#' },
+                  { label: t('footer.pricing'), onClick: () => scrollToSection('pricing') },
                   { label: t('footer.download'), onClick: () => scrollToSection('download') },
                 ]
               },
               {
                 title: t('footer.company'),
                 links: [
-                  { label: t('footer.about'), href: '#' },
-                  { label: t('footer.blog'), href: '#' },
-                  { label: t('footer.contact'), href: '#' },
+                  { label: t('footer.about'), href: '/about' },
+                  { label: t('footer.blog'), href: '/blog' },
+                  { label: t('footer.contact'), href: 'mailto:support@dropdrophabit.com' },
                 ]
               },
               {
                 title: t('footer.legal'),
                 links: [
-                  { label: t('footer.privacy'), href: '#' },
-                  { label: t('footer.terms'), href: '#' },
+                  { label: t('footer.privacy'), href: '/privacy' },
+                  { label: t('footer.terms'), href: '/terms' },
                 ]
               },
             ].map((section, index) => (
@@ -985,7 +994,7 @@ export default function Home() {
                         >
                           {link.label}
                         </motion.button>
-                      ) : (
+                      ) : link.href?.startsWith('mailto:') ? (
                         <motion.a
                           whileHover={{ x: 4, color: "#fff" }}
                           href={link.href}
@@ -993,6 +1002,15 @@ export default function Home() {
                         >
                           {link.label}
                         </motion.a>
+                      ) : (
+                        <Link href={link.href || '#'}>
+                          <motion.a
+                            whileHover={{ x: 4, color: "#fff" }}
+                            className="text-slate-400 hover:text-white transition-colors text-sm font-light tracking-wide cursor-pointer"
+                          >
+                            {link.label}
+                          </motion.a>
+                        </Link>
                       )}
                     </li>
                   ))}
