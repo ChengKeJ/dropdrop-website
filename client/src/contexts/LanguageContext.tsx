@@ -16,6 +16,13 @@ const translations = {
     'nav.features': '功能',
     'nav.showcase': '应用预览',
     'nav.download': '下载',
+    'nav.blog': '博客',
+    'nav.about': '关于',
+    'nav.download_app': '下载 App',
+
+    // SEO
+    'seo.title': 'DropDrop - 让身体状态决定今天的习惯 | 科学温和的习惯追踪',
+    'seo.description': '基于 HRV、心情与活动数据，为你生成真正适合今天的习惯与计划。不逼你自律，而是帮你找到最舒服的节奏。',
 
     // Home Section (New Structure)
     'home.hero.title': '让身体状态，<br />决定今天的习惯',
@@ -87,6 +94,10 @@ const translations = {
 
     // Footer
     'footer.slogan': '养成好习惯，从现在开始',
+    'footer.privacy': '隐私政策',
+    'footer.terms': '用户协议',
+    'footer.faq': 'FAQ',
+    'footer.contact': '联系我们',
     'footer.product': '产品',
     'footer.features': '功能',
     'footer.pricing': '定价',
@@ -94,10 +105,7 @@ const translations = {
     'footer.company': '公司',
     'footer.about': '关于我们',
     'footer.blog': '博客',
-    'footer.contact': '联系我们',
     'footer.legal': '法律',
-    'footer.privacy': '隐私政策',
-    'footer.terms': '服务条款',
     'footer.copyright': '© 2025 DropDrop. All rights reserved.',
   },
   en: {
@@ -105,6 +113,13 @@ const translations = {
     'nav.features': 'Features',
     'nav.showcase': 'Showcase',
     'nav.download': 'Download',
+    'nav.blog': 'Blog',
+    'nav.about': 'About',
+    'nav.download_app': 'Download App',
+
+    // SEO
+    'seo.title': 'DropDrop - Let Your Body State Determine Today\'s Habits | Gentle Habit Tracker',
+    'seo.description': 'Generate habit suggestions tailored to your current state based on HRV, mood, and activity data. No forced discipline, just finding your right rhythm.',
 
     // Home Section (New Structure)
     'home.hero.title': 'Let your body state,<br />determine today’s habits',
@@ -176,6 +191,10 @@ const translations = {
 
     // Footer
     'footer.slogan': 'Build good habits, by DropDrop',
+    'footer.privacy': 'Privacy Policy',
+    'footer.terms': 'Terms of Service',
+    'footer.faq': 'FAQ',
+    'footer.contact': 'Contact Us',
     'footer.product': 'Product',
     'footer.features': 'Features',
     'footer.pricing': 'Pricing',
@@ -183,10 +202,7 @@ const translations = {
     'footer.company': 'Company',
     'footer.about': 'About Us',
     'footer.blog': 'Blog',
-    'footer.contact': 'Contact',
     'footer.legal': 'Legal',
-    'footer.privacy': 'Privacy Policy',
-    'footer.terms': 'Terms of Service',
     'footer.copyright': '© 2025 DropDrop. All rights reserved.',
   },
 };

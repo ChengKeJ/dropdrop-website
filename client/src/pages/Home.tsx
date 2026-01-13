@@ -99,8 +99,8 @@ export default function Home() {
   return (
     <>
       <SEOHead
-        title="DropDrop - 让身体状态决定今天的习惯 | 科学温和的习惯追踪"
-        description="基于 HRV、心情与活动数据，为你生成真正适合今天的习惯与计划。不逼你自律，而是帮你找到最舒服的节奏。"
+        title={t('seo.title')}
+        description={t('seo.description')}
         canonical="https://dropdrophabit.com/"
       />
 
@@ -339,11 +339,11 @@ export default function Home() {
         </section>
 
         {/* 4. Execution Layer (No Pressure) */}
-        <section className="py-24 md:py-32 bg-white overflow-hidden">
+        <section className="py-16 md:py-32 bg-white overflow-hidden">
           <div className="container">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <motion.div {...fadeInUp} className="max-w-md">
-                <h2 className="text-3xl md:text-5xl font-light mb-8 leading-tight">
+            <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+              <motion.div {...fadeInUp} className="max-w-md order-1 md:ml-auto md:pr-4 flex flex-col items-center md:items-start text-center md:text-left">
+                <h2 className="text-3xl md:text-5xl font-light mb-6 md:mb-8 leading-tight">
                   <span dangerouslySetInnerHTML={{ __html: t('home.execution.title') }} />
                 </h2>
                 <p className="text-lg text-[#666666] font-light leading-relaxed mb-8">
@@ -360,25 +360,33 @@ export default function Home() {
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
-                className="relative"
+                className="relative order-2 flex justify-center md:justify-start md:pl-4 mt-10 md:mt-0"
               >
-                {/* Visualizing simple check-in without complex metrics */}
-                 <div className="w-full max-w-md mx-auto aspect-square bg-[#F8F9FA] rounded-full flex items-center justify-center relative">
-                    <div className="absolute inset-0 border border-gray-100 rounded-full scale-90" />
-                    <div className="absolute inset-0 border border-gray-100 rounded-full scale-75" />
-                    
-                    <div className="w-48 h-48 bg-white rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] flex flex-col items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300">
-                      <div className="w-16 h-16 rounded-full bg-[#4CAF93]/10 text-[#4CAF93] flex items-center justify-center mb-3">
-                        <CheckCircle2 size={32} />
-                      </div>
-                      <span className="text-gray-900 font-medium">Done</span>
-                    </div>
+                {/* Wrapper to contain both Phone and Badge for precise relative positioning */}
+                <div className="relative">
+                  {/* Phone-like Video Container */}
+                  <div className="relative w-[260px] md:w-[280px] aspect-[9/19] rounded-[2.5rem] border-[8px] border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] bg-gray-50 overflow-hidden z-10">
+                     <video 
+                       src="/mp4/habitDone.mp4" 
+                       autoPlay 
+                       muted 
+                       loop 
+                       playsInline 
+                       className="w-full h-full object-cover"
+                     />
+                  </div>
 
-                    {/* Floating elements */}
-                    <div className="absolute top-10 right-10 bg-white px-4 py-2 rounded-xl shadow-sm text-sm text-gray-500">
-                      Just a tap
+                  {/* Floating "Just a tap" Badge - Now anchored strictly to the phone container */}
+                  <div className="absolute bottom-12 -right-4 md:-right-10 bg-white px-5 py-3 rounded-2xl shadow-[0_10px_30px_-5px_rgba(0,0,0,0.1)] border border-gray-100 animate-float-delayed z-20 whitespace-nowrap">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-[#4CAF93] animate-pulse" />
+                      <span className="text-sm font-medium text-gray-600">Just a tap</span>
                     </div>
-                 </div>
+                  </div>
+                </div>
+
+                {/* Decorative background glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-gradient-to-tr from-[#FAFAFA] to-transparent rounded-full -z-10" />
               </motion.div>
             </div>
           </div>
