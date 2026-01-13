@@ -268,25 +268,26 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center px-4 md:px-0 mb-16"
+              className="flex flex-col sm:flex-row gap-5 justify-center px-4 md:px-0 mb-20"
             >
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -10px rgba(74, 137, 220, 0.5)" }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02, translateY: -2 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => scrollToSection('download')}
-                className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg overflow-hidden shadow-xl"
+                className="group relative px-8 py-4 bg-slate-900 text-white rounded-2xl font-semibold text-lg overflow-hidden shadow-xl shadow-slate-900/20 ring-1 ring-white/10"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay" />
                 <span className="relative flex items-center justify-center gap-2">
                   {t('hero.cta.download')}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </motion.button>
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02, translateY: -2 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => scrollToSection('showcase')}
-                className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200 text-[#1E293B] rounded-xl font-semibold text-lg hover:bg-white hover:border-blue-300 transition-all shadow-lg"
+                className="px-8 py-4 bg-white/60 backdrop-blur-md border border-white/60 text-slate-700 rounded-2xl font-semibold text-lg hover:bg-white/80 hover:border-white transition-all shadow-lg shadow-slate-200/20"
               >
                 {t('hero.cta.demo')}
               </motion.button>
@@ -337,101 +338,155 @@ export default function Home() {
         />
       </motion.section>
 
-      {/* App Showcase Section - Premium */}
-      <section id="showcase" className="py-20 md:py-32 relative">
+      {/* App Showcase Section - Creative Bento Grid */}
+      <section id="showcase" className="py-24 md:py-40 relative bg-white">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16 md:mb-20"
+            className="text-center mb-20 md:mb-24"
           >
             <motion.div
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              className="inline-block p-3 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl mb-6"
+              className="inline-flex items-center justify-center p-4 bg-blue-50 rounded-3xl mb-8"
             >
-              <Zap className="w-8 h-8 text-blue-600" />
+              <Zap className="w-8 h-8 text-blue-600" strokeWidth={1.5} />
             </motion.div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold font-serif text-slate-900 mb-6 tracking-tight">
               {t('showcase.title')}
             </h2>
-            <p className="text-lg md:text-xl text-[#64748B] max-w-3xl mx-auto px-4">
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto font-light leading-relaxed">
               {t('showcase.subtitle')}
             </p>
           </motion.div>
 
-          {/* Screenshots Grid - Desktop */}
-          <div className="hidden md:grid md:grid-cols-4 gap-6 lg:gap-8 mb-16 max-w-7xl mx-auto">
-            {[
-              { title: t('showcase.screen1.title'), desc: t('showcase.screen1.desc'), img: 'plan.png', color: 'from-blue-500/10 to-cyan-500/10' },
-              { title: t('showcase.screen2.title'), desc: t('showcase.screen2.desc'), img: 'habit.png', color: 'from-purple-500/10 to-pink-500/10' },
-              { title: t('showcase.screen3.title'), desc: t('showcase.screen3.desc'), img: 'today.png', color: 'from-green-500/10 to-emerald-500/10' },
-              { title: t('showcase.screen4.title'), desc: t('showcase.screen4.desc'), img: 'statics.png', color: 'from-orange-500/10 to-red-500/10' },
-            ].map((screen, index) => (
+          {/* Bento Grid */}
+          <div className="hidden md:grid md:grid-cols-12 gap-6 mb-16">
+            {/* Large Card - Left (Main Feature) */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="col-span-6 bg-slate-50 rounded-[2.5rem] overflow-hidden relative group h-full flex items-center justify-center border border-slate-100/80"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-indigo-50/30 to-white opacity-100" />
+              
+              {/* Main Image with Phone Mockup */}
+              <div className="relative z-10 mt-12 transition-transform duration-700 group-hover:scale-[1.02] group-hover:-rotate-1">
+                <div className="relative rounded-[2.5rem] border-[8px] border-slate-900 bg-slate-900 shadow-2xl overflow-hidden h-[500px] w-auto ring-1 ring-white/20">
+                  <img
+                    src="/images/plan.png"
+                    alt="Health Plan"
+                    className="h-full w-full object-cover bg-white"
+                  />
+                  {/* Screen Glare/Reflection */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none" />
+                </div>
+              </div>
+              
+              {/* Floating Glass Label */}
+              <div className="absolute bottom-8 left-8 right-8 z-20">
+                <div className="backdrop-blur-xl bg-white/80 p-6 rounded-3xl border border-white/60 shadow-sm/5">
+                  <h3 className="text-2xl font-serif font-bold text-slate-900 mb-1">{t('showcase.screen1.title')}</h3>
+                  <p className="text-slate-500 font-light text-sm">{t('showcase.screen1.desc')}</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Column - Two Stacked Cards */}
+            <div className="col-span-6 flex flex-col gap-6 h-full">
+              
+              {/* Top Card */}
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative"
+                transition={{ delay: 0.1 }}
+                className="flex-1 bg-orange-50/30 rounded-[2.5rem] overflow-hidden relative group flex flex-row items-center border border-orange-100/50"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${screen.color} rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                <div className="relative bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
-                  <div className="aspect-[9/19] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-                    <img
-                      src={`/images/${screen.img}`}
-                      alt={screen.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      onError={(e) => {
-                        e.currentTarget.src = '/images/feature-tracking.png';
-                      }}
-                    />
+                <div className="w-1/2 h-full flex flex-col justify-center p-8 z-10">
+                  <div className="bg-white/80 backdrop-blur-sm p-5 rounded-3xl border border-white/60 shadow-sm w-fit mb-2">
+                    <div className="p-2 bg-orange-100 rounded-xl w-fit mb-3">
+                      <Target className="w-5 h-5 text-orange-600" />
+                    </div>
+                    <h3 className="text-xl font-serif font-bold text-slate-900">{t('showcase.screen2.title')}</h3>
                   </div>
-                  <div className="p-5">
-                    <h3 className="font-bold text-lg text-[#1E293B] mb-2 group-hover:text-blue-600 transition-colors">{screen.title}</h3>
-                    <p className="text-sm text-[#64748B]">{screen.desc}</p>
+                  <p className="text-slate-500 font-light text-sm pl-1">{t('showcase.screen2.desc')}</p>
+                </div>
+                <div className="w-1/2 h-full relative flex items-center justify-center">
+                  {/* Tilted Partial Mockup */}
+                  <div className="absolute h-[120%] w-auto top-8 right-[-20px] transition-transform duration-700 group-hover:translate-x-[-10px] group-hover:rotate-2">
+                    <div className="rounded-[2rem] border-[6px] border-slate-900/10 shadow-xl overflow-hidden h-full">
+                      <img
+                        src="/images/habit.png"
+                        alt="Habit"
+                        className="h-full w-auto object-cover"
+                      />
+                    </div>
                   </div>
                 </div>
               </motion.div>
-            ))}
+
+              {/* Bottom Card */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="flex-1 bg-purple-50/30 rounded-[2.5rem] overflow-hidden relative group flex flex-row items-center border border-purple-100/50"
+              >
+                <div className="w-1/2 h-full relative flex items-center justify-center order-2">
+                   <div className="absolute h-[115%] w-auto top-6 left-4 transition-transform duration-700 group-hover:scale-105">
+                     <div className="rounded-[2rem] border-[6px] border-slate-900/10 shadow-xl overflow-hidden h-full">
+                      <img
+                        src="/images/statics.png"
+                        alt="Stats"
+                        className="h-full w-auto object-cover"
+                      />
+                     </div>
+                   </div>
+                </div>
+                <div className="w-1/2 h-full flex flex-col justify-center items-end p-8 z-10 order-1 text-right">
+                  <div className="bg-white/80 backdrop-blur-sm p-5 rounded-3xl border border-white/60 shadow-sm w-fit mb-2 flex flex-col items-end">
+                    <div className="p-2 bg-purple-100 rounded-xl w-fit mb-3">
+                      <Activity className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <h3 className="text-xl font-serif font-bold text-slate-900">{t('showcase.screen4.title')}</h3>
+                  </div>
+                  <p className="text-slate-500 font-light text-sm pr-1">{t('showcase.screen4.desc')}</p>
+                </div>
+              </motion.div>
+            </div>
           </div>
 
           {/* Screenshots Carousel - Mobile */}
           <div className="md:hidden relative px-4 mb-16">
-            <div className="overflow-x-auto pb-6 -mx-4 px-4 scrollbar-hide">
+            <div className="overflow-x-auto pb-8 -mx-4 px-4 scrollbar-hide">
               <div className="flex gap-6 w-max">
                 {[
-                  { title: t('showcase.screen1.title'), desc: t('showcase.screen1.desc'), img: 'app-screenshot-1.png' },
-                  { title: t('showcase.screen2.title'), desc: t('showcase.screen2.desc'), img: 'app-screenshot-2.png' },
-                  { title: t('showcase.screen3.title'), desc: t('showcase.screen3.desc'), img: 'app-screenshot-3.png' },
-                  { title: t('showcase.screen4.title'), desc: t('showcase.screen4.desc'), img: 'app-screenshot-4.png' },
+                  { title: t('showcase.screen1.title'), desc: t('showcase.screen1.desc'), img: 'minPlan.png' },
+                  { title: t('showcase.screen2.title'), desc: t('showcase.screen2.desc'), img: 'habit.png' },
+                  { title: t('showcase.screen3.title'), desc: t('showcase.screen3.desc'), img: 'today.png' },
+                  { title: t('showcase.screen4.title'), desc: t('showcase.screen4.desc'), img: 'statics.png' },
                 ].map((screen, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl overflow-hidden shadow-xl w-72 flex-shrink-0"
+                    className="bg-white rounded-3xl overflow-hidden shadow-xl w-72 flex-shrink-0 border border-slate-100"
                   >
-                    <div className="aspect-[9/19] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+                    <div className="aspect-[4/5] overflow-hidden flex items-center justify-center bg-slate-50">
                       <img
                         src={`/images/${screen.img}`}
                         alt={screen.title}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.src = '/images/feature-tracking.png';
-                        }}
+                        className="h-[90%] w-auto object-contain drop-shadow-lg"
                       />
                     </div>
-                    <div className="p-5">
-                      <h3 className="font-bold text-lg text-[#1E293B] mb-2">{screen.title}</h3>
-                      <p className="text-sm text-[#64748B]">{screen.desc}</p>
+                    <div className="p-6">
+                      <h3 className="font-bold text-lg font-serif text-slate-900 mb-2">{screen.title}</h3>
+                      <p className="text-sm text-slate-500 font-light leading-relaxed">{screen.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -444,13 +499,13 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto px-4 md:px-0"
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-5xl mx-auto px-4 md:px-0"
           >
             {[
-              { Icon: Droplets, color: 'text-blue-500', bg: 'bg-blue-50', title: t('showcase.feature1.title'), desc: t('showcase.feature1.desc') },
-              { Icon: Activity, color: 'text-purple-500', bg: 'bg-purple-50', title: t('showcase.feature2.title'), desc: t('showcase.feature2.desc') },
-              { Icon: Trophy, color: 'text-amber-500', bg: 'bg-amber-50', title: t('showcase.feature3.title'), desc: t('showcase.feature3.desc') },
-              { Icon: Bell, color: 'text-emerald-500', bg: 'bg-emerald-50', title: t('showcase.feature4.title'), desc: t('showcase.feature4.desc') },
+              { Icon: Droplets, color: 'text-blue-500', bg: 'bg-blue-50', ring: 'ring-blue-100', title: t('showcase.feature1.title'), desc: t('showcase.feature1.desc') },
+              { Icon: Activity, color: 'text-purple-500', bg: 'bg-purple-50', ring: 'ring-purple-100', title: t('showcase.feature2.title'), desc: t('showcase.feature2.desc') },
+              { Icon: Trophy, color: 'text-amber-500', bg: 'bg-amber-50', ring: 'ring-amber-100', title: t('showcase.feature3.title'), desc: t('showcase.feature3.desc') },
+              { Icon: Bell, color: 'text-emerald-500', bg: 'bg-emerald-50', ring: 'ring-emerald-100', title: t('showcase.feature4.title'), desc: t('showcase.feature4.desc') },
             ].map((feature, index) => (
               <motion.div
                 key={index}
@@ -458,13 +513,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.08, duration: 0.4 }}
-                className="text-center group"
+                className="text-center group cursor-default"
               >
-                <div className={`w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 rounded-2xl ${feature.bg} flex items-center justify-center transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm`}>
-                  <feature.Icon className={`w-8 h-8 md:w-10 md:h-10 ${feature.color}`} strokeWidth={1.5} />
+                <div className={`w-20 h-20 mx-auto mb-6 rounded-[2rem] ${feature.bg} flex items-center justify-center transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-sm ring-1 ${feature.ring} group-hover:ring-4 group-hover:ring-opacity-50`}>
+                  <feature.Icon className={`w-9 h-9 ${feature.color} transition-transform duration-500 group-hover:scale-110`} strokeWidth={1.5} />
                 </div>
-                <h4 className="font-bold text-[#1E293B] mb-2 text-base md:text-lg">{feature.title}</h4>
-                <p className="text-sm md:text-base text-[#64748B]">{feature.desc}</p>
+                <h4 className="font-bold text-slate-900 mb-2 text-lg tracking-tight">{feature.title}</h4>
+                <p className="text-sm text-slate-500 leading-relaxed font-light">{feature.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -558,7 +613,7 @@ export default function Home() {
                     desc: t('features.analytics.desc'),
                     items: [t('features.analytics.item1'), t('features.analytics.item2'), t('features.analytics.item3')],
                     img: 'statics.png',
-                    secondaryImg: 'plan.png',
+                    secondaryImg: 'minPlan.png',
                     gradient: 'from-purple-400 to-pink-500',
                     Icon: Activity,
                     color: 'text-purple-600',
@@ -568,7 +623,7 @@ export default function Home() {
                     title: t('features.reminders.title'),
                     desc: t('features.reminders.desc'),
                     items: [t('features.reminders.item1'), t('features.reminders.item2'), t('features.reminders.item3')],
-                    img: 'plan.png',
+                    img: 'minPlan.png',
                     secondaryImg: 'today.png',
                     gradient: 'from-orange-400 to-rose-500',
                     Icon: Bell,
@@ -594,21 +649,33 @@ export default function Home() {
                           {/* Layered Composition */}
                           <div className="relative w-full h-full flex items-end justify-center px-8 pb-4">
                             {/* Secondary Image - Background Layer */}
-                            <motion.img
-                              src={`/images/${feature.secondaryImg}`}
-                              alt=""
-                              className="absolute h-[75%] w-auto object-contain left-4 bottom-16 opacity-20 blur-[1px] -rotate-12 scale-90 transform group-hover:-translate-x-6 group-hover:-rotate-[15deg] transition-all duration-1000 ease-out pointer-events-none mix-blend-multiply"
-                            />
+                            <motion.div
+                              className="absolute h-[75%] w-auto left-4 bottom-16 opacity-40 blur-[1px] -rotate-12 scale-90 transform group-hover:-translate-x-6 group-hover:-rotate-[15deg] transition-all duration-1000 ease-out pointer-events-none origin-bottom-left z-0"
+                            >
+                              <div className="rounded-[2rem] border-[4px] border-slate-900/10 shadow-lg overflow-hidden h-full bg-white">
+                                <img
+                                  src={`/images/${feature.secondaryImg}`}
+                                  alt=""
+                                  className="h-full w-auto object-cover"
+                                />
+                              </div>
+                            </motion.div>
                             
                             {/* Primary Image - Center Layer */}
-                            <img
-                              src={`/images/${feature.img}`}
-                              alt={feature.title}
-                              className="h-[95%] w-auto object-contain object-bottom drop-shadow-[0_25px_50px_rgba(0,0,0,0.12)] transform group-hover:scale-[1.03] group-hover:drop-shadow-[0_35px_70px_rgba(0,0,0,0.18)] transition-all duration-1000 ease-out relative z-10 pointer-events-none"
-                            />
+                            <div className="relative h-[95%] w-auto z-10 transform group-hover:scale-[1.02] transition-all duration-1000 ease-out origin-bottom">
+                              <div className="rounded-[2.5rem] border-[6px] border-slate-900 bg-slate-900 shadow-2xl overflow-hidden h-full ring-1 ring-white/20">
+                                <img
+                                  src={`/images/${feature.img}`}
+                                  alt={feature.title}
+                                  className="h-full w-auto object-cover bg-white"
+                                />
+                                {/* Screen Glare */}
+                                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none" />
+                              </div>
+                            </div>
 
                             {/* Minimal Decorative Light */}
-                            <div className={`absolute top-32 right-16 w-32 h-32 rounded-full bg-gradient-to-br ${feature.gradient} opacity-20 blur-3xl`} />
+                            <div className={`absolute top-32 right-16 w-32 h-32 rounded-full bg-gradient-to-br ${feature.gradient} opacity-20 blur-3xl z-0`} />
                           </div>
 
                           {/* Seamless Gradient Fade to Content */}
@@ -855,26 +922,27 @@ export default function Home() {
       </section>
 
       {/* Footer - Premium */}
-      <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-16 md:py-20 overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 animate-gradient" />
+      <footer className="relative bg-slate-900 text-white py-24 md:py-32 overflow-hidden">
+        {/* Animated Background Massive Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
+          <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-blue-500/20 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-purple-500/20 rounded-full blur-[120px] animate-pulse delay-700" />
         </div>
 
         <div className="container px-4 md:px-0 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16 mb-20">
             <div className="col-span-2 md:col-span-1">
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-2 mb-6"
+                whileHover={{ scale: 1.02 }}
+                className="flex items-center gap-3 mb-8"
               >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg blur-lg opacity-75" />
-                  <img src="/images/logo.png" alt="DropDrop" className="relative w-10 h-10" />
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-xl blur opacity-60 group-hover:opacity-100 transition-opacity" />
+                  <img src="/images/logo.png" alt="DropDrop" className="relative w-12 h-12 shadow-2xl rounded-xl bg-white p-0.5" />
                 </div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">DropDrop</span>
+                <span className="text-3xl font-serif font-bold tracking-tight text-white">DropDrop</span>
               </motion.div>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-slate-400 text-base leading-relaxed font-light">
                 {t('footer.slogan')}
               </p>
             </div>
@@ -905,23 +973,23 @@ export default function Home() {
               },
             ].map((section, index) => (
               <div key={index}>
-                <h4 className="font-bold mb-4 text-lg bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">{section.title}</h4>
-                <ul className="space-y-3">
+                <h4 className="font-serif font-bold mb-6 text-xl text-white tracking-wide">{section.title}</h4>
+                <ul className="space-y-4">
                   {section.links.map((link, i) => (
                     <li key={i}>
                       {link.onClick ? (
                         <motion.button
-                          whileHover={{ x: 5, color: "#fff" }}
+                          whileHover={{ x: 4, color: "#fff" }}
                           onClick={link.onClick}
-                          className="text-gray-400 hover:text-white transition-colors text-sm"
+                          className="text-slate-400 hover:text-white transition-colors text-sm font-light tracking-wide"
                         >
                           {link.label}
                         </motion.button>
                       ) : (
                         <motion.a
-                          whileHover={{ x: 5, color: "#fff" }}
+                          whileHover={{ x: 4, color: "#fff" }}
                           href={link.href}
-                          className="text-gray-400 hover:text-white transition-colors text-sm"
+                          className="text-slate-400 hover:text-white transition-colors text-sm font-light tracking-wide"
                         >
                           {link.label}
                         </motion.a>
@@ -937,11 +1005,16 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="border-t border-gray-700/50 pt-8"
+            className="border-t border-slate-800/50 pt-12 flex flex-col md:flex-row justify-between items-center gap-6"
           >
-            <p className="text-gray-400 text-sm text-center">
+            <p className="text-slate-500 text-sm font-light">
               {t('footer.copyright')}
             </p>
+            <div className="flex gap-8">
+              <span className="text-slate-500 text-sm hover:text-slate-300 transition-colors cursor-pointer font-light">Twitter</span>
+              <span className="text-slate-500 text-sm hover:text-slate-300 transition-colors cursor-pointer font-light">Instagram</span>
+              <span className="text-slate-500 text-sm hover:text-slate-300 transition-colors cursor-pointer font-light">Threads</span>
+            </div>
           </motion.div>
         </div>
       </footer>

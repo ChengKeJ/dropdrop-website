@@ -49,7 +49,7 @@ export const mobileAppSchema = {
     worstRating: '1'
   },
   screenshot: [
-    'https://dropdrophabit.com/images/plan.png',
+    'https://dropdrophabit.com/images/minPlan.png',
     'https://dropdrophabit.com/images/habit.png',
     'https://dropdrophabit.com/images/today.png',
     'https://dropdrophabit.com/images/statics.png'
