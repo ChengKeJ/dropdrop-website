@@ -3,6 +3,8 @@ import { Heart, Target, Users, Mail } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { SEOHead } from '@/components/SEO/SEOHead';
 import { breadcrumbSchema, organizationSchema } from '@/lib/structuredData';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
 
 export default function About() {
   const { language } = useLanguage();
@@ -12,21 +14,28 @@ export default function About() {
     { name: 'About', url: 'https://dropdrophabit.com/about' }
   ]);
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
+
   const values = [
     {
       icon: Heart,
-      title: { zh: '用户至上', en: 'User First' },
-      description: { zh: '我们专注于创造真正帮助用户改变生活的产品', en: 'We focus on creating products that truly help users change their lives' }
+      title: { zh: '科学至上', en: 'Scientific First' },
+      description: { zh: '我们坚持基于生理数据的科学方法，拒绝盲目激励。', en: 'We insist on scientific methods based on physiological data, rejecting blind motivation.' }
     },
     {
       icon: Target,
-      title: { zh: '持续改进', en: 'Continuous Improvement' },
-      description: { zh: '就像习惯养成一样，我们每天都在变得更好', en: 'Like habit building, we get better every day' }
+      title: { zh: '长期主义', en: 'Long-termism' },
+      description: { zh: '习惯不是短跑，而是与身体的一场终身长跑。', en: 'Habits are not a sprint, but a lifelong run with your body.' }
     },
     {
       icon: Users,
-      title: { zh: '社区驱动', en: 'Community Driven' },
-      description: { zh: '倾听用户反馈，与社区共同成长', en: 'Listen to user feedback and grow with the community' }
+      title: { zh: '温和克制', en: 'Gentle & Restrained' },
+      description: { zh: '不做烦人的提醒者，做懂你的安静伙伴。', en: 'Not a nagging reminder, but a quiet partner who understands you.' }
     }
   ];
 
@@ -35,101 +44,82 @@ export default function About() {
       <SEOHead
         title={language === 'zh' ? '关于我们 - DropDrop' : 'About Us - DropDrop'}
         description={language === 'zh'
-          ? '了解 DropDrop 团队的使命、愿景和价值观。我们致力于帮助人们养成更好的习惯，过上更充实的生活。'
-          : 'Learn about DropDrop team\'s mission, vision, and values. We are dedicated to helping people build better habits and live more fulfilling lives.'}
+          ? '了解 DropDrop 团队的使命、愿景和价值观。我们致力于通过科学温和的方式，帮助人们建立更好的日常习惯。'
+          : 'Learn about DropDrop team\'s mission, vision, and values. We are dedicated to helping people build better habits in a scientific and gentle way.'}
         canonical="https://dropdrophabit.com/about"
-        ogImage="https://dropdrophabit.com/images/og-dropdrop.png"
         structuredData={[breadcrumbs, organizationSchema]}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-purple-50/10">
+      <div className="min-h-screen bg-[#FAFAFA] text-[#222222] font-sans">
+        <Navbar />
+
         {/* Hero */}
-        <section className="pt-32 pb-16 px-4">
+        <section className="pt-40 pb-20 px-4">
           <div className="container max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="inline-block mb-8"
-            >
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl flex items-center justify-center shadow-xl">
-                <Heart className="w-10 h-10 text-white" />
-              </div>
-            </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl font-bold text-[#1E293B] mb-6"
+              className="text-4xl md:text-5xl font-light text-[#222222] mb-8"
             >
-              {language === 'zh' ? '关于 DropDrop' : 'About DropDrop'}
+              懂你的每一种状态
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-[#64748B] max-w-2xl mx-auto leading-relaxed"
+              className="text-lg text-[#666666] max-w-2xl mx-auto leading-relaxed font-light"
             >
-              {language === 'zh'
-                ? 'DropDrop 诞生于一个简单的信念：每个人都有能力通过持续的小改变，创造不凡的人生。'
-                : 'DropDrop was born from a simple belief: everyone has the power to create an extraordinary life through consistent small changes.'}
+              DropDrop 诞生于一个简单的愿望:<br/>
+              让习惯回归自然，让自律不再痛苦。
             </motion.p>
           </div>
         </section>
 
         {/* Mission */}
-        <section className="py-16 px-4">
+        <section className="py-20 px-4">
           <div className="container max-w-4xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl p-8 md:p-12 shadow-xl"
+              {...fadeInUp}
+              className="bg-white border border-[#E5E5E5] rounded-3xl p-8 md:p-12 shadow-soft"
             >
-              <h2 className="text-3xl font-bold text-[#1E293B] mb-6">
-                {language === 'zh' ? '我们的使命' : 'Our Mission'}
+              <h2 className="text-2xl md:text-3xl font-light text-[#222222] mb-8">
+                我们的使命
               </h2>
-              <p className="text-lg text-[#64748B] leading-relaxed mb-6">
-                {language === 'zh'
-                  ? '我们的使命是让习惯养成变得简单、有趣且持久。通过科学的方法、精美的设计和智能的技术，我们帮助全球用户建立更好的日常习惯。'
-                  : 'Our mission is to make habit building simple, enjoyable, and lasting. Through scientific methods, beautiful design, and smart technology, we help users worldwide establish better daily habits.'}
+              <p className="text-[#666666] leading-relaxed mb-6 font-light">
+                我们相信，每个人的身体状态都是波动的。强行维持恒定的高强度自律，是对身心的巨大消耗。
               </p>
-              <p className="text-lg text-[#64748B] leading-relaxed">
-                {language === 'zh'
-                  ? '我们相信，小小的日常习惯是改变人生的最强大力量。每一次打卡，都是向更好的自己迈进的一步。'
-                  : 'We believe that small daily habits are the most powerful force for life change. Every check-in is a step toward becoming your best self.'}
+              <p className="text-[#666666] leading-relaxed font-light">
+                DropDrop 的使命是利用先进的生理监测技术，将原本抽象的身体感受量化。我们帮你找到那个“合适的节奏”——在精力充沛时勇敢挑战，在疲惫不堪时温柔休息。
               </p>
             </motion.div>
           </div>
         </section>
 
         {/* Values */}
-        <section className="py-16 px-4">
+        <section className="py-20 px-4">
           <div className="container max-w-6xl mx-auto">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl font-bold text-[#1E293B] mb-12 text-center"
+              {...fadeInUp}
+              className="text-2xl md:text-3xl font-light text-[#222222] mb-12 text-center"
             >
-              {language === 'zh' ? '我们的价值观' : 'Our Values'}
+              我们的价值观
             </motion.h2>
             <div className="grid md:grid-cols-3 gap-8">
               {values.map((value, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  {...fadeInUp}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl p-8 shadow-lg text-center"
+                  className="bg-white border border-[#E5E5E5] rounded-3xl p-8 text-center hover:border-[#4CAF93]/30 transition-colors"
                 >
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl mb-6">
-                    <value.icon className="w-8 h-8 text-blue-600" />
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-[#FAFAFA] rounded-2xl mb-6 text-[#4CAF93]">
+                    <value.icon size={24} strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-xl font-bold text-[#1E293B] mb-4">
-                    {value.title[language]}
+                  <h3 className="text-lg font-medium text-[#222222] mb-4">
+                    {value.title[language as 'zh' | 'en'] || value.title.zh}
                   </h3>
-                  <p className="text-[#64748B] leading-relaxed">
-                    {value.description[language]}
+                  <p className="text-[#999999] text-sm leading-relaxed font-light">
+                    {value.description[language as 'zh' | 'en'] || value.description.zh}
                   </p>
                 </motion.div>
               ))}
@@ -138,32 +128,29 @@ export default function About() {
         </section>
 
         {/* Contact */}
-        <section className="py-20 px-4">
-          <div className="container max-w-4xl mx-auto">
+        <section className="py-20 px-4 pb-32">
+          <div className="container max-w-4xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white text-center"
+              {...fadeInUp}
+              className="bg-[#222222] rounded-3xl p-12 text-white"
             >
-              <Mail className="w-12 h-12 mx-auto mb-6" />
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                {language === 'zh' ? '联系我们' : 'Contact Us'}
+              <h3 className="text-2xl md:text-3xl font-light mb-6">
+                期待听到你的声音
               </h3>
-              <p className="text-white/90 mb-6 text-lg">
-                {language === 'zh'
-                  ? '有任何问题或建议？我们很乐意听到你的声音。'
-                  : 'Have any questions or suggestions? We\'d love to hear from you.'}
+              <p className="text-white/60 mb-10 text-lg font-light">
+                如果你有任何关于习惯、健康或产品的想法，请随时联系我们。
               </p>
               <a
                 href="mailto:support@dropdrophabit.com"
-                className="inline-block px-8 py-4 bg-white text-blue-600 rounded-xl font-semibold text-lg hover:bg-blue-50 transition-all shadow-lg"
+                className="btn-primary inline-block"
               >
                 support@dropdrophabit.com
               </a>
             </motion.div>
           </div>
         </section>
+
+        <Footer />
       </div>
     </>
   );

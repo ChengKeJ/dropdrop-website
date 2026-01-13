@@ -5,6 +5,8 @@ import { SEOHead } from '@/components/SEO/SEOHead';
 import { getAllBlogPosts } from '@/data/blogPosts';
 import { Link } from 'wouter';
 import { breadcrumbSchema } from '@/lib/structuredData';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
 
 export default function Blog() {
   const { language } = useLanguage();
@@ -15,6 +17,13 @@ export default function Blog() {
     { name: 'Blog', url: 'https://dropdrophabit.com/blog' }
   ]);
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
+
   return (
     <>
       <SEOHead
@@ -23,89 +32,78 @@ export default function Blog() {
           ? '探索科学的习惯养成方法、生产力技巧和自我提升策略。DropDrop 博客提供实用的习惯追踪建议。'
           : 'Explore science-based habit building methods, productivity tips, and self-improvement strategies. DropDrop blog offers practical habit tracking advice.'}
         canonical="https://dropdrophabit.com/blog"
-        ogImage="https://dropdrophabit.com/images/og-blog.png"
         structuredData={breadcrumbs}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-purple-50/10">
+      <div className="min-h-screen bg-[#FAFAFA] text-[#222222] font-sans">
+        <Navbar />
+
         {/* Header */}
-        <section className="pt-32 pb-16 px-4">
+        <section className="pt-40 pb-16 px-4">
           <div className="container max-w-4xl mx-auto text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl font-bold text-[#1E293B] mb-6"
+              className="text-4xl md:text-5xl font-light text-[#222222] mb-8"
             >
-              {language === 'zh' ? 'DropDrop 博客' : 'DropDrop Blog'}
+              习惯实验室
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-[#64748B] max-w-2xl mx-auto"
+              className="text-lg text-[#666666] max-w-2xl mx-auto font-light"
             >
-              {language === 'zh'
-                ? '探索习惯养成的科学方法、生产力技巧和自我提升策略'
-                : 'Explore science-based habit building, productivity tips, and self-improvement strategies'}
+              探索习惯养成的科学方法、生理原理和温和自律的实践。
             </motion.p>
           </div>
         </section>
 
         {/* Blog Posts Grid */}
-        <section className="pb-20 px-4">
+        <section className="pb-32 px-4">
           <div className="container max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
               {posts.map((post, index) => (
                 <motion.article
                   key={post.slug}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  {...fadeInUp}
                   transition={{ delay: index * 0.1 }}
                   className="group"
                 >
                   <Link href={`/blog/${post.slug}`}>
-                    <a className="block">
-                      <div className="bg-white/80 backdrop-blur-xl border border-white/40 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col cursor-pointer">
-                        {/* Image */}
-                        <div className="aspect-video bg-gradient-to-br from-blue-50 to-purple-50 relative overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20" />
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="text-6xl">📝</span>
-                          </div>
+                    <a className="block h-full">
+                      <div className="bg-white border border-[#E5E5E5] rounded-3xl overflow-hidden shadow-soft hover:border-[#4CAF93]/30 transition-all duration-500 h-full flex flex-col">
+                        {/* Simple Placeholder or Image */}
+                        <div className="aspect-[16/10] bg-[#F5F5F5] flex items-center justify-center group-hover:bg-[#E8F5E9] transition-colors duration-500">
+                          <span className="text-4xl grayscale group-hover:grayscale-0 transition-all duration-500">🌿</span>
                         </div>
 
                         {/* Content */}
-                        <div className="p-6 flex flex-col flex-grow">
-                          {/* Category & Date */}
-                          <div className="flex items-center gap-4 mb-3 text-sm text-[#64748B]">
-                            <span className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full font-medium">
+                        <div className="p-8 flex flex-col flex-grow">
+                          <div className="flex items-center gap-4 mb-4 text-xs text-[#999999] uppercase tracking-widest">
+                            <span className="text-[#4CAF93] font-medium">
                               {post.category}
                             </span>
-                            <div className="flex items-center gap-1">
-                              <Calendar className="w-4 h-4" />
-                              {new Date(post.datePublished).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US')}
-                            </div>
+                            <span>•</span>
+                            <span>{new Date(post.datePublished).toLocaleDateString('zh-CN')}</span>
                           </div>
 
-                          {/* Title */}
-                          <h2 className="text-xl font-bold text-[#1E293B] mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
-                            {post.title[language]}
+                          <h2 className="text-xl font-normal text-[#222222] mb-4 group-hover:text-[#4CAF93] transition-colors line-clamp-2 leading-snug">
+                            {post.title[language as 'zh' | 'en'] || post.title.zh}
                           </h2>
 
-                          {/* Description */}
-                          <p className="text-[#64748B] mb-4 line-clamp-3 flex-grow">
-                            {post.description[language]}
+                          <p className="text-[#666666] text-sm font-light mb-8 line-clamp-3 leading-relaxed flex-grow">
+                            {post.description[language as 'zh' | 'en'] || post.description.zh}
                           </p>
 
-                          {/* Footer */}
-                          <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                            <div className="flex items-center gap-1 text-sm text-[#64748B]">
-                              <Clock className="w-4 h-4" />
-                              <span>{post.readTime} {language === 'zh' ? '分钟' : 'min'}</span>
+                          <div className="flex items-center justify-between pt-6 border-t border-[#F5F5F5]">
+                            <div className="flex items-center gap-2 text-xs text-[#999999]">
+                              <Clock size={14} />
+                              <span>{post.readTime} 分钟阅读</span>
                             </div>
-                            <span className="text-blue-600 font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                              {language === 'zh' ? '阅读更多' : 'Read More'}
-                              <ArrowRight className="w-4 h-4" />
+                            <span className="text-[#222222] text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                              阅读全文
+                              <ArrowRight size={16} />
                             </span>
                           </div>
                         </div>
@@ -117,6 +115,8 @@ export default function Blog() {
             </div>
           </div>
         </section>
+
+        <Footer />
       </div>
     </>
   );

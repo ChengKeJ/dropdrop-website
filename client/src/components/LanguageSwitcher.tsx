@@ -47,7 +47,7 @@ export function LanguageSwitcher() {
             <button
               onClick={() => handleLanguageChange('zh')}
               className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-150 flex items-center gap-3 ${
-                language === 'zh' ? 'bg-blue-50 text-[#4A89DC]' : 'text-[#64748B]'
+                language === 'zh' ? 'bg-[#E8F5E9] text-[#4CAF93]' : 'text-[#666666]'
               }`}
             >
               <span className="text-xl">🇨🇳</span>
@@ -59,14 +59,14 @@ export function LanguageSwitcher() {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="w-2 h-2 bg-[#4A89DC] rounded-full"
+                  className="w-2 h-2 bg-[#4CAF93] rounded-full"
                 />
               )}
             </button>
             <button
               onClick={() => handleLanguageChange('en')}
               className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-150 flex items-center gap-3 ${
-                language === 'en' ? 'bg-blue-50 text-[#4A89DC]' : 'text-[#64748B]'
+                language === 'en' ? 'bg-[#E8F5E9] text-[#4CAF93]' : 'text-[#666666]'
               }`}
             >
               <span className="text-xl">🇺🇸</span>
@@ -78,7 +78,7 @@ export function LanguageSwitcher() {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="w-2 h-2 bg-[#4A89DC] rounded-full"
+                  className="w-2 h-2 bg-[#4CAF93] rounded-full"
                 />
               )}
             </button>

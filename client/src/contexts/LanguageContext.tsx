@@ -17,79 +17,47 @@ const translations = {
     'nav.showcase': '应用预览',
     'nav.download': '下载',
 
-    // Hero Section
+    // Home Section (New Structure)
+    'home.hero.title': '让身体状态，<br />决定今天的习惯',
+    'home.hero.subtitle': '结合 HRV、心情与行为记录，为你生成更符合当下状态的习惯建议。',
+    'home.hero.cta': '开始体验',
+
+    // State Layer (Understanding)
+    'home.state.title': '从理解状态开始，<br />而不是强迫执行',
+    'home.state.mood': '心情记录',
+    'home.state.mood.desc': '帮助识别心理负荷',
+    'home.state.body': '身体数据',
+    'home.state.body.desc': '反映当前恢复与压力',
+    'home.state.activity': '行为记录',
+    'home.state.activity.desc': '补充真实生活节奏',
+
+    // Suggestion Layer (Today)
+    'home.suggestion.title': '今天该做什么，<br />不是固定的',
+    'home.suggestion.desc': '基于你的当前状态，系统会从精选习惯中，给出更适合今天的建议。',
+
+    // Execution Layer (Recording)
+    'home.execution.title': '记录，是为了调整，<br />而不是评判',
+    'home.execution.desc': '简单的习惯记录，帮助系统理解哪些节奏对你更友好，而不是制造完成压力。',
+
+    // Review Layer (Long-term)
+    'home.review.title': '看趋势，<br />而不是盯数字',
+    'home.review.desc': '我们更关注长期变化，而不是每天的完成率。',
+
+    // Summary Layer (Consolidation)
+    'home.summary.title': '所有功能，只为一件事服务',
+    'home.summary.desc': '在合适的状态下，用合适的节奏，建立可持续的习惯。',
+
+    // CTA Layer
+    'home.cta.title': '你不需要更努力，<br />只需要更合适的方式。',
+    'home.cta.btn': '下载 App',
+
+    // Legacy keys (kept for compatibility if referenced elsewhere)
     'hero.badge': '专业习惯追踪应用',
     'hero.title.main': '养成好习惯',
     'hero.title.highlight': '从现在开始',
     'hero.description': 'DropDrop 帮助你通过可视化进度、智能提醒和成就系统，坚持不懈地养成更好的习惯。',
     'hero.cta.download': '立即下载',
     'hero.cta.demo': '查看演示',
-    'hero.stats.users': '活跃用户',
-    'hero.stats.checkins': '习惯打卡',
-    'hero.stats.rating': '用户评分',
-
-    // Showcase Section
-    'showcase.title': '简洁优雅的设计',
-    'showcase.subtitle': '精心打磨的界面，让习惯追踪成为一种享受',
-    'showcase.screen1.title': '健康计划',
-    'showcase.screen1.desc': '定制专属成长路径',
-    'showcase.screen2.title': '丰富习惯库',
-    'showcase.screen2.desc': '多种习惯任你选择',
-    'showcase.screen3.title': '每日打卡',
-    'showcase.screen3.desc': '轻松完成每日目标',
-    'showcase.screen4.title': '数据统计',
-    'showcase.screen4.desc': '可视化进度追踪',
-    'showcase.feature1.title': '每日打卡',
-    'showcase.feature1.desc': '轻松记录进度',
-    'showcase.feature2.title': '数据分析',
-    'showcase.feature2.desc': '可视化统计',
-    'showcase.feature3.title': '成就系统',
-    'showcase.feature3.desc': '解锁奖章',
-    'showcase.feature4.title': '智能提醒',
-    'showcase.feature4.desc': '不错过任何时刻',
-
-    // Features Section
-    'features.title': '强大的功能',
-    'features.subtitle': 'DropDrop 提供了一套完整的工具，帮助你更有效地管理和追踪日常习惯',
-    'features.tracking.title': '习惯追踪',
-    'features.tracking.desc': '直观的圆形进度指示器实时显示你的完成度，每一次打卡都是向目标迈进的一步。',
-    'features.tracking.item1': '每日打卡提醒',
-    'features.tracking.item2': '连续天数统计',
-    'features.tracking.item3': '自定义目标设置',
-    'features.analytics.title': '数据分析',
-    'features.analytics.desc': '详细的统计图表和热力图帮助你深入了解习惯养成的规律和进度。',
-    'features.analytics.item1': '完成率统计',
-    'features.analytics.item2': '热力图展示',
-    'features.analytics.item3': '趋势分析',
-    'features.reminders.title': '智能提醒',
-    'features.reminders.desc': '灵活的提醒设置确保你不会错过任何一个重要的习惯养成时刻。',
-    'features.reminders.item1': '自定义提醒时间',
-    'features.reminders.item2': '多种提醒方式',
-    'features.reminders.item3': '智能推送通知',
-
-    // Premium Section
-    'premium.title.line1': '升级会员',
-    'premium.title.line2': '解锁更多功能',
-    'premium.subtitle': 'DropDrop Pro 会员提供无限习惯创建、云端同步、自定义主题等高级功能，帮助你更好地管理生活。',
-    'premium.feature1.title': '无限习惯创建',
-    'premium.feature1.desc': '创建无限数量的习惯，不受任何限制',
-    'premium.feature2.title': '高级数据分析',
-    'premium.feature2.desc': '获取更详细的数据分析和趋势预测',
-    'premium.feature3.title': '云端同步备份',
-    'premium.feature3.desc': '跨设备同步你的所有数据，永不丢失',
-    'premium.cta': '了解会员计划',
-    'premium.plan.free': '免费版',
-    'premium.plan.pro': 'Pro 会员',
-    'premium.plan.trial': '14 天免费试用',
-    'premium.plan.trial.desc': '立即体验所有功能',
-    'premium.plan.annual': '或 ¥99/年，省 17%',
-
-    // Download Section
-    'download.title': '立即开始养成好习惯',
-    'download.subtitle': 'DropDrop 现已在 iOS 和 Android 上线。下载应用，开始你的习惯养成之旅。',
-    'download.appstore': 'App Store',
-    'download.googleplay': 'Google Play',
-    'download.qr': '扫码下载',
 
     // Blog
     'blog.title': '博客',
@@ -138,79 +106,47 @@ const translations = {
     'nav.showcase': 'Showcase',
     'nav.download': 'Download',
 
-    // Hero Section
+    // Home Section (New Structure)
+    'home.hero.title': 'Let your body state,<br />determine today’s habits',
+    'home.hero.subtitle': 'Generate habit suggestions based on HRV, mood, and activity data, tailored to your current state.',
+    'home.hero.cta': 'Start Experience',
+
+    // State Layer (Understanding)
+    'home.state.title': 'Start with understanding,<br />not forcing',
+    'home.state.mood': 'Mood Tracking',
+    'home.state.mood.desc': 'Identifies mental load',
+    'home.state.body': 'Body Metrics',
+    'home.state.body.desc': 'Reflects recovery & stress',
+    'home.state.activity': 'Activity Log',
+    'home.state.activity.desc': 'Captures life rhythm',
+
+    // Suggestion Layer (Today)
+    'home.suggestion.title': 'What to do today<br />is not fixed',
+    'home.suggestion.desc': 'Based on your current state, the system suggests the most suitable habits for today.',
+
+    // Execution Layer (Recording)
+    'home.execution.title': 'Record to adjust,<br />not to judge',
+    'home.execution.desc': 'Simple tracking helps the system learn what rhythm works for you, without creating pressure.',
+
+    // Review Layer (Long-term)
+    'home.review.title': 'Focus on trends,<br />not just numbers',
+    'home.review.desc': 'We focus on long-term changes and sustainability, rather than just daily completion rates.',
+
+    // Summary Layer (Consolidation)
+    'home.summary.title': 'All features serve one purpose',
+    'home.summary.desc': 'To build sustainable habits with the right rhythm, in the right state.',
+
+    // CTA Layer
+    'home.cta.title': 'You don’t need to try harder,<br />just find a better way.',
+    'home.cta.btn': 'Download App',
+
+    // Legacy keys
     'hero.badge': 'Professional Habit Tracker',
     'hero.title.main': 'Build Good Habits',
     'hero.title.highlight': 'by DropDrop',
     'hero.description': 'DropDrop helps you build better habits through visual progress tracking, smart reminders, and achievement systems.',
     'hero.cta.download': 'Download Now',
     'hero.cta.demo': 'View Demo',
-    'hero.stats.users': 'Active Users',
-    'hero.stats.checkins': 'Habit Check-ins',
-    'hero.stats.rating': 'User Rating',
-
-    // Showcase Section
-    'showcase.title': 'Clean & Elegant Design',
-    'showcase.subtitle': 'Carefully crafted interface makes habit tracking a pleasure',
-    'showcase.screen1.title': 'Health Plan',
-    'showcase.screen1.desc': 'Customize your growth path',
-    'showcase.screen2.title': 'Habit Library',
-    'showcase.screen2.desc': 'Choose from various habits',
-    'showcase.screen3.title': 'Daily Check-in',
-    'showcase.screen3.desc': 'Complete daily goals easily',
-    'showcase.screen4.title': 'Statistics',
-    'showcase.screen4.desc': 'Visual progress tracking',
-    'showcase.feature1.title': 'Daily Check-in',
-    'showcase.feature1.desc': 'Track progress easily',
-    'showcase.feature2.title': 'Data Analytics',
-    'showcase.feature2.desc': 'Visual statistics',
-    'showcase.feature3.title': 'Achievements',
-    'showcase.feature3.desc': 'Unlock badges',
-    'showcase.feature4.title': 'Smart Reminders',
-    'showcase.feature4.desc': 'Never miss a moment',
-
-    // Features Section
-    'features.title': 'Powerful Features',
-    'features.subtitle': 'DropDrop provides a complete set of tools to help you manage and track your daily habits effectively',
-    'features.tracking.title': 'Habit Tracking',
-    'features.tracking.desc': 'Intuitive circular progress indicators show your completion in real-time. Every check-in is a step towards your goal.',
-    'features.tracking.item1': 'Daily check-in reminders',
-    'features.tracking.item2': 'Streak counting',
-    'features.tracking.item3': 'Custom goal settings',
-    'features.analytics.title': 'Data Analytics',
-    'features.analytics.desc': 'Detailed statistics and heatmaps help you understand your habit-building patterns and progress.',
-    'features.analytics.item1': 'Completion rate stats',
-    'features.analytics.item2': 'Heatmap visualization',
-    'features.analytics.item3': 'Trend analysis',
-    'features.reminders.title': 'Smart Reminders',
-    'features.reminders.desc': 'Flexible reminder settings ensure you never miss an important moment in your habit-building journey.',
-    'features.reminders.item1': 'Custom reminder times',
-    'features.reminders.item2': 'Multiple reminder types',
-    'features.reminders.item3': 'Smart push notifications',
-
-    // Premium Section
-    'premium.title.line1': 'Upgrade to Premium',
-    'premium.title.line2': 'Unlock More Features',
-    'premium.subtitle': 'DropDrop Pro membership offers unlimited habit creation, cloud sync, custom themes, and more to help you manage your life better.',
-    'premium.feature1.title': 'Unlimited Habits',
-    'premium.feature1.desc': 'Create unlimited habits without restrictions',
-    'premium.feature2.title': 'Advanced Analytics',
-    'premium.feature2.desc': 'Get detailed analytics and trend predictions',
-    'premium.feature3.title': 'Cloud Backup',
-    'premium.feature3.desc': 'Sync all your data across devices, never lose anything',
-    'premium.cta': 'Learn About Pro',
-    'premium.plan.free': 'Free',
-    'premium.plan.pro': 'Pro',
-    'premium.plan.trial': '14-Day Free Trial',
-    'premium.plan.trial.desc': 'Experience all features now',
-    'premium.plan.annual': 'or $99/year, save 17%',
-
-    // Download Section
-    'download.title': 'Start Building Better Habits Today',
-    'download.subtitle': 'DropDrop is now available on iOS and Android. Download the app and start your habit-building journey.',
-    'download.appstore': 'App Store',
-    'download.googleplay': 'Google Play',
-    'download.qr': 'Scan to Download',
 
     // Blog
     'blog.title': 'Blog',
