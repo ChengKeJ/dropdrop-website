@@ -41,6 +41,8 @@ const translations = {
     // Suggestion Layer (Today)
     'home.suggestion.title': '今天该做什么，<br />不是固定的',
     'home.suggestion.desc': '基于你的当前状态，系统会从精选习惯中，给出更适合今天的建议。',
+    'home.suggestion.rest_mode': '休息模式',
+    'home.suggestion.peak_state': '巅峰状态',
 
     // Execution Layer (Recording)
     'home.execution.title': '记录，是为了调整，<br />而不是评判',
@@ -138,6 +140,8 @@ const translations = {
     // Suggestion Layer (Today)
     'home.suggestion.title': 'What to do today<br />is not fixed',
     'home.suggestion.desc': 'Based on your current state, the system suggests the most suitable habits for today.',
+    'home.suggestion.rest_mode': 'Rest Mode',
+    'home.suggestion.peak_state': 'Peak State',
 
     // Execution Layer (Recording)
     'home.execution.title': 'Record to adjust,<br />not to judge',

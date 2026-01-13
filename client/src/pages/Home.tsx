@@ -279,9 +279,12 @@ export default function Home() {
         </section>
 
         {/* 3. Suggestion Layer (The Core Value) */}
-        <section className="py-24 md:py-32 bg-[#FAFAFA]">
+        <section className="py-24 md:py-32 bg-[#FAFAFA] relative overflow-hidden">
+          {/* Decorative background element */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-r from-blue-50/50 to-green-50/50 rounded-full blur-3xl -z-10" />
+
           <div className="container">
-            <motion.div {...fadeInUp} className="max-w-3xl mx-auto text-center mb-20">
+            <motion.div {...fadeInUp} className="max-w-3xl mx-auto text-center mb-20 relative z-10">
               <h2 className="text-3xl md:text-5xl font-light mb-6 leading-tight">
                 <span dangerouslySetInnerHTML={{ __html: t('home.suggestion.title') }} />
               </h2>
@@ -290,49 +293,60 @@ export default function Home() {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-10 max-w-5xl mx-auto">
-              {/* Card 1: Low Energy */}
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-16 max-w-5xl mx-auto items-center relative z-10">
+              {/* Card 1: Low Energy (Image - Rest/Recover) */}
               <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white p-8 rounded-[2rem] shadow-sm border border-transparent hover:border-[#4CAF93]/20 transition-all"
+                whileHover={{ scale: 1.03, rotate: -1, zIndex: 20 }}
+                initial={{ rotate: -2 }}
+                className="relative group cursor-pointer"
               >
-                <div className="flex justify-between items-start mb-8">
-                  <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs uppercase tracking-wider font-medium">Rest Day</span>
-                  <Moon className="text-gray-400" size={24} />
+                <div className="relative rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] border-[6px] border-white bg-white transform transition-all duration-500">
+                   <img 
+                     src="/images/restRecommend.png" 
+                     alt="Rest Recommendations" 
+                     className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                   />
+                   
+                   {/* Calm Overlay */}
+                   <div className="absolute inset-0 bg-blue-50/10 pointer-events-none group-hover:bg-transparent transition-colors" />
                 </div>
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-center gap-3 p-3 bg-[#FAFAFA] rounded-xl opacity-50">
-                    <div className="w-4 h-4 rounded-full border-2 border-gray-300" />
-                    <span className="text-gray-400 line-through">HIIT Workout</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-3 bg-[#FAFAFA] rounded-xl border-l-4 border-[#4CAF93]">
-                    <div className="w-4 h-4 rounded-full border-2 border-[#4CAF93]" />
-                    <span className="text-[#222222] font-medium">10 min Meditation</span>
-                  </div>
+
+                {/* Floating Badge - Rest */}
+                <div className="absolute -top-4 -left-2 bg-white px-4 py-2 rounded-full shadow-lg border border-gray-100 flex items-center gap-2 animate-float-delayed">
+                   <div className="p-1.5 bg-slate-100 rounded-full text-slate-500">
+                      <Moon size={14} />
+                   </div>
+                   <span className="text-xs font-bold text-slate-600 uppercase tracking-wide">{t('home.suggestion.rest_mode')}</span>
                 </div>
-                <p className="text-sm text-[#999999] italic">"HRV is low today. Let's focus on recovery."</p>
               </motion.div>
 
-              {/* Card 2: High Energy */}
+              {/* Card 2: High Energy (Image - Active/Challenge) */}
               <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white p-8 rounded-[2rem] shadow-sm border border-transparent hover:border-[#4CAF93]/20 transition-all"
+                whileHover={{ scale: 1.03, rotate: 1, zIndex: 20 }}
+                initial={{ rotate: 2 }}
+                className="relative group cursor-pointer"
               >
-                <div className="flex justify-between items-start mb-8">
-                  <span className="bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-xs uppercase tracking-wider font-medium">Peak State</span>
-                  <Sun className="text-orange-400" size={24} />
+                <div className="relative rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_-12px_rgba(249,115,22,0.15)] border-[6px] border-white bg-white transform transition-all duration-500">
+                   <img 
+                     src="/images/recommend.png" 
+                     alt="Active Recommendations" 
+                     className="w-full h-auto object-cover"
+                   />
+                   
+                   {/* Vibrant Overlay */}
+                   <div className="absolute inset-0 bg-orange-50/5 pointer-events-none" />
                 </div>
-                 <div className="space-y-4 mb-8">
-                  <div className="flex items-center gap-3 p-3 bg-[#FAFAFA] rounded-xl border-l-4 border-orange-400">
-                    <div className="w-4 h-4 rounded-full border-2 border-orange-400" />
-                    <span className="text-[#222222] font-medium">Deep Work Session</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-3 bg-[#FAFAFA] rounded-xl border-l-4 border-orange-400">
-                    <div className="w-4 h-4 rounded-full border-2 border-orange-400" />
-                    <span className="text-[#222222] font-medium">5km Run</span>
-                  </div>
+                
+                {/* Floating Badge - Peak */}
+                <div className="absolute -top-6 -right-4 bg-white px-4 py-2 rounded-full shadow-lg border border-orange-100 flex items-center gap-2 animate-float-slow">
+                   <div className="relative">
+                      <div className="absolute inset-0 bg-orange-400 rounded-full animate-ping opacity-20" />
+                      <div className="p-1.5 bg-orange-100 rounded-full text-orange-500 relative">
+                        <Sun size={14} />
+                      </div>
+                   </div>
+                   <span className="text-xs font-bold text-orange-600 uppercase tracking-wide">{t('home.suggestion.peak_state')}</span>
                 </div>
-                <p className="text-sm text-[#999999] italic">"Your energy is high! Great time to tackle hard tasks."</p>
               </motion.div>
             </div>
           </div>

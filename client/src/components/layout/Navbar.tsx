@@ -13,7 +13,7 @@ export function Navbar() {
           <img src="/images/logo.png" alt="DropDrop Logo" className="w-8 h-8 rounded-lg" />
           <span className="text-lg font-medium tracking-tight text-[#222222]">DropDrop</span>
         </Link>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 md:gap-6">
           <div className="hidden md:flex items-center gap-6">
             <Link href="/blog" className="text-sm text-[#666666] hover:text-[#222222] transition-colors">{t('nav.blog')}</Link>
             <Link href="/about" className="text-sm text-[#666666] hover:text-[#222222] transition-colors">{t('nav.about')}</Link>
@@ -21,7 +21,7 @@ export function Navbar() {
           <LanguageSwitcher />
           <a 
             href="/#download"
-            className="px-5 py-2 bg-[#222222] text-white text-sm rounded-full hover:bg-[#000000] transition-colors"
+            className="px-4 py-2 md:px-5 md:py-2 bg-[#222222] text-white text-[13px] md:text-sm rounded-full hover:bg-[#000000] transition-colors whitespace-nowrap"
           >
             {t('nav.download_app')}
           </a>
