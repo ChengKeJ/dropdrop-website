@@ -1,35 +1,48 @@
+import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { HelmetProvider } from 'react-helmet-async';
-import NotFound from "@/pages/NotFound";
 import { Route, Switch, Router as WouterRouter, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { isChinesePath } from "@/lib/i18n";
-import Home from "./pages/Home";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import FAQ from "./pages/FAQ";
-import About from "./pages/About";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
+import { Loader2 } from "lucide-react";
 
+// Lazy load pages for better performance
+const Home = lazy(() => import("./pages/Home"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const About = lazy(() => import("./pages/About"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+function LoadingFallback() {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-[#FAFAFA]">
+      <Loader2 className="w-8 h-8 animate-spin text-[#4CAF93]" />
+    </div>
+  );
+}
 
 function AppRoutes() {
   return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/blog"} component={Blog} />
-      <Route path={"/blog/:slug"} component={BlogPost} />
-      <Route path={"/faq"} component={FAQ} />
-      <Route path={"/about"} component={About} />
-      <Route path={"/privacy"} component={Privacy} />
-      <Route path={"/terms"} component={Terms} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense fallback={<LoadingFallback />}>
+      <Switch>
+        <Route path={"/"} component={Home} />
+        <Route path={"/blog"} component={Blog} />
+        <Route path={"/blog/:slug"} component={BlogPost} />
+        <Route path={"/faq"} component={FAQ} />
+        <Route path={"/about"} component={About} />
+        <Route path={"/privacy"} component={Privacy} />
+        <Route path={"/terms"} component={Terms} />
+        <Route path={"/404"} component={NotFound} />
+        {/* Final fallback route */}
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 
