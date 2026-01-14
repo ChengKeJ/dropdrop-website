@@ -35,7 +35,9 @@ export function Navbar() {
           </div>
 
           <a 
-            href="/#download"
+            href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:block px-4 py-2 md:px-5 md:py-2 bg-[#222222] text-white text-[13px] md:text-sm rounded-full hover:bg-[#000000] transition-colors whitespace-nowrap"
           >
             {t('nav.download_app')}
@@ -69,7 +71,12 @@ export function Navbar() {
                 <span>Language</span>
                 <LanguageSwitcher />
               </div>
-              <a href="/#download" className="mt-4 btn-primary w-full text-center py-4 rounded-full">
+              <a 
+                href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 btn-primary w-full text-center py-4 rounded-full"
+              >
                 {t('nav.download_app')}
               </a>
             </div>

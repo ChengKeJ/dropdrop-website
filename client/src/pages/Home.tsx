@@ -125,7 +125,12 @@ export default function Home() {
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#download" className="btn-primary w-full sm:w-auto px-10 py-4 text-lg shadow-soft rounded-full transition-all hover:scale-105">
+                <a 
+                  href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary w-full sm:w-auto px-10 py-4 text-lg shadow-soft rounded-full transition-all hover:scale-105"
+                >
                   {t('home.hero.cta')}
                 </a>
               </div>

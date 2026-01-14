@@ -266,11 +266,14 @@ export default function BlogPost() {
                 <p className="text-white/60 mb-10 text-lg font-light leading-relaxed">
                   {t('blog.cta.subtitle')}
                 </p>
-                <Link href="/#download">
-                  <a className="inline-flex h-14 items-center justify-center rounded-full bg-[#4CAF93] px-10 text-base font-medium text-white shadow transition-all hover:bg-[#3d8f78] hover:scale-105 active:scale-95">
-                    {t('blog.cta.btn')}
-                  </a>
-                </Link>
+                <a 
+                  href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-14 items-center justify-center rounded-full bg-[#4CAF93] px-10 text-base font-medium text-white shadow transition-all hover:bg-[#3d8f78] hover:scale-105 active:scale-95"
+                >
+                  {t('blog.cta.btn')}
+                </a>
               </div>
 
               {/* Decorative background glow */}

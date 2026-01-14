@@ -26,7 +26,7 @@ export function Footer() {
             <ul className="space-y-4 text-[#666666] font-light">
               <li><a href="/#features" className="hover:text-[#4CAF93] transition-colors">{t('footer.features')}</a></li>
               <li><Link href="/faq" className="hover:text-[#4CAF93] transition-colors">{t('footer.faq')}</Link></li>
-              <li><a href="/#download" className="hover:text-[#4CAF93] transition-colors">{t('footer.download')}</a></li>
+              <li><a href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464" target="_blank" rel="noopener noreferrer" className="hover:text-[#4CAF93] transition-colors">{t('footer.download')}</a></li>
             </ul>
           </div>
 
