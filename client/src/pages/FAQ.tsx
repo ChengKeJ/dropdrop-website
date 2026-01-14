@@ -3,6 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { SEOHead } from '@/components/SEO/SEOHead';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { faqSchema } from '@/lib/structuredData';
 import {
   Accordion,
   AccordionContent,
@@ -32,12 +33,15 @@ export default function FAQ() {
     }
   ];
 
+  const structuredData = faqSchema(faqs);
+
   return (
     <>
       <SEOHead
         title={language === 'zh' ? '常见问题 - DropDrop' : 'FAQ - DropDrop'}
         description="解答关于 DropDrop 的功能、科学原理和订阅的常见问题。"
         canonical="https://dropdrophabit.com/faq"
+        structuredData={structuredData}
       />
 
       <div className="min-h-screen bg-[#FAFAFA] text-[#222222] font-sans">

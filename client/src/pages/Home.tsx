@@ -20,6 +20,7 @@ import { SEOHead } from "@/components/SEO/SEOHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { useIsMobile } from "@/hooks/useMobile";
+import { organizationSchema, websiteSchema } from "@/lib/structuredData";
 
 /**
  * DropDrop Official Website - Converged & Upgraded
@@ -102,6 +103,7 @@ export default function Home() {
         title={t('seo.title')}
         description={t('seo.description')}
         canonical="https://dropdrophabit.com/"
+        structuredData={[organizationSchema, websiteSchema]}
       />
 
       <div className="min-h-screen bg-[#FAFAFA] text-[#222222] font-sans selection:bg-[#4CAF93] selection:text-white">

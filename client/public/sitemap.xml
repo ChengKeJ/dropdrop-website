@@ -1,48 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- Home page with language alternates -->
   <url>
     <loc>https://dropdrophabit.com/</loc>
-    <lastmod>2026-01-12</lastmod>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/?lang=zh"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/?lang=en"/>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/"/>
   </url>
-
-  <!-- Blog listing -->
+  <url>
+    <loc>https://dropdrophabit.com/zh</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/"/>
+  </url>
   <url>
     <loc>https://dropdrophabit.com/blog</loc>
+    <lastmod>2026-01-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog"/>
   </url>
-
-  <!-- FAQ page -->
+  <url>
+    <loc>https://dropdrophabit.com/zh/blog</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog"/>
+  </url>
   <url>
     <loc>https://dropdrophabit.com/faq</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/faq"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/faq"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/faq"/>
   </url>
-
-  <!-- About page -->
+  <url>
+    <loc>https://dropdrophabit.com/zh/faq</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/faq"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/faq"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/faq"/>
+  </url>
   <url>
     <loc>https://dropdrophabit.com/about</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/about"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/about"/>
   </url>
-
-  <!-- Legal pages -->
+  <url>
+    <loc>https://dropdrophabit.com/zh/about</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/about"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/about"/>
+  </url>
   <url>
     <loc>https://dropdrophabit.com/privacy</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/privacy"/>
   </url>
-
+  <url>
+    <loc>https://dropdrophabit.com/zh/privacy</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/privacy"/>
+  </url>
   <url>
     <loc>https://dropdrophabit.com/terms</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/terms"/>
+  </url>
+  <url>
+    <loc>https://dropdrophabit.com/zh/terms</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/terms"/>
+  </url>
+  <url>
+    <loc>https://dropdrophabit.com/blog/10-habits-successful-people</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/10-habits-successful-people"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/blog/10-habits-successful-people"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog/10-habits-successful-people"/>
+  </url>
+  <url>
+    <loc>https://dropdrophabit.com/zh/blog/10-habits-successful-people</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/10-habits-successful-people"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/blog/10-habits-successful-people"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog/10-habits-successful-people"/>
+  </url>
+  <url>
+    <loc>https://dropdrophabit.com/blog/habit-tracking-apps-comparison</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/habit-tracking-apps-comparison"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/blog/habit-tracking-apps-comparison"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog/habit-tracking-apps-comparison"/>
+  </url>
+  <url>
+    <loc>https://dropdrophabit.com/zh/blog/habit-tracking-apps-comparison</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/habit-tracking-apps-comparison"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/blog/habit-tracking-apps-comparison"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog/habit-tracking-apps-comparison"/>
+  </url>
+  <url>
+    <loc>https://dropdrophabit.com/blog/how-to-build-habits-that-last</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/how-to-build-habits-that-last"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/blog/how-to-build-habits-that-last"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog/how-to-build-habits-that-last"/>
+  </url>
+  <url>
+    <loc>https://dropdrophabit.com/zh/blog/how-to-build-habits-that-last</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/how-to-build-habits-that-last"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/blog/how-to-build-habits-that-last"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog/how-to-build-habits-that-last"/>
   </url>
 </urlset>

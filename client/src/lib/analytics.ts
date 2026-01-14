@@ -6,7 +6,7 @@
  */
 
 // Replace this with your actual GA4 measurement ID
-const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-L18PP8HJBP';
 
 /**
  * Initialize Google Analytics
@@ -14,30 +14,34 @@ const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-XXXXXXXXX
  */
 export function initGA() {
   if (typeof window === 'undefined') return;
-  if (GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') {
-    console.warn('[Analytics] GA4 Measurement ID not configured. Set VITE_GA_MEASUREMENT_ID environment variable.');
-    return;
+  
+  // If gtag is already defined in index.html, we don't need to do much
+  if (!(window as any).gtag) {
+    if (GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') {
+      console.warn('[Analytics] GA4 Measurement ID not configured. Set VITE_GA_MEASUREMENT_ID environment variable.');
+      return;
+    }
+
+    // Load gtag.js script if not present
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    document.head.appendChild(script);
+
+    // Initialize gtag
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    function gtag(...args: any[]) {
+      (window as any).dataLayer.push(args);
+    }
+    (window as any).gtag = gtag;
+
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, {
+      page_path: window.location.pathname,
+    });
   }
 
-  // Load gtag.js script
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  document.head.appendChild(script);
-
-  // Initialize gtag
-  (window as any).dataLayer = (window as any).dataLayer || [];
-  function gtag(...args: any[]) {
-    (window as any).dataLayer.push(args);
-  }
-  (window as any).gtag = gtag;
-
-  gtag('js', new Date());
-  gtag('config', GA_MEASUREMENT_ID, {
-    page_path: window.location.pathname,
-  });
-
-  console.log('[Analytics] Google Analytics initialized');
+  console.log('[Analytics] Google Analytics interface ready');
 }
 
 /**

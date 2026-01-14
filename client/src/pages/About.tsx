@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Heart, Target, Users, Mail } from 'lucide-react';
+import { Heart, Target, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { SEOHead } from '@/components/SEO/SEOHead';
 import { breadcrumbSchema, organizationSchema } from '@/lib/structuredData';
@@ -7,7 +7,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 
 export default function About() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
 
   const breadcrumbs = breadcrumbSchema([
     { name: 'Home', url: 'https://dropdrophabit.com/' },
@@ -24,25 +24,25 @@ export default function About() {
   const values = [
     {
       icon: Heart,
-      title: { zh: '科学至上', en: 'Scientific First' },
-      description: { zh: '我们坚持基于生理数据的科学方法，拒绝盲目激励。', en: 'We insist on scientific methods based on physiological data, rejecting blind motivation.' }
+      titleKey: 'about.values.scientific',
+      descKey: 'about.values.scientific.desc'
     },
     {
       icon: Target,
-      title: { zh: '长期主义', en: 'Long-termism' },
-      description: { zh: '习惯不是短跑，而是与身体的一场终身长跑。', en: 'Habits are not a sprint, but a lifelong run with your body.' }
+      titleKey: 'about.values.longterm',
+      descKey: 'about.values.longterm.desc'
     },
     {
       icon: Users,
-      title: { zh: '温和克制', en: 'Gentle & Restrained' },
-      description: { zh: '不做烦人的提醒者，做懂你的安静伙伴。', en: 'Not a nagging reminder, but a quiet partner who understands you.' }
+      titleKey: 'about.values.gentle',
+      descKey: 'about.values.gentle.desc'
     }
   ];
 
   return (
     <>
       <SEOHead
-        title={language === 'zh' ? '关于我们 - DropDrop' : 'About Us - DropDrop'}
+        title={t('about.title') + ' - DropDrop'}
         description={language === 'zh'
           ? '了解 DropDrop 团队的使命、愿景和价值观。我们致力于通过科学温和的方式，帮助人们建立更好的日常习惯。'
           : 'Learn about DropDrop team\'s mission, vision, and values. We are dedicated to helping people build better habits in a scientific and gentle way.'}
@@ -61,17 +61,16 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl md:text-5xl font-light text-[#222222] mb-8"
             >
-              懂你的每一种状态
+              {t('about.hero.title')}
             </motion.h1>
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
               className="text-lg text-[#666666] max-w-2xl mx-auto leading-relaxed font-light"
             >
-              DropDrop 诞生于一个简单的愿望:<br/>
-              让习惯回归自然，让自律不再痛苦。
-            </motion.p>
+              <span dangerouslySetInnerHTML={{ __html: t('about.hero.subtitle') }} />
+            </motion.div>
           </div>
         </section>
 
@@ -83,13 +82,13 @@ export default function About() {
               className="bg-white border border-[#E5E5E5] rounded-3xl p-8 md:p-12 shadow-soft"
             >
               <h2 className="text-2xl md:text-3xl font-light text-[#222222] mb-8">
-                我们的使命
+                {t('about.mission')}
               </h2>
               <p className="text-[#666666] leading-relaxed mb-6 font-light">
-                我们相信，每个人的身体状态都是波动的。强行维持恒定的高强度自律，是对身心的巨大消耗。
+                {t('about.mission.desc1')}
               </p>
               <p className="text-[#666666] leading-relaxed font-light">
-                DropDrop 的使命是利用先进的生理监测技术，将原本抽象的身体感受量化。我们帮你找到那个“合适的节奏”——在精力充沛时勇敢挑战，在疲惫不堪时温柔休息。
+                {t('about.mission.desc2')}
               </p>
             </motion.div>
           </div>
@@ -102,7 +101,7 @@ export default function About() {
               {...fadeInUp}
               className="text-2xl md:text-3xl font-light text-[#222222] mb-12 text-center"
             >
-              我们的价值观
+              {t('about.values.title')}
             </motion.h2>
             <div className="grid md:grid-cols-3 gap-8">
               {values.map((value, index) => (
@@ -116,10 +115,10 @@ export default function About() {
                     <value.icon size={24} strokeWidth={1.5} />
                   </div>
                   <h3 className="text-lg font-medium text-[#222222] mb-4">
-                    {value.title[language as 'zh' | 'en'] || value.title.zh}
+                    {t(value.titleKey)}
                   </h3>
                   <p className="text-[#999999] text-sm leading-relaxed font-light">
-                    {value.description[language as 'zh' | 'en'] || value.description.zh}
+                    {t(value.descKey)}
                   </p>
                 </motion.div>
               ))}
@@ -132,17 +131,19 @@ export default function About() {
           <div className="container max-w-4xl mx-auto text-center">
             <motion.div
               {...fadeInUp}
-              className="bg-[#222222] rounded-3xl p-12 text-white"
+              className="bg-[#222222] rounded-[2.5rem] p-10 md:p-16 text-white shadow-xl"
             >
               <h3 className="text-2xl md:text-3xl font-light mb-6">
-                期待听到你的声音
+                {t('about.contact.title')}
               </h3>
-              <p className="text-white/60 mb-10 text-lg font-light">
-                如果你有任何关于习惯、健康或产品的想法，请随时联系我们。
+              <p className="text-white/60 mb-10 text-lg font-light leading-relaxed max-w-lg mx-auto">
+                {t('about.contact.subtitle')}
               </p>
+              
+              {/* Responsive Button Fix: break-all and smaller text on mobile */}
               <a
                 href="mailto:support@dropdrophabit.com"
-                className="btn-primary inline-block"
+                className="btn-primary inline-block max-w-full px-6 py-4 md:px-8 md:py-4 rounded-full text-sm md:text-base break-all"
               >
                 support@dropdrophabit.com
               </a>

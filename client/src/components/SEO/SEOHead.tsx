@@ -22,7 +22,7 @@ export function SEOHead({
   title = 'DropDrop - 养成好习惯，从现在开始',
   description = 'DropDrop 是一款专业的习惯追踪应用',
   canonical = 'https://dropdrophabit.com',
-  ogImage = 'https://dropdrophabit.com/images/og-dropdrop.png',
+  ogImage = 'https://dropdrophabit.com/images/logo.png',
   ogType = 'website',
   article,
   noindex = false,
@@ -31,7 +31,20 @@ export function SEOHead({
   const { language } = useLanguage();
 
   const lang = language === 'zh' ? 'zh-CN' : 'en';
-  const alternateLang = language === 'zh' ? 'en' : 'zh';
+  
+  // Assume 'canonical' prop is the base URL (Default EN version), e.g., "https://dropdrophabit.com/about"
+  // Remove trailing slash for consistency
+  const baseUrl = canonical.endsWith('/') && canonical.length > 1 ? canonical.slice(0, -1) : canonical;
+  
+  // Construct language-specific URLs
+  // EN is default (root), ZH is prefixed
+  const origin = "https://dropdrophabit.com";
+  const path = baseUrl.replace(origin, "");
+  
+  const enUrl = baseUrl; // Default English URL
+  const zhUrl = `${origin}/zh${path === '/' ? '' : path}`; // Prefixed Chinese URL
+
+  const currentCanonical = language === 'zh' ? zhUrl : enUrl;
 
   // Prepare structured data as array
   const structuredDataArray = structuredData
@@ -46,16 +59,16 @@ export function SEOHead({
       <meta name="description" content={description} />
 
       {/* Canonical URL */}
-      <link rel="canonical" href={canonical} />
+      <link rel="canonical" href={currentCanonical} />
 
       {/* Hreflang Tags for Multilingual SEO */}
-      <link rel="alternate" hrefLang="zh" href={`${canonical}${canonical.includes('?') ? '&' : '?'}lang=zh`} />
-      <link rel="alternate" hrefLang="en" href={`${canonical}${canonical.includes('?') ? '&' : '?'}lang=en`} />
-      <link rel="alternate" hrefLang="x-default" href={canonical} />
+      <link rel="alternate" hrefLang="zh" href={zhUrl} />
+      <link rel="alternate" hrefLang="en" href={enUrl} />
+      <link rel="alternate" hrefLang="x-default" href={zhUrl} />
 
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />
-      <meta property="og:url" content={canonical} />
+      <meta property="og:url" content={currentCanonical} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
