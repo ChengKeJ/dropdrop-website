@@ -221,6 +221,7 @@ export default function Home() {
                               className="w-full h-full object-cover object-[center_95%] scale-140 group-hover:scale-[1.45] transition-transform duration-700 ease-out" 
                               width="380"
                               height="350"
+                              loading="lazy"
                             />
                             {/* Inner shadow & blends */}
                             <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.02)] pointer-events-none" />
@@ -324,6 +325,7 @@ export default function Home() {
                      className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity"
                      width="500"
                      height="400"
+                     loading="lazy"
                    />
                    
                    {/* Calm Overlay */}
@@ -352,6 +354,7 @@ export default function Home() {
                      className="w-full h-auto object-cover"
                      width="500"
                      height="400"
+                     loading="lazy"
                    />
                    
                    {/* Vibrant Overlay */}

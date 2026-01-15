@@ -1,5 +1,4 @@
-/* Import Google Fonts for elegant typography */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+/* Import Google Fonts for elegant typography - Replaced with local @fontsource imports in main.tsx */
 
 @import "tailwindcss";
 
