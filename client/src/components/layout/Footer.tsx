@@ -12,7 +12,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-6">
-              <img src="/images/logo.png" alt="DropDrop Logo" className="w-8 h-8 rounded-lg" />
+              <img src="/images/logo.webp" alt="DropDrop Logo" className="w-8 h-8 rounded-lg" width="32" height="32" />
               <span className="text-xl font-medium tracking-tight text-[#222222]">DropDrop</span>
             </Link>
             <p className="text-[#666666] font-light leading-relaxed max-w-xs mb-8">

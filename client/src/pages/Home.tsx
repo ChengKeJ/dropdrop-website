@@ -42,9 +42,9 @@ export default function Home() {
   const [activeIndex, setActiveIndex] = useState(1); // Default to Plan (Index 1)
 
   const heroImages = [
-    { src: "/images/today.png", alt: "Today Interface", id: 0 },
-    { src: "/images/plan.png", alt: "Plan Interface", id: 1 },
-    { src: "/images/statics.png", alt: "Stats Interface", id: 2 }
+    { src: "/images/today.webp", alt: "Today Interface", id: 0 },
+    { src: "/images/plan.webp", alt: "Plan Interface", id: 1 },
+    { src: "/images/statics.webp", alt: "Stats Interface", id: 2 }
   ];
 
   const getPosition = (index: number) => {
@@ -208,9 +208,11 @@ export default function Home() {
                          {/* 2. Focused Chart View (Image) */}
                          <div className="w-full h-full relative overflow-hidden bg-white">
                             <img 
-                              src="/images/hrv.png" 
+                              src="/images/hrv.webp" 
                               alt="HRV Trends" 
                               className="w-full h-full object-cover object-[center_95%] scale-140 group-hover:scale-[1.45] transition-transform duration-700 ease-out" 
+                              width="380"
+                              height="350"
                             />
                             {/* Inner shadow & blends */}
                             <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.02)] pointer-events-none" />
@@ -309,9 +311,11 @@ export default function Home() {
               >
                 <div className="relative rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] border-[6px] border-white bg-white transform transition-all duration-500">
                    <img 
-                     src="/images/restRecommend.png" 
+                     src="/images/restRecommend.webp" 
                      alt="Rest Recommendations" 
                      className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                     width="500"
+                     height="400"
                    />
                    
                    {/* Calm Overlay */}
@@ -335,9 +339,11 @@ export default function Home() {
               >
                 <div className="relative rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_-12px_rgba(249,115,22,0.15)] border-[6px] border-white bg-white transform transition-all duration-500">
                    <img 
-                     src="/images/recommend.png" 
+                     src="/images/recommend.webp" 
                      alt="Active Recommendations" 
                      className="w-full h-auto object-cover"
+                     width="500"
+                     height="400"
                    />
                    
                    {/* Vibrant Overlay */}

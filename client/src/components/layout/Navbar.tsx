@@ -19,7 +19,7 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FAFAFA]/80 backdrop-blur-md border-b border-[#E5E5E5]">
       <div className="container h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 hover:opacity-100 transition-opacity z-50">
-          <img src="/images/logo.png" alt="DropDrop Logo" className="w-8 h-8 rounded-lg" />
+          <img src="/images/logo.webp" alt="DropDrop Logo" className="w-8 h-8 rounded-lg" width="32" height="32" />
           <span className="text-lg font-medium tracking-tight text-[#222222]">DropDrop</span>
         </Link>
         
