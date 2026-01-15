@@ -104,6 +104,7 @@ export default function Home() {
         description={t('seo.description')}
         canonical="https://dropdrophabit.com/"
         structuredData={[organizationSchema, websiteSchema]}
+        preloadImages={["/images/plan.webp"]}
       />
 
       <div className="min-h-screen bg-[#FAFAFA] text-[#222222] font-sans selection:bg-[#4CAF93] selection:text-white">
@@ -138,9 +139,8 @@ export default function Home() {
 
             {/* Interactive 3-Phone Carousel */}
             <motion.div 
-              initial={{ opacity: 0, y: 100 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="relative mt-24 md:mt-36 max-w-[1000px] mx-auto h-[360px] md:h-[750px] flex justify-center items-start perspective-1000"
             >
                {heroImages.map((image, index) => {
@@ -165,7 +165,15 @@ export default function Home() {
                           }
                         `}
                      >
-                        <img src={image.src} alt={image.alt} className="w-full h-full block" />
+                        <img 
+                          src={image.src} 
+                          alt={image.alt} 
+                          className="w-full h-full block"
+                          width="320"
+                          height="693"
+                          // @ts-ignore
+                          fetchpriority={isCenter ? "high" : "auto"}
+                        />
                         
                         {/* Overlay for non-center items to indicate interactivity */}
                         {!isCenter && (

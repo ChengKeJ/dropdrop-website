@@ -16,6 +16,7 @@ interface SEOHeadProps {
   };
   noindex?: boolean;
   structuredData?: object | object[];
+  preloadImages?: string[];
 }
 
 export function SEOHead({
@@ -27,6 +28,7 @@ export function SEOHead({
   article,
   noindex = false,
   structuredData,
+  preloadImages = [],
 }: SEOHeadProps) {
   const { language } = useLanguage();
 
@@ -105,6 +107,11 @@ export function SEOHead({
 
       {/* Robots */}
       {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+      {/* Preload Critical Images */}
+      {preloadImages.map((src, index) => (
+        <link key={index} rel="preload" as="image" href={src} />
+      ))}
 
       {/* Structured Data */}
       {structuredDataArray.map((data, index) => (
