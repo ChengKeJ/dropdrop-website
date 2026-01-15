@@ -92,7 +92,7 @@ export default function BlogPost() {
       }).catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
-      toast.success(language === 'zh' ? '链接已复制' : 'Link copied');
+      toast.success(t('blog.share.success'));
     }
   };
 
@@ -200,7 +200,7 @@ export default function BlogPost() {
                   onClick={() => setIsTocOpen(!isTocOpen)}
                   className="md:hidden w-full flex items-center justify-between bg-white border border-gray-100 rounded-xl px-6 py-4 text-sm font-bold text-[#333] shadow-sm"
                 >
-                  <span>{language === 'zh' ? '文章目录' : 'Contents'}</span>
+                  <span>{t('blog.toc.title')}</span>
                   <motion.span animate={{ rotate: isTocOpen ? 180 : 0 }}>▼</motion.span>
                 </button>
 
@@ -217,7 +217,7 @@ export default function BlogPost() {
                   `}
                 >
                   <h4 className="hidden md:block text-[11px] font-bold text-[#999] uppercase tracking-[0.2em] mb-6">
-                    {language === 'zh' ? '文章目录' : 'Contents'}
+                    {t('blog.toc.title')}
                   </h4>
                   <ul className="space-y-4">
                     {headings.map((heading, index) => (
@@ -329,13 +329,11 @@ export default function BlogPost() {
                 </div>
                 <div>
                   <div className="text-[11px] font-bold text-[#999] uppercase tracking-[0.2em] mb-3">
-                    {language === 'zh' ? '本文作者' : 'Written by'}
+                    {t('blog.author.title')}
                   </div>
                   <h4 className="text-xl font-bold text-[#111] mb-3">{post.author}</h4>
                   <p className="text-[15px] text-[#555] leading-relaxed max-w-lg mx-auto">
-                    {language === 'zh' 
-                      ? 'DropDrop 是一款关注身心状态的习惯追踪应用。我们致力于通过科学的方法，帮助你建立持久的生活方式。' 
-                      : 'DropDrop is a habit tracker focused on mind-body state. We are dedicated to helping you build a sustainable lifestyle through scientific methods.'}
+                    {t('blog.author.desc')}
                   </p>
                 </div>
               </div>

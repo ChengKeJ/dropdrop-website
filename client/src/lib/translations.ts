@@ -66,6 +66,10 @@ export const translations = {
     'blog.cta.title': '开启更科学的生活方式',
     'blog.cta.subtitle': '立即下载 DropDrop，找到属于你的身心平衡。',
     'blog.cta.btn': '下载 App',
+    'blog.share.success': '链接已复制',
+    'blog.toc.title': '文章目录',
+    'blog.author.title': '本文作者',
+    'blog.author.desc': 'DropDrop 是一款关注身心状态的习惯追踪应用。我们致力于通过科学的方法，帮助你建立持久的生活方式。',
 
     'faq.title': '常见问题',
     'faq.subtitle': '了解更多关于科学追踪与温和生活的细节',
@@ -212,6 +216,10 @@ export const translations = {
     'blog.cta.title': 'Start a More Scientific Lifestyle',
     'blog.cta.subtitle': 'Download DropDrop now and find your mind-body balance.',
     'blog.cta.btn': 'Download App',
+    'blog.share.success': 'Link copied',
+    'blog.toc.title': 'Contents',
+    'blog.author.title': 'Written by',
+    'blog.author.desc': 'DropDrop is a habit tracker focused on mind-body state. We are dedicated to helping you build a sustainable lifestyle through scientific methods.',
 
     // FAQ
     'faq.title': 'FAQ',
