@@ -134,28 +134,30 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    line-height: 1.7; /* Relaxed line height */
+    line-height: 1.8; /* More relaxed line height */
+    color: #333333; /* Softer black */
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', 'PingFang SC', sans-serif; /* Clean sans-serif for titles too */
-    font-weight: 300; /* Light weight for "High-end" feel */
+    font-family: 'Inter', 'PingFang SC', sans-serif; 
+    font-weight: 600; /* Standard bold for clarity */
     letter-spacing: -0.02em;
-    line-height: 1.2;
+    line-height: 1.25;
+    color: #111111;
   }
   h1 {
     @apply text-5xl md:text-6xl;
-    font-weight: 300;
+    font-weight: 500; /* Elegant Hero */
   }
   h2 {
     @apply text-3xl md:text-4xl;
-    font-weight: 400;
+    font-weight: 600;
   }
   h3 {
     @apply text-xl md:text-2xl;
-    font-weight: 500;
+    font-weight: 600;
   }
   p {
-    @apply text-[#666666]; /* Sub-text color */
+    @apply text-[#444444]; /* Slightly softer body text */
   }
 }
 

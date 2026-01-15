@@ -20,12 +20,38 @@ export default function BlogPost() {
   const [post, setPost] = useState<BlogPostType | undefined>(undefined);
   const [loading, setLoading] = useState(true);
   const [contentWithIds, setContentWithIds] = useState('');
+  const [headings, setHeadings] = useState<{ id: string; text: string; level: number }[]>([]);
+  const [activeId, setActiveId] = useState<string>('');
+  const [isTocOpen, setIsTocOpen] = useState(false);
 
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
+
+  // TOC Active State Observer
+  useEffect(() => {
+    if (headings.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-100px 0px -60% 0px' }
+    );
+
+    headings.forEach((heading) => {
+      const element = document.getElementById(heading.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [headings]);
 
   useEffect(() => {
     async function loadPost() {
@@ -37,19 +63,17 @@ export default function BlogPost() {
         if (data) {
           setPost(data);
           
-          // Process Content
-          // 1. Remove duplicate H2 title if it exists at the beginning (legacy check)
-          // Since we migrated to markdown, we might have removed H1/H2 from the body manually, 
-          // but keeping this check is safe.
           const processedContent = data.content.replace(/^<h[12]>.*?<\/h[12]>/i, '');
 
-          // 2. Add IDs to H3 for better SEO and anchor links
-          const processedIds = processedContent.replace(/<h3>(.*?)<\/h3>/g, (_, title) => {
-            const id = title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
-            return `<h3 id="${id}">${title}</h3>`;
+          const extractedHeadings: { id: string; text: string; level: number }[] = [];
+          const processedIds = processedContent.replace(/<h([23])>(.*?)<\/h\1>/g, (_, level, title) => {
+            const id = title.toLowerCase().replace(/[^\w\s-\u4e00-\u9fa5]/g, '').replace(/\s+/g, '-');
+            extractedHeadings.push({ id, text: title.replace(/<[^>]*>?/gm, ''), level: parseInt(level) });
+            return `<h${level} id="${id}">${title}</h${level}>`;
           });
           
           setContentWithIds(processedIds);
+          setHeadings(extractedHeadings);
         }
       } catch (error) {
         console.error("Failed to load blog post", error);
@@ -120,166 +144,235 @@ export default function BlogPost() {
         structuredData={[breadcrumbs, blogSchema]}
       />
 
-      {/* Reading Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-[#4CAF93] origin-left z-[100]"
         style={{ scaleX }}
       />
 
-      <div className="min-h-screen bg-[#FAFAFA] text-[#222222] font-sans selection:bg-[#4CAF93] selection:text-white">
+      <div className="min-h-screen bg-[#FAFAFA] text-[#333333] font-sans selection:bg-[#4CAF93] selection:text-white">
         <Navbar />
 
         <article className="pt-32 md:pt-48 pb-20 px-6 md:px-8">
           <div className="container max-w-3xl mx-auto">
-            {/* Action Bar */}
-            <div className="flex items-center justify-between mb-12">
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-              >
-                <Link href="/blog">
-                  <a className="inline-flex items-center gap-2 text-[#999999] hover:text-[#4CAF93] transition-colors text-xs md:text-sm uppercase tracking-[0.2em] font-medium group">
-                    <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-                    {t('blog.back')}
-                  </a>
-                </Link>
-              </motion.div>
+            <nav aria-label="Breadcrumb" className="mb-12 flex items-center gap-2 text-[13px] text-[#999] font-medium tracking-wide">
+              <Link href="/"><a className="hover:text-[#222] transition-colors">Home</a></Link>
+              <span className="text-[#eee]">/</span>
+              <Link href="/blog"><a className="hover:text-[#222] transition-colors">Blog</a></Link>
+              <span className="text-[#eee]">/</span>
+              <span className="text-[#222] truncate max-w-[150px] md:max-w-none">{post.title}</span>
+            </nav>
 
-              <div className="flex items-center gap-4">
-                 <button 
-                  onClick={handleShare}
-                  className="p-2 text-[#999999] hover:text-[#4CAF93] transition-colors"
-                  aria-label="Share"
-                 >
-                    <Share2 size={18} />
-                 </button>
-                 <button 
-                  className="p-2 text-[#999999] hover:text-[#4CAF93] transition-colors"
-                  aria-label="Bookmark"
-                 >
-                    <Bookmark size={18} />
-                 </button>
-              </div>
-            </div>
-
-            {/* Header */}
             <motion.header
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-16 md:mb-20"
+              className="mb-16 md:mb-24 text-center max-w-4xl mx-auto"
             >
-              <div className="inline-block px-3 py-1 bg-[#4CAF93]/10 text-[#4CAF93] rounded-full text-xs font-semibold tracking-wider uppercase mb-8">
+              <div className="inline-block px-4 py-1.5 bg-[#4CAF93]/5 text-[#4CAF93] rounded-full text-[11px] font-bold tracking-[0.2em] uppercase mb-10">
                 {post.category}
               </div>
 
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-light text-[#222222] mb-10 leading-[1.15] tracking-tight">
+              <h1 className="font-sans text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] mb-10 leading-[1.25] tracking-tight">
                 {post.title}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-6 md:gap-10 text-xs md:text-sm text-[#999999] uppercase tracking-widest font-medium">
+              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 text-[12px] text-[#999] uppercase tracking-widest font-bold">
                 <div className="flex items-center gap-2">
-                  <Calendar size={16} className="text-[#CCCCCC]" />
-                  <span>{new Date(post.datePublished).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                  <Calendar size={14} className="text-[#4CAF93]" />
+                  <time dateTime={post.datePublished}>
+                    {new Date(post.datePublished).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </time>
                 </div>
-                <div className="w-1 h-1 bg-[#E5E5E5] rounded-full" />
+                <div className="w-1 h-1 bg-[#eee] rounded-full" />
                 <div className="flex items-center gap-2">
-                  <Clock size={16} className="text-[#CCCCCC]" />
+                  <Clock size={14} className="text-[#4CAF93]" />
                   <span>{post.readTime} {t('blog.minuteRead')}</span>
                 </div>
+                <button onClick={handleShare} className="ml-2 p-2 hover:text-[#4CAF93] transition-colors">
+                  <Share2 size={16} />
+                </button>
               </div>
             </motion.header>
 
-            {/* Content Container */}
+            {headings.length > 0 && (
+              <div className="mb-20 max-w-2xl mx-auto">
+                <button
+                  onClick={() => setIsTocOpen(!isTocOpen)}
+                  className="md:hidden w-full flex items-center justify-between bg-white border border-gray-100 rounded-xl px-6 py-4 text-sm font-bold text-[#333] shadow-sm"
+                >
+                  <span>{language === 'zh' ? '文章目录' : 'Contents'}</span>
+                  <motion.span animate={{ rotate: isTocOpen ? 180 : 0 }}>▼</motion.span>
+                </button>
+
+                <motion.nav
+                  initial={false}
+                  animate={{ height: isTocOpen ? 'auto' : 'auto', opacity: 1 }}
+                  className={`
+                    overflow-hidden md:overflow-visible mt-4 md:mt-0
+                    bg-white md:bg-transparent
+                    border border-gray-100 md:border-none md:border-l-[1px] md:border-gray-200 
+                    rounded-2xl md:rounded-none
+                    p-6 md:p-0 md:pl-8 md:py-1
+                    ${isTocOpen ? 'block' : 'hidden md:block'}
+                  `}
+                >
+                  <h4 className="hidden md:block text-[11px] font-bold text-[#999] uppercase tracking-[0.2em] mb-6">
+                    {language === 'zh' ? '文章目录' : 'Contents'}
+                  </h4>
+                  <ul className="space-y-4">
+                    {headings.map((heading, index) => (
+                      <li key={`${heading.id}-${index}`} style={{ marginLeft: heading.level === 3 ? '1rem' : '0' }}>
+                        <a 
+                          href={`#${heading.id}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
+                            setIsTocOpen(false);
+                          }}
+                          className={`
+                            text-[14px] block leading-snug transition-all duration-500 relative
+                            ${activeId === heading.id 
+                              ? 'text-[#4CAF93] font-semibold' 
+                              : 'text-[#777] hover:text-[#222]'
+                            }
+                          `}
+                        >
+                          {activeId === heading.id && (
+                            <motion.div 
+                              layoutId="toc-indicator"
+                              className="absolute -left-[33px] top-0 w-[2px] h-full bg-[#4CAF93]"
+                              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            />
+                          )}
+                          {heading.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.nav>
+              </div>
+            )}
+
             <div className="relative">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="
-                  prose prose-lg md:prose-xl max-w-none 
-                  prose-slate 
-                  text-[#444444] 
-                  font-light 
-                  leading-loose
+                  prose prose-lg max-w-none 
+                  mx-auto
+                  font-sans
+                  text-[#374151] 
                   
-                  prose-headings:font-light 
-                  prose-headings:text-[#222222] 
-                  prose-headings:tracking-tight
-                  prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-8
-                  prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6
-                  prose-h3:scroll-mt-24
+                  /* Content Rhythm */
+                  [&_p]:mb-5
+                  [&_p]:leading-[1.8]
+                  [&_p]:text-[17px] md:[&_p]:text-[18px]
                   
-                  prose-p:mb-8 
-                  prose-p:leading-8
+                  /* Typography Stack */
+                  font-['Inter',_-apple-system,'BlinkMacSystemFont','PingFang_SC','Hiragino_Sans_GB','Microsoft_YaHei',sans-serif]
                   
-                  prose-strong:text-[#222222] 
-                  prose-strong:font-semibold
+                  /* Headings: Structural Anchors (High Specificity) */
+                  [&_h2]:font-bold
+                  [&_h2]:text-[#111827]
+                  [&_h2]:tracking-tight
+                  [&_h2]:text-[1.5em] md:[&_h2]:text-[1.6em]
+                  [&_h2]:mt-12
+                  [&_h2]:mb-4
+                  [&_h2]:leading-[1.3]
                   
-                  prose-a:text-[#4CAF93] 
-                  prose-a:no-underline 
-                  prose-a:border-b 
-                  prose-a:border-[#4CAF93]/30 
-                  prose-a:transition-colors
-                  hover:prose-a:border-[#4CAF93]
+                  [&_h3]:font-bold
+                  [&_h3]:text-[#111827]
+                  [&_h3]:tracking-tight
+                  [&_h3]:text-[1.25em] md:[&_h3]:text-[1.3em]
+                  [&_h3]:mt-8
+                  [&_h3]:mb-3
+                  [&_h3]:scroll-mt-32
                   
-                  prose-img:rounded-[2rem] 
-                  prose-img:shadow-2xl 
-                  prose-img:my-12
-                  prose-img:border
-                  prose-img:border-gray-100
+                  /* Lists - Subtle & Tidy */
+                  [&_ul]:list-disc
+                  [&_ul]:pl-6
+                  [&_ul]:my-8
+                  [&_ul_li]:mb-2
+                  [&_ul_li]:pl-2
                   
-                  prose-blockquote:border-l-4
+                  [&_ol]:list-decimal
+                  [&_ol]:pl-6
+                  [&_ol]:my-8
+                  [&_ol_li]:mb-2
+                  [&_ol_li]:pl-2
+                  
+                  /* Blockquotes - Sophisticated Callout */
+                  prose-blockquote:border-l-[2px]
                   prose-blockquote:border-[#4CAF93] 
-                  prose-blockquote:bg-[#F8FAF9]
-                  prose-blockquote:py-6
-                  prose-blockquote:px-8
-                  prose-blockquote:rounded-r-2xl
-                  prose-blockquote:italic
-                  prose-blockquote:text-gray-600
+                  prose-blockquote:bg-[#F9FAFB]
+                  prose-blockquote:pl-6
+                  prose-blockquote:py-4
+                  prose-blockquote:pr-6
+                  prose-blockquote:rounded-r-xl
+                  prose-blockquote:text-[#4B5563]
                   prose-blockquote:my-12
+                  prose-blockquote:leading-[1.7]
                   prose-blockquote:not-italic
                   
-                  prose-ul:my-8
-                  prose-li:marker:text-[#4CAF93]
-                  prose-li:pl-2
+                  /* Links & Media */
+                  prose-a:text-[#4CAF93] prose-a:no-underline prose-a:border-b prose-a:border-[#4CAF93]/20 prose-a:transition-all hover:prose-a:border-[#4CAF93]
+                  prose-img:rounded-2xl prose-img:shadow-sm prose-img:my-12 prose-img:border prose-img:border-gray-100
                 "
                 dangerouslySetInnerHTML={{ __html: contentWithIds }}
               />
+              
+              {/* Author Bio (Card Style) */}
+              <div className="mt-24 p-8 md:p-12 bg-gray-50/80 rounded-3xl border border-gray-100 flex flex-col items-center text-center">
+                <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-sm mb-6">
+                  <img src="/images/logo.png" alt="DropDrop Team" className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <div className="text-[11px] font-bold text-[#999] uppercase tracking-[0.2em] mb-3">
+                    {language === 'zh' ? '本文作者' : 'Written by'}
+                  </div>
+                  <h4 className="text-xl font-bold text-[#111] mb-3">{post.author}</h4>
+                  <p className="text-[15px] text-[#555] leading-relaxed max-w-lg mx-auto">
+                    {language === 'zh' 
+                      ? 'DropDrop 是一款关注身心状态的习惯追踪应用。我们致力于通过科学的方法，帮助你建立持久的生活方式。' 
+                      : 'DropDrop is a habit tracker focused on mind-body state. We are dedicated to helping you build a sustainable lifestyle through scientific methods.'}
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {/* CTA Section */}
+            {/* CTA Section (High Contrast) */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
-              className="mt-32 relative overflow-hidden bg-[#1A1A1A] rounded-[2.5rem] p-10 md:p-16 text-center text-white shadow-2xl"
+              className="mt-24 relative overflow-hidden bg-[#111111] rounded-[3rem] p-12 md:p-24 text-center shadow-2xl"
             >
-              <div className="relative z-10 max-w-2xl mx-auto">
-                <span className="text-[#4CAF93] text-xs font-bold tracking-[0.2em] uppercase mb-6 block">
-                  DropDrop
-                </span>
-                <h3 className="text-3xl md:text-4xl font-light mb-6 leading-tight">
+              <div className="relative z-10 max-w-3xl mx-auto">
+                <span className="text-[#4CAF93] text-[11px] font-bold tracking-[0.3em] uppercase mb-8 block opacity-90">DropDrop App</span>
+                <h3 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-[1.2] tracking-tight">
                   {t('blog.cta.title')}
                 </h3>
-                <p className="text-white/60 mb-10 text-lg font-light leading-relaxed">
+                <p className="text-white/70 mb-12 text-lg md:text-xl font-light leading-relaxed max-w-xl mx-auto">
                   {t('blog.cta.subtitle')}
                 </p>
                 <a 
                   href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-14 items-center justify-center rounded-full bg-[#4CAF93] px-10 text-base font-medium text-white shadow transition-all hover:bg-[#3d8f78] hover:scale-105 active:scale-95"
+                  className="inline-flex h-16 items-center justify-center rounded-full bg-[#4CAF93] px-12 text-[17px] font-bold text-white shadow-lg shadow-[#4CAF93]/20 transition-all hover:bg-[#3d8f78] hover:scale-105 active:scale-95"
                 >
                   {t('blog.cta.btn')}
                 </a>
               </div>
-
-              {/* Decorative background glow */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-full bg-gradient-to-b from-[#2A2A2A] to-transparent opacity-50 -z-0 pointer-events-none" />
-              <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-[#4CAF93] rounded-full blur-[100px] opacity-20 pointer-events-none" />
-              <div className="absolute -top-24 -left-24 w-64 h-64 bg-blue-500 rounded-full blur-[100px] opacity-10 pointer-events-none" />
+              
+              {/* Subtle Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
+              
+              {/* Glow Effects */}
+              <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-[#4CAF93] rounded-full blur-[150px] opacity-20 pointer-events-none" />
+              <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-600 rounded-full blur-[150px] opacity-10 pointer-events-none" />
             </motion.div>
           </div>
         </article>

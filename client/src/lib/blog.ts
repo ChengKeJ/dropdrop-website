@@ -69,7 +69,19 @@ export async function getAllBlogPosts(lang?: 'zh' | 'en'): Promise<BlogPost[]> {
     
     // Parse Markdown to HTML
     // marked.parse can be synchronous
-    const htmlContent = await marked.parse(body);
+    const htmlContent = await marked.parse(body, { gfm: true });
+
+    let datePublished = new Date().toISOString();
+    try {
+        const parsedDate = new Date(attributes.date);
+        if (!isNaN(parsedDate.getTime())) {
+            datePublished = parsedDate.toISOString();
+        } else {
+            console.warn(`[Blog] Invalid date found in ${path}:`, attributes.date);
+        }
+    } catch (e) {
+        console.warn(`[Blog] Date parsing error in ${path}:`, e);
+    }
 
     posts.push({
       slug,
@@ -78,8 +90,8 @@ export async function getAllBlogPosts(lang?: 'zh' | 'en'): Promise<BlogPost[]> {
       content: htmlContent,
       image: attributes.image,
       author: attributes.author,
-      datePublished: new Date(attributes.date).toISOString(),
-      dateModified: new Date(attributes.date).toISOString(),
+      datePublished: datePublished,
+      dateModified: datePublished,
       category: attributes.category,
       tags: attributes.tags,
       readTime: attributes.readTime,

@@ -111,25 +111,25 @@ export default function Home() {
         <Navbar />
 
         {/* 1. Hero Section: "The Promise" */}
-        <section className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden">
+        <section className="relative pt-36 pb-24 md:pt-56 md:pb-48 overflow-hidden">
           <div className="container">
             <motion.div 
               style={{ opacity, scale }}
               className="max-w-4xl mx-auto text-center relative z-20"
             >
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-light leading-tight mb-8 text-[#222222] tracking-tight">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-light leading-[1.1] mb-10 text-[#222222] tracking-tight">
                 <span dangerouslySetInnerHTML={{ __html: t('home.hero.title') }} />
               </h1>
-              <p className="text-lg md:text-xl text-[#666666] leading-relaxed mb-12 font-light max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-[#666666] leading-relaxed mb-14 font-light max-w-2xl mx-auto">
                 {t('home.hero.subtitle')}
               </p>
               
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                 <a 
                   href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary w-full sm:w-auto px-10 py-4 text-lg shadow-soft rounded-full transition-all hover:scale-105"
+                  className="btn-primary w-full sm:w-auto px-12 py-4 text-lg shadow-soft rounded-full transition-all hover:scale-105 active:scale-95"
                 >
                   {t('home.hero.cta')}
                 </a>
@@ -141,7 +141,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="relative mt-16 md:mt-24 max-w-[1000px] mx-auto h-[360px] md:h-[750px] flex justify-center items-start perspective-1000"
+              className="relative mt-24 md:mt-36 max-w-[1000px] mx-auto h-[360px] md:h-[750px] flex justify-center items-start perspective-1000"
             >
                {heroImages.map((image, index) => {
                  const position = getPosition(index);
@@ -183,25 +183,25 @@ export default function Home() {
         </section>
 
         {/* 2. State Understanding Layer */}
-        <section className="py-24 md:py-32 bg-white">
+        <section className="py-32 md:py-48 bg-white">
           <div className="container">
-            <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div className="grid md:grid-cols-2 gap-20 md:gap-32 items-center">
               <motion.div {...fadeInUp} className="order-2 md:order-1">
-                <div className="relative min-h-[400px] md:min-h-[500px] bg-[#F8F9FA] rounded-3xl overflow-visible p-8 flex items-center justify-center">
-                   {/* Refined HRV Visualization - Focused Data Card (Hybrid: Code Title + Image Chart) */}
+                <div className="relative min-h-[400px] md:min-h-[500px] bg-[#F8F9FA] rounded-[3rem] overflow-visible p-8 flex items-center justify-center">
+                   {/* Refined HRV Visualization */}
                    <div className="relative w-full max-w-[380px]">
                       
                       {/* Main Data Insight Card */}
                       <div className="relative h-[350px] w-full rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] border-2 border-white/80 bg-white z-10 group mx-auto transform transition-transform duration-700 hover:scale-[1.02]">
                          
-                         {/* 1. Recreated Header (HTML/CSS) - Solid white top to mask image text */}
-                         <div className="absolute top-0 left-0 w-full pt-6 px-6 pb-8 z-20 flex justify-between items-start bg-[linear-gradient(to_bottom,#ffffff_80%,transparent)]">
+                         {/* 1. Recreated Header (HTML/CSS) */}
+                         <div className="absolute top-0 left-0 w-full pt-8 px-8 pb-10 z-20 flex justify-between items-start bg-[linear-gradient(to_bottom,#ffffff_85%,transparent)]">
                             <div>
-                               <h3 className="text-lg font-bold text-gray-900 leading-tight">Daily HRV Trend</h3>
-                               <p className="text-xs text-gray-400 mt-1">Based on daily measurement average</p>
+                               <h3 className="text-xl font-bold text-gray-900 leading-tight tracking-tight">Daily HRV Trend</h3>
+                               <p className="text-xs text-gray-400 mt-2 uppercase tracking-widest">Measurement Average</p>
                             </div>
-                            <div className="p-2 bg-gray-50 rounded-lg text-gray-400">
-                               <Activity size={16} />
+                            <div className="p-2.5 bg-gray-50 rounded-xl text-[#4CAF93]">
+                               <Activity size={18} />
                             </div>
                          </div>
 
@@ -286,21 +286,21 @@ export default function Home() {
         </section>
 
         {/* 3. Suggestion Layer (The Core Value) */}
-        <section className="py-24 md:py-32 bg-[#FAFAFA] relative overflow-hidden">
+        <section className="py-32 md:py-48 bg-[#FAFAFA] relative overflow-hidden">
           {/* Decorative background element */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-r from-blue-50/50 to-green-50/50 rounded-full blur-3xl -z-10" />
 
           <div className="container">
-            <motion.div {...fadeInUp} className="max-w-3xl mx-auto text-center mb-20 relative z-10">
-              <h2 className="text-3xl md:text-5xl font-light mb-6 leading-tight">
+            <motion.div {...fadeInUp} className="max-w-3xl mx-auto text-center mb-24 md:mb-32 relative z-10">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-light mb-8 leading-[1.15] tracking-tight">
                 <span dangerouslySetInnerHTML={{ __html: t('home.suggestion.title') }} />
               </h2>
-              <p className="text-lg text-[#666666] font-light max-w-xl mx-auto">
+              <p className="text-lg md:text-xl text-[#666666] font-light max-w-xl mx-auto leading-relaxed">
                 {t('home.suggestion.desc')}
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-16 max-w-5xl mx-auto items-center relative z-10">
+            <div className="grid md:grid-cols-2 gap-12 lg:gap-20 max-w-5xl mx-auto items-center relative z-10">
               {/* Card 1: Low Energy (Image - Rest/Recover) */}
               <motion.div 
                 whileHover={{ scale: 1.03, rotate: -1, zIndex: 20 }}
@@ -360,18 +360,18 @@ export default function Home() {
         </section>
 
         {/* 4. Execution Layer (No Pressure) */}
-        <section className="py-16 md:py-32 bg-white overflow-hidden">
+        <section className="py-32 md:py-48 bg-white overflow-hidden">
           <div className="container">
-            <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+            <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 md:gap-24 items-center">
               <motion.div {...fadeInUp} className="max-w-md order-1 md:ml-auto md:pr-4 flex flex-col items-center md:items-start text-center md:text-left">
-                <h2 className="text-3xl md:text-5xl font-light mb-6 md:mb-8 leading-tight">
+                <h2 className="text-3xl md:text-5xl font-light mb-8 leading-[1.15] tracking-tight">
                   <span dangerouslySetInnerHTML={{ __html: t('home.execution.title') }} />
                 </h2>
-                <p className="text-lg text-[#666666] font-light leading-relaxed mb-8">
+                <p className="text-lg md:text-xl text-[#666666] font-light leading-relaxed mb-10">
                   {t('home.execution.desc')}
                 </p>
-                <div className="flex items-center gap-2 text-[#4CAF93] font-medium">
-                  <CheckCircle2 size={20} />
+                <div className="flex items-center gap-3 text-[#4CAF93] font-medium tracking-wide">
+                  <CheckCircle2 size={22} />
                   <span>Zero-friction Logging</span>
                 </div>
               </motion.div>
@@ -414,18 +414,18 @@ export default function Home() {
         </section>
 
         {/* 5. Review Layer (Long Termism) */}
-        <section className="py-24 md:py-32 bg-[#1A1A1A] text-white">
+        <section className="py-32 md:py-48 bg-[#1A1A1A] text-white">
           <div className="container">
-             <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+             <div className="grid md:grid-cols-2 gap-20 md:gap-32 items-center">
                 <motion.div {...fadeInUp} className="order-2 md:order-1">
                    {/* Dark mode chart visualization */}
-                   <div className="bg-[#2A2A2A] rounded-3xl p-8 border border-white/5 shadow-2xl">
-                      <div className="flex justify-between items-end mb-8">
+                   <div className="bg-[#2A2A2A] rounded-[2.5rem] p-10 border border-white/5 shadow-2xl">
+                      <div className="flex justify-between items-end mb-10">
                          <div>
-                            <div className="text-white/40 text-sm mb-1">Weekly Trend</div>
-                            <div className="text-2xl font-light">Consistency Score</div>
+                            <div className="text-white/40 text-xs mb-2 uppercase tracking-widest">Weekly Trend</div>
+                            <div className="text-2xl md:text-3xl font-light tracking-tight">Consistency Score</div>
                          </div>
-                         <div className="text-[#4CAF93]">+12%</div>
+                         <div className="text-[#4CAF93] font-medium">+12%</div>
                       </div>
                       <div className="h-48 w-full flex items-end gap-1">
                          {[30, 45, 35, 60, 55, 70, 65, 50, 60, 75, 80, 70].map((h, i) => (
