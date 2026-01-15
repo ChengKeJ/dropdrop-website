@@ -133,7 +133,7 @@ export default function About() {
               {...fadeInUp}
               className="bg-[#222222] rounded-[2.5rem] p-10 md:p-16 text-white shadow-xl"
             >
-              <h3 className="text-2xl md:text-3xl font-light mb-6">
+              <h3 className="text-2xl md:text-3xl font-light text-white mb-6">
                 {t('about.contact.title')}
               </h3>
               <p className="text-white/60 mb-10 text-lg font-light leading-relaxed max-w-lg mx-auto">

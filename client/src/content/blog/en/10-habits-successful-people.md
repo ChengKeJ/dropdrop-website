@@ -3,7 +3,7 @@ title: 10 Daily Habits of Successful People
 description: Explore the key habits that highly effective people practice daily and how to integrate them into your life
 date: 2026-01-08
 author: DropDrop Team
-image: /images/blog/successful-habits.jpg
+image: /images/blog/10-successful-habits.jpg
 category: Success
 tags:
   - success

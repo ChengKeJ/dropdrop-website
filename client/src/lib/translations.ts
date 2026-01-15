@@ -75,6 +75,12 @@ export const translations = {
     'about.title': '关于我们',
     'about.mission': '我们的使命',
     'about.team': '团队介绍',
+    'about.hero.title': '懂你的每一种状态',
+    'about.hero.subtitle': 'DropDrop 诞生于一个简单的愿望:<br/>让习惯回归自然，让自律不再痛苦。',
+    'about.mission.desc1': '我们相信，每个人的身体状态都是波动的。强行维持恒定的高强度自律，是对身心的巨大消耗。',
+    'about.mission.desc2': 'DropDrop 的使命是利用先进的生理监测技术，将原本抽象的身体感受量化。我们帮你找到那个“合适的节奏”——在精力充沛时勇敢挑战，在疲惫不堪时温柔休息。',
+    'about.values.title': '我们的价值观',
+    'about.contact.title': '期待听到你的声音',
 
     'about.contact.subtitle': '如果你有任何关于习惯、健康或产品的想法，请随时联系我们。',
     'about.values.scientific': '科学至上',

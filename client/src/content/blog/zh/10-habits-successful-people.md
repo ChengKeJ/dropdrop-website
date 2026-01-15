@@ -3,7 +3,7 @@ title: 成功人士的 10 个日常习惯
 description: 探索高效能人士每天坚持的关键习惯，以及如何将它们融入你的生活
 date: 2026-01-08
 author: DropDrop Team
-image: /images/blog/successful-habits.jpg
+image: /images/blog/10-successful-habits.jpg
 category: Success
 tags:
   - success
