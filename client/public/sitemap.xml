@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://dropdrophabit.com/</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/"/>
@@ -12,7 +12,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/zh</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/"/>
@@ -21,7 +21,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/blog</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog"/>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/zh/blog</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog"/>
@@ -39,7 +39,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/faq</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/faq"/>
@@ -48,7 +48,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/zh/faq</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/faq"/>
@@ -57,7 +57,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/about</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/about"/>
@@ -66,7 +66,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/zh/about</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/about"/>
@@ -75,7 +75,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/privacy</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/privacy"/>
@@ -84,7 +84,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/zh/privacy</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/privacy"/>
@@ -93,7 +93,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/terms</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/terms"/>
@@ -102,7 +102,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/zh/terms</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/terms"/>
@@ -111,7 +111,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/blog/10-habits-successful-people</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/10-habits-successful-people"/>
@@ -120,7 +120,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/zh/blog/10-habits-successful-people</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/10-habits-successful-people"/>
@@ -128,8 +128,44 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog/10-habits-successful-people"/>
   </url>
   <url>
+    <loc>https://dropdrophabit.com/blog/best-habit-tracker-apps-2026</loc>
+    <lastmod>2026-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/best-habit-tracker-apps-2026"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/blog/best-habit-tracker-apps-2026"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog/best-habit-tracker-apps-2026"/>
+  </url>
+  <url>
+    <loc>https://dropdrophabit.com/zh/blog/best-habit-tracker-apps-2026</loc>
+    <lastmod>2026-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/best-habit-tracker-apps-2026"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/blog/best-habit-tracker-apps-2026"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog/best-habit-tracker-apps-2026"/>
+  </url>
+  <url>
+    <loc>https://dropdrophabit.com/blog/how-many-days-to-build-a-habit</loc>
+    <lastmod>2026-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/how-many-days-to-build-a-habit"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/blog/how-many-days-to-build-a-habit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog/how-many-days-to-build-a-habit"/>
+  </url>
+  <url>
+    <loc>https://dropdrophabit.com/zh/blog/how-many-days-to-build-a-habit</loc>
+    <lastmod>2026-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/how-many-days-to-build-a-habit"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://dropdrophabit.com/zh/blog/how-many-days-to-build-a-habit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dropdrophabit.com/blog/how-many-days-to-build-a-habit"/>
+  </url>
+  <url>
     <loc>https://dropdrophabit.com/blog/how-to-build-habits-that-last</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/how-to-build-habits-that-last"/>
@@ -138,7 +174,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/zh/blog/how-to-build-habits-that-last</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/how-to-build-habits-that-last"/>
@@ -147,7 +183,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/blog/ultimate-guide-2026</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/ultimate-guide-2026"/>
@@ -156,7 +192,7 @@
   </url>
   <url>
     <loc>https://dropdrophabit.com/zh/blog/ultimate-guide-2026</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://dropdrophabit.com/blog/ultimate-guide-2026"/>
