@@ -10,6 +10,12 @@ tags:
   - productivity
   - habits
   - lifestyle
+keywords:
+  - 成功人士习惯
+  - 日常习惯
+  - 高效习惯
+  - 晚间例程
+  - 成功生活方式
 readTime: 7
 ---
 

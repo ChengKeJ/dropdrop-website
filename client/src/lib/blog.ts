@@ -14,6 +14,8 @@ export interface BlogPost {
   tags: string[];
   readTime: number;
   language: 'zh' | 'en';
+  keywords?: string[]; // SEO keywords
+  wordCount?: number; // Automatically calculated
 }
 
 interface MarkdownAttributes {
@@ -25,6 +27,7 @@ interface MarkdownAttributes {
   category: string;
   tags: string[];
   readTime: number;
+  keywords?: string[]; // Optional SEO keywords
 }
 
 // Vite Glob Import
@@ -37,7 +40,7 @@ const markdownFiles = import.meta.glob('/src/content/blog/**/*.md', { query: '?r
  */
 export async function getAllBlogPosts(lang?: 'zh' | 'en'): Promise<BlogPost[]> {
   const posts: BlogPost[] = [];
-  
+
   console.log('[Blog] Loading posts for language:', lang);
   console.log('[Blog] Found files:', Object.keys(markdownFiles));
 
@@ -46,42 +49,46 @@ export async function getAllBlogPosts(lang?: 'zh' | 'en'): Promise<BlogPost[]> {
     // e.g. /src/content/blog/en/post.md -> parts includes 'en'
     const parts = path.split('/');
     let fileLang: 'zh' | 'en' = 'en'; // Default fallback
-    
+
     if (parts.includes('zh')) {
       fileLang = 'zh';
     } else if (parts.includes('en')) {
       fileLang = 'en';
     }
-    
+
     // Extract slug from filename (e.g. "my-post.md" -> "my-post")
     const fileName = parts[parts.length - 1] || '';
     const slug = fileName.replace('.md', '');
-    
+
     console.log(`[Blog] Processing ${path}: lang=${fileLang}, slug=${slug}`);
-    
+
     if (lang && fileLang !== lang) {
       continue;
     }
-    
+
     // Load content
     const rawContent = await markdownFiles[path]() as string;
     const { attributes, body } = frontMatter<MarkdownAttributes>(rawContent);
-    
+
     // Parse Markdown to HTML
     // marked.parse can be synchronous
     const htmlContent = await marked.parse(body, { gfm: true });
 
     let datePublished = new Date().toISOString();
     try {
-        const parsedDate = new Date(attributes.date);
-        if (!isNaN(parsedDate.getTime())) {
-            datePublished = parsedDate.toISOString();
-        } else {
-            console.warn(`[Blog] Invalid date found in ${path}:`, attributes.date);
-        }
+      const parsedDate = new Date(attributes.date);
+      if (!isNaN(parsedDate.getTime())) {
+        datePublished = parsedDate.toISOString();
+      } else {
+        console.warn(`[Blog] Invalid date found in ${path}:`, attributes.date);
+      }
     } catch (e) {
-        console.warn(`[Blog] Date parsing error in ${path}:`, e);
+      console.warn(`[Blog] Date parsing error in ${path}:`, e);
     }
+
+    // Calculate word count from plain text
+    const plainText = body.replace(/[#*`\[\]()]/g, '').trim();
+    const wordCount = plainText.split(/\s+/).filter(w => w.length > 0).length;
 
     posts.push({
       slug,
@@ -95,11 +102,13 @@ export async function getAllBlogPosts(lang?: 'zh' | 'en'): Promise<BlogPost[]> {
       category: attributes.category,
       tags: attributes.tags,
       readTime: attributes.readTime,
-      language: fileLang
+      language: fileLang,
+      keywords: attributes.keywords || attributes.tags, // Use keywords if provided, fallback to tags
+      wordCount: wordCount
     });
   }
 
-  return posts.sort((a, b) => 
+  return posts.sort((a, b) =>
     new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime()
   );
 }

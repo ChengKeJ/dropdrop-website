@@ -11,6 +11,13 @@ tags:
   - habit formation
   - 21-day habit myth
   - best habit tracker 2026
+keywords:
+  - how many days to build a habit
+  - 21 day habit myth
+  - habit formation science
+  - loop habit tracker
+  - best habit tracker 2026
+  - DropDrop app
 readTime: 15
 ---
 

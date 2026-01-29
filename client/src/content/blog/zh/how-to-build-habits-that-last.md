@@ -10,6 +10,12 @@ tags:
   - productivity
   - self-improvement
   - science
+keywords:
+  - 如何养成习惯
+  - 持久的习惯
+  - 习惯养成方法
+  - 行为科学
+  - 习惯追踪
 readTime: 5
 ---
 

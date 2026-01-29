@@ -10,6 +10,12 @@ tags:
   - productivity
   - self-improvement
   - science
+keywords:
+  - how to build habits
+  - lasting habits
+  - habit formation
+  - behavioral science
+  - habit tracker
 readTime: 5
 ---
 

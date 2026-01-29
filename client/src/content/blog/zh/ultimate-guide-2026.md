@@ -10,6 +10,13 @@ tags:
   - 自律
   - HRV
   - 2026推荐
+keywords:
+  - 习惯追踪2026
+  - 最佳习惯追踪器
+  - HRV习惯追踪
+  - 生物反馈
+  - 智能习惯管理
+  - DropDrop
 readTime: 12
 ---
 

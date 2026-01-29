@@ -10,6 +10,12 @@ tags:
   - productivity
   - habits
   - lifestyle
+keywords:
+  - successful people habits
+  - daily habits
+  - productivity habits
+  - morning routine
+  - successful lifestyle
 readTime: 7
 ---
 

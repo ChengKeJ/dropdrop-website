@@ -16,7 +16,7 @@ export default function BlogPost() {
   const { language, t } = useLanguage();
   const [, params] = useRoute('/blog/:slug');
   const { scrollYProgress } = useScroll();
-  
+
   const [post, setPost] = useState<BlogPostType | undefined>(undefined);
   const [loading, setLoading] = useState(true);
   const [contentWithIds, setContentWithIds] = useState('');
@@ -56,13 +56,13 @@ export default function BlogPost() {
   useEffect(() => {
     async function loadPost() {
       if (!params?.slug) return;
-      
+
       setLoading(true);
       try {
         const data = await getBlogPost(params.slug, language as 'zh' | 'en');
         if (data) {
           setPost(data);
-          
+
           const processedContent = data.content.replace(/^<h[12]>.*?<\/h[12]>/i, '');
 
           const extractedHeadings: { id: string; text: string; level: number }[] = [];
@@ -71,7 +71,7 @@ export default function BlogPost() {
             extractedHeadings.push({ id, text: title.replace(/<[^>]*>?/gm, ''), level: parseInt(level) });
             return `<h${level} id="${id}">${title}</h${level}>`;
           });
-          
+
           setContentWithIds(processedIds);
           setHeadings(extractedHeadings);
         }
@@ -89,7 +89,7 @@ export default function BlogPost() {
       navigator.share({
         title: post?.title,
         url: window.location.href,
-      }).catch(() => {});
+      }).catch(() => { });
     } else {
       navigator.clipboard.writeText(window.location.href);
       toast.success(t('blog.share.success'));
@@ -101,13 +101,13 @@ export default function BlogPost() {
       <div className="min-h-screen bg-[#FAFAFA]">
         <Navbar />
         <div className="container max-w-3xl mx-auto pt-48 px-6">
-           <Skeleton className="h-4 w-24 mb-12" />
-           <Skeleton className="h-16 w-3/4 mb-8" />
-           <div className="space-y-4">
-             <Skeleton className="h-4 w-full" />
-             <Skeleton className="h-4 w-full" />
-             <Skeleton className="h-4 w-2/3" />
-           </div>
+          <Skeleton className="h-4 w-24 mb-12" />
+          <Skeleton className="h-16 w-3/4 mb-8" />
+          <div className="space-y-4">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-2/3" />
+          </div>
         </div>
       </div>
     );
@@ -130,7 +130,10 @@ export default function BlogPost() {
     datePublished: post.datePublished,
     dateModified: post.dateModified,
     author: post.author,
-    url: `https://dropdrophabit.com/blog/${post.slug}`
+    url: `https://dropdrophabit.com/blog/${post.slug}`,
+    keywords: post.keywords,
+    wordCount: post.wordCount,
+    articleSection: post.category
   });
 
   return (
@@ -141,6 +144,14 @@ export default function BlogPost() {
         canonical={`https://dropdrophabit.com/blog/${post.slug}`}
         ogType="article"
         ogImage={`https://dropdrophabit.com${post.image}`}
+        keywords={post.keywords || post.tags}
+        article={{
+          publishedTime: post.datePublished,
+          modifiedTime: post.dateModified,
+          author: post.author,
+          section: post.category,
+          tags: post.keywords || post.tags
+        }}
         structuredData={[breadcrumbs, blogSchema]}
       />
 
@@ -222,7 +233,7 @@ export default function BlogPost() {
                   <ul className="space-y-4">
                     {headings.map((heading, index) => (
                       <li key={`${heading.id}-${index}`} style={{ marginLeft: heading.level === 3 ? '1rem' : '0' }}>
-                        <a 
+                        <a
                           href={`#${heading.id}`}
                           onClick={(e) => {
                             e.preventDefault();
@@ -231,14 +242,14 @@ export default function BlogPost() {
                           }}
                           className={`
                             text-[14px] block leading-snug transition-all duration-500 relative
-                            ${activeId === heading.id 
-                              ? 'text-[#4CAF93] font-semibold' 
+                            ${activeId === heading.id
+                              ? 'text-[#4CAF93] font-semibold'
                               : 'text-[#777] hover:text-[#222]'
                             }
                           `}
                         >
                           {activeId === heading.id && (
-                            <motion.div 
+                            <motion.div
                               layoutId="toc-indicator"
                               className="absolute -left-[33px] top-0 w-[2px] h-full bg-[#4CAF93]"
                               transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -321,7 +332,7 @@ export default function BlogPost() {
                 "
                 dangerouslySetInnerHTML={{ __html: contentWithIds }}
               />
-              
+
               {/* Author Bio (Card Style) */}
               <div className="mt-24 p-8 md:p-12 bg-gray-50/80 rounded-3xl border border-gray-100 flex flex-col items-center text-center">
                 <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-sm mb-6">
@@ -355,7 +366,7 @@ export default function BlogPost() {
                 <p className="text-white/70 mb-12 text-lg md:text-xl font-light leading-relaxed max-w-xl mx-auto">
                   {t('blog.cta.subtitle')}
                 </p>
-                <a 
+                <a
                   href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -364,10 +375,10 @@ export default function BlogPost() {
                   {t('blog.cta.btn')}
                 </a>
               </div>
-              
+
               {/* Subtle Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
-              
+
               {/* Glow Effects */}
               <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-[#4CAF93] rounded-full blur-[150px] opacity-20 pointer-events-none" />
               <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-600 rounded-full blur-[150px] opacity-10 pointer-events-none" />

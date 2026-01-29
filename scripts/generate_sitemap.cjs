@@ -32,16 +32,45 @@ const slugsEN = getSlugs(BLOG_DIR_EN);
 // Merge unique slugs (assuming slugs are same across languages)
 const allSlugs = [...new Set([...slugsZH, ...slugsEN])];
 
-// Helper to generate URL entry
+// Helper to generate URL entry with proper priority and changefreq
 function generateUrlEntry(pathStr, lastMod) {
   const enUrl = `${BASE_URL}${pathStr}`;
   const zhUrl = `${BASE_URL}/zh${pathStr === '/' ? '' : pathStr}`;
-  
+
+  // Determine priority and changefreq based on page type
+  let priority, changefreq;
+
+  if (pathStr === '/' || pathStr === '') {
+    // Homepage: highest priority, updated daily
+    priority = '1.0';
+    changefreq = 'daily';
+  } else if (pathStr === '/blog') {
+    // Blog listing: very high priority, updated daily
+    priority = '0.9';
+    changefreq = 'daily';
+  } else if (pathStr.startsWith('/blog/')) {
+    // Blog posts: high priority, updated weekly
+    priority = '0.8';
+    changefreq = 'weekly';
+  } else if (pathStr === '/faq' || pathStr === '/about') {
+    // FAQ and About: medium priority, updated monthly
+    priority = '0.7';
+    changefreq = 'monthly';
+  } else if (pathStr === '/privacy' || pathStr === '/terms') {
+    // Legal pages: lower priority, updated yearly
+    priority = '0.5';
+    changefreq = 'yearly';
+  } else {
+    // Default fallback
+    priority = '0.6';
+    changefreq = 'monthly';
+  }
+
   return `  <url>
     <loc>${enUrl}</loc>
     <lastmod>${lastMod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>${pathStr === '' ? '1.0' : pathStr.startsWith('/blog/') ? '0.8' : '0.7'}</priority>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
     <xhtml:link rel="alternate" hreflang="en" href="${enUrl}"/>
     <xhtml:link rel="alternate" hreflang="zh" href="${zhUrl}"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="${enUrl}"/>
@@ -49,8 +78,8 @@ function generateUrlEntry(pathStr, lastMod) {
   <url>
     <loc>${zhUrl}</loc>
     <lastmod>${lastMod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>${pathStr === '' ? '1.0' : pathStr.startsWith('/blog/') ? '0.8' : '0.7'}</priority>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
     <xhtml:link rel="alternate" hreflang="en" href="${enUrl}"/>
     <xhtml:link rel="alternate" hreflang="zh" href="${zhUrl}"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="${enUrl}"/>

@@ -14,6 +14,7 @@ interface SEOHeadProps {
     section?: string;
     tags?: string[];
   };
+  keywords?: string[]; // SEO keywords
   noindex?: boolean;
   structuredData?: object | object[];
   preloadImages?: string[];
@@ -26,6 +27,7 @@ export function SEOHead({
   ogImage = 'https://dropdrophabit.com/images/logo.png',
   ogType = 'website',
   article,
+  keywords,
   noindex = false,
   structuredData,
   preloadImages = [],
@@ -33,16 +35,16 @@ export function SEOHead({
   const { language } = useLanguage();
 
   const lang = language === 'zh' ? 'zh-CN' : 'en';
-  
+
   // Assume 'canonical' prop is the base URL (Default EN version), e.g., "https://dropdrophabit.com/about"
   // Remove trailing slash for consistency
   const baseUrl = canonical.endsWith('/') && canonical.length > 1 ? canonical.slice(0, -1) : canonical;
-  
+
   // Construct language-specific URLs
   // EN is default (root), ZH is prefixed
   const origin = "https://dropdrophabit.com";
   const path = baseUrl.replace(origin, "");
-  
+
   const enUrl = baseUrl; // Default English URL
   const zhUrl = `${origin}/zh${path === '/' ? '' : path}`; // Prefixed Chinese URL
 
@@ -59,6 +61,9 @@ export function SEOHead({
       <html lang={lang} />
       <title>{title}</title>
       <meta name="description" content={description} />
+      {keywords && keywords.length > 0 && (
+        <meta name="keywords" content={keywords.join(', ')} />
+      )}
 
       {/* Canonical URL */}
       <link rel="canonical" href={currentCanonical} />

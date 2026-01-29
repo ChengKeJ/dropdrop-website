@@ -12,6 +12,13 @@ tags:
   - streaks app
   - habitify 评测
   - 效率工具2026
+keywords:
+  - 习惯追踪应用
+  - 最佳习惯追踪app
+  - loop habit tracker
+  - 习惯养成软件
+  - HRV心率变异性
+  - DropDrop
 readTime: 18
 ---
 

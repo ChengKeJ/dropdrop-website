@@ -10,6 +10,13 @@ tags:
   - productivity
   - HRV
   - mental health
+keywords:
+  - habit tracking 2026
+  - best habit tracker
+  - HRV habit tracking
+  - bio-feedback
+  - DropDrop
+  - smart habit tracker
 readTime: 12
 ---
 

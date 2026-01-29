@@ -87,7 +87,10 @@ export const blogPostSchema = ({
   datePublished,
   dateModified,
   author,
-  url
+  url,
+  keywords,
+  wordCount,
+  articleSection
 }: {
   title: string;
   description: string;
@@ -96,14 +99,21 @@ export const blogPostSchema = ({
   dateModified: string;
   author: string;
   url: string;
+  keywords?: string[];
+  wordCount?: number;
+  articleSection?: string;
 }) => ({
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: title,
   description: description,
   image: image,
+  thumbnailUrl: image,
   datePublished: datePublished,
   dateModified: dateModified,
+  ...(wordCount && { wordCount }),
+  ...(keywords && keywords.length > 0 && { keywords: keywords.join(', ') }),
+  ...(articleSection && { articleSection }),
   author: {
     '@type': 'Person',
     name: author
