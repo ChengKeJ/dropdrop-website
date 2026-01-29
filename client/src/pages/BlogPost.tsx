@@ -117,6 +117,10 @@ export default function BlogPost() {
     return <NotFound />;
   }
 
+  const imageUrl = post.image.startsWith('http')
+    ? post.image
+    : `https://dropdrophabit.com${post.image}`;
+
   const breadcrumbs = breadcrumbSchema([
     { name: 'Home', url: 'https://dropdrophabit.com/' },
     { name: 'Blog', url: 'https://dropdrophabit.com/blog' },
@@ -126,7 +130,7 @@ export default function BlogPost() {
   const blogSchema = blogPostSchema({
     title: post.title,
     description: post.description,
-    image: `https://dropdrophabit.com${post.image}`,
+    image: imageUrl,
     datePublished: post.datePublished,
     dateModified: post.dateModified,
     author: post.author,
@@ -143,7 +147,7 @@ export default function BlogPost() {
         description={post.description}
         canonical={`https://dropdrophabit.com/blog/${post.slug}`}
         ogType="article"
-        ogImage={`https://dropdrophabit.com${post.image}`}
+        ogImage={imageUrl}
         keywords={post.keywords || post.tags}
         article={{
           publishedTime: post.datePublished,
