@@ -47,8 +47,8 @@ export default function Blog() {
       <SEOHead
         title={language === 'zh' ? 'DropDrop 博客 - 习惯养成指南与技巧' : 'DropDrop Blog - Habit Building Guides & Tips'}
         description={language === 'zh'
-          ? '探索科学的习惯养成方法、生产力技巧和自我提升策略。DropDrop 博客提供实用的习惯追踪建议。'
-          : 'Explore science-based habit building methods, productivity tips, and self-improvement strategies. DropDrop blog offers practical habit tracking advice.'}
+          ? '探索科学的习惯养成指南、2026年最新趋势以及 DropDrop 使用教程。获取专业的自我提升建议，助你建立持久的生活方式。'
+          : 'Discover expert habit-building strategies, 2026 trends, and DropDrop tutorials. Transform your daily routine with science-backed insights.'}
         canonical="https://dropdrophabit.com/blog"
         structuredData={breadcrumbs}
       />
@@ -83,14 +83,14 @@ export default function Blog() {
             {loading ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {[1, 2, 3].map((i) => (
-                   <div key={i} className="space-y-4">
-                      <Skeleton className="h-[240px] w-full rounded-3xl" />
-                      <div className="space-y-2">
-                        <Skeleton className="h-4 w-1/3" />
-                        <Skeleton className="h-6 w-3/4" />
-                        <Skeleton className="h-4 w-full" />
-                      </div>
-                   </div>
+                  <div key={i} className="space-y-4">
+                    <Skeleton className="h-[240px] w-full rounded-3xl" />
+                    <div className="space-y-2">
+                      <Skeleton className="h-4 w-1/3" />
+                      <Skeleton className="h-6 w-3/4" />
+                      <Skeleton className="h-4 w-full" />
+                    </div>
+                  </div>
                 ))}
               </div>
             ) : (
@@ -107,17 +107,17 @@ export default function Blog() {
                         <div className="bg-white border border-[#E5E5E5] rounded-3xl overflow-hidden shadow-soft hover:border-[#4CAF93]/30 transition-all duration-500 h-full flex flex-col">
                           {/* Image */}
                           <div className="aspect-[16/10] bg-[#F5F5F5] overflow-hidden relative">
-                             {post.image ? (
-                               <img 
-                                 src={post.image} 
-                                 alt={post.title}
-                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                               />
-                             ) : (
-                               <div className="w-full h-full flex items-center justify-center group-hover:bg-[#E8F5E9] transition-colors duration-500">
-                                 <span className="text-4xl grayscale group-hover:grayscale-0 transition-all duration-500">🌿</span>
-                               </div>
-                             )}
+                            {post.image ? (
+                              <img
+                                src={post.image}
+                                alt={post.title}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center group-hover:bg-[#E8F5E9] transition-colors duration-500">
+                                <span className="text-4xl grayscale group-hover:grayscale-0 transition-all duration-500">🌿</span>
+                              </div>
+                            )}
                           </div>
 
                           {/* Content */}

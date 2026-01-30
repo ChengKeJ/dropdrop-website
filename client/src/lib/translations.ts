@@ -40,6 +40,19 @@ export const translations = {
     'home.review.title': '看趋势，<br />而不是盯数字',
     'home.review.desc': '我们更关注长期变化，而不是每天的完成率。',
 
+    // Testimonials
+    'home.testimonials.title': '用户心声',
+    'home.testimonials.desc': '听听那些已经找到自己节奏的人怎么说。',
+    'testimonial.1.name': '张明',
+    'testimonial.1.role': '自由职业设计师',
+    'testimonial.1.comment': '以前我总是逼自己每天必须完成所有打卡，结果经常崩溃放弃。DropDrop 的休息模式真的拯救了我，它让我学会了原来休息也是计划的一部分。',
+    'testimonial.2.name': 'Sarah Li',
+    'testimonial.2.role': '马拉松跑者',
+    'testimonial.2.comment': 'HRV 数据结合的非常棒！它能准确判断我什么时候该加量，什么时候该减量。这不仅仅是习惯追踪，更是我的体能教练。',
+    'testimonial.3.name': '王浩',
+    'testimonial.3.role': '产品经理',
+    'testimonial.3.comment': '界面太美了，没有任何多余的干扰。每次打开 App 都感觉很平静，而不是那种“即使累死也要打卡”的焦虑感。',
+
     // Summary Layer
     'home.summary.title': '所有功能，只为一件事服务',
     'home.summary.desc': '在合适的状态下，用合适的节奏，建立可持续的习惯。',
@@ -189,6 +202,19 @@ export const translations = {
     // Review Layer
     'home.review.title': 'Focus on trends,<br />not just numbers',
     'home.review.desc': 'We focus on long-term changes and sustainability, rather than just daily completion rates.',
+
+    // Testimonials
+    'home.testimonials.title': 'What Users Say',
+    'home.testimonials.desc': 'Hear from those who have found their own rhythm.',
+    'testimonial.1.name': 'Michael Zhang',
+    'testimonial.1.role': 'Freelance Designer',
+    'testimonial.1.comment': 'I used to force myself to check every box daily, which often led to burnout. DropDrop\'s Rest Mode saved me; it taught me that rest is also part of the plan.',
+    'testimonial.2.name': 'Sarah Li',
+    'testimonial.2.role': 'Marathon Runner',
+    'testimonial.2.comment': 'The HRV integration is amazing! It accurately tells me when to push and when to back off. It\'s not just a habit tracker; it\'s my fitness coach.',
+    'testimonial.3.name': 'David Wang',
+    'testimonial.3.role': 'Product Manager',
+    'testimonial.3.comment': 'The interface is beautiful with zero clutter. Opening the app feels calming, unlike the anxiety of "must check-in even if exhausted" from other apps.',
 
     // Summary Layer
     'home.summary.title': 'All features serve one purpose',

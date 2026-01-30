@@ -122,3 +122,40 @@ export async function getBlogPost(slug: string, lang: 'zh' | 'en'): Promise<Blog
   const allPosts = await getAllBlogPosts(lang);
   return allPosts.find(p => p.slug === slug);
 }
+
+/**
+ * Get related blog posts based on content similarity (tags and category).
+ */
+export async function getRelatedPosts(currentPost: BlogPost, limit: number = 3): Promise<BlogPost[]> {
+  const allPosts = await getAllBlogPosts(currentPost.language);
+
+  const scoredPosts = allPosts
+    .filter(p => p.slug !== currentPost.slug) // Exclude current post
+    .map(p => {
+      let score = 0;
+
+      // Category match: +2 points
+      if (p.category === currentPost.category) {
+        score += 2;
+      }
+
+      // Tags match: +1 point per matching tag
+      if (p.tags && currentPost.tags) {
+        const matchingTags = p.tags.filter(tag => currentPost.tags.includes(tag));
+        score += matchingTags.length;
+      }
+
+      return { post: p, score };
+    })
+    .filter(item => item.score > 0) // Only keep posts with some relevance
+    .sort((a, b) => {
+      // Sort by score (descending)
+      if (b.score !== a.score) {
+        return b.score - a.score;
+      }
+      // Fallback: Sort by date (newest first)
+      return new Date(b.post.datePublished).getTime() - new Date(a.post.datePublished).getTime();
+    });
+
+  return scoredPosts.slice(0, limit).map(item => item.post);
+}

@@ -3,7 +3,8 @@ import { motion, useScroll, useSpring } from 'framer-motion';
 import { Calendar, Clock, ArrowLeft, Share2, Bookmark } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { SEOHead } from '@/components/SEO/SEOHead';
-import { getBlogPost, BlogPost as BlogPostType } from '@/lib/blog';
+import { getBlogPost, getRelatedPosts, BlogPost as BlogPostType } from '@/lib/blog';
+import { RelatedPosts } from '@/components/blog/RelatedPosts';
 import { Link, useRoute } from 'wouter';
 import { breadcrumbSchema, blogPostSchema } from '@/lib/structuredData';
 import { Navbar } from '@/components/layout/Navbar';
@@ -21,6 +22,7 @@ export default function BlogPost() {
   const [loading, setLoading] = useState(true);
   const [contentWithIds, setContentWithIds] = useState('');
   const [headings, setHeadings] = useState<{ id: string; text: string; level: number }[]>([]);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPostType[]>([]);
   const [activeId, setActiveId] = useState<string>('');
   const [isTocOpen, setIsTocOpen] = useState(false);
 
@@ -62,6 +64,9 @@ export default function BlogPost() {
         const data = await getBlogPost(params.slug, language as 'zh' | 'en');
         if (data) {
           setPost(data);
+
+          // Fetch related posts
+          getRelatedPosts(data).then(setRelatedPosts);
 
           const processedContent = data.content.replace(/^<h[12]>.*?<\/h[12]>/i, '');
 
@@ -352,6 +357,9 @@ export default function BlogPost() {
                   </p>
                 </div>
               </div>
+
+              {/* Related Posts */}
+              <RelatedPosts posts={relatedPosts} />
             </div>
 
             {/* CTA Section (High Contrast) */}

@@ -72,6 +72,7 @@ export function SEOHead({
       <link rel="alternate" hrefLang="zh" href={zhUrl} />
       <link rel="alternate" hrefLang="en" href={enUrl} />
       <link rel="alternate" hrefLang="x-default" href={zhUrl} />
+      <link rel="alternate" type="application/rss+xml" title="DropDrop Blog RSS Feed" href="/feed.xml" />
 
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />

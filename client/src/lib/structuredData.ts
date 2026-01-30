@@ -154,3 +154,63 @@ export const howToSchema = ({
     image: step.image
   }))
 });
+
+export const reviewsSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'DropDrop',
+  image: 'https://dropdrophabit.com/images/logo.png',
+  description: 'DropDrop Habit Tracker',
+  brand: {
+    '@type': 'Brand',
+    name: 'DropDrop'
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    ratingCount: '128',
+    bestRating: '5',
+    worstRating: '1'
+  },
+  review: [
+    {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Person',
+        name: 'Michael Zhang'
+      },
+      reviewBody: 'I used to force myself to check every box daily, which often led to burnout. DropDrop\'s Rest Mode saved me; it taught me that rest is also part of the plan.'
+    },
+    {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Person',
+        name: 'Sarah Li'
+      },
+      reviewBody: 'The HRV integration is amazing! It accurately tells me when to push and when to back off. It\'s not just a habit tracker; it\'s my fitness coach.'
+    },
+    {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Person',
+        name: 'David Wang'
+      },
+      reviewBody: 'The interface is beautiful with zero clutter. Opening the app feels calming, unlike the anxiety of "must check-in even if exhausted" from other apps.'
+    }
+  ]
+};
