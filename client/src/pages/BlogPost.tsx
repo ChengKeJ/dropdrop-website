@@ -1,35 +1,41 @@
-import { useState, useEffect } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
-import { Calendar, Clock, ArrowLeft, Share2, Bookmark } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { SEOHead } from '@/components/SEO/SEOHead';
-import { getBlogPost, getRelatedPosts, BlogPost as BlogPostType } from '@/lib/blog';
-import { RelatedPosts } from '@/components/blog/RelatedPosts';
-import { Link, useRoute } from 'wouter';
-import { breadcrumbSchema, blogPostSchema } from '@/lib/structuredData';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-import { toast } from 'sonner';
-import { Skeleton } from '@/components/ui/skeleton';
-import NotFound from './NotFound';
+import { useState, useEffect } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
+import { Calendar, Clock, ArrowLeft, Share2, Bookmark } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { SEOHead } from "@/components/SEO/SEOHead";
+import {
+  getBlogPost,
+  getRelatedPosts,
+  BlogPost as BlogPostType,
+} from "@/lib/blog";
+import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { Link, useRoute } from "wouter";
+import { breadcrumbSchema, blogPostSchema } from "@/lib/structuredData";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { toast } from "sonner";
+import { Skeleton } from "@/components/ui/skeleton";
+import NotFound from "./NotFound";
 
 export default function BlogPost() {
   const { language, t } = useLanguage();
-  const [, params] = useRoute('/blog/:slug');
+  const [, params] = useRoute("/blog/:slug");
   const { scrollYProgress } = useScroll();
 
   const [post, setPost] = useState<BlogPostType | undefined>(undefined);
   const [loading, setLoading] = useState(true);
-  const [contentWithIds, setContentWithIds] = useState('');
-  const [headings, setHeadings] = useState<{ id: string; text: string; level: number }[]>([]);
+  const [contentWithIds, setContentWithIds] = useState("");
+  const [headings, setHeadings] = useState<
+    { id: string; text: string; level: number }[]
+  >([]);
   const [relatedPosts, setRelatedPosts] = useState<BlogPostType[]>([]);
-  const [activeId, setActiveId] = useState<string>('');
+  const [activeId, setActiveId] = useState<string>("");
   const [isTocOpen, setIsTocOpen] = useState(false);
 
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
   });
 
   // TOC Active State Observer
@@ -37,17 +43,17 @@ export default function BlogPost() {
     if (headings.length === 0) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
           }
         });
       },
-      { rootMargin: '-100px 0px -60% 0px' }
+      { rootMargin: "-100px 0px -60% 0px" }
     );
 
-    headings.forEach((heading) => {
+    headings.forEach(heading => {
       const element = document.getElementById(heading.id);
       if (element) observer.observe(element);
     });
@@ -61,21 +67,38 @@ export default function BlogPost() {
 
       setLoading(true);
       try {
-        const data = await getBlogPost(params.slug, language as 'zh' | 'en');
+        const data = await getBlogPost(params.slug, language as "zh" | "en");
         if (data) {
           setPost(data);
 
           // Fetch related posts
           getRelatedPosts(data).then(setRelatedPosts);
 
-          const processedContent = data.content.replace(/^<h[12]>.*?<\/h[12]>/i, '');
+          const processedContent = data.content.replace(
+            /^<h[12]>.*?<\/h[12]>/i,
+            ""
+          );
 
-          const extractedHeadings: { id: string; text: string; level: number }[] = [];
-          const processedIds = processedContent.replace(/<h([23])>(.*?)<\/h\1>/g, (_, level, title) => {
-            const id = title.toLowerCase().replace(/[^\w\s-\u4e00-\u9fa5]/g, '').replace(/\s+/g, '-');
-            extractedHeadings.push({ id, text: title.replace(/<[^>]*>?/gm, ''), level: parseInt(level) });
-            return `<h${level} id="${id}">${title}</h${level}>`;
-          });
+          const extractedHeadings: {
+            id: string;
+            text: string;
+            level: number;
+          }[] = [];
+          const processedIds = processedContent.replace(
+            /<h([23])>(.*?)<\/h\1>/g,
+            (_, level, title) => {
+              const id = title
+                .toLowerCase()
+                .replace(/[^\w\s-\u4e00-\u9fa5]/g, "")
+                .replace(/\s+/g, "-");
+              extractedHeadings.push({
+                id,
+                text: title.replace(/<[^>]*>?/gm, ""),
+                level: parseInt(level),
+              });
+              return `<h${level} id="${id}">${title}</h${level}>`;
+            }
+          );
 
           setContentWithIds(processedIds);
           setHeadings(extractedHeadings);
@@ -91,13 +114,15 @@ export default function BlogPost() {
 
   const handleShare = () => {
     if (navigator.share) {
-      navigator.share({
-        title: post?.title,
-        url: window.location.href,
-      }).catch(() => { });
+      navigator
+        .share({
+          title: post?.title,
+          url: window.location.href,
+        })
+        .catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
-      toast.success(t('blog.share.success'));
+      toast.success(t("blog.share.success"));
     }
   };
 
@@ -122,14 +147,14 @@ export default function BlogPost() {
     return <NotFound />;
   }
 
-  const imageUrl = post.image.startsWith('http')
+  const imageUrl = post.image.startsWith("http")
     ? post.image
     : `https://dropdrophabit.com${post.image}`;
 
   const breadcrumbs = breadcrumbSchema([
-    { name: 'Home', url: 'https://dropdrophabit.com/' },
-    { name: 'Blog', url: 'https://dropdrophabit.com/blog' },
-    { name: post.title, url: `https://dropdrophabit.com/blog/${post.slug}` }
+    { name: "Home", url: "https://dropdrophabit.com/" },
+    { name: "Blog", url: "https://dropdrophabit.com/blog" },
+    { name: post.title, url: `https://dropdrophabit.com/blog/${post.slug}` },
   ]);
 
   const blogSchema = blogPostSchema({
@@ -142,7 +167,7 @@ export default function BlogPost() {
     url: `https://dropdrophabit.com/blog/${post.slug}`,
     keywords: post.keywords,
     wordCount: post.wordCount,
-    articleSection: post.category
+    articleSection: post.category,
   });
 
   return (
@@ -159,7 +184,7 @@ export default function BlogPost() {
           modifiedTime: post.dateModified,
           author: post.author,
           section: post.category,
-          tags: post.keywords || post.tags
+          tags: post.keywords || post.tags,
         }}
         structuredData={[breadcrumbs, blogSchema]}
       />
@@ -174,12 +199,21 @@ export default function BlogPost() {
 
         <article className="pt-32 md:pt-48 pb-20 px-6 md:px-8">
           <div className="container max-w-3xl mx-auto">
-            <nav aria-label="Breadcrumb" className="mb-12 flex items-center gap-2 text-[13px] text-[#999] font-medium tracking-wide">
-              <Link href="/"><a className="hover:text-[#222] transition-colors">Home</a></Link>
+            <nav
+              aria-label="Breadcrumb"
+              className="mb-12 flex items-center gap-2 text-[13px] text-[#999] font-medium tracking-wide"
+            >
+              <Link href="/">
+                <a className="hover:text-[#222] transition-colors">Home</a>
+              </Link>
               <span className="text-[#eee]">/</span>
-              <Link href="/blog"><a className="hover:text-[#222] transition-colors">Blog</a></Link>
+              <Link href="/blog">
+                <a className="hover:text-[#222] transition-colors">Blog</a>
+              </Link>
               <span className="text-[#eee]">/</span>
-              <span className="text-[#222] truncate max-w-[150px] md:max-w-none">{post.title}</span>
+              <span className="text-[#222] truncate max-w-[150px] md:max-w-none">
+                {post.title}
+              </span>
             </nav>
 
             <motion.header
@@ -200,15 +234,23 @@ export default function BlogPost() {
                 <div className="flex items-center gap-2">
                   <Calendar size={14} className="text-[#4CAF93]" />
                   <time dateTime={post.datePublished}>
-                    {new Date(post.datePublished).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    {new Date(post.datePublished).toLocaleDateString(
+                      language === "zh" ? "zh-CN" : "en-US",
+                      { year: "numeric", month: "long", day: "numeric" }
+                    )}
                   </time>
                 </div>
                 <div className="w-1 h-1 bg-[#eee] rounded-full" />
                 <div className="flex items-center gap-2">
                   <Clock size={14} className="text-[#4CAF93]" />
-                  <span>{post.readTime} {t('blog.minuteRead')}</span>
+                  <span>
+                    {post.readTime} {t("blog.minuteRead")}
+                  </span>
                 </div>
-                <button onClick={handleShare} className="ml-2 p-2 hover:text-[#4CAF93] transition-colors">
+                <button
+                  onClick={handleShare}
+                  className="ml-2 p-2 hover:text-[#4CAF93] transition-colors"
+                >
                   <Share2 size={16} />
                 </button>
               </div>
@@ -220,40 +262,50 @@ export default function BlogPost() {
                   onClick={() => setIsTocOpen(!isTocOpen)}
                   className="md:hidden w-full flex items-center justify-between bg-white border border-gray-100 rounded-xl px-6 py-4 text-sm font-bold text-[#333] shadow-sm"
                 >
-                  <span>{t('blog.toc.title')}</span>
-                  <motion.span animate={{ rotate: isTocOpen ? 180 : 0 }}>▼</motion.span>
+                  <span>{t("blog.toc.title")}</span>
+                  <motion.span animate={{ rotate: isTocOpen ? 180 : 0 }}>
+                    ▼
+                  </motion.span>
                 </button>
 
                 <motion.nav
                   initial={false}
-                  animate={{ height: isTocOpen ? 'auto' : 'auto', opacity: 1 }}
+                  animate={{ height: isTocOpen ? "auto" : "auto", opacity: 1 }}
                   className={`
                     overflow-hidden md:overflow-visible mt-4 md:mt-0
                     bg-white md:bg-transparent
                     border border-gray-100 md:border-none md:border-l-[1px] md:border-gray-200 
                     rounded-2xl md:rounded-none
                     p-6 md:p-0 md:pl-8 md:py-1
-                    ${isTocOpen ? 'block' : 'hidden md:block'}
+                    ${isTocOpen ? "block" : "hidden md:block"}
                   `}
                 >
                   <h4 className="hidden md:block text-[11px] font-bold text-[#999] uppercase tracking-[0.2em] mb-6">
-                    {t('blog.toc.title')}
+                    {t("blog.toc.title")}
                   </h4>
                   <ul className="space-y-4">
                     {headings.map((heading, index) => (
-                      <li key={`${heading.id}-${index}`} style={{ marginLeft: heading.level === 3 ? '1rem' : '0' }}>
+                      <li
+                        key={`${heading.id}-${index}`}
+                        style={{
+                          marginLeft: heading.level === 3 ? "1rem" : "0",
+                        }}
+                      >
                         <a
                           href={`#${heading.id}`}
-                          onClick={(e) => {
+                          onClick={e => {
                             e.preventDefault();
-                            document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
+                            document
+                              .getElementById(heading.id)
+                              ?.scrollIntoView({ behavior: "smooth" });
                             setIsTocOpen(false);
                           }}
                           className={`
                             text-[14px] block leading-snug transition-all duration-500 relative
-                            ${activeId === heading.id
-                              ? 'text-[#4CAF93] font-semibold'
-                              : 'text-[#777] hover:text-[#222]'
+                            ${
+                              activeId === heading.id
+                                ? "text-[#4CAF93] font-semibold"
+                                : "text-[#777] hover:text-[#222]"
                             }
                           `}
                         >
@@ -261,7 +313,11 @@ export default function BlogPost() {
                             <motion.div
                               layoutId="toc-indicator"
                               className="absolute -left-[33px] top-0 w-[2px] h-full bg-[#4CAF93]"
-                              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 30,
+                              }}
                             />
                           )}
                           {heading.text}
@@ -277,7 +333,11 @@ export default function BlogPost() {
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                transition={{
+                  delay: 0.2,
+                  duration: 0.8,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 className="
                   prose prose-lg max-w-none 
                   mx-auto
@@ -345,15 +405,21 @@ export default function BlogPost() {
               {/* Author Bio (Card Style) */}
               <div className="mt-24 p-8 md:p-12 bg-gray-50/80 rounded-3xl border border-gray-100 flex flex-col items-center text-center">
                 <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-sm mb-6">
-                  <img src="/images/logo.png" alt="DropDrop Team" className="w-full h-full object-cover" />
+                  <img
+                    src="/images/logo.png"
+                    alt="DropDrop Team"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <div className="text-[11px] font-bold text-[#999] uppercase tracking-[0.2em] mb-3">
-                    {t('blog.author.title')}
+                    {t("blog.author.title")}
                   </div>
-                  <h4 className="text-xl font-bold text-[#111] mb-3">{post.author}</h4>
+                  <h4 className="text-xl font-bold text-[#111] mb-3">
+                    {post.author}
+                  </h4>
                   <p className="text-[15px] text-[#555] leading-relaxed max-w-lg mx-auto">
-                    {t('blog.author.desc')}
+                    {t("blog.author.desc")}
                   </p>
                 </div>
               </div>
@@ -371,12 +437,14 @@ export default function BlogPost() {
               className="mt-24 relative overflow-hidden bg-[#111111] rounded-[3rem] p-12 md:p-24 text-center shadow-2xl"
             >
               <div className="relative z-10 max-w-3xl mx-auto">
-                <span className="text-[#4CAF93] text-[11px] font-bold tracking-[0.3em] uppercase mb-8 block opacity-90">DropDrop App</span>
+                <span className="text-[#4CAF93] text-[11px] font-bold tracking-[0.3em] uppercase mb-8 block opacity-90">
+                  DropDrop App
+                </span>
                 <h3 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-[1.2] tracking-tight">
-                  {t('blog.cta.title')}
+                  {t("blog.cta.title")}
                 </h3>
                 <p className="text-white/70 mb-12 text-lg md:text-xl font-light leading-relaxed max-w-xl mx-auto">
-                  {t('blog.cta.subtitle')}
+                  {t("blog.cta.subtitle")}
                 </p>
                 <a
                   href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
@@ -384,7 +452,7 @@ export default function BlogPost() {
                   rel="noopener noreferrer"
                   className="inline-flex h-16 items-center justify-center rounded-full bg-[#4CAF93] px-12 text-[17px] font-bold text-white shadow-lg shadow-[#4CAF93]/20 transition-all hover:bg-[#3d8f78] hover:scale-105 active:scale-95"
                 >
-                  {t('blog.cta.btn')}
+                  {t("blog.cta.btn")}
                 </a>
               </div>
 

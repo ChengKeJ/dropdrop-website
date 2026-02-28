@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Clock } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { SEOHead } from '@/components/SEO/SEOHead';
-import { getAllBlogPosts, BlogPost } from '@/lib/blog';
-import { Link } from 'wouter';
-import { breadcrumbSchema } from '@/lib/structuredData';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-import { Skeleton } from '@/components/ui/skeleton';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Clock } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { SEOHead } from "@/components/SEO/SEOHead";
+import { getAllBlogPosts, BlogPost } from "@/lib/blog";
+import { Link } from "wouter";
+import { breadcrumbSchema } from "@/lib/structuredData";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Blog() {
   const { language, t } = useLanguage();
@@ -19,7 +19,7 @@ export default function Blog() {
     async function loadPosts() {
       setLoading(true);
       try {
-        const data = await getAllBlogPosts(language as 'zh' | 'en');
+        const data = await getAllBlogPosts(language as "zh" | "en");
         setPosts(data);
       } catch (error) {
         console.error("Failed to load blog posts", error);
@@ -31,24 +31,30 @@ export default function Blog() {
   }, [language]);
 
   const breadcrumbs = breadcrumbSchema([
-    { name: 'Home', url: 'https://dropdrophabit.com/' },
-    { name: 'Blog', url: 'https://dropdrophabit.com/blog' }
+    { name: "Home", url: "https://dropdrophabit.com/" },
+    { name: "Blog", url: "https://dropdrophabit.com/blog" },
   ]);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" },
   };
 
   return (
     <>
       <SEOHead
-        title={language === 'zh' ? 'DropDrop 博客 - 习惯养成指南与技巧' : 'DropDrop Blog - Habit Building Guides & Tips'}
-        description={language === 'zh'
-          ? '探索科学的习惯养成指南、2026年最新趋势以及 DropDrop 使用教程。获取专业的自我提升建议，助你建立持久的生活方式。'
-          : 'Discover expert habit-building strategies, 2026 trends, and DropDrop tutorials. Transform your daily routine with science-backed insights.'}
+        title={
+          language === "zh"
+            ? "DropDrop 博客 - 习惯养成指南与技巧"
+            : "DropDrop Blog - Habit Building Guides & Tips"
+        }
+        description={
+          language === "zh"
+            ? "探索科学的习惯养成指南、2026年最新趋势以及 DropDrop 使用教程。获取专业的自我提升建议，助你建立持久的生活方式。"
+            : "Discover expert habit-building strategies, 2026 trends, and DropDrop tutorials. Transform your daily routine with science-backed insights."
+        }
         canonical="https://dropdrophabit.com/blog"
         structuredData={breadcrumbs}
       />
@@ -64,7 +70,7 @@ export default function Blog() {
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl md:text-5xl font-light text-[#222222] mb-8"
             >
-              {t('blog.title')}
+              {t("blog.title")}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -72,7 +78,7 @@ export default function Blog() {
               transition={{ delay: 0.1 }}
               className="text-lg text-[#666666] max-w-2xl mx-auto font-light"
             >
-              {t('blog.subtitle')}
+              {t("blog.subtitle")}
             </motion.p>
           </div>
         </section>
@@ -82,7 +88,7 @@ export default function Blog() {
           <div className="container max-w-6xl mx-auto">
             {loading ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                {[1, 2, 3].map((i) => (
+                {[1, 2, 3].map(i => (
                   <div key={i} className="space-y-4">
                     <Skeleton className="h-[240px] w-full rounded-3xl" />
                     <div className="space-y-2">
@@ -115,7 +121,9 @@ export default function Blog() {
                               />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center group-hover:bg-[#E8F5E9] transition-colors duration-500">
-                                <span className="text-4xl grayscale group-hover:grayscale-0 transition-all duration-500">🌿</span>
+                                <span className="text-4xl grayscale group-hover:grayscale-0 transition-all duration-500">
+                                  🌿
+                                </span>
                               </div>
                             )}
                           </div>
@@ -127,7 +135,13 @@ export default function Blog() {
                                 {post.category}
                               </span>
                               <span>•</span>
-                              <span>{new Date(post.datePublished).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US')}</span>
+                              <span>
+                                {new Date(
+                                  post.datePublished
+                                ).toLocaleDateString(
+                                  language === "zh" ? "zh-CN" : "en-US"
+                                )}
+                              </span>
                             </div>
 
                             <h2 className="text-xl font-normal text-[#222222] mb-4 group-hover:text-[#4CAF93] transition-colors line-clamp-2 leading-snug">
@@ -141,10 +155,13 @@ export default function Blog() {
                             <div className="flex items-center justify-between pt-6 border-t border-[#F5F5F5]">
                               <div className="flex items-center gap-2 text-xs text-[#999999]">
                                 <Clock size={14} />
-                                <span>{post.readTime} {language === 'zh' ? '分钟阅读' : 'min read'}</span>
+                                <span>
+                                  {post.readTime}{" "}
+                                  {language === "zh" ? "分钟阅读" : "min read"}
+                                </span>
                               </div>
                               <span className="text-[#222222] text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                                {language === 'zh' ? '阅读全文' : 'Read More'}
+                                {language === "zh" ? "阅读全文" : "Read More"}
                                 <ArrowRight size={16} />
                               </span>
                             </div>

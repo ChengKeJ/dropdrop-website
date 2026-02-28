@@ -1,20 +1,20 @@
-export type Language = 'en' | 'zh';
+export type Language = "en" | "zh";
 
-export const DEFAULT_LANGUAGE: Language = 'en';
-export const SUPPORTED_LANGUAGES: Language[] = ['en', 'zh'];
+export const DEFAULT_LANGUAGE: Language = "en";
+export const SUPPORTED_LANGUAGES: Language[] = ["en", "zh"];
 
 /**
  * Check if the current path implies Chinese language
  */
 export function isChinesePath(path: string): boolean {
-  return path.startsWith('/zh');
+  return path.startsWith("/zh");
 }
 
 /**
  * Get the language from a given path
  */
 export function getLanguageFromPath(path: string): Language {
-  return isChinesePath(path) ? 'zh' : 'en';
+  return isChinesePath(path) ? "zh" : "en";
 }
 
 /**
@@ -24,9 +24,9 @@ export function getLanguageFromPath(path: string): Language {
  */
 export function getCleanPath(path: string): string {
   if (isChinesePath(path)) {
-    return path.substring(3) || '/';
+    return path.substring(3) || "/";
   }
-  return path || '/';
+  return path || "/";
 }
 
 /**
@@ -36,11 +36,11 @@ export function getCleanPath(path: string): string {
  */
 export function getLocalizedPath(path: string, targetLang: Language): string {
   const cleanPath = getCleanPath(path);
-  
-  if (targetLang === 'zh') {
+
+  if (targetLang === "zh") {
     // Prevent double slashes if cleanPath is just '/'
-    return `/zh${cleanPath === '/' ? '' : cleanPath}`;
+    return `/zh${cleanPath === "/" ? "" : cleanPath}`;
   }
-  
+
   return cleanPath;
 }

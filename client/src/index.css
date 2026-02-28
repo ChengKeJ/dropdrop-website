@@ -45,82 +45,82 @@
 
 :root {
   /* Scientific / Gentle Color Scheme */
-  --primary: #4CAF93; /* Soft Green */
-  --primary-light: #E8F5E9;
-  --primary-dark: #388E3C;
-  --primary-foreground: #FFFFFF;
+  --primary: #4caf93; /* Soft Green */
+  --primary-light: #e8f5e9;
+  --primary-dark: #388e3c;
+  --primary-foreground: #ffffff;
 
-  --secondary: #F5F5F5;
+  --secondary: #f5f5f5;
   --secondary-foreground: #666666;
 
-  --background: #FAFAFA;
+  --background: #fafafa;
   --foreground: #222222; /* Main text */
 
-  --card: #FFFFFF;
+  --card: #ffffff;
   --card-foreground: #222222;
 
-  --popover: #FFFFFF;
+  --popover: #ffffff;
   --popover-foreground: #222222;
 
-  --muted: #F5F5F5;
+  --muted: #f5f5f5;
   --muted-foreground: #999999; /* Notes/Annotation */
 
-  --accent: #4CAF93;
-  --accent-foreground: #FFFFFF;
+  --accent: #4caf93;
+  --accent-foreground: #ffffff;
 
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
 
-  --border: #E5E5E5;
-  --input: #F5F5F5;
-  --ring: #4CAF93;
+  --border: #e5e5e5;
+  --input: #f5f5f5;
+  --ring: #4caf93;
   --radius: 0.75rem;
 
-  --sidebar: #FFFFFF;
+  --sidebar: #ffffff;
   --sidebar-foreground: #222222;
-  --sidebar-primary: #4CAF93;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #E8F5E9;
-  --sidebar-accent-foreground: #4CAF93;
-  --sidebar-border: #E5E5E5;
-  --sidebar-ring: #4CAF93;
+  --sidebar-primary: #4caf93;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8f5e9;
+  --sidebar-accent-foreground: #4caf93;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #4caf93;
 
-  --chart-1: #4CAF93;
-  --chart-2: #66BB6A;
-  --chart-3: #81C784;
-  --chart-4: #A5D6A7;
-  --chart-5: #C8E6C9;
+  --chart-1: #4caf93;
+  --chart-2: #66bb6a;
+  --chart-3: #81c784;
+  --chart-4: #a5d6a7;
+  --chart-5: #c8e6c9;
 }
 
 .dark {
   /* Dark mode adaptation if needed, keeping gentle vibes */
-  --background: #1A1C1E;
-  --foreground: #E0E0E0;
+  --background: #1a1c1e;
+  --foreground: #e0e0e0;
   --card: #222528;
-  --card-foreground: #E0E0E0;
+  --card-foreground: #e0e0e0;
   --popover: #222528;
-  --popover-foreground: #E0E0E0;
-  --primary: #4CAF93;
-  --primary-foreground: #FFFFFF;
-  --secondary: #2C3035;
-  --secondary-foreground: #A0A0A0;
-  --muted: #2C3035;
+  --popover-foreground: #e0e0e0;
+  --primary: #4caf93;
+  --primary-foreground: #ffffff;
+  --secondary: #2c3035;
+  --secondary-foreground: #a0a0a0;
+  --muted: #2c3035;
   --muted-foreground: #808080;
-  --accent: #4CAF93;
-  --accent-foreground: #FFFFFF;
-  --destructive: #CF6679;
-  --destructive-foreground: #FFFFFF;
+  --accent: #4caf93;
+  --accent-foreground: #ffffff;
+  --destructive: #cf6679;
+  --destructive-foreground: #ffffff;
   --border: #333333;
-  --input: #2C3035;
-  --ring: #4CAF93;
+  --input: #2c3035;
+  --ring: #4caf93;
   --sidebar: #222528;
-  --sidebar-foreground: #E0E0E0;
-  --sidebar-primary: #4CAF93;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #2C3035;
-  --sidebar-accent-foreground: #4CAF93;
+  --sidebar-foreground: #e0e0e0;
+  --sidebar-primary: #4caf93;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #2c3035;
+  --sidebar-accent-foreground: #4caf93;
   --sidebar-border: #333333;
-  --sidebar-ring: #4CAF93;
+  --sidebar-ring: #4caf93;
 }
 
 @layer base {
@@ -129,15 +129,28 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Source Han Sans CN', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "PingFang SC",
+      "Source Han Sans CN",
+      "Noto Sans SC",
+      "Microsoft YaHei",
+      sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     line-height: 1.8; /* More relaxed line height */
     color: #333333; /* Softer black */
   }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', 'PingFang SC', sans-serif; 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Inter", "PingFang SC", sans-serif;
     font-weight: 600; /* Standard bold for clarity */
     letter-spacing: -0.02em;
     line-height: 1.25;
@@ -200,9 +213,15 @@
 
   /* Float Animations */
   @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
   }
 
   .animate-float-slow {

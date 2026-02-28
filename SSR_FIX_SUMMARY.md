@@ -12,6 +12,7 @@ Error occurred when refreshing the page, indicating a Server-Side Rendering (SSR
 ## 🔍 Root Causes Identified
 
 ### 1. **Direct `window.innerWidth` Access** (Fixed in commit `d45c8c9`)
+
 **Location**: `client/src/pages/Home.tsx`
 
 ```typescript
@@ -22,6 +23,7 @@ Error occurred when refreshing the page, indicating a Server-Side Rendering (SSR
 **Issue**: `window` object doesn't exist during server-side rendering
 
 **Fix**:
+
 ```typescript
 // ✅ Solution
 <feature.IconComponent size={isMobile ? 80 : 96} />
@@ -30,35 +32,37 @@ Error occurred when refreshing the page, indicating a Server-Side Rendering (SSR
 ---
 
 ### 2. **localStorage and navigator in useState Initializer** (Fixed in commit `f6a88c9`)
+
 **Location**: `client/src/contexts/LanguageContext.tsx`
 
 ```typescript
 // ❌ Problem
 const [language, setLanguageState] = useState<Language>(() => {
-  const saved = localStorage.getItem('dropdrop-language');
+  const saved = localStorage.getItem("dropdrop-language");
   const browserLang = navigator.language.toLowerCase();
-  return browserLang.startsWith('zh') ? 'zh' : 'en';
+  return browserLang.startsWith("zh") ? "zh" : "en";
 });
 ```
 
 **Issue**: `localStorage` and `navigator` are accessed during state initialization on server
 
 **Fix**:
+
 ```typescript
 // ✅ Solution
-const [language, setLanguageState] = useState<Language>('zh'); // Default
+const [language, setLanguageState] = useState<Language>("zh"); // Default
 
 useEffect(() => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
 
-  const saved = localStorage.getItem('dropdrop-language');
-  if (saved && (saved === 'zh' || saved === 'en')) {
+  const saved = localStorage.getItem("dropdrop-language");
+  if (saved && (saved === "zh" || saved === "en")) {
     setLanguageState(saved);
     return;
   }
 
   const browserLang = navigator.language.toLowerCase();
-  const detectedLang = browserLang.startsWith('zh') ? 'zh' : 'en';
+  const detectedLang = browserLang.startsWith("zh") ? "zh" : "en";
   setLanguageState(detectedLang);
 }, []);
 ```
@@ -66,9 +70,11 @@ useEffect(() => {
 ---
 
 ### 3. **Unprotected window and document Access** (Fixed in commit `3dceaf5`)
+
 **Location**: `client/src/pages/Home.tsx`
 
 #### Issue A: Scroll Handler
+
 ```typescript
 // ❌ Problem
 const handleScroll = useThrottle(() => {
@@ -77,16 +83,18 @@ const handleScroll = useThrottle(() => {
 ```
 
 **Fix**:
+
 ```typescript
 // ✅ Solution
 const handleScroll = useThrottle(() => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     setIsScrolled(window.scrollY > 50);
   }
 }, 100);
 ```
 
 #### Issue B: Scroll Event Listener
+
 ```typescript
 // ❌ Problem
 useEffect(() => {
@@ -96,10 +104,11 @@ useEffect(() => {
 ```
 
 **Fix**:
+
 ```typescript
 // ✅ Solution
 useEffect(() => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
 
   window.addEventListener("scroll", handleScroll, { passive: true });
   return () => window.removeEventListener("scroll", handleScroll);
@@ -107,54 +116,58 @@ useEffect(() => {
 ```
 
 #### Issue C: Document Body Manipulation
+
 ```typescript
 // ❌ Problem
 useEffect(() => {
   if (isMobileMenuOpen) {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   } else {
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
   }
 }, [isMobileMenuOpen]);
 ```
 
 **Fix**:
+
 ```typescript
 // ✅ Solution
 useEffect(() => {
-  if (typeof document === 'undefined') return;
+  if (typeof document === "undefined") return;
 
   if (isMobileMenuOpen) {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   } else {
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
   }
   return () => {
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
   };
 }, [isMobileMenuOpen]);
 ```
 
 #### Issue D: Scroll to Section
+
 ```typescript
 // ❌ Problem
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id);
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
+    element.scrollIntoView({ behavior: "smooth" });
   }
 };
 ```
 
 **Fix**:
+
 ```typescript
 // ✅ Solution
 const scrollToSection = (id: string) => {
-  if (typeof document === 'undefined') return;
+  if (typeof document === "undefined") return;
 
   const element = document.getElementById(id);
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
+    element.scrollIntoView({ behavior: "smooth" });
     setIsMobileMenuOpen(false);
   }
 };
@@ -188,13 +201,16 @@ const scrollToSection = (id: string) => {
 ## 🧪 Testing Checklist
 
 ### Local Development
+
 ```bash
 npm run build
 npm run preview
 ```
 
 ### Deployment Testing
+
 After deploying, verify:
+
 - [ ] Page loads without errors
 - [ ] Refresh page works correctly
 - [ ] Language switching works
@@ -204,6 +220,7 @@ After deploying, verify:
 - [ ] No console errors in browser DevTools
 
 ### SSR-Specific Tests
+
 - [ ] View page source - should show Chinese content (default language)
 - [ ] JavaScript disabled - page should still render static content
 - [ ] Slow 3G network - check for hydration errors
@@ -213,16 +230,19 @@ After deploying, verify:
 ## 🚀 Deployment Instructions
 
 1. **Pull Latest Code**
+
    ```bash
    git pull origin claude/mobile-design-optimization-70Rc9
    ```
 
 2. **Install Dependencies** (if needed)
+
    ```bash
    npm install
    ```
 
 3. **Build for Production**
+
    ```bash
    npm run build
    ```
@@ -243,10 +263,10 @@ After deploying, verify:
 
 ## 📦 Commits Summary
 
-| Commit | Description |
-|--------|-------------|
-| `d45c8c9` | Replace window.innerWidth with useIsMobile hook |
-| `f6a88c9` | Move localStorage and navigator to useEffect |
+| Commit    | Description                                           |
+| --------- | ----------------------------------------------------- |
+| `d45c8c9` | Replace window.innerWidth with useIsMobile hook       |
+| `f6a88c9` | Move localStorage and navigator to useEffect          |
 | `3dceaf5` | Add comprehensive SSR protection for all browser APIs |
 
 ---
@@ -271,14 +291,16 @@ git push --force origin claude/mobile-design-optimization-70Rc9
 ### ✅ SSR-Safe Patterns
 
 1. **Browser API Access in useEffect**
+
    ```typescript
    useEffect(() => {
-     if (typeof window === 'undefined') return;
+     if (typeof window === "undefined") return;
      // Safe to access window here
    }, []);
    ```
 
 2. **Conditional Rendering for Client-Only Features**
+
    ```typescript
    const [isMounted, setIsMounted] = useState(false);
    useEffect(() => setIsMounted(true), []);
@@ -287,12 +309,13 @@ git push --force origin claude/mobile-design-optimization-70Rc9
    ```
 
 3. **Default Values for Server**
+
    ```typescript
-   const [value, setValue] = useState('default');
+   const [value, setValue] = useState("default");
 
    useEffect(() => {
-     if (typeof window !== 'undefined') {
-       setValue(window.localStorage.getItem('key') || 'default');
+     if (typeof window !== "undefined") {
+       setValue(window.localStorage.getItem("key") || "default");
      }
    }, []);
    ```
@@ -331,11 +354,11 @@ If you encounter SSR errors in the future:
 
 4. **Add Debugging**
    ```typescript
-   console.log('IS_SERVER:', typeof window === 'undefined');
-   console.log('IS_CLIENT:', typeof window !== 'undefined');
+   console.log("IS_SERVER:", typeof window === "undefined");
+   console.log("IS_CLIENT:", typeof window !== "undefined");
    ```
 
 ---
 
-*Last Updated: 2026-01-11*
-*Status: Ready for Production Deployment*
+_Last Updated: 2026-01-11_
+_Status: Ready for Production Deployment_

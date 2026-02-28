@@ -18,33 +18,54 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FAFAFA]/80 backdrop-blur-md border-b border-[#E5E5E5]">
       <div className="container h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 hover:opacity-100 transition-opacity z-50">
-          <img src="/images/logo.webp" alt="DropDrop Logo" className="w-8 h-8 rounded-lg" width="32" height="32" />
-          <span className="text-lg font-medium tracking-tight text-[#222222]">DropDrop</span>
+        <Link
+          href="/"
+          className="flex items-center gap-3 hover:opacity-100 transition-opacity z-50"
+        >
+          <img
+            src="/images/logo.webp"
+            alt="DropDrop Logo"
+            className="w-8 h-8 rounded-lg"
+            width="32"
+            height="32"
+          />
+          <span className="text-lg font-medium tracking-tight text-[#222222]">
+            DropDrop
+          </span>
         </Link>
-        
+
         {/* Desktop Menu */}
         <div className="flex items-center gap-3 md:gap-6">
           <div className="hidden md:flex items-center gap-6">
-            <Link href="/blog" className="text-sm text-[#666666] hover:text-[#222222] transition-colors">{t('nav.blog')}</Link>
-            <Link href="/about" className="text-sm text-[#666666] hover:text-[#222222] transition-colors">{t('nav.about')}</Link>
-          </div>
-          
-          <div className="hidden md:block">
-             <LanguageSwitcher />
+            <Link
+              href="/blog"
+              className="text-sm text-[#666666] hover:text-[#222222] transition-colors"
+            >
+              {t("nav.blog")}
+            </Link>
+            <Link
+              href="/about"
+              className="text-sm text-[#666666] hover:text-[#222222] transition-colors"
+            >
+              {t("nav.about")}
+            </Link>
           </div>
 
-          <a 
+          <div className="hidden md:block">
+            <LanguageSwitcher />
+          </div>
+
+          <a
             href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:block px-4 py-2 md:px-5 md:py-2 bg-[#222222] text-white text-[13px] md:text-sm rounded-full hover:bg-[#000000] transition-colors whitespace-nowrap"
           >
-            {t('nav.download_app')}
+            {t("nav.download_app")}
           </a>
 
           {/* Mobile Menu Toggle */}
-          <button 
+          <button
             className="md:hidden p-2 -mr-2 text-[#222222] z-50"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
@@ -65,19 +86,23 @@ export function Navbar() {
             className="fixed inset-0 top-0 pt-24 bg-[#FAFAFA] z-40 md:hidden overflow-hidden flex flex-col px-6"
           >
             <div className="flex flex-col gap-6 text-lg font-medium text-[#222222]">
-              <Link href="/blog" className="py-2 border-b border-gray-100">{t('nav.blog')}</Link>
-              <Link href="/about" className="py-2 border-b border-gray-100">{t('nav.about')}</Link>
+              <Link href="/blog" className="py-2 border-b border-gray-100">
+                {t("nav.blog")}
+              </Link>
+              <Link href="/about" className="py-2 border-b border-gray-100">
+                {t("nav.about")}
+              </Link>
               <div className="py-2 flex justify-between items-center border-b border-gray-100">
                 <span>Language</span>
                 <LanguageSwitcher />
               </div>
-              <a 
-                href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464" 
+              <a
+                href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 btn-primary w-full text-center py-4 rounded-full"
               >
-                {t('nav.download_app')}
+                {t("nav.download_app")}
               </a>
             </div>
           </motion.div>

@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from "react-helmet-async";
 import { Route, Switch, Router as WouterRouter, useLocation } from "wouter";
 import { Analytics } from "@vercel/analytics/react";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -56,7 +56,7 @@ function App() {
   const [location] = useLocation();
   // Determine base path for routing and language context
   // If path starts with /zh, base is /zh. Otherwise default (empty).
-  const base = isChinesePath(location) ? '/zh' : '';
+  const base = isChinesePath(location) ? "/zh" : "";
 
   return (
     <ErrorBoundary>

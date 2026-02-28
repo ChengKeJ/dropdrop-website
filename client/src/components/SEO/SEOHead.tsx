@@ -1,12 +1,12 @@
-import { Helmet } from 'react-helmet-async';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Helmet } from "react-helmet-async";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SEOHeadProps {
   title?: string;
   description?: string;
   canonical?: string;
   ogImage?: string;
-  ogType?: 'website' | 'article';
+  ogType?: "website" | "article";
   article?: {
     publishedTime?: string;
     modifiedTime?: string;
@@ -21,11 +21,11 @@ interface SEOHeadProps {
 }
 
 export function SEOHead({
-  title = 'DropDrop - 养成好习惯，从现在开始',
-  description = 'DropDrop 是一款专业的习惯追踪应用',
-  canonical = 'https://dropdrophabit.com',
-  ogImage = 'https://dropdrophabit.com/images/logo.png',
-  ogType = 'website',
+  title = "DropDrop - 养成好习惯，从现在开始",
+  description = "DropDrop 是一款专业的习惯追踪应用",
+  canonical = "https://dropdrophabit.com",
+  ogImage = "https://dropdrophabit.com/images/logo.png",
+  ogType = "website",
   article,
   keywords,
   noindex = false,
@@ -34,11 +34,14 @@ export function SEOHead({
 }: SEOHeadProps) {
   const { language } = useLanguage();
 
-  const lang = language === 'zh' ? 'zh-CN' : 'en';
+  const lang = language === "zh" ? "zh-CN" : "en";
 
   // Assume 'canonical' prop is the base URL (Default EN version), e.g., "https://dropdrophabit.com/about"
   // Remove trailing slash for consistency
-  const baseUrl = canonical.endsWith('/') && canonical.length > 1 ? canonical.slice(0, -1) : canonical;
+  const baseUrl =
+    canonical.endsWith("/") && canonical.length > 1
+      ? canonical.slice(0, -1)
+      : canonical;
 
   // Construct language-specific URLs
   // EN is default (root), ZH is prefixed
@@ -46,13 +49,15 @@ export function SEOHead({
   const path = baseUrl.replace(origin, "");
 
   const enUrl = baseUrl; // Default English URL
-  const zhUrl = `${origin}/zh${path === '/' ? '' : path}`; // Prefixed Chinese URL
+  const zhUrl = `${origin}/zh${path === "/" ? "" : path}`; // Prefixed Chinese URL
 
-  const currentCanonical = language === 'zh' ? zhUrl : enUrl;
+  const currentCanonical = language === "zh" ? zhUrl : enUrl;
 
   // Prepare structured data as array
   const structuredDataArray = structuredData
-    ? (Array.isArray(structuredData) ? structuredData : [structuredData])
+    ? Array.isArray(structuredData)
+      ? structuredData
+      : [structuredData]
     : [];
 
   return (
@@ -62,7 +67,7 @@ export function SEOHead({
       <title>{title}</title>
       <meta name="description" content={description} />
       {keywords && keywords.length > 0 && (
-        <meta name="keywords" content={keywords.join(', ')} />
+        <meta name="keywords" content={keywords.join(", ")} />
       )}
 
       {/* Canonical URL */}
@@ -72,7 +77,12 @@ export function SEOHead({
       <link rel="alternate" hrefLang="zh" href={zhUrl} />
       <link rel="alternate" hrefLang="en" href={enUrl} />
       <link rel="alternate" hrefLang="x-default" href={zhUrl} />
-      <link rel="alternate" type="application/rss+xml" title="DropDrop Blog RSS Feed" href="/feed.xml" />
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="DropDrop Blog RSS Feed"
+        href="/feed.xml"
+      />
 
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />
@@ -87,10 +97,16 @@ export function SEOHead({
       {article && (
         <>
           {article.publishedTime && (
-            <meta property="article:published_time" content={article.publishedTime} />
+            <meta
+              property="article:published_time"
+              content={article.publishedTime}
+            />
           )}
           {article.modifiedTime && (
-            <meta property="article:modified_time" content={article.modifiedTime} />
+            <meta
+              property="article:modified_time"
+              content={article.modifiedTime}
+            />
           )}
           {article.author && (
             <meta property="article:author" content={article.author} />
@@ -98,7 +114,7 @@ export function SEOHead({
           {article.section && (
             <meta property="article:section" content={article.section} />
           )}
-          {article.tags?.map((tag) => (
+          {article.tags?.map(tag => (
             <meta key={tag} property="article:tag" content={tag} />
           ))}
         </>

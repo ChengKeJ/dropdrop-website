@@ -1,11 +1,13 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 import { useLocation } from "wouter";
-import { 
-  Language, 
-  getLanguageFromPath, 
-  getLocalizedPath 
-} from '@/lib/i18n';
-import { translations } from '@/lib/translations';
+import { Language, getLanguageFromPath, getLocalizedPath } from "@/lib/i18n";
+import { translations } from "@/lib/translations";
 
 interface LanguageContextType {
   language: Language;
@@ -14,24 +16,29 @@ interface LanguageContextType {
   localizedPath: (path: string) => string;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined
+);
 
 interface LanguageProviderProps {
   children: ReactNode;
   base?: string;
 }
 
-export function LanguageProvider({ children, base = '' }: LanguageProviderProps) {
+export function LanguageProvider({
+  children,
+  base = "",
+}: LanguageProviderProps) {
   const [location, navigate] = useLocation();
-  
+
   // Use centralized logic to determine language
   // 'base' prop from App.tsx corresponds to the router base path (e.g. '/zh' or '')
   const language = getLanguageFromPath(base);
 
   // Sync language to document
   useEffect(() => {
-    document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
-    localStorage.setItem('dropdrop-language', language);
+    document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+    localStorage.setItem("dropdrop-language", language);
   }, [language]);
 
   const setLanguage = (targetLang: Language) => {
@@ -58,11 +65,13 @@ export function LanguageProvider({ children, base = '' }: LanguageProviderProps)
     // If the Router base is '/zh', <Link href="/about"> goes to '/zh/about'.
     // So we usually DON'T need to manually prepend base if using wouter's Link inside Router.
     // However, for external <a> tags or special cases, this might be useful.
-    return path; 
+    return path;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, localizedPath }}>
+    <LanguageContext.Provider
+      value={{ language, setLanguage, t, localizedPath }}
+    >
       {children}
     </LanguageContext.Provider>
   );
@@ -71,7 +80,7 @@ export function LanguageProvider({ children, base = '' }: LanguageProviderProps)
 export function useLanguage() {
   const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
 }

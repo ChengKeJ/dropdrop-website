@@ -1,51 +1,53 @@
-import { motion } from 'framer-motion';
-import { Heart, Target, Users } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { SEOHead } from '@/components/SEO/SEOHead';
-import { breadcrumbSchema, organizationSchema } from '@/lib/structuredData';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
+import { motion } from "framer-motion";
+import { Heart, Target, Users } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { SEOHead } from "@/components/SEO/SEOHead";
+import { breadcrumbSchema, organizationSchema } from "@/lib/structuredData";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 export default function About() {
   const { language, t } = useLanguage();
 
   const breadcrumbs = breadcrumbSchema([
-    { name: 'Home', url: 'https://dropdrophabit.com/' },
-    { name: 'About', url: 'https://dropdrophabit.com/about' }
+    { name: "Home", url: "https://dropdrophabit.com/" },
+    { name: "About", url: "https://dropdrophabit.com/about" },
   ]);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" },
   };
 
   const values = [
     {
       icon: Heart,
-      titleKey: 'about.values.scientific',
-      descKey: 'about.values.scientific.desc'
+      titleKey: "about.values.scientific",
+      descKey: "about.values.scientific.desc",
     },
     {
       icon: Target,
-      titleKey: 'about.values.longterm',
-      descKey: 'about.values.longterm.desc'
+      titleKey: "about.values.longterm",
+      descKey: "about.values.longterm.desc",
     },
     {
       icon: Users,
-      titleKey: 'about.values.gentle',
-      descKey: 'about.values.gentle.desc'
-    }
+      titleKey: "about.values.gentle",
+      descKey: "about.values.gentle.desc",
+    },
   ];
 
   return (
     <>
       <SEOHead
-        title={t('about.title') + ' - DropDrop'}
-        description={language === 'zh'
-          ? '了解 DropDrop 团队的使命、愿景和价值观。我们致力于通过科学温和的方式，帮助人们建立更好的日常习惯。'
-          : 'Learn about DropDrop team\'s mission, vision, and values. We are dedicated to helping people build better habits in a scientific and gentle way.'}
+        title={t("about.title") + " - DropDrop"}
+        description={
+          language === "zh"
+            ? "了解 DropDrop 团队的使命、愿景和价值观。我们致力于通过科学温和的方式，帮助人们建立更好的日常习惯。"
+            : "Learn about DropDrop team's mission, vision, and values. We are dedicated to helping people build better habits in a scientific and gentle way."
+        }
         canonical="https://dropdrophabit.com/about"
         structuredData={[breadcrumbs, organizationSchema]}
       />
@@ -61,7 +63,7 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl md:text-5xl font-light text-[#222222] mb-8"
             >
-              {t('about.hero.title')}
+              {t("about.hero.title")}
             </motion.h1>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -69,7 +71,9 @@ export default function About() {
               transition={{ delay: 0.1 }}
               className="text-lg text-[#666666] max-w-2xl mx-auto leading-relaxed font-light"
             >
-              <span dangerouslySetInnerHTML={{ __html: t('about.hero.subtitle') }} />
+              <span
+                dangerouslySetInnerHTML={{ __html: t("about.hero.subtitle") }}
+              />
             </motion.div>
           </div>
         </section>
@@ -82,13 +86,13 @@ export default function About() {
               className="bg-white border border-[#E5E5E5] rounded-3xl p-8 md:p-12 shadow-soft"
             >
               <h2 className="text-2xl md:text-3xl font-light text-[#222222] mb-8">
-                {t('about.mission')}
+                {t("about.mission")}
               </h2>
               <p className="text-[#666666] leading-relaxed mb-6 font-light">
-                {t('about.mission.desc1')}
+                {t("about.mission.desc1")}
               </p>
               <p className="text-[#666666] leading-relaxed font-light">
-                {t('about.mission.desc2')}
+                {t("about.mission.desc2")}
               </p>
             </motion.div>
           </div>
@@ -101,7 +105,7 @@ export default function About() {
               {...fadeInUp}
               className="text-2xl md:text-3xl font-light text-[#222222] mb-12 text-center"
             >
-              {t('about.values.title')}
+              {t("about.values.title")}
             </motion.h2>
             <div className="grid md:grid-cols-3 gap-8">
               {values.map((value, index) => (
@@ -134,12 +138,12 @@ export default function About() {
               className="bg-[#222222] rounded-[2.5rem] p-10 md:p-16 text-white shadow-xl"
             >
               <h3 className="text-2xl md:text-3xl font-light text-white mb-6">
-                {t('about.contact.title')}
+                {t("about.contact.title")}
               </h3>
               <p className="text-white/60 mb-10 text-lg font-light leading-relaxed max-w-lg mx-auto">
-                {t('about.contact.subtitle')}
+                {t("about.contact.subtitle")}
               </p>
-              
+
               {/* Responsive Button Fix: break-all and smaller text on mobile */}
               <a
                 href="mailto:support@dropdrophabit.com"

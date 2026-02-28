@@ -9,28 +9,36 @@ The website is now configured to display your 4 app screenshots. Please add them
 Add the following 4 screenshots to: `client/public/images/`
 
 ### 1. Health Plan Screen (健康计划)
+
 **Filename:** `app-screenshot-1.png`
+
 - **Source:** Your first screenshot showing the "Plan" screen
 - **Shows:** Health condition card, steps (1947), sleep data, body recovery status
 - **Recommended size:** 750px × 1624px (iPhone 14 Pro aspect ratio)
 - **Max file size:** 200KB (compressed)
 
 ### 2. Add Habit Screen (习惯选择)
+
 **Filename:** `app-screenshot-2.png`
+
 - **Source:** Your second screenshot showing "Create New Plan / Add Habit"
 - **Shows:** Habit categories (All, Health, Sport, Study) and habit options
 - **Recommended size:** 750px × 1624px
 - **Max file size:** 200KB (compressed)
 
 ### 3. Today Screen (每日打卡)
+
 **Filename:** `app-screenshot-3.png`
+
 - **Source:** Your third screenshot showing the "Today" view
 - **Shows:** Saturday calendar, 2/2 completed, Morning Water and Plank habits
 - **Recommended size:** 750px × 1624px
 - **Max file size:** 200KB (compressed)
 
 ### 4. Statistics Screen (数据统计)
+
 **Filename:** `app-screenshot-4.png`
+
 - **Source:** Your fourth screenshot showing "Statistics"
 - **Shows:** Weekly view, completion rates with bar charts for habits
 - **Recommended size:** 750px × 1624px
@@ -39,6 +47,7 @@ Add the following 4 screenshots to: `client/public/images/`
 ## How to Add Screenshots
 
 ### Option 1: Manual Copy
+
 ```bash
 # Navigate to the images directory
 cd client/public/images/
@@ -51,6 +60,7 @@ cd client/public/images/
 ```
 
 ### Option 2: Using Command Line
+
 ```bash
 # From the project root
 cp /path/to/your/screenshot1.png client/public/images/app-screenshot-1.png
@@ -64,6 +74,7 @@ cp /path/to/your/screenshot4.png client/public/images/app-screenshot-4.png
 To optimize your screenshots for web, use one of these tools:
 
 ### Online Tools
+
 1. **TinyPNG**: https://tinypng.com/
    - Upload your PNG files
    - Download the compressed versions
@@ -75,6 +86,7 @@ To optimize your screenshots for web, use one of these tools:
    - Supports WebP format
 
 ### Command Line (ImageMagick)
+
 ```bash
 # Install ImageMagick first
 # macOS: brew install imagemagick
@@ -85,6 +97,7 @@ convert input.png -resize 750x1624 -quality 85 app-screenshot-1.png
 ```
 
 ### Command Line (sharp-cli)
+
 ```bash
 # Install sharp-cli
 npm install -g sharp-cli
@@ -98,6 +111,7 @@ sharp -i input.png -o app-screenshot-1.png -f png --compressionLevel 9
 After adding the screenshots, verify they appear correctly:
 
 1. **Start the development server:**
+
    ```bash
    npm run dev
    ```
@@ -119,6 +133,7 @@ If screenshots are missing, the website will automatically fall back to existing
 ## Technical Details
 
 ### Image Specifications
+
 - **Format:** PNG (recommended) or JPG
 - **Aspect Ratio:** 9:19.5 (iPhone modern aspect ratio)
 - **Color Space:** sRGB
@@ -126,14 +141,18 @@ If screenshots are missing, the website will automatically fall back to existing
 - **Transparency:** Optional (PNG only)
 
 ### File Naming Convention
+
 The filenames MUST match exactly:
+
 - `app-screenshot-1.png` ✅
 - `App-Screenshot-1.png` ❌ (wrong capitalization)
 - `app-screenshot-1.jpg` ❌ (wrong extension, unless you modify the code)
 - `app_screenshot_1.png` ❌ (wrong separator)
 
 ### Supported in Code
+
 The Home.tsx component references these images:
+
 ```tsx
 // Lines 353-356 (Desktop) and 393-396 (Mobile)
 { img: 'app-screenshot-1.png', ... },
@@ -145,29 +164,37 @@ The Home.tsx component references these images:
 ## Troubleshooting
 
 ### Issue: Screenshots not showing
+
 **Solution 1:** Check file path and naming
+
 ```bash
 # Run from project root
 ls -la client/public/images/app-screenshot-*.png
 ```
 
 **Solution 2:** Clear browser cache
+
 - Press Ctrl+Shift+R (Windows/Linux)
 - Press Cmd+Shift+R (macOS)
 
 **Solution 3:** Check file permissions
+
 ```bash
 chmod 644 client/public/images/app-screenshot-*.png
 ```
 
 ### Issue: Images loading slowly
+
 **Solution:** Compress images more
+
 - Target: < 200KB per image
 - Use WebP format for better compression
 - Enable lazy loading (already implemented)
 
 ### Issue: Blurry on high-DPI screens
+
 **Solution:** Use 2x resolution
+
 - Use 1500px width instead of 750px
 - Ensure compression quality is high (85-90%)
 
@@ -191,6 +218,7 @@ cwebp -q 85 app-screenshot-1.png -o app-screenshot-1.webp
 ## Questions?
 
 If you encounter any issues or need help, check:
+
 1. Console errors in browser DevTools (F12)
 2. Network tab to see if images are loading
 3. File paths are correct and accessible

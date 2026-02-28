@@ -1,83 +1,81 @@
 export const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'DropDrop',
-  url: 'https://dropdrophabit.com',
-  logo: 'https://dropdrophabit.com/images/logo.png',
-  description: '专业的习惯追踪应用，帮助你养成更好的习惯',
-  sameAs: [
-    'https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464',
-  ],
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "DropDrop",
+  url: "https://dropdrophabit.com",
+  logo: "https://dropdrophabit.com/images/logo.png",
+  description: "专业的习惯追踪应用，帮助你养成更好的习惯",
+  sameAs: ["https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"],
   contactPoint: {
-    '@type': 'ContactPoint',
-    contactType: 'Customer Service',
-    availableLanguage: ['Chinese', 'English']
-  }
+    "@type": "ContactPoint",
+    contactType: "Customer Service",
+    availableLanguage: ["Chinese", "English"],
+  },
 };
 
 export const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'DropDrop',
-  url: 'https://dropdrophabit.com',
-  description: '专业的习惯追踪应用',
-  inLanguage: ['zh-CN', 'en-US'],
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "DropDrop",
+  url: "https://dropdrophabit.com",
+  description: "专业的习惯追踪应用",
+  inLanguage: ["zh-CN", "en-US"],
   potentialAction: {
-    '@type': 'SearchAction',
-    target: 'https://dropdrophabit.com/search?q={search_term_string}',
-    'query-input': 'required name=search_term_string'
-  }
+    "@type": "SearchAction",
+    target: "https://dropdrophabit.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export const mobileAppSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'MobileApplication',
-  name: 'DropDrop',
-  description: '专业的习惯追踪应用，帮助你养成更好的习惯',
-  applicationCategory: 'HealthApplication',
-  operatingSystem: 'iOS, Android',
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  name: "DropDrop",
+  description: "专业的习惯追踪应用，帮助你养成更好的习惯",
+  applicationCategory: "HealthApplication",
+  operatingSystem: "iOS, Android",
   offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'CNY'
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "CNY",
   },
   aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    ratingCount: '1250',
-    bestRating: '5',
-    worstRating: '1'
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    ratingCount: "1250",
+    bestRating: "5",
+    worstRating: "1",
   },
   screenshot: [
-    'https://dropdrophabit.com/images/minPlan.png',
-    'https://dropdrophabit.com/images/habit.png',
-    'https://dropdrophabit.com/images/today.png',
-    'https://dropdrophabit.com/images/statics.png'
-  ]
+    "https://dropdrophabit.com/images/minPlan.png",
+    "https://dropdrophabit.com/images/habit.png",
+    "https://dropdrophabit.com/images/today.png",
+    "https://dropdrophabit.com/images/statics.png",
+  ],
 };
 
 export const breadcrumbSchema = (items: { name: string; url: string }[]) => ({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
   itemListElement: items.map((item, index) => ({
-    '@type': 'ListItem',
+    "@type": "ListItem",
     position: index + 1,
     name: item.name,
-    item: item.url
-  }))
+    item: item.url,
+  })),
 });
 
 export const faqSchema = (faqs: { question: string; answer: string }[]) => ({
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((faq) => ({
-    '@type': 'Question',
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(faq => ({
+    "@type": "Question",
     name: faq.question,
     acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.answer
-    }
-  }))
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
 });
 
 export const blogPostSchema = ({
@@ -90,7 +88,7 @@ export const blogPostSchema = ({
   url,
   keywords,
   wordCount,
-  articleSection
+  articleSection,
 }: {
   title: string;
   description: string;
@@ -103,8 +101,8 @@ export const blogPostSchema = ({
   wordCount?: number;
   articleSection?: string;
 }) => ({
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
   headline: title,
   description: description,
   image: image,
@@ -112,105 +110,108 @@ export const blogPostSchema = ({
   datePublished: datePublished,
   dateModified: dateModified,
   ...(wordCount && { wordCount }),
-  ...(keywords && keywords.length > 0 && { keywords: keywords.join(', ') }),
+  ...(keywords && keywords.length > 0 && { keywords: keywords.join(", ") }),
   ...(articleSection && { articleSection }),
   author: {
-    '@type': 'Person',
-    name: author
+    "@type": "Person",
+    name: author,
   },
   publisher: {
-    '@type': 'Organization',
-    name: 'DropDrop',
+    "@type": "Organization",
+    name: "DropDrop",
     logo: {
-      '@type': 'ImageObject',
-      url: 'https://dropdrophabit.com/images/logo.png'
-    }
+      "@type": "ImageObject",
+      url: "https://dropdrophabit.com/images/logo.png",
+    },
   },
   mainEntityOfPage: {
-    '@type': 'WebPage',
-    '@id': url
-  }
+    "@type": "WebPage",
+    "@id": url,
+  },
 });
 
 export const howToSchema = ({
   name,
   description,
-  steps
+  steps,
 }: {
   name: string;
   description: string;
   steps: { name: string; text: string; url?: string; image?: string }[];
 }) => ({
-  '@context': 'https://schema.org',
-  '@type': 'HowTo',
+  "@context": "https://schema.org",
+  "@type": "HowTo",
   name,
   description,
   step: steps.map((step, index) => ({
-    '@type': 'HowToStep',
+    "@type": "HowToStep",
     position: index + 1,
     name: step.name,
     text: step.text,
     url: step.url,
-    image: step.image
-  }))
+    image: step.image,
+  })),
 });
 
 export const reviewsSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: 'DropDrop',
-  image: 'https://dropdrophabit.com/images/logo.png',
-  description: 'DropDrop Habit Tracker',
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "DropDrop",
+  image: "https://dropdrophabit.com/images/logo.png",
+  description: "DropDrop Habit Tracker",
   brand: {
-    '@type': 'Brand',
-    name: 'DropDrop'
+    "@type": "Brand",
+    name: "DropDrop",
   },
   aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    ratingCount: '128',
-    bestRating: '5',
-    worstRating: '1'
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    ratingCount: "128",
+    bestRating: "5",
+    worstRating: "1",
   },
   review: [
     {
-      '@type': 'Review',
+      "@type": "Review",
       reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
+        "@type": "Rating",
+        ratingValue: "5",
+        bestRating: "5",
       },
       author: {
-        '@type': 'Person',
-        name: 'Michael Zhang'
+        "@type": "Person",
+        name: "Michael Zhang",
       },
-      reviewBody: 'I used to force myself to check every box daily, which often led to burnout. DropDrop\'s Rest Mode saved me; it taught me that rest is also part of the plan.'
+      reviewBody:
+        "I used to force myself to check every box daily, which often led to burnout. DropDrop's Rest Mode saved me; it taught me that rest is also part of the plan.",
     },
     {
-      '@type': 'Review',
+      "@type": "Review",
       reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
+        "@type": "Rating",
+        ratingValue: "5",
+        bestRating: "5",
       },
       author: {
-        '@type': 'Person',
-        name: 'Sarah Li'
+        "@type": "Person",
+        name: "Sarah Li",
       },
-      reviewBody: 'The HRV integration is amazing! It accurately tells me when to push and when to back off. It\'s not just a habit tracker; it\'s my fitness coach.'
+      reviewBody:
+        "The HRV integration is amazing! It accurately tells me when to push and when to back off. It's not just a habit tracker; it's my fitness coach.",
     },
     {
-      '@type': 'Review',
+      "@type": "Review",
       reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
+        "@type": "Rating",
+        ratingValue: "5",
+        bestRating: "5",
       },
       author: {
-        '@type': 'Person',
-        name: 'David Wang'
+        "@type": "Person",
+        name: "David Wang",
       },
-      reviewBody: 'The interface is beautiful with zero clutter. Opening the app feels calming, unlike the anxiety of "must check-in even if exhausted" from other apps.'
-    }
-  ]
+      reviewBody:
+        'The interface is beautiful with zero clutter. Opening the app feels calming, unlike the anxiety of "must check-in even if exhausted" from other apps.',
+    },
+  ],
 };

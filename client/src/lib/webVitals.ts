@@ -1,4 +1,4 @@
-import { onCLS, onFCP, onINP, onLCP, onTTFB, Metric } from 'web-vitals';
+import { onCLS, onFCP, onINP, onLCP, onTTFB, Metric } from "web-vitals";
 
 /**
  * Web Vitals tracking
@@ -14,25 +14,27 @@ import { onCLS, onFCP, onINP, onLCP, onTTFB, Metric } from 'web-vitals';
 function sendToAnalytics(metric: Metric) {
   // Log to console in development
   if (import.meta.env.DEV) {
-    console.log('[Web Vitals]', {
+    console.log("[Web Vitals]", {
       name: metric.name,
       value: metric.value,
       rating: metric.rating,
-      id: metric.id
+      id: metric.id,
     });
   }
 
   // Send to Google Analytics if available
-  if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('event', metric.name, {
-      event_category: 'Web Vitals',
+  if (typeof window !== "undefined" && (window as any).gtag) {
+    (window as any).gtag("event", metric.name, {
+      event_category: "Web Vitals",
       event_label: metric.id,
-      value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+      value: Math.round(
+        metric.name === "CLS" ? metric.value * 1000 : metric.value
+      ),
       non_interaction: true,
       metric_id: metric.id,
       metric_value: metric.value,
       metric_delta: metric.delta,
-      metric_rating: metric.rating
+      metric_rating: metric.rating,
     });
   }
 
@@ -42,7 +44,7 @@ function sendToAnalytics(metric: Metric) {
 
 export function reportWebVitals() {
   // Only run on client side
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
 
   // Track all Core Web Vitals
   onCLS(sendToAnalytics);

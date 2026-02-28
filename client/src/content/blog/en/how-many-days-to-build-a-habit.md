@@ -31,7 +31,7 @@ In this comprehensive guide, we'll dive deep into what science actually tells us
 
 ## The Origin of the 21-Day Myth
 
-The "21-day" idea comes from Dr. Maxwell Maltz, a plastic surgeon in the 1960s. He noticed that amputees took *about* 21 days to adjust to losing a limb and that his patients took a similar time to get used to new facial features.
+The "21-day" idea comes from Dr. Maxwell Maltz, a plastic surgeon in the 1960s. He noticed that amputees took _about_ 21 days to adjust to losing a limb and that his patients took a similar time to get used to new facial features.
 
 Somewhere along the way, "about 21 days to adjust" became "exactly 21 days to form any habit." A harmless observation became an unquestionable rule.
 
@@ -43,11 +43,11 @@ In 2009, a groundbreaking study by Dr. Philippa Lally at University College Lond
 
 The findings were eye-opening:
 
-| Finding | Timeframe |
-|---------|-----------|
-| **Average time to automaticity** | 66 days |
-| **Shortest time** | 18 days |
-| **Longest time** | 254 days |
+| Finding                          | Timeframe |
+| -------------------------------- | --------- |
+| **Average time to automaticity** | 66 days   |
+| **Shortest time**                | 18 days   |
+| **Longest time**                 | 254 days  |
 
 The variation was enormous. Simple habits like "drinking a glass of water with breakfast" took around 20 days. More complex habits like "doing 50 sit-ups before dinner" took much longer.
 
@@ -55,10 +55,10 @@ The variation was enormous. Simple habits like "drinking a glass of water with b
 
 The time it takes to build a habit depends on:
 
-*   **Complexity of the habit**: Drinking water vs. running 5km
-*   **Your starting point**: Have you exercised before, or is this completely new?
-*   **Environmental cues**: Is your environment designed to support the habit?
-*   **Your energy levels**: Are you building habits while burnt out?
+- **Complexity of the habit**: Drinking water vs. running 5km
+- **Your starting point**: Have you exercised before, or is this completely new?
+- **Environmental cues**: Is your environment designed to support the habit?
+- **Your energy levels**: Are you building habits while burnt out?
 
 This last point is critical—and it's where traditional habit trackers fail.
 
@@ -97,10 +97,10 @@ Unlike traditional apps, DropDrop integrates with your Apple Watch or other wear
 
 ### How It Works:
 
-| Your State | DropDrop's Response |
-|------------|---------------------|
-| **High HRV** (recovered, energized) | "Great day to push yourself! Go for that challenging habit." |
-| **Low HRV** (stressed, fatigued) | "Your body needs rest. Let's focus on lighter habits or recovery." |
+| Your State                          | DropDrop's Response                                                |
+| ----------------------------------- | ------------------------------------------------------------------ |
+| **High HRV** (recovered, energized) | "Great day to push yourself! Go for that challenging habit."       |
+| **Low HRV** (stressed, fatigued)    | "Your body needs rest. Let's focus on lighter habits or recovery." |
 
 This isn't about being "soft." It's about being **strategic**. Professional athletes have used HRV-guided training for years. Now, the same science is available for your daily habits.
 
@@ -114,9 +114,9 @@ Based on the latest research and real-world data from DropDrop users, here's a m
 
 These are tiny behaviors that require minimal effort and can piggyback on existing routines.
 
-*   Drink a glass of water when you wake up
-*   Take one deep breath before checking your phone
-*   Write down one thing you're grateful for
+- Drink a glass of water when you wake up
+- Take one deep breath before checking your phone
+- Write down one thing you're grateful for
 
 **Why they work fast**: Low friction, low energy demand.
 
@@ -124,9 +124,9 @@ These are tiny behaviors that require minimal effort and can piggyback on existi
 
 These require consistent effort but no major lifestyle restructuring.
 
-*   Read for 15 minutes before bed
-*   Journal daily
-*   Meditate for 10 minutes
+- Read for 15 minutes before bed
+- Journal daily
+- Meditate for 10 minutes
 
 **Why they take longer**: They compete with existing routines (like scrolling social media).
 
@@ -134,9 +134,9 @@ These require consistent effort but no major lifestyle restructuring.
 
 These involve significant behavioral change and often require identity shifts.
 
-*   Exercise 5 times a week
-*   Completely overhaul your diet
-*   Wake up at 5 AM daily
+- Exercise 5 times a week
+- Completely overhaul your diet
+- Wake up at 5 AM daily
 
 **Why they're hard**: They require energy, environmental changes, and often conflict with deep-seated patterns.
 
@@ -155,12 +155,14 @@ Here's how to approach it:
 ### Start Micro
 
 Don't try to budget every penny from day one. Start with:
-*   "I will check my bank balance every morning for 2 minutes."
+
+- "I will check my bank balance every morning for 2 minutes."
 
 ### Stack It
 
 Attach it to an existing habit:
-*   "After I make my morning coffee, I review yesterday's spending."
+
+- "After I make my morning coffee, I review yesterday's spending."
 
 ### Track It Intelligently
 
@@ -170,21 +172,21 @@ Use a habit tracker that doesn't punish you for missing a day. If you're stresse
 
 Many users searching for habit solutions compare **Loop Habit Tracker** (a popular open-source Android app) with premium options like DropDrop. Here's a fair breakdown:
 
-| Feature | Loop Habit Tracker | DropDrop |
-|---------|-------------------|----------|
-| **Price** | Free, open-source | Freemium (Premium available) |
-| **Platform** | Android only | iOS & Android |
-| **Streak tracking** | ✅ Yes | ✅ Yes (with flexible "Rest Mode") |
-| **HRV integration** | ❌ No | ✅ Apple Watch, Garmin, etc. |
-| **Mood/Energy logging** | ❌ Basic | ✅ Deep insights |
-| **Visual design** | Functional | Premium, calming aesthetic |
-| **Offline support** | ✅ Full | ✅ Full |
-| **Data privacy** | ✅ Local-first | ✅ Local-first, no ads |
+| Feature                 | Loop Habit Tracker | DropDrop                           |
+| ----------------------- | ------------------ | ---------------------------------- |
+| **Price**               | Free, open-source  | Freemium (Premium available)       |
+| **Platform**            | Android only       | iOS & Android                      |
+| **Streak tracking**     | ✅ Yes             | ✅ Yes (with flexible "Rest Mode") |
+| **HRV integration**     | ❌ No              | ✅ Apple Watch, Garmin, etc.       |
+| **Mood/Energy logging** | ❌ Basic           | ✅ Deep insights                   |
+| **Visual design**       | Functional         | Premium, calming aesthetic         |
+| **Offline support**     | ✅ Full            | ✅ Full                            |
+| **Data privacy**        | ✅ Local-first     | ✅ Local-first, no ads             |
 
 **The verdict?**
 
-*   **Loop Habit Tracker** is excellent for minimalists who want a simple, free solution on Android.
-*   **DropDrop** is for users who want science-backed, adaptive habit tracking that integrates with their wearable devices and respects their energy levels.
+- **Loop Habit Tracker** is excellent for minimalists who want a simple, free solution on Android.
+- **DropDrop** is for users who want science-backed, adaptive habit tracking that integrates with their wearable devices and respects their energy levels.
 
 ## 5 Science-Backed Strategies to Build Habits Faster
 
@@ -254,4 +256,4 @@ The answer: by being intelligent, patient, and using tools that treat you like a
 
 [Download DropDrop](https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464) and experience the future of habit tracking—where your body's data guides your growth, and rest is part of the plan.
 
-*Building habits shouldn't feel like a battle against yourself. Let 2026 be the year you finally make it easy.*
+_Building habits shouldn't feel like a battle against yourself. Let 2026 be the year you finally make it easy._
