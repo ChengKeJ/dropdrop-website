@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { HelmetProvider } from 'react-helmet-async';
 import { Route, Switch, Router as WouterRouter, useLocation } from "wouter";
+import { Analytics } from "@vercel/analytics/react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -66,6 +67,7 @@ function App() {
               <TooltipProvider>
                 <Toaster />
                 <AppRoutes />
+                <Analytics />
               </TooltipProvider>
             </ThemeProvider>
           </LanguageProvider>
