@@ -1,4 +1,5 @@
 import { createRoot } from "react-dom/client";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import App from "./App";
 import "./index.css";
 
@@ -14,7 +15,12 @@ import "@fontsource/playfair-display/600.css";
 import { reportWebVitals } from "./lib/webVitals";
 import { initGA } from "./lib/analytics";
 
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById("root")!).render(
+  <>
+    <App />
+    <SpeedInsights />
+  </>
+);
 
 // Initialize analytics and performance monitoring
 if (typeof window !== 'undefined') {
