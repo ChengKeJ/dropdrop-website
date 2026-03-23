@@ -1,0 +1,70 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="152" y1="90" x2="1454" y2="904" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF7F2"/>
+      <stop offset="0.55" stop-color="#F6F0EB"/>
+      <stop offset="1" stop-color="#EFE7DE"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="900" y1="154" x2="1280" y2="792" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF9"/>
+      <stop offset="1" stop-color="#F7F1EA"/>
+    </linearGradient>
+    <linearGradient id="band" x1="1036" y1="160" x2="1166" y2="792" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7D4C2"/>
+      <stop offset="1" stop-color="#D6B79C"/>
+    </linearGradient>
+    <linearGradient id="mug" x1="805" y1="578" x2="991" y2="756" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6E5D7"/>
+      <stop offset="1" stop-color="#E4C8AF"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1600" height="1000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="24"/>
+      <feGaussianBlur stdDeviation="30"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.173 0 0 0 0 0.137 0 0 0 0 0.118 0 0 0 0.15 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" rx="48" fill="url(#bg)"/>
+  <path d="M0 773C184 711 358 693 521 717C691 742 859 850 1042 860C1241 871 1431 813 1600 744V1000H0V773Z" fill="#E5D6C8"/>
+  <path d="M0 840C208 778 388 781 557 814C742 850 853 910 1056 918C1226 925 1407 885 1600 822V1000H0V840Z" fill="#D5C2B1"/>
+
+  <g filter="url(#shadow)">
+    <rect x="944" y="148" width="320" height="584" rx="30" transform="rotate(6 944 148)" fill="url(#paper)"/>
+    <rect x="1006" y="156" width="56" height="582" rx="22" transform="rotate(6 1006 156)" fill="url(#band)" fill-opacity="0.86"/>
+  </g>
+
+  <circle cx="1122" cy="278" r="32" fill="#F6E5DA"/>
+  <path d="M1122 250L1130 270L1152 272L1135 286L1140 308L1122 296L1104 308L1109 286L1092 272L1114 270L1122 250Z" fill="#C67A55"/>
+
+  <rect x="1088" y="352" width="120" height="16" rx="8" fill="#7B5847" fill-opacity="0.76"/>
+  <rect x="1088" y="392" width="92" height="14" rx="7" fill="#7B5847" fill-opacity="0.24"/>
+  <rect x="1088" y="454" width="124" height="16" rx="8" fill="#7B5847" fill-opacity="0.72"/>
+  <rect x="1088" y="494" width="84" height="14" rx="7" fill="#7B5847" fill-opacity="0.24"/>
+  <rect x="1088" y="556" width="120" height="16" rx="8" fill="#7B5847" fill-opacity="0.68"/>
+  <rect x="1088" y="596" width="98" height="14" rx="7" fill="#7B5847" fill-opacity="0.24"/>
+
+  <g filter="url(#shadow)">
+    <path d="M806 580C806 548 832 522 864 522H908C968 522 1018 572 1018 632V672C1018 714 984 748 942 748H880C839 748 806 715 806 674V580Z" fill="url(#mug)"/>
+    <path d="M1008 574C1044 574 1072 602 1072 638C1072 674 1044 702 1008 702H986V670H1008C1027 670 1042 656 1042 638C1042 619 1027 604 1008 604H986V574H1008Z" fill="#E0BEA3"/>
+  </g>
+  <path d="M872 508C852 474 856 442 886 410" stroke="#D8BDA8" stroke-width="12" stroke-linecap="round" opacity="0.66"/>
+  <path d="M928 500C912 468 918 438 944 406" stroke="#D8BDA8" stroke-width="12" stroke-linecap="round" opacity="0.66"/>
+
+  <rect x="96" y="104" width="228" height="44" rx="22" fill="#FFFFFF" fill-opacity="0.72"/>
+  <text x="122" y="133" fill="#7F5D48" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" letter-spacing="1.6">DROPDROP JOURNAL</text>
+
+  <text x="108" y="360" fill="#241C18" font-family="Georgia, 'Times New Roman', serif" font-size="84" font-weight="700">
+    <tspan x="108" dy="0">Gratitude Prompts</tspan>
+    <tspan x="108" dy="100">for Busy Days</tspan>
+  </text>
+
+  <text x="112" y="642" fill="#5A4A41" font-family="'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500">
+    <tspan x="112" dy="0">A softer journaling habit for self-care,</tspan>
+    <tspan x="112" dy="48">reflection, and ordinary moments that matter.</tspan>
+  </text>
+</svg>

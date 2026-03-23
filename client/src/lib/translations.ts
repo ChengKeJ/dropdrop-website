@@ -146,6 +146,24 @@ export const translations = {
     'terms.section5.title': '5. 协议修改',
     'terms.section5.content': '我们可能会不时修改本协议。重大修改将通过应用内通知或网站公告告知您。继续使用服务即视为您接受修改后的协议。',
 
+    // Changelog
+    'footer.changelog': '更新日志',
+    'changelog.title': '更新日志',
+    'changelog.subtitle': '见证 DropDrop 的每一步成长',
+    'changelog.seo.description': '查看 DropDrop 的版本更新历史，了解最新的功能改进与优化。',
+
+    'changelog.1.2.title': 'v1.2.0 - 休息模式深度优化',
+    'changelog.1.2.feat1': '全新的“智能休息建议”，基于昨晚睡眠数据自动调整今日目标',
+    'changelog.1.2.imp1': '优化了 HRV 数据读取速度，现在几乎是实时的',
+    'changelog.1.2.fix1': '修复了部分 iOS 18 设备上的小组件显示问题',
+
+    'changelog.1.1.title': 'v1.1.0 - 引入 HRV 压力分析',
+    'changelog.1.1.feat1': '正式接入 Apple Health HRV 数据，量化每日压力值',
+    'changelog.1.1.imp1': '重新设计了“今日状态”卡片，视觉更清爽',
+
+    'changelog.1.0.title': 'v1.0.0 - 初次见面',
+    'changelog.1.0.feat1': 'DropDrop 正式发布！开启不一样的习惯追踪之旅',
+
     // Footer
     'footer.slogan': '养成好习惯，从现在开始',
     'footer.product': '产品',
@@ -326,5 +344,23 @@ export const translations = {
     'footer.privacy': 'Privacy Policy',
     'footer.terms': 'Terms of Service',
     'footer.faq': 'FAQ',
+    'footer.changelog': 'Changelog',
+
+    // Changelog
+    'changelog.title': 'Changelog',
+    'changelog.subtitle': 'Track the evolution of DropDrop',
+    'changelog.seo.description': 'View the version history of DropDrop and learn about the latest features and improvements.',
+
+    'changelog.1.2.title': 'v1.2.0 - Rest Mode Optimization',
+    'changelog.1.2.feat1': 'New "Smart Rest Suggestions" auto-adjusts daily goals based on sleep data',
+    'changelog.1.2.imp1': 'Optimized HRV data reading speed, now near real-time',
+    'changelog.1.2.fix1': 'Fixed widget display issues on some iOS 18 devices',
+
+    'changelog.1.1.title': 'v1.1.0 - Introducing HRV Stress Analysis',
+    'changelog.1.1.feat1': 'Officially integrated Apple Health HRV data to quantify daily stress',
+    'changelog.1.1.imp1': 'Redesigned "Today\'s State" card for a cleaner look',
+
+    'changelog.1.0.title': 'v1.0.0 - Hello World',
+    'changelog.1.0.feat1': 'DropDrop is officially released! Start a different habit tracking journey',
   },
 };

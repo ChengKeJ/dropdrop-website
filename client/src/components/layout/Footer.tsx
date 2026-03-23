@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function Footer() {
   const { t, language } = useLanguage();
-  
+
   return (
     <footer className="bg-white pt-24 pb-12 border-t border-gray-100">
       <div className="container">
@@ -25,6 +25,7 @@ export function Footer() {
             <h4 className="text-[#222222] font-medium mb-6">{t('footer.product')}</h4>
             <ul className="space-y-4 text-[#666666] font-light">
               <li><a href="/#features" className="hover:text-[#4CAF93] transition-colors">{t('footer.features')}</a></li>
+              <li><Link href="/changelog" className="hover:text-[#4CAF93] transition-colors">{t('footer.changelog')}</Link></li>
               <li><Link href="/faq" className="hover:text-[#4CAF93] transition-colors">{t('footer.faq')}</Link></li>
               <li><a href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464" target="_blank" rel="noopener noreferrer" className="hover:text-[#4CAF93] transition-colors">{t('footer.download')}</a></li>
             </ul>
@@ -55,7 +56,7 @@ export function Footer() {
           <p className="text-[#999999] text-sm font-light">
             &copy; {new Date().getFullYear()} DropDrop. All rights reserved.
           </p>
-          
+
           <div className="flex items-center gap-8">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#4CAF93]" />

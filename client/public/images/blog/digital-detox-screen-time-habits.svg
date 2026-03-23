@@ -1,0 +1,83 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="70" x2="1506" y2="930" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F7F3"/>
+      <stop offset="0.5" stop-color="#E7EFE9"/>
+      <stop offset="1" stop-color="#D7E4DD"/>
+    </linearGradient>
+    <linearGradient id="phone" x1="1088" y1="158" x2="1286" y2="786" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#153328"/>
+      <stop offset="1" stop-color="#27493D"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="1120" y1="206" x2="1260" y2="738" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2FAF5"/>
+      <stop offset="1" stop-color="#D7EEE0"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1600" height="1000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="24"/>
+      <feGaussianBlur stdDeviation="30"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.101 0 0 0 0 0.172 0 0 0 0 0.148 0 0 0 0.18 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" rx="48" fill="url(#bg)"/>
+
+  <path d="M0 757C149 696 329 674 522 700C733 728 899 824 1081 831C1240 836 1414 782 1600 707V1000H0V757Z" fill="#C8D9D0"/>
+  <path d="M0 832C182 764 370 757 560 791C707 818 852 875 1033 885C1223 896 1396 850 1600 773V1000H0V832Z" fill="#B4CBBE"/>
+
+  <circle cx="1312" cy="178" r="54" fill="#EEF5F0"/>
+  <path d="M1286 177C1286 152 1308 132 1334 132C1334 153 1316 177 1286 177Z" fill="#76A88F"/>
+  <path d="M1296 197C1296 167 1320 150 1353 149C1348 181 1328 202 1296 197Z" fill="#4C7E69"/>
+
+  <g filter="url(#shadow)">
+    <rect x="1044" y="138" width="286" height="620" rx="44" fill="url(#phone)"/>
+    <rect x="1076" y="186" width="222" height="524" rx="28" fill="url(#screen)"/>
+    <rect x="1158" y="160" width="58" height="8" rx="4" fill="#A4C3B5"/>
+  </g>
+
+  <g opacity="0.9">
+    <rect x="1112" y="250" width="150" height="18" rx="9" fill="#214237" fill-opacity="0.72"/>
+    <rect x="1112" y="286" width="100" height="12" rx="6" fill="#214237" fill-opacity="0.2"/>
+  </g>
+
+  <g opacity="0.95">
+    <rect x="1112" y="348" width="150" height="92" rx="22" fill="#FFFFFF" fill-opacity="0.62"/>
+    <circle cx="1160" cy="394" r="22" fill="#EAF5EE"/>
+    <path d="M1152 394L1158 400L1170 386" stroke="#4C7E69" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1196" y="384" width="48" height="16" rx="8" fill="#214237" fill-opacity="0.72"/>
+  </g>
+
+  <g opacity="0.95">
+    <rect x="1112" y="466" width="150" height="92" rx="22" fill="#FFFFFF" fill-opacity="0.62"/>
+    <circle cx="1160" cy="512" r="22" fill="#F5EFE9"/>
+    <path d="M1152 512L1158 518L1170 504" stroke="#BB7445" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1196" y="502" width="32" height="16" rx="8" fill="#214237" fill-opacity="0.28"/>
+  </g>
+
+  <g opacity="0.95">
+    <rect x="1112" y="584" width="150" height="92" rx="22" fill="#FFFFFF" fill-opacity="0.62"/>
+    <path d="M1187 628C1187 643.464 1174.46 656 1159 656C1143.54 656 1131 643.464 1131 628C1131 612.536 1143.54 600 1159 600C1174.46 600 1187 612.536 1187 628Z" fill="#E6F0EA"/>
+    <path d="M1159 611V628L1171 637" stroke="#4C7E69" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1196" y="620" width="36" height="16" rx="8" fill="#214237" fill-opacity="0.24"/>
+  </g>
+
+  <path d="M930 390C1005 355 1048 301 1048 225C983 242 940 284 909 348C886 331 859 322 824 319C830 379 859 418 909 438C893 487 893 541 912 606C966 585 1001 542 1014 483C1057 498 1096 492 1140 466C1106 424 1064 403 1010 405C1000 397 966 390 930 390Z" fill="#6E9B84" fill-opacity="0.24"/>
+
+  <rect x="96" y="104" width="250" height="44" rx="22" fill="#FFFFFF" fill-opacity="0.74"/>
+  <text x="122" y="133" fill="#315946" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" letter-spacing="1.6">DROPDROP WELLNESS</text>
+
+  <text x="108" y="372" fill="#18211D" font-family="Georgia, 'Times New Roman', serif" font-size="86" font-weight="700">
+    <tspan x="108" dy="0">Digital Detox</tspan>
+    <tspan x="108" dy="102">for Real Life</tspan>
+  </text>
+
+  <text x="112" y="640" fill="#3E4D46" font-family="'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500">
+    <tspan x="112" dy="0">Lower screen time without disappearing.</tspan>
+    <tspan x="112" dy="48">Small habits. Less noise. More calm attention.</tspan>
+  </text>
+</svg>
