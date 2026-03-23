@@ -301,8 +301,8 @@ export default function Changelog() {
     };
 
     const breadcrumbs = breadcrumbSchema([
-        { name: 'Home', url: 'https://dropdrophabit.com/' },
-        { name: 'Changelog', url: 'https://dropdrophabit.com/changelog' }
+        { name: 'Home', url: 'https://www.dropdrophabit.com/' },
+        { name: 'Changelog', url: 'https://www.dropdrophabit.com/changelog' }
     ]);
 
     return (
@@ -310,7 +310,7 @@ export default function Changelog() {
             <SEOHead
                 title={`${t('changelog.title')} - DropDrop`}
                 description={t('changelog.seo.description')}
-                canonical="https://dropdrophabit.com/changelog"
+                canonical="https://www.dropdrophabit.com/changelog"
                 structuredData={breadcrumbs}
             />
 

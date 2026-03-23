@@ -5,11 +5,11 @@ import { blogPostSchema, faqSchema } from '../client/src/lib/structuredData';
 const blogPost = {
     title: "Test Blog Post",
     description: "This is a test description for SEO verification.",
-    image: "https://dropdrophabit.com/images/test.jpg",
+    image: "https://www.dropdrophabit.com/images/test.jpg",
     datePublished: "2026-01-28",
     dateModified: "2026-01-28",
     author: "DropDrop Team",
-    url: "https://dropdrophabit.com/blog/test-post",
+    url: "https://www.dropdrophabit.com/blog/test-post",
     keywords: ["habit tracker", "test keyword"],
     wordCount: 1500,
     articleSection: "Technology"

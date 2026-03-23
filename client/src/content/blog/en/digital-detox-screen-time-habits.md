@@ -194,7 +194,7 @@ Useful habits to track include:
 
 DropDrop is especially useful when you want to build consistency without turning the process into self-punishment. You can keep the target small, notice patterns in energy and mood, and avoid the common trap of abandoning the whole goal after one messy day.
 
-If you are also rebuilding your broader routine, read our guides on [how to build habits that last](https://dropdrophabit.com/blog/how-to-build-habits-that-last) and [habit stacking for a better morning routine](https://dropdrophabit.com/blog/habit-stacking-morning-routine).
+If you are also rebuilding your broader routine, read our guides on [how to build habits that last](https://www.dropdrophabit.com/blog/how-to-build-habits-that-last) and [habit stacking for a better morning routine](https://www.dropdrophabit.com/blog/habit-stacking-morning-routine).
 
 ## FAQ
 

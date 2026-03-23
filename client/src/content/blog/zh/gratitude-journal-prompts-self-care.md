@@ -164,7 +164,7 @@ readTime: 10
 - 观察 journaling 与心情、精力之间的关系
 - 在不制造额外压力的情况下，维持连续性
 
-如果你也在搭建整体的 self-care routine，可以继续读：[一个真正能坚持的晨间例行](https://dropdrophabit.com/zh/blog/habit-stacking-morning-routine) 和 [降低 screen time 的 digital detox 习惯](https://dropdrophabit.com/zh/blog/digital-detox-screen-time-habits)。
+如果你也在搭建整体的 self-care routine，可以继续读：[一个真正能坚持的晨间例行](https://www.dropdrophabit.com/zh/blog/habit-stacking-morning-routine) 和 [降低 screen time 的 digital detox 习惯](https://www.dropdrophabit.com/zh/blog/digital-detox-screen-time-habits)。
 
 ## 常见问题 FAQ
 

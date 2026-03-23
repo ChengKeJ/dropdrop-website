@@ -196,7 +196,7 @@ readTime: 12
 
 DropDrop 的好处在于，它不是靠制造压力来推动你，而是帮你看见模式、维持连续性、把目标拆得更轻。这对于 digital detox 这种特别容易反复的习惯，非常重要。
 
-如果你也在重建整体生活节奏，可以继续看这两篇：[一个真正能坚持的晨间例行](https://dropdrophabit.com/zh/blog/habit-stacking-morning-routine) 和 [如何养成持久的习惯](https://dropdrophabit.com/zh/blog/how-to-build-habits-that-last)。
+如果你也在重建整体生活节奏，可以继续看这两篇：[一个真正能坚持的晨间例行](https://www.dropdrophabit.com/zh/blog/habit-stacking-morning-routine) 和 [如何养成持久的习惯](https://www.dropdrophabit.com/zh/blog/how-to-build-habits-that-last)。
 
 ## 常见问题 FAQ
 

@@ -212,7 +212,7 @@ Habit tracker 真正有用的前提，是它让执行更轻，而不是更有压
 
 如果你是刚开始用 habit tracker，建议先在 DropDrop 里追踪一个核心 routine，不要一下子上十个目标。先证明这套方法对你有效，再慢慢扩展。
 
-你也可以继续看我们的相关文章：[如何养成持久的好习惯](https://dropdrophabit.com/zh/blog/how-to-build-habits-that-last) 和 [养成一个习惯到底需要多少天](https://dropdrophabit.com/zh/blog/how-many-days-to-build-a-habit)。
+你也可以继续看我们的相关文章：[如何养成持久的好习惯](https://www.dropdrophabit.com/zh/blog/how-to-build-habits-that-last) 和 [养成一个习惯到底需要多少天](https://www.dropdrophabit.com/zh/blog/how-many-days-to-build-a-habit)。
 
 ## 常见问题 FAQ
 

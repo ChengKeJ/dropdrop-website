@@ -164,7 +164,7 @@ You can use DropDrop to:
 - notice patterns between journaling, mood, and energy
 - protect consistency without turning the habit into pressure
 
-If you are building a broader self-care routine, you may also like our articles on [habit stacking for a better morning routine](https://dropdrophabit.com/blog/habit-stacking-morning-routine) and [digital detox habits that reduce screen time](https://dropdrophabit.com/blog/digital-detox-screen-time-habits).
+If you are building a broader self-care routine, you may also like our articles on [habit stacking for a better morning routine](https://www.dropdrophabit.com/blog/habit-stacking-morning-routine) and [digital detox habits that reduce screen time](https://www.dropdrophabit.com/blog/digital-detox-screen-time-habits).
 
 ## FAQ
 

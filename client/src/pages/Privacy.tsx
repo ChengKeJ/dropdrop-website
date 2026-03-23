@@ -9,8 +9,8 @@ export default function Privacy() {
   const { t } = useLanguage();
 
   const breadcrumbs = breadcrumbSchema([
-    { name: 'Home', url: 'https://dropdrophabit.com/' },
-    { name: 'Privacy Policy', url: 'https://dropdrophabit.com/privacy' }
+    { name: 'Home', url: 'https://www.dropdrophabit.com/' },
+    { name: 'Privacy Policy', url: 'https://www.dropdrophabit.com/privacy' }
   ]);
 
   return (
@@ -18,7 +18,7 @@ export default function Privacy() {
       <SEOHead
         title={`${t('privacy.title')} - DropDrop`}
         description={t('privacy.seo.description')}
-        canonical="https://dropdrophabit.com/privacy"
+        canonical="https://www.dropdrophabit.com/privacy"
         structuredData={breadcrumbs}
       />
 

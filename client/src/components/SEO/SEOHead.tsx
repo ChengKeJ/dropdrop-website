@@ -23,8 +23,8 @@ interface SEOHeadProps {
 export function SEOHead({
   title = 'DropDrop - 养成好习惯，从现在开始',
   description = 'DropDrop 是一款专业的习惯追踪应用',
-  canonical = 'https://dropdrophabit.com',
-  ogImage = 'https://dropdrophabit.com/images/logo.png',
+  canonical = 'https://www.dropdrophabit.com',
+  ogImage = 'https://www.dropdrophabit.com/images/logo.png',
   ogType = 'website',
   article,
   keywords,
@@ -36,13 +36,13 @@ export function SEOHead({
 
   const lang = language === 'zh' ? 'zh-CN' : 'en';
 
-  // Assume 'canonical' prop is the base URL (Default EN version), e.g., "https://dropdrophabit.com/about"
+  // Assume 'canonical' prop is the base URL (Default EN version), e.g., "https://www.dropdrophabit.com/about"
   // Remove trailing slash for consistency
   const baseUrl = canonical.endsWith('/') && canonical.length > 1 ? canonical.slice(0, -1) : canonical;
 
   // Construct language-specific URLs
   // EN is default (root), ZH is prefixed
-  const origin = "https://dropdrophabit.com";
+  const origin = "https://www.dropdrophabit.com";
   const path = baseUrl.replace(origin, "");
 
   const enUrl = baseUrl; // Default English URL
@@ -71,7 +71,7 @@ export function SEOHead({
       {/* Hreflang Tags for Multilingual SEO */}
       <link rel="alternate" hrefLang="zh" href={zhUrl} />
       <link rel="alternate" hrefLang="en" href={enUrl} />
-      <link rel="alternate" hrefLang="x-default" href={zhUrl} />
+      <link rel="alternate" hrefLang="x-default" href={enUrl} />
       <link rel="alternate" type="application/rss+xml" title="DropDrop Blog RSS Feed" href="/feed.xml" />
 
       {/* Open Graph */}
@@ -106,7 +106,7 @@ export function SEOHead({
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content={canonical} />
+      <meta name="twitter:url" content={currentCanonical} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />

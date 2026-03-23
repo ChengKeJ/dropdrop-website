@@ -124,12 +124,12 @@ export default function BlogPost() {
 
   const imageUrl = post.image.startsWith('http')
     ? post.image
-    : `https://dropdrophabit.com${post.image}`;
+    : `https://www.dropdrophabit.com${post.image}`;
 
   const breadcrumbs = breadcrumbSchema([
-    { name: 'Home', url: 'https://dropdrophabit.com/' },
-    { name: 'Blog', url: 'https://dropdrophabit.com/blog' },
-    { name: post.title, url: `https://dropdrophabit.com/blog/${post.slug}` }
+    { name: 'Home', url: 'https://www.dropdrophabit.com/' },
+    { name: 'Blog', url: 'https://www.dropdrophabit.com/blog' },
+    { name: post.title, url: `https://www.dropdrophabit.com/blog/${post.slug}` }
   ]);
 
   const blogSchema = blogPostSchema({
@@ -139,7 +139,7 @@ export default function BlogPost() {
     datePublished: post.datePublished,
     dateModified: post.dateModified,
     author: post.author,
-    url: `https://dropdrophabit.com/blog/${post.slug}`,
+    url: `https://www.dropdrophabit.com/blog/${post.slug}`,
     keywords: post.keywords,
     wordCount: post.wordCount,
     articleSection: post.category
@@ -150,7 +150,7 @@ export default function BlogPost() {
       <SEOHead
         title={`${post.title} - DropDrop Blog`}
         description={post.description}
-        canonical={`https://dropdrophabit.com/blog/${post.slug}`}
+        canonical={`https://www.dropdrophabit.com/blog/${post.slug}`}
         ogType="article"
         ogImage={imageUrl}
         keywords={post.keywords || post.tags}

@@ -108,7 +108,7 @@ export default function Home() {
       <SEOHead
         title={t('seo.title')}
         description={t('seo.description')}
-        canonical="https://dropdrophabit.com/"
+        canonical="https://www.dropdrophabit.com/"
         structuredData={[organizationSchema, websiteSchema, reviewsSchema, mobileAppSchema]}
         preloadImages={["/images/plan.webp"]}
       />

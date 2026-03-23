@@ -31,8 +31,8 @@ export default function Blog() {
   }, [language]);
 
   const breadcrumbs = breadcrumbSchema([
-    { name: 'Home', url: 'https://dropdrophabit.com/' },
-    { name: 'Blog', url: 'https://dropdrophabit.com/blog' }
+    { name: 'Home', url: 'https://www.dropdrophabit.com/' },
+    { name: 'Blog', url: 'https://www.dropdrophabit.com/blog' }
   ]);
 
   const fadeInUp = {
@@ -49,7 +49,7 @@ export default function Blog() {
         description={language === 'zh'
           ? '探索科学的习惯养成指南、2026年最新趋势以及 DropDrop 使用教程。获取专业的自我提升建议，助你建立持久的生活方式。'
           : 'Discover expert habit-building strategies, 2026 trends, and DropDrop tutorials. Transform your daily routine with science-backed insights.'}
-        canonical="https://dropdrophabit.com/blog"
+        canonical="https://www.dropdrophabit.com/blog"
         structuredData={breadcrumbs}
       />
 

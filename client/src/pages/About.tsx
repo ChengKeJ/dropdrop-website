@@ -10,8 +10,8 @@ export default function About() {
   const { language, t } = useLanguage();
 
   const breadcrumbs = breadcrumbSchema([
-    { name: 'Home', url: 'https://dropdrophabit.com/' },
-    { name: 'About', url: 'https://dropdrophabit.com/about' }
+    { name: 'Home', url: 'https://www.dropdrophabit.com/' },
+    { name: 'About', url: 'https://www.dropdrophabit.com/about' }
   ]);
 
   const fadeInUp = {
@@ -46,7 +46,7 @@ export default function About() {
         description={language === 'zh'
           ? '了解 DropDrop 团队的使命、愿景和价值观。我们致力于通过科学温和的方式，帮助人们建立更好的日常习惯。'
           : 'Learn about DropDrop team\'s mission, vision, and values. We are dedicated to helping people build better habits in a scientific and gentle way.'}
-        canonical="https://dropdrophabit.com/about"
+        canonical="https://www.dropdrophabit.com/about"
         structuredData={[breadcrumbs, organizationSchema]}
       />
 

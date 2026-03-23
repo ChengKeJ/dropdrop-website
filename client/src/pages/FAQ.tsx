@@ -40,7 +40,7 @@ export default function FAQ() {
       <SEOHead
         title={`${t('faq.title')} - DropDrop`}
         description={t('faq.seo.description')}
-        canonical="https://dropdrophabit.com/faq"
+        canonical="https://www.dropdrophabit.com/faq"
         structuredData={structuredData}
       />
 

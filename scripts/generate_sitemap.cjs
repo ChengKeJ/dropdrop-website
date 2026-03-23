@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Base URL of the website
-const BASE_URL = 'https://dropdrophabit.com';
+const BASE_URL = 'https://www.dropdrophabit.com';
 
 // Static routes (without language prefix)
 const STATIC_ROUTES = [

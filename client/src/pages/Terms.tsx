@@ -9,8 +9,8 @@ export default function Terms() {
   const { t } = useLanguage();
 
   const breadcrumbs = breadcrumbSchema([
-    { name: 'Home', url: 'https://dropdrophabit.com/' },
-    { name: 'Terms of Service', url: 'https://dropdrophabit.com/terms' }
+    { name: 'Home', url: 'https://www.dropdrophabit.com/' },
+    { name: 'Terms of Service', url: 'https://www.dropdrophabit.com/terms' }
   ]);
 
   return (
@@ -18,7 +18,7 @@ export default function Terms() {
       <SEOHead
         title={`${t('terms.title')} - DropDrop`}
         description={t('terms.seo.description')}
-        canonical="https://dropdrophabit.com/terms"
+        canonical="https://www.dropdrophabit.com/terms"
         structuredData={breadcrumbs}
       />
 

@@ -3,7 +3,7 @@ const path = require('path');
 const frontMatter = require('front-matter');
 
 // Configuration
-const BASE_URL = 'https://dropdrophabit.com';
+const BASE_URL = 'https://www.dropdrophabit.com';
 const BLOG_DIR_ZH = path.join(__dirname, '../client/src/content/blog/zh');
 const BLOG_DIR_EN = path.join(__dirname, '../client/src/content/blog/en');
 const OUTPUT_FILE = path.join(__dirname, '../client/public/feed.xml');

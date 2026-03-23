@@ -1,9 +1,11 @@
+const SITE_URL = 'https://www.dropdrophabit.com';
+
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'DropDrop',
-  url: 'https://dropdrophabit.com',
-  logo: 'https://dropdrophabit.com/images/logo.png',
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/logo.png`,
   description: '专业的习惯追踪应用，帮助你养成更好的习惯',
   sameAs: [
     'https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464',
@@ -19,12 +21,12 @@ export const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'DropDrop',
-  url: 'https://dropdrophabit.com',
+  url: SITE_URL,
   description: '专业的习惯追踪应用',
   inLanguage: ['zh-CN', 'en-US'],
   potentialAction: {
     '@type': 'SearchAction',
-    target: 'https://dropdrophabit.com/search?q={search_term_string}',
+    target: `${SITE_URL}/search?q={search_term_string}`,
     'query-input': 'required name=search_term_string'
   }
 };
@@ -49,10 +51,10 @@ export const mobileAppSchema = {
     worstRating: '1'
   },
   screenshot: [
-    'https://dropdrophabit.com/images/minPlan.png',
-    'https://dropdrophabit.com/images/habit.png',
-    'https://dropdrophabit.com/images/today.png',
-    'https://dropdrophabit.com/images/statics.png'
+    `${SITE_URL}/images/minPlan.png`,
+    `${SITE_URL}/images/habit.png`,
+    `${SITE_URL}/images/today.png`,
+    `${SITE_URL}/images/statics.png`
   ]
 };
 
@@ -123,7 +125,7 @@ export const blogPostSchema = ({
     name: 'DropDrop',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://dropdrophabit.com/images/logo.png'
+      url: `${SITE_URL}/images/logo.png`
     }
   },
   mainEntityOfPage: {
@@ -159,7 +161,7 @@ export const reviewsSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'DropDrop',
-  image: 'https://dropdrophabit.com/images/logo.png',
+  image: `${SITE_URL}/images/logo.png`,
   description: 'DropDrop Habit Tracker',
   brand: {
     '@type': 'Brand',

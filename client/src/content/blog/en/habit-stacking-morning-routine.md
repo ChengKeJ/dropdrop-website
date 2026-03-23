@@ -212,7 +212,7 @@ With DropDrop, you can:
 
 If you are new to habit tracking, start with one routine goal in DropDrop, not ten separate goals. Build evidence that your system works first.
 
-You can also pair this article with our guides on [how to build habits that last](https://dropdrophabit.com/blog/how-to-build-habits-that-last) and [how many days it really takes to build a habit](https://dropdrophabit.com/blog/how-many-days-to-build-a-habit).
+You can also pair this article with our guides on [how to build habits that last](https://www.dropdrophabit.com/blog/how-to-build-habits-that-last) and [how many days it really takes to build a habit](https://www.dropdrophabit.com/blog/how-many-days-to-build-a-habit).
 
 ## FAQ
 
