@@ -1,4 +1,4 @@
-/* Import Google Fonts for elegant typography - Replaced with local @fontsource imports in main.tsx */
+/* Typography is loaded from client/src/entry-client.tsx via local @fontsource imports. */
 
 @import "tailwindcss";
 

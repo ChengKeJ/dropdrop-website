@@ -16,6 +16,38 @@ keywords:
   - 习惯养成方法
   - 行为科学
   - 习惯追踪
+summary: "能够长期坚持的习惯，通常来自更小的行为、更稳定的触发点，以及在低能量日也能完成的系统。"
+lastReviewed: "2026-03-24"
+reviewedBy: "DropDrop 编辑团队"
+keyTakeaways:
+  - "把起点设得比野心更小，重复才会变得容易。"
+  - "与其只靠动力，不如优先设计触发线索和环境。"
+  - "每周复盘一次，当一致性开始下降时先缩小习惯，而不是继续加压。"
+sources:
+  - title: "How are habits formed: Modelling habit formation in the real world"
+    url: "https://onlinelibrary.wiley.com/doi/10.1002/ejsp.674"
+    publisher: "European Journal of Social Psychology"
+    publishedDate: "2010-02-16"
+  - title: "Tiny Habits"
+    url: "https://tinyhabits.com/"
+    publisher: "BJ Fogg"
+  - title: "Good Habits, Bad Habits"
+    url: "https://wendywoodresearch.com/good-habits-bad-habits.html"
+    publisher: "Wendy Wood"
+faq:
+  - question: "一个新习惯应该小到什么程度？"
+    answer: "小到你在最忙、最累的一天也能做到。如果它看起来太简单，通常反而更适合作为起点。"
+  - question: "是不是每个习惯都要天天记录？"
+    answer: "不一定。记录的作用是帮助你更清楚地看见模式，而不是给自己增加第二个任务。"
+howToSteps:
+  - name: "只选一个行为"
+    text: "不要一次性改掉五个习惯。先挑一个对你日常收益最高的动作。"
+  - name: "绑定一个触发点"
+    text: "把它接到你已经稳定会发生的行为后面，比如冲咖啡、回家、打开电脑。"
+  - name: "定义最小成功版本"
+    text: "提前定义最低完成标准，让这个习惯在压力、出差和低动力时也能继续。"
+  - name: "每周复盘一次"
+    text: "如果一致性下降，先降低复杂度，再考虑提高要求。"
 readTime: 5
 ---
 

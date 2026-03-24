@@ -19,6 +19,38 @@ keywords:
   - 习惯养成软件
   - HRV心率变异性
   - DropDrop
+summary: "最适合你的 habit tracker，取决于平台、你需要多少引导，以及你是否在意恢复状态。Loop 适合想要免费安卓追踪的人，Streaks 适合苹果用户，而 DropDrop 更适合需要 HRV 与弹性节奏的人。"
+lastReviewed: "2026-03-24"
+reviewedBy: "DropDrop 编辑团队"
+keyTakeaways:
+  - "选习惯追踪器时，平台匹配、反馈机制和低能量日的弹性，比界面好不好看更重要。"
+  - "Loop 和 Streaks 更适合简单稳定的打卡，DropDrop 更适合关注恢复和节奏调整的人。"
+  - "切换之前，最好先确认官方的价格、同步能力和可穿戴设备支持。"
+sources:
+  - title: "Loop Habit Tracker"
+    url: "https://loophabits.org/"
+    publisher: "Loop Habit Tracker"
+  - title: "Streaks"
+    url: "https://streaksapp.com/"
+    publisher: "Streaks"
+  - title: "Habitify"
+    url: "https://www.habitify.me/"
+    publisher: "Habitify"
+  - title: "DropDrop"
+    url: "https://www.dropdrophabit.com/"
+    publisher: "DropDrop"
+faq:
+  - question: "iPhone 用户更适合哪款？"
+    answer: "如果你想要很 Apple-native 的体验，Streaks 是不错的选择；如果你还关心 HRV、恢复和更弹性的节奏，DropDrop 会更合适。"
+  - question: "免费 habit tracker 够用吗？"
+    answer: "很多情况下够用。如果你只需要基础记录，免费工具已经足够；如果你需要同步、自动化、可穿戴数据或更多引导，付费功能才更有价值。"
+howToSteps:
+  - name: "先列出硬性需求"
+    text: "先明确你的平台、是否需要多端同步、可穿戴设备支持，以及你更适合 streak 还是自适应建议。"
+  - name: "比较反馈方式"
+    text: "看应用是在推你每天必须完成，还是允许轻量日、恢复日和更有弹性的安排。"
+  - name: "连续试用一周"
+    text: "不要只看第一印象，最好在高能量和低能量日都实际使用，再决定是否长期迁移。"
 readTime: 18
 ---
 

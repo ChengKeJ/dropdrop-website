@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Heart, Target, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { SEOHead } from '@/components/SEO/SEOHead';
-import { breadcrumbSchema, organizationSchema } from '@/lib/structuredData';
+import { breadcrumbSchema, organizationSchema, pageSchema } from '@/lib/structuredData';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 
@@ -10,15 +10,29 @@ export default function About() {
   const { language, t } = useLanguage();
 
   const breadcrumbs = breadcrumbSchema([
-    { name: 'Home', url: 'https://www.dropdrophabit.com/' },
-    { name: 'About', url: 'https://www.dropdrophabit.com/about' }
+    {
+      name: language === 'zh' ? '首页' : 'Home',
+      url: language === 'zh' ? 'https://www.dropdrophabit.com/zh' : 'https://www.dropdrophabit.com/'
+    },
+    {
+      name: language === 'zh' ? '关于' : 'About',
+      url: language === 'zh' ? 'https://www.dropdrophabit.com/zh/about' : 'https://www.dropdrophabit.com/about'
+    }
   ]);
+  const aboutSchema = pageSchema({
+    type: 'AboutPage',
+    name: t('about.title'),
+    description: language === 'zh'
+      ? '了解 DropDrop 团队的使命、愿景和价值观。'
+      : 'Learn about the DropDrop team, mission, and values.',
+    url: language === 'zh' ? 'https://www.dropdrophabit.com/zh/about' : 'https://www.dropdrophabit.com/about',
+  });
 
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
   };
 
   const values = [
@@ -47,7 +61,7 @@ export default function About() {
           ? '了解 DropDrop 团队的使命、愿景和价值观。我们致力于通过科学温和的方式，帮助人们建立更好的日常习惯。'
           : 'Learn about DropDrop team\'s mission, vision, and values. We are dedicated to helping people build better habits in a scientific and gentle way.'}
         canonical="https://www.dropdrophabit.com/about"
-        structuredData={[breadcrumbs, organizationSchema]}
+        structuredData={[breadcrumbs, organizationSchema, aboutSchema]}
       />
 
       <div className="min-h-screen bg-[#FAFAFA] text-[#222222] font-sans">

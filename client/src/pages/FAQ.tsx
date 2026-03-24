@@ -4,34 +4,16 @@ import { SEOHead } from '@/components/SEO/SEOHead';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { faqSchema } from '@/lib/structuredData';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { faqData } from '@/data/faq';
 
 export default function FAQ() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
-  const faqs = [
-    {
-      question: t('faq.q1'),
-      answer: t('faq.a1')
-    },
-    {
-      question: t('faq.q2'),
-      answer: t('faq.a2')
-    },
-    {
-      question: t('faq.q3'),
-      answer: t('faq.a3')
-    },
-    {
-      question: t('faq.q4'),
-      answer: t('faq.a4')
-    }
-  ];
+  const faqs = faqData.map((faq) => ({
+    question: faq.question[language],
+    answer: faq.answer[language],
+    category: faq.category
+  }));
 
   const structuredData = faqSchema(faqs);
 
@@ -64,19 +46,40 @@ export default function FAQ() {
               transition={{ delay: 0.1 }}
               className="bg-white border border-[#E5E5E5] rounded-3xl p-6 md:p-12 shadow-soft"
             >
-              <Accordion type="single" collapsible className="w-full">
+              <div className="w-full">
                 {faqs.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`} className="border-[#F5F5F5]">
-                    <AccordionTrigger className="text-[#222222] font-normal text-left hover:text-[#4CAF93] py-6">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-[#666666] font-light leading-relaxed pb-6">
+                  <details
+                    key={index}
+                    className="group border-b last:border-b-0 border-[#F5F5F5] py-1"
+                  >
+                    <summary className="list-none cursor-pointer py-5 text-[#222222] transition-colors hover:text-[#4CAF93] [&::-webkit-details-marker]:hidden">
+                      <div className="flex items-start justify-between gap-4">
+                        <span>
+                          <span className="block text-xs uppercase tracking-[0.2em] text-[#999999] mb-2">
+                            {faq.category}
+                          </span>
+                          <span className="block text-base font-normal text-left">
+                            {faq.question}
+                          </span>
+                        </span>
+                        <span className="mt-1 text-[#999999] transition-transform duration-200 group-open:rotate-180">
+                          ↓
+                        </span>
+                      </div>
+                    </summary>
+                    <div className="pb-6 pr-8 text-[#666666] font-light leading-relaxed">
                       {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
+                    </div>
+                  </details>
                 ))}
-              </Accordion>
+              </div>
             </motion.div>
+
+            <div className="mt-10 flex flex-wrap gap-4 text-sm">
+              <a href="mailto:support@dropdrophabit.com" className="px-4 py-2 rounded-full bg-white border border-[#E5E5E5] hover:border-[#4CAF93]/30 transition-colors">
+                support@dropdrophabit.com
+              </a>
+            </div>
           </div>
         </section>
 

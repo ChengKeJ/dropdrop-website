@@ -22,34 +22,19 @@ export const websiteSchema = {
   '@type': 'WebSite',
   name: 'DropDrop',
   url: SITE_URL,
-  description: '专业的习惯追踪应用',
-  inLanguage: ['zh-CN', 'en-US'],
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${SITE_URL}/search?q={search_term_string}`,
-    'query-input': 'required name=search_term_string'
-  }
+  description: 'A bilingual habit tracking website focused on gentle, HRV-aware behavior change.',
+  inLanguage: ['zh-CN', 'en-US']
 };
 
-export const mobileAppSchema = {
+export const softwareAppSchema = {
   '@context': 'https://schema.org',
-  '@type': 'MobileApplication',
+  '@type': 'SoftwareApplication',
   name: 'DropDrop',
-  description: '专业的习惯追踪应用，帮助你养成更好的习惯',
+  description: 'A habit tracking app focused on gentle, HRV-aware behavior change.',
   applicationCategory: 'HealthApplication',
   operatingSystem: 'iOS, Android',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'CNY'
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    ratingCount: '1250',
-    bestRating: '5',
-    worstRating: '1'
-  },
+  url: SITE_URL,
+  image: `${SITE_URL}/images/logo.png`,
   screenshot: [
     `${SITE_URL}/images/minPlan.png`,
     `${SITE_URL}/images/habit.png`,
@@ -67,6 +52,30 @@ export const breadcrumbSchema = (items: { name: string; url: string }[]) => ({
     name: item.name,
     item: item.url
   }))
+});
+
+export const pageSchema = ({
+  type = 'WebPage',
+  name,
+  description,
+  url,
+}: {
+  type?: 'WebPage' | 'CollectionPage' | 'AboutPage';
+  name: string;
+  description: string;
+  url: string;
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': type,
+  name,
+  description,
+  url,
+  inLanguage: ['zh-CN', 'en-US'],
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'DropDrop',
+    url: SITE_URL
+  }
 });
 
 export const faqSchema = (faqs: { question: string; answer: string }[]) => ({
@@ -156,63 +165,3 @@ export const howToSchema = ({
     image: step.image
   }))
 });
-
-export const reviewsSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: 'DropDrop',
-  image: `${SITE_URL}/images/logo.png`,
-  description: 'DropDrop Habit Tracker',
-  brand: {
-    '@type': 'Brand',
-    name: 'DropDrop'
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    ratingCount: '128',
-    bestRating: '5',
-    worstRating: '1'
-  },
-  review: [
-    {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      author: {
-        '@type': 'Person',
-        name: 'Michael Zhang'
-      },
-      reviewBody: 'I used to force myself to check every box daily, which often led to burnout. DropDrop\'s Rest Mode saved me; it taught me that rest is also part of the plan.'
-    },
-    {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      author: {
-        '@type': 'Person',
-        name: 'Sarah Li'
-      },
-      reviewBody: 'The HRV integration is amazing! It accurately tells me when to push and when to back off. It\'s not just a habit tracker; it\'s my fitness coach.'
-    },
-    {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      author: {
-        '@type': 'Person',
-        name: 'David Wang'
-      },
-      reviewBody: 'The interface is beautiful with zero clutter. Opening the app feels calming, unlike the anxiety of "must check-in even if exhausted" from other apps.'
-    }
-  ]
-};

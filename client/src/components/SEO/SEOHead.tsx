@@ -23,7 +23,7 @@ interface SEOHeadProps {
 export function SEOHead({
   title = 'DropDrop - 养成好习惯，从现在开始',
   description = 'DropDrop 是一款专业的习惯追踪应用',
-  canonical = 'https://www.dropdrophabit.com',
+  canonical,
   ogImage = 'https://www.dropdrophabit.com/images/logo.png',
   ogType = 'website',
   article,
@@ -35,19 +35,19 @@ export function SEOHead({
   const { language } = useLanguage();
 
   const lang = language === 'zh' ? 'zh-CN' : 'en';
+  const ogLocale = language === 'zh' ? 'zh_CN' : 'en_US';
 
-  // Assume 'canonical' prop is the base URL (Default EN version), e.g., "https://www.dropdrophabit.com/about"
-  // Remove trailing slash for consistency
-  const baseUrl = canonical.endsWith('/') && canonical.length > 1 ? canonical.slice(0, -1) : canonical;
-
-  // Construct language-specific URLs
-  // EN is default (root), ZH is prefixed
-  const origin = "https://www.dropdrophabit.com";
-  const path = baseUrl.replace(origin, "");
-
-  const enUrl = baseUrl; // Default English URL
-  const zhUrl = `${origin}/zh${path === '/' ? '' : path}`; // Prefixed Chinese URL
-
+  const origin = 'https://www.dropdrophabit.com';
+  const normalizedCanonical = canonical
+    ? (canonical === `${origin}/`
+        ? canonical
+        : canonical.endsWith('/') && canonical.length > origin.length + 1
+          ? canonical.slice(0, -1)
+          : canonical)
+    : undefined;
+  const path = normalizedCanonical ? normalizedCanonical.replace(origin, '') || '/' : undefined;
+  const enUrl = path ? `${origin}${path === '/' ? '/' : path}` : undefined;
+  const zhUrl = path ? `${origin}/zh${path === '/' ? '' : path}` : undefined;
   const currentCanonical = language === 'zh' ? zhUrl : enUrl;
 
   // Prepare structured data as array
@@ -65,22 +65,23 @@ export function SEOHead({
         <meta name="keywords" content={keywords.join(', ')} />
       )}
 
-      {/* Canonical URL */}
-      <link rel="canonical" href={currentCanonical} />
+      {currentCanonical && <link rel="canonical" href={currentCanonical} />}
 
-      {/* Hreflang Tags for Multilingual SEO */}
-      <link rel="alternate" hrefLang="zh" href={zhUrl} />
-      <link rel="alternate" hrefLang="en" href={enUrl} />
-      <link rel="alternate" hrefLang="x-default" href={enUrl} />
-      <link rel="alternate" type="application/rss+xml" title="DropDrop Blog RSS Feed" href="/feed.xml" />
+      <link
+        key="alternate-rss"
+        rel="alternate"
+        type="application/rss+xml"
+        title="DropDrop Blog RSS Feed"
+        href="/feed.xml"
+      />
 
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />
-      <meta property="og:url" content={currentCanonical} />
+      {currentCanonical && <meta property="og:url" content={currentCanonical} />}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:locale" content={lang} />
+      <meta property="og:locale" content={ogLocale} />
       <meta property="og:site_name" content="DropDrop" />
 
       {/* Article-specific OG tags */}
@@ -106,7 +107,7 @@ export function SEOHead({
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content={currentCanonical} />
+      {currentCanonical && <meta name="twitter:url" content={currentCanonical} />}
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />

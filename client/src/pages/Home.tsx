@@ -23,8 +23,7 @@ import { useIsMobile } from "@/hooks/useMobile";
 import {
   organizationSchema,
   websiteSchema,
-  reviewsSchema,
-  mobileAppSchema
+  softwareAppSchema
 } from "@/lib/structuredData";
 import { Testimonials } from "@/components/home/Testimonials";
 
@@ -109,7 +108,7 @@ export default function Home() {
         title={t('seo.title')}
         description={t('seo.description')}
         canonical="https://www.dropdrophabit.com/"
-        structuredData={[organizationSchema, websiteSchema, reviewsSchema, mobileAppSchema]}
+        structuredData={[organizationSchema, websiteSchema, softwareAppSchema]}
         preloadImages={["/images/plan.webp"]}
       />
 
@@ -178,7 +177,7 @@ export default function Home() {
                         width="320"
                         height="693"
                         // @ts-ignore
-                        fetchpriority={isCenter ? "high" : "auto"}
+                        fetchPriority={isCenter ? "high" : "auto"}
                       />
 
                       {/* Overlay for non-center items to indicate interactivity */}

@@ -14,8 +14,7 @@ const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-L18PP8HJB
  */
 export function initGA() {
   if (typeof window === 'undefined') return;
-  
-  // If gtag is already defined in index.html, we don't need to do much
+
   if (!(window as any).gtag) {
     if (GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') {
       console.warn('[Analytics] GA4 Measurement ID not configured. Set VITE_GA_MEASUREMENT_ID environment variable.');
@@ -28,11 +27,10 @@ export function initGA() {
     script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
     document.head.appendChild(script);
 
-    // Initialize gtag
     (window as any).dataLayer = (window as any).dataLayer || [];
-    function gtag(...args: any[]) {
+    const gtag = (...args: any[]) => {
       (window as any).dataLayer.push(args);
-    }
+    };
     (window as any).gtag = gtag;
 
     gtag('js', new Date());
@@ -41,7 +39,9 @@ export function initGA() {
     });
   }
 
-  console.log('[Analytics] Google Analytics interface ready');
+  if (import.meta.env.DEV) {
+    console.log('[Analytics] Google Analytics interface ready');
+  }
 }
 
 /**

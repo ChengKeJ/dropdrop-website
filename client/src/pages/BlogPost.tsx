@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Calendar, Clock, ArrowLeft, Share2, Bookmark } from 'lucide-react';
+import { Calendar, Clock, Share2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { SEOHead } from '@/components/SEO/SEOHead';
-import { getBlogPost, getRelatedPosts, BlogPost as BlogPostType } from '@/lib/blog';
+import { getBlogPost, getRelatedPosts } from '@/lib/blog';
 import { RelatedPosts } from '@/components/blog/RelatedPosts';
-import { Link, useRoute } from 'wouter';
+import { useRoute } from 'wouter';
+import { PrefetchLink } from '@/components/PrefetchLink';
 import { breadcrumbSchema, blogPostSchema } from '@/lib/structuredData';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { toast } from 'sonner';
-import { Skeleton } from '@/components/ui/skeleton';
 import NotFound from './NotFound';
 
 export default function BlogPost() {
@@ -18,13 +18,9 @@ export default function BlogPost() {
   const [, params] = useRoute('/blog/:slug');
   const { scrollYProgress } = useScroll();
 
-  const [post, setPost] = useState<BlogPostType | undefined>(undefined);
-  const [loading, setLoading] = useState(true);
-  const [contentWithIds, setContentWithIds] = useState('');
-  const [headings, setHeadings] = useState<{ id: string; text: string; level: number }[]>([]);
-  const [relatedPosts, setRelatedPosts] = useState<BlogPostType[]>([]);
   const [activeId, setActiveId] = useState<string>('');
   const [isTocOpen, setIsTocOpen] = useState(false);
+  const post = params?.slug ? getBlogPost(params.slug, language as 'zh' | 'en') : undefined;
 
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -32,9 +28,11 @@ export default function BlogPost() {
     restDelta: 0.001
   });
 
-  // TOC Active State Observer
+  const headings = post?.headings ?? [];
+  const relatedPosts = useMemo(() => (post ? getRelatedPosts(post) : []), [post]);
+
   useEffect(() => {
-    if (headings.length === 0) return;
+    if (typeof window === 'undefined' || headings.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -55,44 +53,12 @@ export default function BlogPost() {
     return () => observer.disconnect();
   }, [headings]);
 
-  useEffect(() => {
-    async function loadPost() {
-      if (!params?.slug) return;
-
-      setLoading(true);
-      try {
-        const data = await getBlogPost(params.slug, language as 'zh' | 'en');
-        if (data) {
-          setPost(data);
-
-          // Fetch related posts
-          getRelatedPosts(data).then(setRelatedPosts);
-
-          const processedContent = data.content.replace(/^<h[12]>.*?<\/h[12]>/i, '');
-
-          const extractedHeadings: { id: string; text: string; level: number }[] = [];
-          const processedIds = processedContent.replace(/<h([23])>(.*?)<\/h\1>/g, (_, level, title) => {
-            const id = title.toLowerCase().replace(/[^\w\s-\u4e00-\u9fa5]/g, '').replace(/\s+/g, '-');
-            extractedHeadings.push({ id, text: title.replace(/<[^>]*>?/gm, ''), level: parseInt(level) });
-            return `<h${level} id="${id}">${title}</h${level}>`;
-          });
-
-          setContentWithIds(processedIds);
-          setHeadings(extractedHeadings);
-        }
-      } catch (error) {
-        console.error("Failed to load blog post", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadPost();
-  }, [params?.slug, language]);
-
   const handleShare = () => {
+    if (!post || typeof window === 'undefined') return;
+
     if (navigator.share) {
       navigator.share({
-        title: post?.title,
+        title: post.title,
         url: window.location.href,
       }).catch(() => { });
     } else {
@@ -101,35 +67,21 @@ export default function BlogPost() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-[#FAFAFA]">
-        <Navbar />
-        <div className="container max-w-3xl mx-auto pt-48 px-6">
-          <Skeleton className="h-4 w-24 mb-12" />
-          <Skeleton className="h-16 w-3/4 mb-8" />
-          <div className="space-y-4">
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-2/3" />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   if (!post) {
     return <NotFound />;
   }
 
+  const baseUrl = language === 'zh' ? 'https://www.dropdrophabit.com/zh' : 'https://www.dropdrophabit.com';
+  const homeLabel = language === 'zh' ? '首页' : 'Home';
+  const blogLabel = language === 'zh' ? '博客' : 'Blog';
   const imageUrl = post.image.startsWith('http')
     ? post.image
     : `https://www.dropdrophabit.com${post.image}`;
 
   const breadcrumbs = breadcrumbSchema([
-    { name: 'Home', url: 'https://www.dropdrophabit.com/' },
-    { name: 'Blog', url: 'https://www.dropdrophabit.com/blog' },
-    { name: post.title, url: `https://www.dropdrophabit.com/blog/${post.slug}` }
+    { name: homeLabel, url: `${baseUrl}/` },
+    { name: blogLabel, url: `${baseUrl}/blog` },
+    { name: post.title, url: `${baseUrl}/blog/${post.slug}` }
   ]);
 
   const blogSchema = blogPostSchema({
@@ -139,11 +91,12 @@ export default function BlogPost() {
     datePublished: post.datePublished,
     dateModified: post.dateModified,
     author: post.author,
-    url: `https://www.dropdrophabit.com/blog/${post.slug}`,
+    url: `${baseUrl}/blog/${post.slug}`,
     keywords: post.keywords,
     wordCount: post.wordCount,
     articleSection: post.category
   });
+  const structuredData = [breadcrumbs, blogSchema];
 
   return (
     <>
@@ -156,12 +109,12 @@ export default function BlogPost() {
         keywords={post.keywords || post.tags}
         article={{
           publishedTime: post.datePublished,
-          modifiedTime: post.dateModified,
+          modifiedTime: post.lastReviewed ?? post.dateModified,
           author: post.author,
           section: post.category,
           tags: post.keywords || post.tags
         }}
-        structuredData={[breadcrumbs, blogSchema]}
+        structuredData={structuredData}
       />
 
       <motion.div
@@ -175,9 +128,9 @@ export default function BlogPost() {
         <article className="pt-32 md:pt-48 pb-20 px-6 md:px-8">
           <div className="container max-w-3xl mx-auto">
             <nav aria-label="Breadcrumb" className="mb-12 flex items-center gap-2 text-[13px] text-[#999] font-medium tracking-wide">
-              <Link href="/"><a className="hover:text-[#222] transition-colors">Home</a></Link>
+              <PrefetchLink href="/" className="hover:text-[#222] transition-colors">{homeLabel}</PrefetchLink>
               <span className="text-[#eee]">/</span>
-              <Link href="/blog"><a className="hover:text-[#222] transition-colors">Blog</a></Link>
+              <PrefetchLink href="/blog" className="hover:text-[#222] transition-colors">{blogLabel}</PrefetchLink>
               <span className="text-[#eee]">/</span>
               <span className="text-[#222] truncate max-w-[150px] md:max-w-none">{post.title}</span>
             </nav>
@@ -208,6 +161,14 @@ export default function BlogPost() {
                   <Clock size={14} className="text-[#4CAF93]" />
                   <span>{post.readTime} {t('blog.minuteRead')}</span>
                 </div>
+                {post.lastReviewed && (
+                  <>
+                    <div className="w-1 h-1 bg-[#eee] rounded-full" />
+                    <span>
+                      {language === 'zh' ? '更新于' : 'Updated'} {new Date(post.lastReviewed).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                    </span>
+                  </>
+                )}
                 <button onClick={handleShare} className="ml-2 p-2 hover:text-[#4CAF93] transition-colors">
                   <Share2 size={16} />
                 </button>
@@ -339,22 +300,51 @@ export default function BlogPost() {
                   prose-a:text-[#4CAF93] prose-a:no-underline prose-a:border-b prose-a:border-[#4CAF93]/20 prose-a:transition-all hover:prose-a:border-[#4CAF93]
                   prose-img:rounded-2xl prose-img:shadow-sm prose-img:my-12 prose-img:border prose-img:border-gray-100
                 "
-                dangerouslySetInnerHTML={{ __html: contentWithIds }}
+                dangerouslySetInnerHTML={{ __html: post.contentHtml }}
               />
 
+              {post.sources && post.sources.length > 0 && (
+                <section className="mt-16 bg-white border border-[#E5E5E5] rounded-3xl p-8 md:p-10">
+                  <h2 className="text-2xl font-light text-[#111] mb-5">
+                    {language === 'zh' ? '来源' : 'Sources'}
+                  </h2>
+                  <ol className="space-y-4 text-[#555] leading-relaxed">
+                    {post.sources.map((source) => (
+                      <li key={`${source.title}-${source.url}`} className="pl-1">
+                        <a href={source.url} target="_blank" rel="noopener noreferrer" className="text-[#222] hover:text-[#4CAF93] transition-colors">
+                          {source.title}
+                        </a>
+                        <div className="text-sm text-[#777] mt-1">
+                          {source.publisher}
+                          {source.publishedDate ? ` · ${source.publishedDate}` : ''}
+                          {source.notes ? ` · ${source.notes}` : ''}
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </section>
+              )}
+
               {/* Author Bio (Card Style) */}
-              <div className="mt-24 p-8 md:p-12 bg-gray-50/80 rounded-3xl border border-gray-100 flex flex-col items-center text-center">
+              <div className="mt-16 p-8 md:p-12 bg-gray-50/80 rounded-3xl border border-gray-100 flex flex-col items-center text-center">
                 <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-sm mb-6">
                   <img src="/images/logo.png" alt="DropDrop Team" className="w-full h-full object-cover" />
                 </div>
                 <div>
                   <div className="text-[11px] font-bold text-[#999] uppercase tracking-[0.2em] mb-3">
-                    {t('blog.author.title')}
+                    {language === 'zh' ? '关于作者' : 'About the author'}
                   </div>
                   <h4 className="text-xl font-bold text-[#111] mb-3">{post.author}</h4>
                   <p className="text-[15px] text-[#555] leading-relaxed max-w-lg mx-auto">
                     {t('blog.author.desc')}
                   </p>
+                  {post.lastReviewed && (
+                    <p className="mt-4 text-sm text-[#777]">
+                      {language === 'zh'
+                        ? `最近更新：${new Date(post.lastReviewed).toLocaleDateString('zh-CN')}`
+                        : `Last updated on ${new Date(post.lastReviewed).toLocaleDateString('en-US')}`}
+                    </p>
+                  )}
                 </div>
               </div>
 

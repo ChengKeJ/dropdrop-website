@@ -1,42 +1,18 @@
-const fs = require('fs');
-const path = require('path');
-const frontMatter = require('front-matter');
-
-// Configuration
-const BASE_URL = 'https://www.dropdrophabit.com';
-const BLOG_DIR_ZH = path.join(__dirname, '../client/src/content/blog/zh');
-const BLOG_DIR_EN = path.join(__dirname, '../client/src/content/blog/en');
-const OUTPUT_FILE = path.join(__dirname, '../client/public/feed.xml');
-
-// Helper to get posts from a directory
-function getPosts(dir, lang) {
-    if (!fs.existsSync(dir)) return [];
-
-    return fs.readdirSync(dir)
-        .filter(file => file.endsWith('.md'))
-        .map(file => {
-            const content = fs.readFileSync(path.join(dir, file), 'utf8');
-            const { attributes, body } = frontMatter(content);
-            return {
-                slug: file.replace('.md', ''),
-                lang,
-                title: attributes.title,
-                description: attributes.description,
-                date: new Date(attributes.date),
-                link: `${BASE_URL}${lang === 'zh' ? '/zh' : ''}/blog/${file.replace('.md', '')}`
-            };
-        });
-}
+const { loadGeneratedBlogPosts } = require('./blog-data.cjs');
+const { BASE_URL, writeStaticAsset } = require('./site-manifest.cjs');
 
 // Main generation function
 function generateRSS() {
     console.log('Generating RSS feed...');
 
-    const postsZH = getPosts(BLOG_DIR_ZH, 'zh');
-    const postsEN = getPosts(BLOG_DIR_EN, 'en');
-
-    // Combine and sort by date (newest first)
-    const allPosts = [...postsZH, ...postsEN].sort((a, b) => b.date - a.date);
+    const allPosts = loadGeneratedBlogPosts()
+        .map((post) => ({
+            title: post.title,
+            description: post.description,
+            date: new Date(post.datePublished),
+            link: `${BASE_URL}${post.language === 'zh' ? '/zh' : ''}/blog/${post.slug}`
+        }))
+        .sort((a, b) => b.date - a.date);
 
     const rssItems = allPosts.map(post => `
     <item>
@@ -61,8 +37,8 @@ function generateRSS() {
   </channel>
 </rss>`;
 
-    fs.writeFileSync(OUTPUT_FILE, rssFeed);
-    console.log(`RSS feed generated at ${OUTPUT_FILE} with ${allPosts.length} posts.`);
+    writeStaticAsset('feed.xml', rssFeed);
+    console.log(`RSS feed generated with ${allPosts.length} posts.`);
 }
 
 generateRSS();

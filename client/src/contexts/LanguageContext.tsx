@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useLocation } from "wouter";
 import { 
   Language, 
   getLanguageFromPath, 
@@ -22,8 +21,6 @@ interface LanguageProviderProps {
 }
 
 export function LanguageProvider({ children, base = '' }: LanguageProviderProps) {
-  const [location, navigate] = useLocation();
-  
   // Use centralized logic to determine language
   // 'base' prop from App.tsx corresponds to the router base path (e.g. '/zh' or '')
   const language = getLanguageFromPath(base);

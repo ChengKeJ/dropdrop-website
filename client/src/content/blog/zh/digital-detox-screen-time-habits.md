@@ -19,6 +19,37 @@ keywords:
   - minimalist phone
   - dopamine detox
   - 减少手机使用
+summary: "真正可持续的 digital detox，不是彻底断联，而是减少无意识刷手机的触发点、增加摩擦，并让更好的低屏幕替代行为更容易发生。"
+lastReviewed: "2026-03-24"
+reviewedBy: "DropDrop 编辑团队"
+keyTakeaways:
+  - "先处理触发线索，再谈意志力，通常更有效。"
+  - "卧室边界、通知设置和首页布局，往往能带来最快的变化。"
+  - "可持续的数字减负，一定要有低屏幕替代动作，而不是只靠硬忍。"
+sources:
+  - title: "How Electronics Affect Sleep"
+    url: "https://www.sleepfoundation.org/how-sleep-works/how-electronics-affect-sleep"
+    publisher: "Sleep Foundation"
+  - title: "Use Screen Time to reduce time you spend on iPhone"
+    url: "https://support.apple.com/guide/iphone/use-screen-time-to-reduce-time-you-spend-on-iphone-iphb0c7313c9/ios"
+    publisher: "Apple Support"
+  - title: "What do we know about mobile screen time and mental health?"
+    url: "https://www.apa.org/monitor/2020/04/cover-kids-screens"
+    publisher: "American Psychological Association"
+faq:
+  - question: "Digital detox 和 dopamine detox 是一回事吗？"
+    answer: "不完全一样。很多人说 dopamine detox，其实是在表达想减少高刺激循环；而更现实的 digital detox，重点在于环境、线索和习惯设计。"
+  - question: "减少 screen time 多快能看到变化？"
+    answer: "像把手机移出卧室、关闭部分通知这类调整，几天内就可能感觉不同；但更稳定的改变仍然要靠重复和替代习惯。"
+howToSteps:
+  - name: "先把手机移出卧室"
+    text: "先处理睡前和刚醒来这两个最容易失控的时间段。"
+  - name: "精简首页"
+    text: "首页只保留工具类 App，把娱乐类 App 放到更深的位置。"
+  - name: "设置限制和专注模式"
+    text: "在工作、吃饭和睡前时段，用 Screen Time 或计时器增加一点使用摩擦。"
+  - name: "提前准备替代清单"
+    text: "把阅读、泡茶、走路、拉伸、写一分钟日记这类低屏幕动作提前列出来。"
 readTime: 12
 ---
 

@@ -1,7 +1,7 @@
 
 import { motion } from "framer-motion";
-import { BlogPost } from "@/lib/blog";
-import { Link } from "wouter";
+import type { BlogPost } from "@/lib/blog";
+import { PrefetchLink } from "@/components/PrefetchLink";
 import { Clock, Calendar } from "lucide-react";
 
 interface RelatedPostsProps {
@@ -27,7 +27,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
                         transition={{ delay: index * 0.1 }}
                         className="group"
                     >
-                        <Link href={`/blog/${post.slug}`} className="block h-full">
+                        <PrefetchLink href={`/blog/${post.slug}`} className="block h-full">
                             <div className="relative aspect-[16/10] overflow-hidden rounded-2xl mb-4 bg-gray-100 border border-gray-100">
                                 <img
                                     src={post.image}
@@ -54,7 +54,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
                                     {post.readTime} min
                                 </span>
                             </div>
-                        </Link>
+                        </PrefetchLink>
                     </motion.div>
                 ))}
             </div>

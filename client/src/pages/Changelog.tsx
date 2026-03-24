@@ -6,7 +6,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Badge } from '@/components/ui/badge';
 import { Calendar } from 'lucide-react';
-import { breadcrumbSchema } from '@/lib/structuredData';
+import { breadcrumbSchema, pageSchema } from '@/lib/structuredData';
 
 interface LocalizedText {
     zh: string;
@@ -22,6 +22,7 @@ interface ReleaseNote {
 
 export default function Changelog() {
     const { t, language } = useLanguage();
+    const baseUrl = language === 'zh' ? 'https://www.dropdrophabit.com/zh' : 'https://www.dropdrophabit.com';
 
     const releases: ReleaseNote[] = [
         {
@@ -301,9 +302,15 @@ export default function Changelog() {
     };
 
     const breadcrumbs = breadcrumbSchema([
-        { name: 'Home', url: 'https://www.dropdrophabit.com/' },
-        { name: 'Changelog', url: 'https://www.dropdrophabit.com/changelog' }
+        { name: language === 'zh' ? '首页' : 'Home', url: `${baseUrl}/` },
+        { name: t('changelog.title'), url: `${baseUrl}/changelog` }
     ]);
+    const changelogSchema = pageSchema({
+        type: 'CollectionPage',
+        name: t('changelog.title'),
+        description: t('changelog.seo.description'),
+        url: `${baseUrl}/changelog`,
+    });
 
     return (
         <>
@@ -311,7 +318,7 @@ export default function Changelog() {
                 title={`${t('changelog.title')} - DropDrop`}
                 description={t('changelog.seo.description')}
                 canonical="https://www.dropdrophabit.com/changelog"
-                structuredData={breadcrumbs}
+                structuredData={[breadcrumbs, changelogSchema]}
             />
 
             <div className="min-h-screen bg-[#FAFAFA] text-[#222222] font-sans">
