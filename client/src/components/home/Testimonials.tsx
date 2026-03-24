@@ -13,7 +13,7 @@ export function Testimonials() {
             roleKey: 'testimonial.1.role',
             commentKey: 'testimonial.1.comment',
             stars: 5,
-            avatar: '/images/avatars/avatar1.png'
+            avatar: '/images/avatars/avatar1.webp'
         },
         {
             id: 2,
@@ -21,7 +21,7 @@ export function Testimonials() {
             roleKey: 'testimonial.2.role',
             commentKey: 'testimonial.2.comment',
             stars: 5,
-            avatar: '/images/avatars/avatar2.png'
+            avatar: '/images/avatars/avatar2.webp'
         },
         {
             id: 3,
@@ -29,7 +29,7 @@ export function Testimonials() {
             roleKey: 'testimonial.3.role',
             commentKey: 'testimonial.3.comment',
             stars: 5,
-            avatar: '/images/avatars/avatar3.png'
+            avatar: '/images/avatars/avatar3.webp'
         },
     ];
 

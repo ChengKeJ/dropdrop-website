@@ -58,8 +58,9 @@ export default function ResearchMethodology() {
   const { language } = useLanguage();
   const page = content[language];
   const baseUrl = language === 'zh' ? 'https://www.dropdrophabit.com/zh' : 'https://www.dropdrophabit.com';
+  const homeUrl = language === 'zh' ? baseUrl : `${baseUrl}/`;
   const breadcrumbs = breadcrumbSchema([
-    { name: language === 'zh' ? '首页' : 'Home', url: `${baseUrl}/` },
+    { name: language === 'zh' ? '首页' : 'Home', url: homeUrl },
     { name: page.title, url: `${baseUrl}/research-methodology` }
   ]);
   const schema = pageSchema({
@@ -67,6 +68,7 @@ export default function ResearchMethodology() {
     name: page.title,
     description: page.description,
     url: `${baseUrl}/research-methodology`,
+    language,
   });
 
   return (

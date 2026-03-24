@@ -96,6 +96,9 @@ function readMarkdownPosts() {
       const rawContent = fs.readFileSync(path.join(directory, fileName), "utf8");
       const { attributes, body } = frontMatter(rawContent);
       const datePublished = toIsoDate(attributes.date, new Date().toISOString());
+      const updatedAt = attributes.updatedAt
+        ? toIsoDate(attributes.updatedAt, datePublished)
+        : undefined;
       const lastReviewed = attributes.lastReviewed
         ? toIsoDate(attributes.lastReviewed, datePublished)
         : undefined;
@@ -109,7 +112,8 @@ function readMarkdownPosts() {
         image: attributes.image,
         author: attributes.author,
         datePublished,
-        dateModified: lastReviewed ?? datePublished,
+        dateModified: updatedAt ?? datePublished,
+        updatedAt,
         lastReviewed,
         reviewedBy: attributes.reviewedBy,
         category: attributes.category,

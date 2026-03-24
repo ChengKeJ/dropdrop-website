@@ -1,6 +1,6 @@
 ---
-title: "How Many Days Does It Take to Build a Habit? The Science-Backed Truth (2026 Update)"
-description: Discover the real science behind habit formation. Learn why the 21-day myth is wrong, what actually works in 2026, and how to use modern habit tracking tools like Loop Habit Tracker and DropDrop to build lasting habits.
+title: "How Many Days to Build a Habit?"
+description: Learn what habit formation research actually says, why the 21-day myth is wrong, and what a more realistic timeline looks like.
 date: 2026-01-27
 author: DropDrop Team
 image: https://oss.dropdrophabit.com/habit-building-days.jpg
@@ -19,7 +19,7 @@ keywords:
   - best habit tracker 2026
   - DropDrop app
 summary: "Most habits do not become automatic in 21 days. Real-world research shows a wide range from 18 to 254 days, with about 66 days as an average for automaticity."
-lastReviewed: "2026-03-24"
+updatedAt: "2026-03-24"
 reviewedBy: "DropDrop Editorial Team"
 keyTakeaways:
   - "The 21-day rule is a myth; habit formation speed depends on the behavior, context, and person."
@@ -205,7 +205,7 @@ Many users searching for habit solutions compare **Loop Habit Tracker** (a popul
 | Feature | Loop Habit Tracker | DropDrop |
 |---------|-------------------|----------|
 | **Price** | Free, open-source | Freemium (Premium available) |
-| **Platform** | Android only | iOS & Android |
+| **Platform** | Android only | iOS |
 | **Streak tracking** | ✅ Yes | ✅ Yes (with flexible "Rest Mode") |
 | **HRV integration** | ❌ No | ✅ Apple Watch, Garmin, etc. |
 | **Mood/Energy logging** | ❌ Basic | ✅ Deep insights |

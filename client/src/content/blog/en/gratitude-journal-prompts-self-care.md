@@ -1,6 +1,6 @@
 ---
-title: "Gratitude Journal Prompts That Don't Feel Forced: A Better Self-Care Habit for Busy Days"
-description: Build a realistic gratitude journaling habit with simple prompts, a 5-minute self-care routine, and practical tips for staying consistent even on stressful days.
+title: "Gratitude Journal Prompts for Busy Days"
+description: Use simple gratitude journal prompts and a 5-minute routine to build a realistic self-care habit that still works on stressful days.
 date: 2026-03-21
 author: DropDrop Team
 image: /images/blog/gratitude-journal-prompts-self-care.png

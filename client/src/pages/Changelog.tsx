@@ -7,6 +7,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Badge } from '@/components/ui/badge';
 import { Calendar } from 'lucide-react';
 import { breadcrumbSchema, pageSchema } from '@/lib/structuredData';
+import { appStoreUrl } from '@/lib/productFacts';
 
 interface LocalizedText {
     zh: string;
@@ -23,6 +24,7 @@ interface ReleaseNote {
 export default function Changelog() {
     const { t, language } = useLanguage();
     const baseUrl = language === 'zh' ? 'https://www.dropdrophabit.com/zh' : 'https://www.dropdrophabit.com';
+    const homeUrl = language === 'zh' ? baseUrl : `${baseUrl}/`;
 
     const releases: ReleaseNote[] = [
         {
@@ -302,7 +304,7 @@ export default function Changelog() {
     };
 
     const breadcrumbs = breadcrumbSchema([
-        { name: language === 'zh' ? '首页' : 'Home', url: `${baseUrl}/` },
+        { name: language === 'zh' ? '首页' : 'Home', url: homeUrl },
         { name: t('changelog.title'), url: `${baseUrl}/changelog` }
     ]);
     const changelogSchema = pageSchema({
@@ -310,6 +312,7 @@ export default function Changelog() {
         name: t('changelog.title'),
         description: t('changelog.seo.description'),
         url: `${baseUrl}/changelog`,
+        language,
     });
 
     return (
@@ -343,7 +346,7 @@ export default function Changelog() {
                                     : 'Compiled from public release history and the app project changelog, last verified on March 23, 2026.'}
                                 {' '}
                                 <a
-                                    href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
+                                    href={appStoreUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-[#4CAF93] hover:underline"

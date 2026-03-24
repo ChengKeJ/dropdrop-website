@@ -16,6 +16,17 @@ const STATIC_ROUTES = [
   '/research-methodology',
 ];
 
+const STATIC_ROUTE_LASTMOD = {
+  '/': '2026-03-24',
+  '/faq': '2026-03-24',
+  '/about': '2026-03-24',
+  '/privacy': '2026-01-13',
+  '/terms': '2026-01-13',
+  '/changelog': '2026-03-21',
+  '/editorial-policy': '2026-03-24',
+  '/research-methodology': '2026-03-24',
+};
+
 function getBlogSlugs() {
   const slugs = loadGeneratedBlogPosts().map((post) => post.slug);
   return [...new Set(slugs)].sort();
@@ -112,6 +123,40 @@ function getPriorityConfig(route) {
   return { priority: '0.6', changefreq: 'monthly' };
 }
 
+function toDateOnly(value) {
+  return value.split('T')[0];
+}
+
+function getLatestBlogLastModified() {
+  return loadGeneratedBlogPosts().reduce((latest, post) => {
+    const candidate = toDateOnly(post.dateModified || post.datePublished);
+    return candidate > latest ? candidate : latest;
+  }, '2026-01-01');
+}
+
+function getRouteLastModified(route) {
+  const cleanRoute = getCleanRoute(route);
+
+  if (cleanRoute === '/blog') {
+    return getLatestBlogLastModified();
+  }
+
+  if (cleanRoute.startsWith('/blog/')) {
+    const slug = cleanRoute.replace('/blog/', '');
+    const routeLanguage = route.startsWith('/zh/') ? 'zh' : 'en';
+    const posts = loadGeneratedBlogPosts();
+    const matchingPost = posts.find(
+      (post) => post.slug === slug && post.language === routeLanguage
+    ) || posts.find((post) => post.slug === slug);
+
+    if (matchingPost) {
+      return toDateOnly(matchingPost.dateModified || matchingPost.datePublished);
+    }
+  }
+
+  return STATIC_ROUTE_LASTMOD[cleanRoute] || '2026-01-13';
+}
+
 function writeStaticAsset(relativePath, content) {
   const targetPath = path.join(__dirname, '../dist/public', relativePath);
   fs.mkdirSync(path.dirname(targetPath), { recursive: true });
@@ -126,6 +171,7 @@ module.exports = {
   getBlogSlugs,
   getCanonicalUrl,
   getCleanRoute,
+  getRouteLastModified,
   getPriorityConfig,
   localizeRoute,
   writeStaticAsset,

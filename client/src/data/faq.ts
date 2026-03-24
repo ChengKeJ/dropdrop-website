@@ -1,3 +1,9 @@
+import {
+  deviceAvailability,
+  languageAvailabilityText,
+  pricingPolicyText,
+} from "@/lib/productFacts";
+
 export interface FAQItem {
   question: {
     zh: string;
@@ -17,8 +23,8 @@ export const faqData: FAQItem[] = [
       en: 'Is DropDrop free to use?'
     },
     answer: {
-      zh: 'DropDrop 提供免费版本，包含基础的习惯追踪功能。Pro 会员（¥9.99/月或¥99/年）提供无限习惯创建、高级数据分析、云端同步等高级功能。',
-      en: 'DropDrop offers a free version with basic habit tracking features. Pro membership ($9.99/month or $99/year) provides unlimited habit creation, advanced analytics, cloud sync, and more premium features.'
+      zh: `DropDrop 提供免费体验。${pricingPolicyText.zh}`,
+      en: `DropDrop includes a free experience. ${pricingPolicyText.en}`
     },
     category: 'Pricing'
   },
@@ -28,8 +34,8 @@ export const faqData: FAQItem[] = [
       en: 'Can I use DropDrop on multiple devices?'
     },
     answer: {
-      zh: '是的！Pro 会员可以在 iOS 和 Android 设备上同步所有数据。免费版用户的数据仅保存在本地设备。',
-      en: 'Yes! Pro members can sync all data across iOS and Android devices. Free users\' data is stored locally on their device only.'
+      zh: `DropDrop 当前通过 App Store 提供，适用于 ${deviceAvailability.zh}。与账号、备份或同步相关的最新可用性，请以 App Store 页面和应用内说明为准。`,
+      en: `DropDrop is currently distributed through the App Store for ${deviceAvailability.en}. For the latest details about account, backup, or sync availability, refer to the current App Store listing and in-app settings.`
     },
     category: 'Features'
   },
@@ -50,8 +56,8 @@ export const faqData: FAQItem[] = [
       en: 'Is my data secure?'
     },
     answer: {
-      zh: 'DropDrop 非常重视数据安全。所有数据都经过加密存储，Pro 会员的云端数据使用行业标准的加密传输。我们不会与第三方分享你的个人数据。',
-      en: 'DropDrop takes data security seriously. All data is encrypted at rest, and Pro cloud data uses industry-standard encryption in transit. We never share your personal data with third parties.'
+      zh: 'DropDrop 非常重视数据安全。健康访问和账号行为遵循你在 Apple 设备上授予的权限，我们不会把你的个人数据出售给第三方。',
+      en: 'DropDrop takes data security seriously. Health access and account behavior follow the permissions you grant on your Apple devices, and we do not sell your personal data to third parties.'
     },
     category: 'Privacy'
   },
@@ -94,8 +100,8 @@ export const faqData: FAQItem[] = [
       en: 'What languages does DropDrop support?'
     },
     answer: {
-      zh: '目前 DropDrop 支持简体中文和英语。我们计划在未来添加更多语言支持。',
-      en: 'Currently DropDrop supports Simplified Chinese and English. We plan to add more languages in the future.'
+      zh: languageAvailabilityText.zh,
+      en: languageAvailabilityText.en
     },
     category: 'General'
   },
@@ -105,8 +111,8 @@ export const faqData: FAQItem[] = [
       en: 'How do I cancel my Pro subscription?'
     },
     answer: {
-      zh: '你可以随时在 App Store 或 Google Play 的订阅设置中取消订阅。取消后，你的 Pro 功能将在当前计费周期结束时到期。',
-      en: 'You can cancel your subscription anytime in the App Store or Google Play subscription settings. After cancellation, your Pro features will remain active until the end of the current billing period.'
+      zh: '你可以随时在 App Store 的订阅设置中取消。取消后，已购买的权益通常会持续到当前计费周期结束。',
+      en: 'You can cancel anytime in the App Store subscription settings. After cancellation, paid features typically remain available until the end of the current billing period.'
     },
     category: 'Pricing'
   },
@@ -116,8 +122,8 @@ export const faqData: FAQItem[] = [
       en: 'Can I get a refund?'
     },
     answer: {
-      zh: '退款政策由 App Store 和 Google Play 管理。如果你在订阅后 48 小时内不满意，请联系相应平台的客服申请退款。',
-      en: 'Refund policies are managed by the App Store and Google Play. If you are unsatisfied within 48 hours of subscribing, please contact the respective platform support to request a refund.'
+      zh: '退款通常由 Apple 按 App Store 购买政策处理。如需帮助，请联系 Apple Support 并查看当前 App Store 退款说明。',
+      en: 'Refunds are typically handled by Apple under App Store purchase policies. If you need help, contact Apple Support and review the current App Store refund guidance.'
     },
     category: 'Pricing'
   }

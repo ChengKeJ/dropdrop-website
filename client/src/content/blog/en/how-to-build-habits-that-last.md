@@ -1,9 +1,9 @@
 ---
-title: "How to Build Habits That Last: A Science-Based Guide"
+title: "How to Build Habits That Last"
 description: Based on behavioral science research, learn how to build lasting habits through small steps and proven strategies
 date: 2026-01-10
 author: DropDrop Team
-image: /images/blog/habits-guide.jpg
+image: /images/blog/habits-guide.webp
 category: Habit Building
 tags:
   - habits

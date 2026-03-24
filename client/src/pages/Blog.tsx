@@ -12,9 +12,10 @@ export default function Blog() {
   const { language, t } = useLanguage();
   const posts = getAllBlogPosts(language as 'zh' | 'en');
   const baseUrl = language === 'zh' ? 'https://www.dropdrophabit.com/zh' : 'https://www.dropdrophabit.com';
+  const homeUrl = language === 'zh' ? baseUrl : `${baseUrl}/`;
 
   const breadcrumbs = breadcrumbSchema([
-    { name: language === 'zh' ? '首页' : 'Home', url: `${baseUrl}/` },
+    { name: language === 'zh' ? '首页' : 'Home', url: homeUrl },
     { name: language === 'zh' ? '博客' : 'Blog', url: `${baseUrl}/blog` }
   ]);
   const collectionSchema = pageSchema({
@@ -24,6 +25,7 @@ export default function Blog() {
       ? '围绕习惯养成、恢复、HRV 和温和自律的文章集合。'
       : 'A collection of articles about habits, recovery, HRV, and gentle consistency.',
     url: `${baseUrl}/blog`,
+    language,
   });
 
   const fadeInUp = {

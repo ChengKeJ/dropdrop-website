@@ -10,6 +10,7 @@ import { PrefetchLink } from '@/components/PrefetchLink';
 import { breadcrumbSchema, blogPostSchema } from '@/lib/structuredData';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { appStoreUrl } from '@/lib/productFacts';
 import { toast } from 'sonner';
 import NotFound from './NotFound';
 
@@ -72,6 +73,7 @@ export default function BlogPost() {
   }
 
   const baseUrl = language === 'zh' ? 'https://www.dropdrophabit.com/zh' : 'https://www.dropdrophabit.com';
+  const homeUrl = language === 'zh' ? baseUrl : `${baseUrl}/`;
   const homeLabel = language === 'zh' ? '首页' : 'Home';
   const blogLabel = language === 'zh' ? '博客' : 'Blog';
   const imageUrl = post.image.startsWith('http')
@@ -79,7 +81,7 @@ export default function BlogPost() {
     : `https://www.dropdrophabit.com${post.image}`;
 
   const breadcrumbs = breadcrumbSchema([
-    { name: homeLabel, url: `${baseUrl}/` },
+    { name: homeLabel, url: homeUrl },
     { name: blogLabel, url: `${baseUrl}/blog` },
     { name: post.title, url: `${baseUrl}/blog/${post.slug}` }
   ]);
@@ -94,14 +96,16 @@ export default function BlogPost() {
     url: `${baseUrl}/blog/${post.slug}`,
     keywords: post.keywords,
     wordCount: post.wordCount,
-    articleSection: post.category
+    articleSection: post.category,
+    language: language as 'zh' | 'en'
   });
   const structuredData = [breadcrumbs, blogSchema];
+  const hasUpdatedDate = post.dateModified !== post.datePublished;
 
   return (
     <>
       <SEOHead
-        title={`${post.title} - DropDrop Blog`}
+        title={`${post.title} | DropDrop`}
         description={post.description}
         canonical={`https://www.dropdrophabit.com/blog/${post.slug}`}
         ogType="article"
@@ -109,7 +113,7 @@ export default function BlogPost() {
         keywords={post.keywords || post.tags}
         article={{
           publishedTime: post.datePublished,
-          modifiedTime: post.lastReviewed ?? post.dateModified,
+          modifiedTime: post.dateModified,
           author: post.author,
           section: post.category,
           tags: post.keywords || post.tags
@@ -161,11 +165,11 @@ export default function BlogPost() {
                   <Clock size={14} className="text-[#4CAF93]" />
                   <span>{post.readTime} {t('blog.minuteRead')}</span>
                 </div>
-                {post.lastReviewed && (
+                {hasUpdatedDate && (
                   <>
                     <div className="w-1 h-1 bg-[#eee] rounded-full" />
                     <span>
-                      {language === 'zh' ? '更新于' : 'Updated'} {new Date(post.lastReviewed).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                      {language === 'zh' ? '更新于' : 'Updated'} {new Date(post.dateModified).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                     </span>
                   </>
                 )}
@@ -338,11 +342,11 @@ export default function BlogPost() {
                   <p className="text-[15px] text-[#555] leading-relaxed max-w-lg mx-auto">
                     {t('blog.author.desc')}
                   </p>
-                  {post.lastReviewed && (
+                  {hasUpdatedDate && (
                     <p className="mt-4 text-sm text-[#777]">
                       {language === 'zh'
-                        ? `最近更新：${new Date(post.lastReviewed).toLocaleDateString('zh-CN')}`
-                        : `Last updated on ${new Date(post.lastReviewed).toLocaleDateString('en-US')}`}
+                        ? `最近更新：${new Date(post.dateModified).toLocaleDateString('zh-CN')}`
+                        : `Last updated on ${new Date(post.dateModified).toLocaleDateString('en-US')}`}
                     </p>
                   )}
                 </div>
@@ -369,7 +373,7 @@ export default function BlogPost() {
                   {t('blog.cta.subtitle')}
                 </p>
                 <a
-                  href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
+                  href={appStoreUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-16 items-center justify-center rounded-full bg-[#4CAF93] px-12 text-[17px] font-bold text-white shadow-lg shadow-[#4CAF93]/20 transition-all hover:bg-[#3d8f78] hover:scale-105 active:scale-95"

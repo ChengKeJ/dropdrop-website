@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, ReactNode } from 'react';
 import { 
   Language, 
   getLanguageFromPath, 
@@ -50,12 +50,7 @@ export function LanguageProvider({ children, base = '' }: LanguageProviderProps)
 
   // Helper for components to generate correct links
   const localizedPath = (path: string) => {
-    // If we are already inside a router with a base, we might need relative links
-    // But wouter links are usually absolute.
-    // If the Router base is '/zh', <Link href="/about"> goes to '/zh/about'.
-    // So we usually DON'T need to manually prepend base if using wouter's Link inside Router.
-    // However, for external <a> tags or special cases, this might be useful.
-    return path; 
+    return getLocalizedPath(path, language);
   };
 
   return (

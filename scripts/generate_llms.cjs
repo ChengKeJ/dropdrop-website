@@ -4,6 +4,7 @@ const {
   writeStaticAsset,
 } = require('./site-manifest.cjs');
 const { loadGeneratedBlogPosts } = require('./blog-data.cjs');
+const productFacts = require('../client/src/data/product-facts.json');
 
 const blogPosts = loadGeneratedBlogPosts();
 
@@ -84,20 +85,21 @@ function generateLlmsFullTxt() {
     '- Core promise: help users build habits that fit their current physical and mental state.',
     '- Primary differentiator: bio-responsive suggestions using HRV, mood, and activity context.',
     '- Philosophy: long-term consistency over streak anxiety.',
+    `- Availability: currently distributed through the App Store for ${productFacts.deviceAvailability.en}.`,
     `- Main product page: ${BASE_URL}/`,
     '',
     '## Pricing and Policies',
-    '- Free tier: basic habit tracking with a local-device experience.',
-    '- Pro tier: $9.99/month or $99/year, with unlimited habits, advanced analytics, cloud sync, and data export.',
+    '- DropDrop includes a free experience.',
+    '- Current subscription and in-app purchase options should be taken from the App Store listing and in-app purchase screen, not from static site copy.',
     `- Pricing FAQ: ${BASE_URL}/faq`,
     `- Privacy policy: ${BASE_URL}/privacy`,
     `- Terms of service: ${BASE_URL}/terms`,
     '',
     '## FAQ Summary',
-    '- Free users can track up to 3 habits; Pro removes the cap.',
-    '- Cross-device sync is available to Pro members on iOS and Android.',
+    '- Device availability should be treated as Apple-only based on the current App Store listing.',
+    '- Subscription management and refunds are handled through the App Store.',
     '- Missing one day does not erase overall progress; the product philosophy favors consistency over perfection.',
-    '- Current public site languages are English and Simplified Chinese.',
+    '- The public website is available in English and Simplified Chinese.',
     '',
     '## Trust Pages',
     `- Editorial Policy: ${BASE_URL}/editorial-policy`,

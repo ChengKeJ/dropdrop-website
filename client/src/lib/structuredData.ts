@@ -1,47 +1,67 @@
-const SITE_URL = 'https://www.dropdrophabit.com';
+import { appStoreUrl, operatingSystemLabel, siteUrl, type SiteLanguage } from "@/lib/productFacts";
 
-export const organizationSchema = {
+const schemaCopy: Record<
+  SiteLanguage,
+  {
+    organizationDescription: string;
+    websiteDescription: string;
+    softwareDescription: string;
+  }
+> = {
+  zh: {
+    organizationDescription: "DropDrop 是一款温和的 iOS 习惯追踪应用，会结合 HRV、心情与活动信号帮助用户安排更适合当下状态的节奏。",
+    websiteDescription: "DropDrop 官网提供产品信息、FAQ、方法论与中英文习惯养成内容，重点关注温和、状态感知的行为改变。",
+    softwareDescription: "DropDrop 是一款温和的 iOS 习惯追踪应用，会结合 HRV、心情与活动信号帮助用户安排更适合今天状态的习惯。",
+  },
+  en: {
+    organizationDescription: "DropDrop is a gentle iOS habit tracker that uses HRV, mood, and activity signals to help people build habits that fit their current state.",
+    websiteDescription: "The DropDrop website provides product pages, FAQs, trust pages, and bilingual habit-building content focused on gentle, state-aware behavior change.",
+    softwareDescription: "DropDrop is a gentle iOS habit tracker that uses HRV, mood, and activity signals to guide habits that fit today.",
+  },
+};
+
+export const getOrganizationSchema = (language: SiteLanguage) => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'DropDrop',
-  url: SITE_URL,
-  logo: `${SITE_URL}/images/logo.png`,
-  description: '专业的习惯追踪应用，帮助你养成更好的习惯',
-  sameAs: [
-    'https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464',
-  ],
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo.png`,
+  description: schemaCopy[language].organizationDescription,
+  sameAs: [appStoreUrl],
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'Customer Service',
-    availableLanguage: ['Chinese', 'English']
+    availableLanguage: ['English', 'Chinese']
   }
-};
+});
 
-export const websiteSchema = {
+export const getWebsiteSchema = (language: SiteLanguage) => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'DropDrop',
-  url: SITE_URL,
-  description: 'A bilingual habit tracking website focused on gentle, HRV-aware behavior change.',
-  inLanguage: ['zh-CN', 'en-US']
-};
+  url: siteUrl,
+  description: schemaCopy[language].websiteDescription,
+  inLanguage: ['en-US', 'zh-CN']
+});
 
-export const softwareAppSchema = {
+export const getSoftwareAppSchema = (language: SiteLanguage) => ({
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'DropDrop',
-  description: 'A habit tracking app focused on gentle, HRV-aware behavior change.',
+  description: schemaCopy[language].softwareDescription,
   applicationCategory: 'HealthApplication',
-  operatingSystem: 'iOS, Android',
-  url: SITE_URL,
-  image: `${SITE_URL}/images/logo.png`,
+  operatingSystem: operatingSystemLabel,
+  url: siteUrl,
+  downloadUrl: appStoreUrl,
+  sameAs: [appStoreUrl],
+  image: `${siteUrl}/images/logo.png`,
   screenshot: [
-    `${SITE_URL}/images/minPlan.png`,
-    `${SITE_URL}/images/habit.png`,
-    `${SITE_URL}/images/today.png`,
-    `${SITE_URL}/images/statics.png`
+    `${siteUrl}/images/minPlan.webp`,
+    `${siteUrl}/images/habit.webp`,
+    `${siteUrl}/images/today.webp`,
+    `${siteUrl}/images/statics.webp`
   ]
-};
+});
 
 export const breadcrumbSchema = (items: { name: string; url: string }[]) => ({
   '@context': 'https://schema.org',
@@ -59,22 +79,24 @@ export const pageSchema = ({
   name,
   description,
   url,
+  language = 'en',
 }: {
   type?: 'WebPage' | 'CollectionPage' | 'AboutPage';
   name: string;
   description: string;
   url: string;
+  language?: SiteLanguage;
 }) => ({
   '@context': 'https://schema.org',
   '@type': type,
   name,
   description,
   url,
-  inLanguage: ['zh-CN', 'en-US'],
+  inLanguage: language === 'zh' ? 'zh-CN' : 'en-US',
   isPartOf: {
     '@type': 'WebSite',
     name: 'DropDrop',
-    url: SITE_URL
+    url: siteUrl
   }
 });
 
@@ -101,7 +123,8 @@ export const blogPostSchema = ({
   url,
   keywords,
   wordCount,
-  articleSection
+  articleSection,
+  language = 'en'
 }: {
   title: string;
   description: string;
@@ -113,6 +136,7 @@ export const blogPostSchema = ({
   keywords?: string[];
   wordCount?: number;
   articleSection?: string;
+  language?: SiteLanguage;
 }) => ({
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -125,6 +149,7 @@ export const blogPostSchema = ({
   ...(wordCount && { wordCount }),
   ...(keywords && keywords.length > 0 && { keywords: keywords.join(', ') }),
   ...(articleSection && { articleSection }),
+  inLanguage: language === 'zh' ? 'zh-CN' : 'en-US',
   author: {
     '@type': 'Person',
     name: author
@@ -134,7 +159,7 @@ export const blogPostSchema = ({
     name: 'DropDrop',
     logo: {
       '@type': 'ImageObject',
-      url: `${SITE_URL}/images/logo.png`
+      url: `${siteUrl}/images/logo.png`
     }
   },
   mainEntityOfPage: {

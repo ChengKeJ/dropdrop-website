@@ -6,6 +6,7 @@ import type {
   TouchEventHandler,
 } from "react";
 import { Link } from "wouter";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { queueRoutePrefetch } from "@/routes/prefetch";
 
 type PrefetchLinkProps = Omit<
@@ -29,17 +30,21 @@ export function PrefetchLink({
   onTouchStart,
   ...props
 }: PrefetchLinkProps) {
+  const { localizedPath } = useLanguage();
+  const localizedHref = localizedPath(href);
+  const linkTarget = localizedHref === href ? href : `~${localizedHref}`;
+
   const triggerPrefetch = () => {
     if (prefetch) {
-      queueRoutePrefetch(href);
+      queueRoutePrefetch(localizedHref);
     }
   };
 
   return (
-    <Link href={href} asChild>
+    <Link href={linkTarget} asChild>
       <a
         {...props}
-        href={href}
+        href={localizedHref}
         onMouseEnter={(event) => {
           triggerPrefetch();
           onMouseEnter?.(event);

@@ -2,6 +2,7 @@ const {
   getAllPublicRoutes,
   getAlternateUrls,
   getCanonicalUrl,
+  getRouteLastModified,
   getPriorityConfig,
   writeStaticAsset,
 } = require('./site-manifest.cjs');
@@ -22,14 +23,13 @@ function generateUrlEntry(route, lastMod) {
   </url>`;
 }
 
-const today = new Date().toISOString().split('T')[0];
 let sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 `;
 
 getAllPublicRoutes().forEach((route) => {
-  sitemapContent += generateUrlEntry(route, today) + '\n';
+  sitemapContent += generateUrlEntry(route, getRouteLastModified(route)) + '\n';
 });
 
 sitemapContent += `</urlset>`;

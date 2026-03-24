@@ -1,5 +1,5 @@
 ---
-title: "Digital Detox Without Disappearing: 7 Habits to Reduce Screen Time in Real Life"
+title: "7 Digital Detox Habits to Reduce Screen Time"
 description: Want a realistic digital detox? Learn how to reduce screen time with simple habits, a minimalist phone setup, and a 7-day plan you can actually keep.
 date: 2026-03-22
 author: DropDrop Team

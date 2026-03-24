@@ -6,16 +6,16 @@ export const translations = {
     'nav.download': '下载',
     'nav.blog': '博客',
     'nav.about': '关于',
-    'nav.download_app': '下载 App',
+    'nav.download_app': 'App Store 下载',
 
     // SEO
-    'seo.title': 'DropDrop - 让身体状态决定今天的习惯 | 科学温和的习惯追踪',
-    'seo.description': '基于 HRV、心情与活动数据，为你生成真正适合今天的习惯与计划。不逼你自律，而是帮你找到最舒服的节奏。',
+    'seo.title': 'DropDrop - 基于 HRV 的温和 iOS 习惯追踪',
+    'seo.description': 'DropDrop 是一款温和的 iOS 习惯追踪应用，结合 HRV、心情与活动数据，为你生成更适合今天状态的习惯建议。',
 
     // Home Section
     'home.hero.title': '让身体状态，<br />决定今天的习惯',
     'home.hero.subtitle': '结合 HRV、心情与行为记录，为你生成更符合当下状态的习惯建议。',
-    'home.hero.cta': '开始体验',
+    'home.hero.cta': '前往 App Store',
 
     // State Layer
     'home.state.title': '从理解状态开始，<br />而不是强迫执行',
@@ -59,7 +59,7 @@ export const translations = {
 
     // CTA Layer
     'home.cta.title': '你不需要更努力，<br />只需要更合适的方式。',
-    'home.cta.btn': '下载 App',
+    'home.cta.btn': '在 App Store 查看',
 
     // Legacy / Misc
     'hero.badge': '专业习惯追踪应用',
@@ -78,15 +78,15 @@ export const translations = {
     'blog.minuteRead': '分钟阅读',
     'blog.cta.title': '开启更科学的生活方式',
     'blog.cta.subtitle': '立即下载 DropDrop，找到属于你的身心平衡。',
-    'blog.cta.btn': '下载 App',
+    'blog.cta.btn': '在 App Store 查看',
     'blog.share.success': '链接已复制',
     'blog.toc.title': '文章目录',
     'blog.author.title': '本文作者',
     'blog.author.desc': 'DropDrop 是一款关注身心状态的习惯追踪应用。我们致力于通过科学的方法，帮助你建立持久的生活方式。',
 
     'faq.title': '常见问题',
-    'faq.subtitle': '了解更多关于科学追踪与温和生活的细节',
-    'faq.seo.description': '解答关于 DropDrop 的功能、科学原理和订阅的常见问题。',
+    'faq.subtitle': '了解 DropDrop 的设备支持、订阅说明、隐私与日常使用方式。',
+    'faq.seo.description': '解答关于 DropDrop 的设备支持、订阅、隐私与日常使用方式的常见问题。',
     'faq.q1': '为什么需要 HRV 数据？',
     'faq.a1': 'HRV (心率变异性) 是反映自主神经系统平衡的重要指标。它能科学地反映你的身体压力水平和恢复状况，比单纯的心率更灵敏。',
     'faq.q2': 'DropDrop 如何确保我的数据安全？',
@@ -123,7 +123,7 @@ export const translations = {
     'privacy.section1.content': 'DropDrop 深知个人隐私的重要性。我们设计的核心理念之一就是“隐私优先”。我们致力于在提供智能习惯建议的同时，最大程度地保护您的数据安全。',
     'privacy.section2.title': '2. 数据收集与使用',
     'privacy.section2.content': '我们收集的数据主要用于分析您的身体状态并提供个性化习惯建议：',
-    'privacy.section2.item1': '健康数据：包括心率、HRV、睡眠、步数等（通过 Apple Health 或 Google Fit 授权）。',
+    'privacy.section2.item1': '健康数据：包括心率、HRV、睡眠、步数等（通过 Apple Health 与你授权的 Apple 设备权限获取）。',
     'privacy.section2.item2': '应用使用数据：记录习惯完成情况，以便分析长期趋势。',
     'privacy.section3.title': '3. 数据存储',
     'privacy.section3.content': '您的健康数据主要存储在您的设备本地或您的云端账户（如 iCloud）中。我们不会在我们的服务器上存储您的原始生理数据。分析过程尽可能在本地完成。',
@@ -169,7 +169,7 @@ export const translations = {
     'footer.product': '产品',
     'footer.features': '功能',
     'footer.pricing': '定价',
-    'footer.download': '下载',
+    'footer.download': 'App Store',
     'footer.company': '公司',
     'footer.about': '关于我们',
     'footer.blog': '博客',
@@ -187,16 +187,16 @@ export const translations = {
     'nav.download': 'Download',
     'nav.blog': 'Blog',
     'nav.about': 'About',
-    'nav.download_app': 'Download App',
+    'nav.download_app': 'Download on the App Store',
 
     // SEO
-    'seo.title': 'DropDrop - Let Your Body State Determine Today\'s Habits | Gentle Habit Tracker',
-    'seo.description': 'Generate habit suggestions tailored to your current state based on HRV, mood, and activity data. No forced discipline, just finding your right rhythm.',
+    'seo.title': 'DropDrop - Gentle iOS Habit Tracker with HRV',
+    'seo.description': 'DropDrop is a gentle iOS habit tracker that uses HRV, mood, and activity data to suggest habits that fit your current state.',
 
     // Home Section
     'home.hero.title': 'Let your body state,<br />determine today’s habits',
     'home.hero.subtitle': 'Generate habit suggestions based on HRV, mood, and activity data, tailored to your current state.',
-    'home.hero.cta': 'Start Experience',
+    'home.hero.cta': 'View on the App Store',
 
     // State Layer
     'home.state.title': 'Start with understanding,<br />not forcing',
@@ -240,7 +240,7 @@ export const translations = {
 
     // CTA Layer
     'home.cta.title': 'You don’t need to try harder,<br />just find a better way.',
-    'home.cta.btn': 'Download App',
+    'home.cta.btn': 'View on the App Store',
 
     // Legacy keys
     'hero.badge': 'Professional Habit Tracker',
@@ -259,7 +259,7 @@ export const translations = {
     'blog.minuteRead': 'min read',
     'blog.cta.title': 'Start a More Scientific Lifestyle',
     'blog.cta.subtitle': 'Download DropDrop now and find your mind-body balance.',
-    'blog.cta.btn': 'Download App',
+    'blog.cta.btn': 'View on the App Store',
     'blog.share.success': 'Link copied',
     'blog.toc.title': 'Contents',
     'blog.author.title': 'Written by',
@@ -267,8 +267,8 @@ export const translations = {
 
     // FAQ
     'faq.title': 'FAQ',
-    'faq.subtitle': 'Learn more about scientific tracking and gentle living details',
-    'faq.seo.description': 'Answers to common questions about DropDrop functions, scientific principles, and subscriptions.',
+    'faq.subtitle': 'Learn more about DropDrop device availability, subscriptions, privacy, and everyday use.',
+    'faq.seo.description': 'Answers to common questions about DropDrop device availability, subscriptions, privacy, and everyday use.',
     'faq.q1': 'Why is HRV data needed?',
     'faq.a1': 'HRV (Heart Rate Variability) is a key indicator of autonomic nervous system balance. It scientifically reflects your body\'s stress levels and recovery status, being more sensitive than just heart rate.',
     'faq.q2': 'How does DropDrop ensure my data security?',
@@ -306,7 +306,7 @@ export const translations = {
     'privacy.section1.content': 'DropDrop understands the importance of personal privacy. One of our core design philosophies is "Privacy First." We are committed to protecting your data security while providing intelligent habit suggestions.',
     'privacy.section2.title': '2. Data Collection and Use',
     'privacy.section2.content': 'The data we collect is primarily used to analyze your physical state and provide personalized habit suggestions:',
-    'privacy.section2.item1': 'Health Data: Including heart rate, HRV, sleep, steps, etc. (authorized via Apple Health or Google Fit).',
+    'privacy.section2.item1': 'Health data: heart rate, HRV, sleep, steps, and related signals, based on the permissions you grant through Apple Health and your Apple devices.',
     'privacy.section2.item2': 'App Usage Data: Records of habit completion to analyze long-term trends.',
     'privacy.section3.title': '3. Data Storage',
     'privacy.section3.content': 'Your health data is primarily stored locally on your device or in your cloud account (e.g., iCloud). We do not store your raw physiological data on our servers. Analysis is performed locally whenever possible.',
@@ -334,7 +334,7 @@ export const translations = {
     'footer.product': 'Product',
     'footer.features': 'Features',
     'footer.pricing': 'Pricing',
-    'footer.download': 'Download',
+    'footer.download': 'App Store',
     'footer.company': 'Company',
     'footer.about': 'About Us',
     'footer.blog': 'Blog',

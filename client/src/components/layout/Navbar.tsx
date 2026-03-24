@@ -5,6 +5,7 @@ import { PrefetchLink } from "../PrefetchLink";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { appStoreUrl } from "@/lib/productFacts";
 
 export function Navbar() {
   const { t } = useLanguage();
@@ -36,7 +37,7 @@ export function Navbar() {
           </div>
 
           <a 
-            href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464"
+            href={appStoreUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:block px-4 py-2 md:px-5 md:py-2 bg-[#222222] text-white text-[13px] md:text-sm rounded-full hover:bg-[#000000] transition-colors whitespace-nowrap"
@@ -73,7 +74,7 @@ export function Navbar() {
                 <LanguageSwitcher />
               </div>
               <a 
-                href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464" 
+                href={appStoreUrl} 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 btn-primary w-full text-center py-4 rounded-full"

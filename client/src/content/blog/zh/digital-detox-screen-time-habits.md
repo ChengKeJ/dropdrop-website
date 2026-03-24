@@ -1,5 +1,5 @@
 ---
-title: "不是失联式断网：7 个真正能降低 Screen Time 的 Digital Detox 习惯"
+title: "7 个降低 Screen Time 的 Digital Detox 习惯"
 description: 想做 digital detox，但又不想把生活搞得太极端？这篇文章教你用更现实的方法降低 screen time，建立可持续的数字减负习惯。
 date: 2026-03-22
 author: DropDrop 团队

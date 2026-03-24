@@ -1,6 +1,6 @@
 ---
-title: "Habit Stacking for a Better Morning Routine: A Simple Checklist That Actually Works"
-description: Learn how to use habit stacking to build a realistic morning routine. Includes a 20-minute checklist, examples, common mistakes, and a simple way to stay consistent.
+title: "Habit Stacking for a Better Morning Routine"
+description: Build a realistic morning routine with habit stacking, a 20-minute checklist, and examples that are easier to keep.
 date: 2026-03-23
 author: DropDrop Team
 image: /images/blog/habit-stacking-morning-routine.png

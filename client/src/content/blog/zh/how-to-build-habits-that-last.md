@@ -3,7 +3,7 @@ title: 如何养成持久的好习惯：科学方法指南
 description: 基于行为科学研究，了解如何通过小步骤和正确的策略养成持久的好习惯
 date: 2026-01-10
 author: DropDrop Team
-image: /images/blog/habits-guide.jpg
+image: /images/blog/habits-guide.webp
 category: Habit Building
 tags:
   - habits

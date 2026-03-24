@@ -1,5 +1,5 @@
 ---
-title: "不尴尬、不空泛的 Gratitude Journal Prompts：把感恩日记变成真正有效的 Self-Care Habit"
+title: "真正写得下去的 Gratitude Journal Prompts"
 description: 感恩日记总是写几天就停？这篇文章提供更真实的 gratitude journal prompts、一个 5 分钟 journaling 模板，以及更容易坚持的 self-care 写法。
 date: 2026-03-21
 author: DropDrop 团队

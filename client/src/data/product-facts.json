@@ -1,0 +1,9 @@
+{
+  "siteUrl": "https://www.dropdrophabit.com",
+  "appStoreUrl": "https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464",
+  "operatingSystems": ["iOS", "iPadOS", "macOS", "visionOS"],
+  "deviceAvailability": {
+    "en": "iPhone, iPad, Mac with Apple silicon, and Apple Vision",
+    "zh": "iPhone、iPad、搭载 Apple 芯片的 Mac 和 Apple Vision"
+  }
+}

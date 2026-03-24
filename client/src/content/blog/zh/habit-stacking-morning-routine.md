@@ -1,5 +1,5 @@
 ---
-title: "用 Habit Stacking 设计晨间例行：一个真正能坚持的 Morning Routine Checklist"
+title: "用 Habit Stacking 搭好晨间例行"
 description: 想建立一个能长期坚持的晨间习惯？这篇文章用 habit stacking 方法，帮你搭出简单可执行的 morning routine checklist，并避免常见失败点。
 date: 2026-03-23
 author: DropDrop 团队

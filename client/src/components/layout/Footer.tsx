@@ -1,5 +1,6 @@
 import { PrefetchLink } from "@/components/PrefetchLink";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { appStoreUrl } from "@/lib/productFacts";
 
 export function Footer() {
   const { t, language } = useLanguage();
@@ -29,7 +30,7 @@ export function Footer() {
               <li><a href={featuresHref} className="hover:text-[#4CAF93] transition-colors">{t('footer.features')}</a></li>
               <li><PrefetchLink href="/changelog" className="hover:text-[#4CAF93] transition-colors">{t('footer.changelog')}</PrefetchLink></li>
               <li><PrefetchLink href="/faq" className="hover:text-[#4CAF93] transition-colors">{t('footer.faq')}</PrefetchLink></li>
-              <li><a href="https://apps.apple.com/us/app/habit-tracker-dropdrop/id6749170464" target="_blank" rel="noopener noreferrer" className="hover:text-[#4CAF93] transition-colors">{t('footer.download')}</a></li>
+              <li><a href={appStoreUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#4CAF93] transition-colors">{t('footer.download')}</a></li>
             </ul>
           </div>
 
