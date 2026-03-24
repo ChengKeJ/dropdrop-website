@@ -21,7 +21,8 @@
     "lighthouse:ci": "npm run build && lhci autorun"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.54.0"
+    "@rollup/rollup-linux-x64-gnu": "4.54.0",
+    "lightningcss-linux-x64-gnu": "1.30.2"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
