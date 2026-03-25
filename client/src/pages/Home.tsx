@@ -19,7 +19,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { SEOHead } from "@/components/SEO/SEOHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { PrefetchLink } from "@/components/PrefetchLink";
 import { useIsMobile } from "@/hooks/useMobile";
 import {
   getOrganizationSchema,
@@ -104,9 +103,6 @@ export default function Home() {
     transition: { staggerChildren: 0.15 }
   };
 
-  const clarifierCopy = language === "zh"
-    ? "DropDrop 是一款温和的 iOS 习惯追踪应用，会结合 HRV、心情和活动信号来判断今天更适合什么节奏。它不是每天都逼你保持同样强度，而是在恢复差时帮助你减负，在状态好时再逐步推进。"
-    : "DropDrop is a gentle iOS habit tracker that uses HRV, mood, and activity signals to suggest what fits today. Instead of pushing the same streak target every day, it helps you ease off when recovery is low and lean in when energy is high.";
   const structuredData = [
     getOrganizationSchema(language as "zh" | "en"),
     getWebsiteSchema(language as "zh" | "en"),
@@ -150,23 +146,6 @@ export default function Home() {
                 >
                   {t('home.hero.cta')}
                 </a>
-              </div>
-
-              <div className="mt-8 max-w-3xl mx-auto rounded-[2rem] border border-[#E8E8E8] bg-white/80 px-6 py-5 md:px-8 md:py-6">
-                <p className="text-sm md:text-base text-[#5F5F5F] leading-relaxed font-light">
-                  {clarifierCopy}
-                </p>
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-[#4CAF93]">
-                  <PrefetchLink href="/faq" className="hover:text-[#3d8f78] transition-colors">
-                    {language === "zh" ? "查看 FAQ" : "Read the FAQ"}
-                  </PrefetchLink>
-                  <PrefetchLink href="/research-methodology" className="hover:text-[#3d8f78] transition-colors">
-                    {language === "zh" ? "了解方法论" : "See the methodology"}
-                  </PrefetchLink>
-                  <PrefetchLink href="/blog/best-habit-tracker-apps-2026" className="hover:text-[#3d8f78] transition-colors">
-                    {language === "zh" ? "阅读对比指南" : "Read the comparison guide"}
-                  </PrefetchLink>
-                </div>
               </div>
             </motion.div>
 

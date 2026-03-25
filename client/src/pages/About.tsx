@@ -5,6 +5,7 @@ import { SEOHead } from '@/components/SEO/SEOHead';
 import { breadcrumbSchema, getOrganizationSchema, pageSchema } from '@/lib/structuredData';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { SupportEmailButton } from '@/components/SupportEmailButton';
 
 export default function About() {
   const { language, t } = useLanguage();
@@ -142,7 +143,7 @@ export default function About() {
         </section>
 
         {/* Contact */}
-        <section className="py-20 px-4 pb-32">
+        <section id="contact" className="py-20 px-4 pb-32">
           <div className="container max-w-4xl mx-auto text-center">
             <motion.div
               {...fadeInUp}
@@ -156,12 +157,12 @@ export default function About() {
               </p>
               
               {/* Responsive Button Fix: break-all and smaller text on mobile */}
-              <a
-                href="mailto:support@dropdrophabit.com"
+              <SupportEmailButton
                 className="btn-primary inline-block max-w-full px-6 py-4 md:px-8 md:py-4 rounded-full text-sm md:text-base break-all"
+                emailLabel="support@dropdrophabit.com"
               >
                 support@dropdrophabit.com
-              </a>
+              </SupportEmailButton>
             </motion.div>
           </div>
         </section>

@@ -1,4 +1,5 @@
 import { PrefetchLink } from "@/components/PrefetchLink";
+import { SupportEmailButton } from "@/components/SupportEmailButton";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { appStoreUrl } from "@/lib/productFacts";
 
@@ -42,7 +43,7 @@ export function Footer() {
               <li><PrefetchLink href="/blog" className="hover:text-[#4CAF93] transition-colors">{t('footer.blog')}</PrefetchLink></li>
               <li><PrefetchLink href="/research-methodology" className="hover:text-[#4CAF93] transition-colors">{methodologyLabel}</PrefetchLink></li>
               <li><PrefetchLink href="/editorial-policy" className="hover:text-[#4CAF93] transition-colors">{editorialLabel}</PrefetchLink></li>
-              <li><a href="mailto:support@dropdrophabit.com" className="hover:text-[#4CAF93] transition-colors">{t('footer.contact')}</a></li>
+              <li><SupportEmailButton className="hover:text-[#4CAF93] transition-colors">{t('footer.contact')}</SupportEmailButton></li>
             </ul>
           </div>
 

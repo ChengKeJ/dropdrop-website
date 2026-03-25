@@ -3,6 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { SEOHead } from '@/components/SEO/SEOHead';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { SupportEmailButton } from '@/components/SupportEmailButton';
 import { faqSchema } from '@/lib/structuredData';
 import { faqData } from '@/data/faq';
 
@@ -76,9 +77,9 @@ export default function FAQ() {
             </motion.div>
 
             <div className="mt-10 flex flex-wrap gap-4 text-sm">
-              <a href="mailto:support@dropdrophabit.com" className="px-4 py-2 rounded-full bg-white border border-[#E5E5E5] hover:border-[#4CAF93]/30 transition-colors">
+              <SupportEmailButton className="px-4 py-2 rounded-full bg-white border border-[#E5E5E5] hover:border-[#4CAF93]/30 transition-colors">
                 support@dropdrophabit.com
-              </a>
+              </SupportEmailButton>
             </div>
           </div>
         </section>
