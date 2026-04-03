@@ -22,17 +22,17 @@ function loadTelemetry() {
 
 function bootstrapClientObservers() {
   loadTelemetry();
-  
+
+  initGA();
+
   if ("requestIdleCallback" in window) {
     window.requestIdleCallback(() => {
-      initGA();
       reportWebVitals();
     });
     return;
   }
 
   globalThis.setTimeout(() => {
-    initGA();
     reportWebVitals();
   }, 1);
 }
