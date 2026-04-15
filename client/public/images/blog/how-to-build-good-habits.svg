@@ -1,0 +1,85 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="70" x2="1506" y2="930" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDFCFB"/>
+      <stop offset="0.5" stop-color="#F2F7F2"/>
+      <stop offset="1" stop-color="#E8F0E8"/>
+    </linearGradient>
+    <linearGradient id="phone" x1="1088" y1="158" x2="1286" y2="786" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B3A2E"/>
+      <stop offset="1" stop-color="#2D5A47"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="1120" y1="206" x2="1260" y2="738" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FDF9"/>
+      <stop offset="1" stop-color="#EAF5EE"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1600" height="1000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="24"/>
+      <feGaussianBlur stdDeviation="30"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.106 0 0 0 0 0.188 0 0 0 0 0.153 0 0 0 0.16 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" rx="48" fill="url(#bg)"/>
+
+  <path d="M0 780C160 720 340 700 540 730C750 760 920 860 1100 870C1260 880 1430 820 1600 740V1000H0V780Z" fill="#D9E6DF"/>
+  <path d="M0 860C190 790 380 780 580 820C730 850 880 910 1060 920C1250 930 1420 880 1600 800V1000H0V860Z" fill="#C5D7CD"/>
+
+  <circle cx="1312" cy="178" r="54" fill="#F2FAF6"/>
+  <path d="M1286 177C1286 152 1308 132 1334 132C1334 153 1316 177 1286 177Z" fill="#88B79F"/>
+  <path d="M1296 197C1296 167 1320 150 1353 149C1348 181 1328 202 1296 197Z" fill="#5A8E76"/>
+
+  <g filter="url(#shadow)">
+    <rect x="1044" y="138" width="286" height="620" rx="44" fill="url(#phone)"/>
+    <rect x="1076" y="186" width="222" height="524" rx="28" fill="url(#screen)"/>
+    <rect x="1158" y="160" width="58" height="8" rx="4" fill="#A4C3B5"/>
+  </g>
+
+  <g opacity="0.95">
+    <rect x="1112" y="240" width="150" height="80" rx="20" fill="#FFFFFF" fill-opacity="0.8"/>
+    <circle cx="1145" cy="280" r="18" fill="#E8F5E9"/>
+    <path d="M1138 280L1143 285L1152 274" stroke="#4C7E69" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1175" y="272" width="60" height="14" rx="7" fill="#214237" fill-opacity="0.6"/>
+  </g>
+
+  <g opacity="0.95">
+    <rect x="1112" y="335" width="150" height="80" rx="20" fill="#FFFFFF" fill-opacity="0.8"/>
+    <circle cx="1145" cy="375" r="18" fill="#E8F5E9"/>
+    <path d="M1138 375L1143 380L1152 369" stroke="#4C7E69" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1175" y="367" width="50" height="14" rx="7" fill="#214237" fill-opacity="0.6"/>
+  </g>
+
+  <g opacity="0.95">
+    <rect x="1112" y="430" width="150" height="80" rx="20" fill="#FFFFFF" fill-opacity="0.8"/>
+    <circle cx="1145" cy="470" r="18" fill="#E8F5E9"/>
+    <path d="M1138 470L1143 475L1152 464" stroke="#4C7E69" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1175" y="462" width="70" height="14" rx="7" fill="#214237" fill-opacity="0.6"/>
+  </g>
+
+  <g opacity="0.95">
+    <rect x="1112" y="525" width="150" height="140" rx="24" fill="#FFFFFF" fill-opacity="0.9"/>
+    <circle cx="1187" cy="595" r="45" fill="#F1F8F4"/>
+    <path d="M1187 565V595L1207 605" stroke="#4C7E69" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1130" y="555" fill="#1B3A2E" font-family="'Helvetica Neue', Arial" font-size="16" font-weight="700">Daily Goal</text>
+  </g>
+
+  <rect x="96" y="104" width="250" height="44" rx="22" fill="#FFFFFF" fill-opacity="0.74"/>
+  <text x="122" y="133" fill="#315946" font-family="Georgia, serif" font-size="24" font-weight="700" letter-spacing="1.6">DROPDROP WELLNESS</text>
+
+  <text x="108" y="372" fill="#18211D" font-family="Georgia, serif" font-size="86" font-weight="700">
+    <tspan x="108" dy="0">Build Good</tspan>
+    <tspan x="108" dy="102">Habits That Stick</tspan>
+  </text>
+
+  <text x="112" y="640" fill="#3E4D46" font-family="'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500">
+    <tspan x="112" dy="0">Small wins. Science-backed strategies.</tspan>
+    <tspan x="112" dy="48">Habits that work with your biology.</tspan>
+  </text>
+
+  <path d="M850 650C850 550 950 500 950 400C880 420 830 470 800 550C770 530 740 520 700 515C710 590 740 640 800 665C780 725 780 790 800 870C870 845 915 790 930 720C985 740 1030 730 1085 700C1045 645 995 620 930 625C920 615 885 610 850 610V650Z" fill="#6E9B84" fill-opacity="0.18"/>
+</svg>

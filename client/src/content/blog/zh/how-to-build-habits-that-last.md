@@ -33,6 +33,7 @@ sources:
     publisher: "BJ Fogg"
   - title: "Good Habits, Bad Habits"
     url: "https://wendywoodresearch.com/good-habits-bad-habits.html"
+    image: /images/blog/how-to-build-good-habits.png
     publisher: "Wendy Wood"
 faq:
   - question: "一个新习惯应该小到什么程度？"
