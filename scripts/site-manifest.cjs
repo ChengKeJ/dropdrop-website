@@ -22,7 +22,7 @@ const STATIC_ROUTE_LASTMOD = {
   '/about': '2026-03-24',
   '/privacy': '2026-01-13',
   '/terms': '2026-01-13',
-  '/changelog': '2026-03-21',
+  '/changelog': '2026-04-24',
   '/editorial-policy': '2026-03-24',
   '/research-methodology': '2026-03-24',
 };

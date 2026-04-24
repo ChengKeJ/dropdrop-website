@@ -28,6 +28,134 @@ export default function Changelog() {
 
     const releases: ReleaseNote[] = [
         {
+            version: '1.0.9',
+            date: '2026-04-24',
+            title: {
+                zh: '深度分析、健康洞察与灵感小组件',
+                en: 'Advanced analytics, health insights, and inspiration widgets'
+            },
+            features: [
+                {
+                    type: 'new',
+                    desc: {
+                        zh: '新增 Advanced Data Analysis，帮助用户更深入复盘习惯表现、趋势与长期进展信号。',
+                        en: 'Added Advanced Data Analysis for deeper habit performance, trend, and long-term progress review.'
+                    }
+                },
+                {
+                    type: 'new',
+                    desc: {
+                        zh: '扩展健康指标详情与 readiness 相关分析，让健康上下文更容易理解。',
+                        en: 'Expanded health metric details and readiness-related analysis for clearer health context.'
+                    }
+                },
+                {
+                    type: 'new',
+                    desc: {
+                        zh: '新增 iOS Inspiration 小组件，支持小、中、大尺寸，快速查看习惯与任务提示。',
+                        en: 'Added iOS Inspiration widgets in small, medium, and large sizes for quick habit and task prompts.'
+                    }
+                },
+                {
+                    type: 'improve',
+                    desc: {
+                        zh: '优化统计、Apple Calendar、CloudKit 与小组件设置界面，发布体验更顺畅。',
+                        en: 'Polished Stats, Apple Calendar, CloudKit, and widget settings for a smoother release experience.'
+                    }
+                },
+                {
+                    type: 'fix',
+                    desc: {
+                        zh: '提升健康教练稳定性、习惯与待办数据可靠性，并更新 1.0.9 版本元数据。',
+                        en: 'Improved health coach stability, habit and todo data reliability, and 1.0.9 release metadata.'
+                    }
+                },
+            ]
+        },
+        {
+            version: '1.0.8',
+            date: '2026-04-11',
+            title: {
+                zh: '日历模式、Timeline 与会员修复',
+                en: 'Calendar modes, timeline updates, and membership fixes'
+            },
+            features: [
+                {
+                    type: 'new',
+                    desc: {
+                        zh: '首页新增日历显示模式，可在 Compact、Stacked 与 Detailed 视图之间切换。',
+                        en: 'Added home calendar display modes for switching between Compact, Stacked, and Detailed views.'
+                    }
+                },
+                {
+                    type: 'new',
+                    desc: {
+                        zh: 'Timeline 支持更灵活的多模式显示，更贴合不同用户的规划习惯。',
+                        en: 'Improved Timeline with flexible display modes to better match different planning styles.'
+                    }
+                },
+                {
+                    type: 'improve',
+                    desc: {
+                        zh: '刷新习惯与任务灵感列表，让创建流程里的建议更丰富、更好上手。',
+                        en: 'Refreshed habit and task inspiration lists to make setup faster and more varied.'
+                    }
+                },
+                {
+                    type: 'improve',
+                    desc: {
+                        zh: '打磨周历、图标样式与色彩系统，核心界面视觉语言更统一。',
+                        en: 'Polished the week calendar, icon styling, and color system for a more cohesive visual language.'
+                    }
+                },
+                {
+                    type: 'fix',
+                    desc: {
+                        zh: '修复订阅过期、计划页绕过会员限制、升级弹窗交互与统计图溢出等问题。',
+                        en: 'Fixed subscription expiry, plan habit limit bypass, upgrade dialog issues, and stats chart overflow.'
+                    }
+                },
+            ]
+        },
+        {
+            version: '1.0.7',
+            date: '2026-04-09',
+            title: {
+                zh: '任务详情视觉优化',
+                en: 'Task detail polish'
+            },
+            features: [
+                {
+                    type: 'improve',
+                    desc: {
+                        zh: '优化任务详情页的打卡记录卡片，层级更轻、间距更清晰。',
+                        en: 'Refined task detail check-in cards with a lighter visual hierarchy and cleaner spacing.'
+                    }
+                },
+                {
+                    type: 'improve',
+                    desc: {
+                        zh: '将打卡数值整理为紧凑徽章，提升记录浏览与快速扫描效率。',
+                        en: 'Promoted check-in values into compact badges for faster scanning.'
+                    }
+                },
+                {
+                    type: 'improve',
+                    desc: {
+                        zh: '重新协调编辑与删除操作按钮，使用更轻盈的图标与更克制的危险操作样式。',
+                        en: 'Polished edit and delete actions with lighter icons and more restrained destructive styling.'
+                    }
+                },
+                {
+                    type: 'fix',
+                    desc: {
+                        zh: '更新版本元数据与应用内版本展示，确保 1.0.7 发布信息显示正确。',
+                        en: 'Updated release metadata and in-app version records for the 1.0.7 release.'
+                    }
+                },
+            ]
+        },
+        {
             version: '1.0.6',
             date: '2026-03-21',
             title: {
@@ -342,8 +470,8 @@ export default function Changelog() {
                             </p>
                             <p className="mt-4 text-sm text-[#999999] font-light">
                                 {language === 'zh'
-                                    ? '内容根据公开发版记录与项目内部 changelog 汇总，最后核对于 2026-03-23。'
-                                    : 'Compiled from public release history and the app project changelog, last verified on March 23, 2026.'}
+                                    ? '内容根据公开发版记录与项目内部 changelog 汇总，最后核对于 2026-04-24。'
+                                    : 'Compiled from public release history and the app project changelog, last verified on April 24, 2026.'}
                                 {' '}
                                 <a
                                     href={appStoreUrl}
