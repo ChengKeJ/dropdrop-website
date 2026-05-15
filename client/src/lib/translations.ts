@@ -9,16 +9,36 @@ export const translations = {
     'nav.download_app': 'App Store 下载',
 
     // SEO
-    'seo.title': 'DropDrop - 基于 HRV 的温和 iOS 习惯追踪',
-    'seo.description': 'DropDrop 是一款温和的 iOS 习惯追踪应用，结合 HRV、心情与活动数据，为你生成更适合今天状态的习惯建议。',
+    'seo.title': 'DropDrop - 状态感知的 iOS 习惯与任务计划',
+    'seo.description': 'DropDrop 是一款状态感知的 iOS 习惯与任务计划应用，结合 readiness 信号、任务计划、日历模式与深度分析，帮助你找到更适合今天的节奏。',
 
     // Home Section
-    'home.hero.title': '让身体状态，<br />决定今天的习惯',
-    'home.hero.subtitle': '结合 HRV、心情与行为记录，为你生成更符合当下状态的习惯建议。',
+    'home.hero.title': '把习惯、任务和身体状态<br />放到同一个节奏里',
+    'home.hero.subtitle': 'DropDrop 将 readiness 信号、习惯打卡、任务计划、日历和深度分析连接起来，帮你安排更适合今天的行动。',
     'home.hero.cta': '前往 App Store',
 
+    'home.v109.badge': 'v1.1.1 新功能展示',
+    'home.v109.section': 'New in DropDrop',
+    'home.v109.title': '从想法到复盘，<br />每一步都有清晰位置',
+    'home.v109.desc': '新的首页展示任务、灵感、时间线、月历与深度分析，让 DropDrop 不只是打卡工具，而是你的日常节奏系统。',
+    'home.v109.tasks.title': '任务和子任务',
+    'home.v109.tasks.desc': '创建任务时可以拆分子任务、补充备注、设置优先级与提醒，把行动前的细节先安放好。',
+    'home.v109.tasks.badge': 'Plan Tasks',
+    'home.v109.spark.title': '灵感与图片记录',
+    'home.v109.spark.desc': '把突然出现的想法、照片和现场记录沉淀下来，再转化为任务、习惯或日后回看的线索。',
+    'home.v109.spark.badge': 'Capture Sparks',
+    'home.v109.timeline.title': 'Timeline 模式',
+    'home.v109.timeline.desc': '用更轻的时间线查看今天安排，快速分辨全天习惯、已完成事项和下一步行动。',
+    'home.v109.timeline.badge': 'Daily Flow',
+    'home.v109.calendar.title': '月历模式',
+    'home.v109.calendar.desc': '在月视图中查看重复计划、颜色分类和完成回顾，适合规划一整段节奏。',
+    'home.v109.calendar.badge': 'Month Calendar',
+
     // State Layer
-    'home.state.title': '从理解状态开始，<br />而不是强迫执行',
+    'home.state.title': '先理解今天的状态，<br />再决定怎么行动',
+    'home.state.intro': 'Health 页面把 readiness score、身体提示和 adaptive plan 放在一起，提醒你根据状态安排强度。',
+    'home.state.signal': 'Readiness',
+    'home.state.ready': 'Ready to act',
     'home.state.mood': '心情记录',
     'home.state.mood.desc': '帮助识别心理负荷',
     'home.state.body': '身体数据',
@@ -27,8 +47,9 @@ export const translations = {
     'home.state.activity.desc': '补充真实生活节奏',
 
     // Suggestion Layer
-    'home.suggestion.title': '今天该做什么，<br />不是固定的',
-    'home.suggestion.desc': '基于你的当前状态，系统会从精选习惯中，给出更适合今天的建议。',
+    'home.suggestion.title': '今天该做什么，<br />可以随着状态调整',
+    'home.suggestion.desc': '习惯、任务与时间线合在一起，你可以在完成、计划和调整之间更自然地切换。',
+    'home.suggestion.badge': 'Adaptive Planning',
     'home.suggestion.rest_mode': '休息模式',
     'home.suggestion.peak_state': '巅峰状态',
 
@@ -37,8 +58,12 @@ export const translations = {
     'home.execution.desc': '简单的习惯记录，帮助系统理解哪些节奏对你更友好，而不是制造完成压力。',
 
     // Review Layer
-    'home.review.title': '看趋势，<br />而不是盯数字',
-    'home.review.desc': '我们更关注长期变化，而不是每天的完成率。',
+    'home.review.title': '用真实趋势复盘，<br />而不是盯着单日数字',
+    'home.review.desc': 'Advanced Analytics 将能量、心情、生产力、习惯热力图和月历记录放在一起，帮助你看见长期节奏。',
+    'home.review.badge': 'Advanced Analytics',
+    'home.review.item1': '能量、心情与生产力趋势',
+    'home.review.item2': '月历计划与重复习惯回顾',
+    'home.review.item3': '完成率、连续性和长期节奏',
 
     // Testimonials
     'home.testimonials.title': '用户心声',
@@ -54,6 +79,7 @@ export const translations = {
     'testimonial.3.comment': '界面太美了，没有任何多余的干扰。每次打开 App 都感觉很平静，而不是那种“即使累死也要打卡”的焦虑感。',
 
     // Summary Layer
+    'home.summary.badge': 'Philosophy',
     'home.summary.title': '所有功能，只为一件事服务',
     'home.summary.desc': '在合适的状态下，用合适的节奏，建立可持续的习惯。',
 
@@ -190,16 +216,36 @@ export const translations = {
     'nav.download_app': 'Download on the App Store',
 
     // SEO
-    'seo.title': 'DropDrop - Gentle iOS Habit Tracker with HRV',
-    'seo.description': 'DropDrop is a gentle iOS habit tracker that uses HRV, mood, and activity data to suggest habits that fit your current state.',
+    'seo.title': 'DropDrop - State-Aware iOS Habit and Task Planner',
+    'seo.description': 'DropDrop is a state-aware iOS habit and task planner with readiness signals, task planning, calendar modes, and advanced analytics to help you find a better rhythm for today.',
 
     // Home Section
-    'home.hero.title': 'Let your body state,<br />determine today’s habits',
-    'home.hero.subtitle': 'Generate habit suggestions based on HRV, mood, and activity data, tailored to your current state.',
+    'home.hero.title': 'Put habits, tasks, and body state<br />into one daily rhythm',
+    'home.hero.subtitle': 'DropDrop connects readiness signals, habit check-ins, task planning, calendars, and advanced analytics so today’s actions fit your current state.',
     'home.hero.cta': 'View on the App Store',
 
+    'home.v109.badge': 'New in v1.1.1',
+    'home.v109.section': 'New in DropDrop',
+    'home.v109.title': 'Every idea, plan, and review<br />has a clear place',
+    'home.v109.desc': 'The new experience brings tasks, sparks, timeline views, monthly planning, and advanced analytics together so DropDrop feels like a daily rhythm system, not only a check-in tool.',
+    'home.v109.tasks.title': 'Tasks and subtasks',
+    'home.v109.tasks.desc': 'Break a task into subtasks, add notes, choose priority, and set reminders before the day gets noisy.',
+    'home.v109.tasks.badge': 'Plan Tasks',
+    'home.v109.spark.title': 'Sparks and image notes',
+    'home.v109.spark.desc': 'Capture ideas, photos, and in-the-moment notes, then turn them into tasks, habits, or context you can review later.',
+    'home.v109.spark.badge': 'Capture Sparks',
+    'home.v109.timeline.title': 'Timeline mode',
+    'home.v109.timeline.desc': 'Scan today through a light timeline that separates all-day habits, completed items, and the next action.',
+    'home.v109.timeline.badge': 'Daily Flow',
+    'home.v109.calendar.title': 'Month calendar',
+    'home.v109.calendar.desc': 'Use the monthly view to review recurring plans, color categories, and completion signals across a longer rhythm.',
+    'home.v109.calendar.badge': 'Month Calendar',
+
     // State Layer
-    'home.state.title': 'Start with understanding,<br />not forcing',
+    'home.state.title': 'Understand today’s state<br />before choosing the action',
+    'home.state.intro': 'The Health page brings readiness score, body guidance, and adaptive plans into one place, helping you choose a sustainable intensity.',
+    'home.state.signal': 'Readiness',
+    'home.state.ready': 'Ready to act',
     'home.state.mood': 'Mood Tracking',
     'home.state.mood.desc': 'Identifies mental load',
     'home.state.body': 'Body Metrics',
@@ -208,8 +254,9 @@ export const translations = {
     'home.state.activity.desc': 'Captures life rhythm',
 
     // Suggestion Layer
-    'home.suggestion.title': 'What to do today<br />is not fixed',
-    'home.suggestion.desc': 'Based on your current state, the system suggests the most suitable habits for today.',
+    'home.suggestion.title': 'What to do today<br />can move with your state',
+    'home.suggestion.desc': 'Habits, tasks, and timelines sit together, so it is easier to move between completing, planning, and adjusting.',
+    'home.suggestion.badge': 'Adaptive Planning',
     'home.suggestion.rest_mode': 'Rest Mode',
     'home.suggestion.peak_state': 'Peak State',
 
@@ -218,8 +265,12 @@ export const translations = {
     'home.execution.desc': 'Simple tracking helps the system learn what rhythm works for you, without creating pressure.',
 
     // Review Layer
-    'home.review.title': 'Focus on trends,<br />not just numbers',
-    'home.review.desc': 'We focus on long-term changes and sustainability, rather than just daily completion rates.',
+    'home.review.title': 'Review real trends,<br />not just one-day numbers',
+    'home.review.desc': 'Advanced Analytics brings energy, mood, productivity, habit heatmaps, and calendar history together so long-term rhythm is easier to see.',
+    'home.review.badge': 'Advanced Analytics',
+    'home.review.item1': 'Energy, mood, and productivity trajectories',
+    'home.review.item2': 'Monthly plans and recurring habit review',
+    'home.review.item3': 'Completion, consistency, and long-term rhythm',
 
     // Testimonials
     'home.testimonials.title': 'What Users Say',
@@ -235,6 +286,7 @@ export const translations = {
     'testimonial.3.comment': 'The interface is beautiful with zero clutter. Opening the app feels calming, unlike the anxiety of "must check-in even if exhausted" from other apps.',
 
     // Summary Layer
+    'home.summary.badge': 'Philosophy',
     'home.summary.title': 'All features serve one purpose',
     'home.summary.desc': 'To build sustainable habits with the right rhythm, in the right state.',
 

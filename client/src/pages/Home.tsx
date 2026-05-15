@@ -1,21 +1,26 @@
-import { Button } from "@/components/ui/button";
 import {
   Activity,
-  Smartphone,
-  Moon,
-  Sun,
   BarChart3,
-  Heart,
+  Bell,
+  CalendarDays,
   CheckCircle2,
-  Brain,
-  Zap,
-  Coffee,
-  Calendar,
-  ArrowRight
+  ClipboardList,
+  HeartPulse,
+  ImagePlus,
+  Layers3,
+  LineChart,
+  Route,
+  Smartphone,
+  Sparkles,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { SEOHead } from "@/components/SEO/SEOHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -23,18 +28,37 @@ import { useIsMobile } from "@/hooks/useMobile";
 import {
   getOrganizationSchema,
   getWebsiteSchema,
-  getSoftwareAppSchema
+  getSoftwareAppSchema,
 } from "@/lib/structuredData";
 import { appStoreUrl } from "@/lib/productFacts";
 import { Testimonials } from "@/components/home/Testimonials";
 
-/**
- * DropDrop Official Website - Converged & Upgraded
- * Design Philosophy: 
- * - Narrative-driven: State -> Suggestion -> Execution -> Review
- * - Restrained: Less functional listing, more value storytelling
- * - Scientific & Gentle: Emphasizing HRV, recovery, and long-termism
- */
+type ScreenImage = {
+  src: string;
+  alt: string;
+  id: number;
+};
+
+type FeatureCard = {
+  image: string;
+  icon: typeof ClipboardList;
+  titleKey: string;
+  descKey: string;
+  badgeKey: string;
+  tone: string;
+  stackClass: string;
+};
+
+const phoneFrameClass =
+  "relative overflow-hidden bg-white rounded-[1.9rem] md:rounded-[2.35rem] border-[5px] md:border-[7px] border-white shadow-[0_24px_60px_-32px_rgba(18,31,53,0.32)] ring-1 ring-[#DDE7F2]/70";
+
+const miniPhoneFrameClass =
+  "relative overflow-hidden bg-white rounded-[1.55rem] border-[4px] border-white shadow-[0_18px_42px_-30px_rgba(18,31,53,0.36)] ring-1 ring-[#DDE7F2]/70";
+
+const sectionHeadingClass =
+  "text-3xl md:text-5xl font-light leading-tight tracking-tight text-[#172033]";
+
+const mutedTextClass = "text-[#64748B] font-light leading-relaxed";
 
 export default function Home() {
   const { t, language } = useLanguage();
@@ -43,19 +67,77 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
+  const [activeIndex, setActiveIndex] = useState(1);
+  const [featureActiveIndex, setFeatureActiveIndex] = useState(1);
 
-  // Interactive Carousel State
-  const [activeIndex, setActiveIndex] = useState(1); // Default to Plan (Index 1)
-
-  const heroImages = [
-    { src: "/images/today.webp", alt: "Today Interface", id: 0 },
-    { src: "/images/plan.webp", alt: "Plan Interface", id: 1 },
-    { src: "/images/statics.webp", alt: "Stats Interface", id: 2 }
+  const heroImages: ScreenImage[] = [
+    {
+      src: "/images/home-v109-today.webp",
+      alt: "DropDrop today progress and habits",
+      id: 0,
+    },
+    {
+      src: "/images/home-v109-health.webp",
+      alt: "DropDrop health readiness and adaptive plan",
+      id: 1,
+    },
+    {
+      src: "/images/home-v109-analytics.webp",
+      alt: "DropDrop advanced analytics",
+      id: 2,
+    },
   ];
+
+  const featureScreens: FeatureCard[] = [
+    {
+      image: "/images/home-v109-task.webp",
+      icon: ClipboardList,
+      titleKey: "home.v109.tasks.title",
+      descKey: "home.v109.tasks.desc",
+      badgeKey: "home.v109.tasks.badge",
+      tone: "text-blue-600 bg-blue-50 border-blue-100",
+      stackClass:
+        "left-[-4%] top-12 w-[38%] max-w-[150px] -rotate-[5deg] sm:left-[2%] sm:max-w-[178px] md:left-[8%] md:top-16 md:max-w-[230px]",
+    },
+    {
+      image: "/images/home-v109-spark.webp",
+      icon: ImagePlus,
+      titleKey: "home.v109.spark.title",
+      descKey: "home.v109.spark.desc",
+      badgeKey: "home.v109.spark.badge",
+      tone: "text-emerald-700 bg-emerald-50 border-emerald-100",
+      stackClass:
+        "left-[18%] top-3 w-[41%] max-w-[160px] rotate-[2deg] sm:left-[22%] sm:max-w-[194px] md:left-[24%] md:top-4 md:max-w-[242px]",
+    },
+    {
+      image: "/images/home-v109-timeline.webp",
+      icon: Route,
+      titleKey: "home.v109.timeline.title",
+      descKey: "home.v109.timeline.desc",
+      badgeKey: "home.v109.timeline.badge",
+      tone: "text-sky-700 bg-sky-50 border-sky-100",
+      stackClass:
+        "left-[40%] top-12 w-[38%] max-w-[150px] -rotate-[1deg] sm:left-[42%] sm:max-w-[178px] md:left-[40%] md:top-16 md:max-w-[230px]",
+    },
+    {
+      image: "/images/home-v109-month.webp",
+      icon: CalendarDays,
+      titleKey: "home.v109.calendar.title",
+      descKey: "home.v109.calendar.desc",
+      badgeKey: "home.v109.calendar.badge",
+      tone: "text-violet-700 bg-violet-50 border-violet-100",
+      stackClass:
+        "left-[62%] top-5 w-[38%] max-w-[150px] rotate-[4deg] sm:left-[62%] sm:max-w-[178px] md:left-[56%] md:top-8 md:max-w-[234px]",
+    },
+  ];
+
+  const activeFeature = featureScreens[featureActiveIndex];
+  const ActiveFeatureIcon = activeFeature.icon;
 
   const getPosition = (index: number) => {
     if (index === activeIndex) return "center";
-    if (index === (activeIndex - 1 + 3) % 3) return "left";
+    if (index === (activeIndex - 1 + heroImages.length) % heroImages.length)
+      return "left";
     return "right";
   };
 
@@ -67,40 +149,48 @@ export default function Home() {
       rotate: 0,
       opacity: 1,
       filter: "blur(0px)",
-      transition: { duration: 0.6, type: "spring" as const, stiffness: 100, damping: 20 }
+      transition: {
+        duration: 0.6,
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 20,
+      },
     },
     left: {
-      x: isMobile ? "-120%" : "-125%", // Tighter overlap for PC
+      x: isMobile ? "-120%" : "-125%",
       scale: 0.85,
       zIndex: 10,
-      rotate: -12,
-      opacity: 0.8,
+      rotate: -10,
+      opacity: 0.78,
       filter: "blur(0.5px)",
-      transition: { duration: 0.6, type: "spring" as const, stiffness: 100, damping: 20 }
+      transition: {
+        duration: 0.6,
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 20,
+      },
     },
     right: {
-      x: isMobile ? "20%" : "25%", // Tighter overlap for PC
+      x: isMobile ? "20%" : "25%",
       scale: 0.85,
       zIndex: 10,
-      rotate: 12,
-      opacity: 0.8,
+      rotate: 10,
+      opacity: 0.78,
       filter: "blur(0.5px)",
-      transition: { duration: 0.6, type: "spring" as const, stiffness: 100, damping: 20 }
-    }
+      transition: {
+        duration: 0.6,
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 20,
+      },
+    },
   };
 
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-50px" },
-    transition: { duration: 1, ease: "easeOut" as const }
-  };
-
-  const staggerContainer = {
-    initial: { opacity: 0 },
-    whileInView: { opacity: 1 },
-    viewport: { once: true },
-    transition: { staggerChildren: 0.15 }
+    transition: { duration: 0.9, ease: "easeOut" as const },
   };
 
   const structuredData = [
@@ -112,48 +202,51 @@ export default function Home() {
   return (
     <>
       <SEOHead
-        title={t('seo.title')}
-        description={t('seo.description')}
+        title={t("seo.title")}
+        description={t("seo.description")}
         canonical="https://www.dropdrophabit.com/"
         structuredData={structuredData}
-        preloadImages={["/images/plan.webp"]}
+        preloadImages={["/images/home-v109-health.webp"]}
       />
 
-      <div className="min-h-screen bg-[#FAFAFA] text-[#222222] font-sans selection:bg-[#4CAF93] selection:text-white">
-
+      <div className="min-h-screen bg-[#F7FAFE] text-[#172033] font-sans selection:bg-[#4CAF93] selection:text-white">
         <Navbar />
 
-        {/* 1. Hero Section: "The Promise" */}
-        <section className="relative pt-36 pb-24 md:pt-56 md:pb-48 overflow-hidden">
-          <div className="container">
+        <section className="relative pt-32 pb-20 md:pt-48 md:pb-36 overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-[620px] bg-[radial-gradient(circle_at_50%_0%,rgba(91,141,214,0.10),transparent_60%)] pointer-events-none" />
+          <div className="container relative">
             <motion.div
               style={{ opacity, scale }}
               className="max-w-4xl mx-auto text-center relative z-20"
             >
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-light leading-[1.1] mb-10 text-[#222222] tracking-tight">
-                <span dangerouslySetInnerHTML={{ __html: t('home.hero.title') }} />
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#DCE8F4] bg-white/75 px-4 py-2 text-sm font-medium text-[#52657B] shadow-soft backdrop-blur-md mb-7">
+                <Sparkles size={15} className="text-[#5E8CD7]" />
+                {t("home.v109.badge")}
+              </div>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-light leading-[1.08] mb-8 text-[#172033] tracking-tight">
+                <span
+                  dangerouslySetInnerHTML={{ __html: t("home.hero.title") }}
+                />
               </h1>
-              <p className="text-lg md:text-xl text-[#666666] leading-relaxed mb-14 font-light max-w-2xl mx-auto">
-                {t('home.hero.subtitle')}
+              <p className="text-lg md:text-xl text-[#64748B] leading-relaxed mb-10 font-light max-w-2xl mx-auto">
+                {t("home.hero.subtitle")}
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <a
-                  href={appStoreUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary w-full sm:w-auto px-12 py-4 text-lg shadow-soft rounded-full transition-all hover:scale-105 active:scale-95"
-                >
-                  {t('home.hero.cta')}
-                </a>
-              </div>
+              <a
+                href={appStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary inline-flex w-full sm:w-auto items-center justify-center gap-3 px-10 py-4 text-base md:text-lg shadow-soft rounded-full transition-all hover:-translate-y-0.5 active:scale-[0.98]"
+              >
+                <Smartphone size={20} />
+                {t("home.hero.cta")}
+              </a>
             </motion.div>
 
-            {/* Interactive 3-Phone Carousel */}
             <motion.div
               initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              className="relative mt-24 md:mt-36 max-w-[1000px] mx-auto h-[360px] md:h-[750px] flex justify-center items-start perspective-1000"
+              className="relative mt-16 md:mt-28 max-w-[1000px] mx-auto h-[370px] md:h-[720px] flex justify-center items-start perspective-1000"
             >
               {heroImages.map((image, index) => {
                 const position = getPosition(index);
@@ -166,139 +259,351 @@ export default function Home() {
                     initial="center"
                     animate={position}
                     onClick={() => setActiveIndex(index)}
-                    className={`absolute left-1/2 top-6 md:top-0 w-[180px] md:w-[320px] origin-center ${isCenter ? 'cursor-default' : 'cursor-pointer hover:brightness-105'}`}
+                    className={`absolute left-1/2 top-4 md:top-0 w-[184px] md:w-[318px] origin-center ${
+                      isCenter
+                        ? "cursor-default"
+                        : "cursor-pointer hover:brightness-105"
+                    }`}
                     style={{ touchAction: "manipulation" }}
                   >
-                    <div
-                      className={`relative overflow-hidden bg-white transition-all duration-500
-                          ${isCenter
-                          ? 'rounded-[2.5rem] md:rounded-[3rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.25)] border-[6px] md:border-[8px] border-white'
-                          : 'rounded-[2rem] md:rounded-[2.5rem] shadow-xl border-4 md:border-8 border-white'
-                        }
-                        `}
-                    >
+                    <div className={phoneFrameClass}>
                       <img
                         src={image.src}
                         alt={image.alt}
                         className="w-full h-full block"
-                        width="320"
-                        height="693"
-                        // @ts-ignore
+                        width="330"
+                        height="716"
+                        // @ts-ignore fetchPriority is supported by modern browsers.
                         fetchPriority={isCenter ? "high" : "auto"}
                       />
-
-                      {/* Overlay for non-center items to indicate interactivity */}
                       {!isCenter && (
-                        <div className="absolute inset-0 bg-white/10 hover:bg-transparent transition-colors" />
+                        <div className="absolute inset-0 bg-white/16 hover:bg-white/8 transition-colors" />
                       )}
                     </div>
                   </motion.div>
                 );
               })}
-
-              {/* Glow Effect */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-b from-[#4CAF93]/10 to-transparent rounded-full blur-3xl -z-30 pointer-events-none" />
+              <div className="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105%] h-[68%] bg-gradient-to-b from-[#6D96D9]/10 to-[#4CAF93]/4 rounded-full blur-3xl -z-30 pointer-events-none" />
             </motion.div>
           </div>
         </section>
 
-        {/* 2. State Understanding Layer */}
-        <section className="py-32 md:py-48 bg-white">
+        <section id="features" className="scroll-mt-24 py-14 md:py-20 bg-white">
           <div className="container">
-            <div className="grid md:grid-cols-2 gap-20 md:gap-32 items-center">
-              <motion.div {...fadeInUp} className="order-2 md:order-1">
-                <div className="relative min-h-[400px] md:min-h-[500px] bg-[#F8F9FA] rounded-[3rem] overflow-visible p-8 flex items-center justify-center">
-                  {/* Refined HRV Visualization */}
-                  <div className="relative w-full max-w-[380px]">
+            <motion.div
+              {...fadeInUp}
+              className="max-w-3xl mx-auto text-center mb-8 md:mb-10"
+            >
+              <span className="text-[#5E8CD7] text-sm tracking-[0.18em] uppercase font-semibold">
+                {t("home.v109.section")}
+              </span>
+              <h2 className="mt-5 text-3xl md:text-4xl font-light leading-tight tracking-tight text-[#172033]">
+                <span
+                  dangerouslySetInnerHTML={{ __html: t("home.v109.title") }}
+                />
+              </h2>
+              <p
+                className={`mx-auto mt-3 max-w-[20rem] overflow-hidden text-sm [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] md:mt-4 md:max-w-none md:text-base md:[display:block] ${mutedTextClass}`}
+              >
+                {t("home.v109.desc")}
+              </p>
+            </motion.div>
 
-                    {/* Main Data Insight Card */}
-                    <div className="relative h-[350px] w-full rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] border-2 border-white/80 bg-white z-10 group mx-auto transform transition-transform duration-700 hover:scale-[1.02]">
+            <motion.div
+              {...fadeInUp}
+              className="relative mx-auto max-w-6xl overflow-visible px-1 pb-10 pt-2 sm:px-4 md:pb-14 md:pt-4"
+            >
+              <div className="relative z-10 md:hidden">
+                <div className="-mx-5 flex snap-x overflow-x-auto px-5 pb-7 pt-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                  {featureScreens.map((feature, index) => {
+                    const isActiveFeature = index === featureActiveIndex;
 
-                      {/* 1. Recreated Header (HTML/CSS) */}
-                      <div className="absolute top-0 left-0 w-full pt-8 px-8 pb-10 z-20 flex justify-between items-start bg-[linear-gradient(to_bottom,#ffffff_85%,transparent)]">
-                        <div>
-                          <h3 className="text-xl font-bold text-gray-900 leading-tight tracking-tight">Daily HRV Trend</h3>
-                          <p className="text-xs text-gray-400 mt-2 uppercase tracking-widest">Measurement Average</p>
+                    return (
+                      <motion.button
+                        key={feature.titleKey}
+                        type="button"
+                        animate={{
+                          scale: isActiveFeature ? 1 : 0.92,
+                          opacity: isActiveFeature ? 1 : 0.62,
+                          y: isActiveFeature ? -6 : 10,
+                        }}
+                        transition={{
+                          duration: 0.34,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        onClick={() => setFeatureActiveIndex(index)}
+                        aria-label={t(feature.titleKey)}
+                        aria-pressed={isActiveFeature}
+                        className={`relative block w-[52%] max-w-[190px] flex-[0_0_52%] snap-center rounded-[1.55rem] text-left outline-none focus-visible:ring-2 focus-visible:ring-[#5E8CD7]/45 ${
+                          index > 0 ? "-ml-[3.6rem]" : ""
+                        } ${
+                          index === 0
+                            ? "-rotate-[5deg]"
+                            : index === 1
+                              ? "rotate-[2deg]"
+                              : index === 2
+                                ? "-rotate-[1deg]"
+                                : "rotate-[4deg]"
+                        }`}
+                        style={{ zIndex: isActiveFeature ? 40 : index + 10 }}
+                      >
+                        <div
+                          className={`${miniPhoneFrameClass} ${
+                            isActiveFeature
+                              ? "shadow-[0_24px_58px_-32px_rgba(24,39,75,0.46)]"
+                              : "shadow-[0_16px_42px_-34px_rgba(24,39,75,0.34)]"
+                          }`}
+                        >
+                          <img
+                            src={feature.image}
+                            alt={t(feature.titleKey)}
+                            className="block h-full w-full"
+                            width="210"
+                            height="455"
+                            loading="lazy"
+                          />
                         </div>
-                        <div className="p-2.5 bg-gray-50 rounded-xl text-[#4CAF93]">
-                          <Activity size={18} />
+                      </motion.button>
+                    );
+                  })}
+                </div>
+
+                <div className="pointer-events-none absolute inset-x-12 bottom-20 h-20 rounded-full bg-[#C8D7EA]/16 blur-3xl" />
+
+                <div className="mx-auto mt-1 flex w-fit items-center gap-2 rounded-full border border-[#E5EEF7]/80 bg-white/72 px-2 py-1.5 shadow-[0_14px_38px_-32px_rgba(24,39,75,0.38)] backdrop-blur-md">
+                  {featureScreens.map((feature, index) => {
+                    const Icon = feature.icon;
+                    const isSelected = index === featureActiveIndex;
+
+                    return (
+                      <button
+                        key={feature.titleKey}
+                        type="button"
+                        onClick={() => setFeatureActiveIndex(index)}
+                        aria-label={t(feature.titleKey)}
+                        aria-pressed={isSelected}
+                        className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300 ${
+                          isSelected
+                            ? "bg-[#172033] shadow-[0_10px_26px_-18px_rgba(24,39,75,0.45)]"
+                            : "bg-white/60 hover:bg-white"
+                        }`}
+                      >
+                        <Icon
+                          size={14}
+                          className={
+                            isSelected ? "text-white" : "text-[#8A98AA]"
+                          }
+                        />
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="mx-auto mt-4 w-[min(18rem,100%)]">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeFeature.titleKey}
+                      initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                      transition={{ duration: 0.24, ease: "easeOut" }}
+                      className="rounded-full border border-[#E5EEF7]/90 bg-white/76 px-3.5 py-3 shadow-[0_14px_34px_-30px_rgba(24,39,75,0.34)] backdrop-blur-md"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <span
+                          className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border ${activeFeature.tone}`}
+                        >
+                          <ActiveFeatureIcon size={15} />
+                        </span>
+                        <div className="min-w-0">
+                          <div className="truncate text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8A98AA]">
+                            {t(activeFeature.badgeKey)}
+                          </div>
+                          <h3 className="truncate text-[15px] font-semibold leading-tight tracking-tight text-[#172033]">
+                            {t(activeFeature.titleKey)}
+                          </h3>
                         </div>
                       </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
 
-                      {/* 2. Focused Chart View (Image) */}
-                      <div className="w-full h-full relative overflow-hidden bg-white">
+              <div className="relative z-10 hidden h-[500px] md:block">
+                <div className="pointer-events-none absolute inset-x-12 bottom-12 h-24 rounded-full bg-[#C8D7EA]/16 blur-3xl" />
+                {featureScreens.map((feature, index) => {
+                  const isActiveFeature = index === featureActiveIndex;
+
+                  return (
+                    <motion.button
+                      key={feature.titleKey}
+                      type="button"
+                      animate={{
+                        scale: isActiveFeature ? 1.05 : 0.96,
+                        opacity: isActiveFeature ? 1 : 0.74,
+                        y: isActiveFeature ? -10 : 0,
+                      }}
+                      transition={{
+                        duration: 0.36,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      onClick={() => setFeatureActiveIndex(index)}
+                      aria-label={t(feature.titleKey)}
+                      aria-pressed={isActiveFeature}
+                      className={`absolute block origin-center cursor-pointer rounded-[1.55rem] text-left outline-none transition-[filter] hover:brightness-[1.03] focus-visible:ring-2 focus-visible:ring-[#5E8CD7]/45 ${feature.stackClass}`}
+                      style={{ zIndex: isActiveFeature ? 40 : index + 10 }}
+                    >
+                      <div
+                        className={`${miniPhoneFrameClass} ${
+                          isActiveFeature
+                            ? "shadow-[0_26px_66px_-34px_rgba(24,39,75,0.48)]"
+                            : "shadow-[0_16px_44px_-34px_rgba(24,39,75,0.36)]"
+                        }`}
+                      >
                         <img
-                          src="/images/hrv.webp"
-                          alt="HRV Trends"
-                          className="w-full h-full object-cover object-[center_95%] scale-140 group-hover:scale-[1.45] transition-transform duration-700 ease-out"
-                          width="380"
-                          height="350"
+                          src={feature.image}
+                          alt={t(feature.titleKey)}
+                          className="block h-full w-full"
+                          width="210"
+                          height="455"
                           loading="lazy"
                         />
-                        {/* Inner shadow & blends */}
-                        <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.02)] pointer-events-none" />
-
-                        {/* Bottom blend to hide UI artifacts */}
-                        <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-white to-transparent z-20" />
                       </div>
-                    </div>
+                    </motion.button>
+                  );
+                })}
 
-                    {/* Floating Card 1: Readiness/Sun */}
-                    <div className="absolute top-2 -right-10 md:-right-16 p-4 bg-white/90 backdrop-blur-xl rounded-2xl shadow-[0_15px_35px_-10px_rgba(0,0,0,0.1)] border border-white/60 animate-float-slow z-20 min-w-[130px]">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2.5 bg-orange-50 text-orange-500 rounded-full relative shadow-sm">
-                          <Sun size={20} strokeWidth={2.5} />
-                        </div>
+                <div className="absolute bottom-[4.9rem] left-1/2 z-50 w-[min(18rem,calc(100%-2rem))] -translate-x-1/2 md:bottom-40 md:left-auto md:right-0 md:w-auto md:max-w-[240px] md:translate-x-0 lg:-right-8">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeFeature.titleKey}
+                      initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                      transition={{ duration: 0.28, ease: "easeOut" }}
+                      className="relative rounded-full border border-[#E5EEF7]/90 bg-white/76 px-3.5 py-3 shadow-[0_14px_34px_-30px_rgba(24,39,75,0.34)] backdrop-blur-md md:rounded-[1.15rem] md:p-3.5"
+                    >
+                      <div className="absolute -left-10 top-7 hidden h-px w-10 bg-[#D5E1EF] md:block" />
+                      <div className="flex items-center gap-2.5 md:items-start">
+                        <span
+                          className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border ${activeFeature.tone}`}
+                        >
+                          <ActiveFeatureIcon size={15} />
+                        </span>
                         <div>
-                          <div className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Readiness</div>
-                          <div className="text-base font-bold text-[#222222]">High</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Floating Card 2: Stress/Load */}
-                    <div className="absolute -bottom-10 -left-10 md:-left-16 p-4 bg-white/90 backdrop-blur-xl rounded-2xl shadow-[0_15px_35px_-10px_rgba(0,0,0,0.1)] border border-white/60 animate-float-delayed z-20 min-w-[130px]">
-                      <div className="flex items-center gap-3">
-                        <div className="relative w-11 h-11">
-                          <svg className="w-full h-full -rotate-90">
-                            <circle cx="22" cy="22" r="18" fill="none" stroke="#F3F4F6" strokeWidth="4" />
-                            <circle cx="22" cy="22" r="18" fill="none" stroke="#3B82F6" strokeWidth="4" strokeDasharray="113" strokeDashoffset="34" strokeLinecap="round" />
-                          </svg>
-                          <div className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-gray-700">
-                            70%
+                          <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8A98AA]">
+                            {t(activeFeature.badgeKey)}
                           </div>
+                          <h3 className="mt-0.5 text-[15px] font-semibold leading-tight tracking-tight text-[#172033] md:text-lg">
+                            {t(activeFeature.titleKey)}
+                          </h3>
+                          <p className="mt-1.5 hidden overflow-hidden text-xs font-light leading-relaxed text-[#64748B] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] md:block">
+                            {t(activeFeature.descKey)}
+                          </p>
                         </div>
-                        <div>
-                          <div className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Load</div>
-                          <div className="text-base font-bold text-[#222222]">Optimal</div>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+
+              <div className="hidden justify-center md:mt-24 md:flex">
+                <div className="flex items-center gap-2 rounded-full border border-[#E5EEF7]/80 bg-white/70 px-2 py-1.5 shadow-[0_14px_38px_-32px_rgba(24,39,75,0.38)] backdrop-blur-md">
+                  {featureScreens.map((feature, index) => {
+                    const Icon = feature.icon;
+                    const isSelected = index === featureActiveIndex;
+
+                    return (
+                      <button
+                        key={feature.titleKey}
+                        type="button"
+                        onClick={() => setFeatureActiveIndex(index)}
+                        aria-label={t(feature.titleKey)}
+                        aria-pressed={isSelected}
+                        className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300 ${
+                          isSelected
+                            ? "bg-[#172033] shadow-[0_10px_26px_-18px_rgba(24,39,75,0.45)]"
+                            : "bg-white/60 hover:bg-white"
+                        }`}
+                      >
+                        <Icon
+                          size={14}
+                          className={
+                            isSelected ? "text-white" : "text-[#8A98AA]"
+                          }
+                        />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-22 md:py-32 bg-[#F7FAFE]">
+          <div className="container">
+            <div className="grid md:grid-cols-2 gap-14 md:gap-24 items-center">
+              <motion.div
+                {...fadeInUp}
+                className="order-2 md:order-1 flex justify-center"
+              >
+                <div className="relative w-[250px] md:w-[302px]">
+                  <div className={phoneFrameClass}>
+                    <img
+                      src="/images/home-v109-health.webp"
+                      alt="DropDrop health readiness"
+                      className="block w-full"
+                      width="320"
+                      height="693"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="absolute -right-8 top-24 hidden rounded-2xl border border-[#E1EAF4] bg-white/88 px-4 py-3 shadow-[0_18px_44px_-28px_rgba(24,39,75,0.45)] backdrop-blur md:block">
+                    <div className="flex items-center gap-3">
+                      <HeartPulse className="text-[#5E8CD7]" size={21} />
+                      <div>
+                        <div className="text-[10px] font-bold uppercase tracking-widest text-[#98A2B3]">
+                          {t("home.state.signal")}
+                        </div>
+                        <div className="text-sm font-semibold text-[#172033]">
+                          {t("home.state.ready")}
                         </div>
                       </div>
                     </div>
-
-                    {/* Decorative background blobs */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-gradient-to-tr from-[#4CAF93]/15 to-transparent rounded-full blur-3xl -z-10" />
                   </div>
                 </div>
               </motion.div>
 
               <motion.div {...fadeInUp} className="order-1 md:order-2">
-                <h2 className="text-3xl md:text-5xl font-light mb-8 leading-tight">
-                  <span dangerouslySetInnerHTML={{ __html: t('home.state.title') }} />
+                <h2 className={`${sectionHeadingClass} mb-7`}>
+                  <span
+                    dangerouslySetInnerHTML={{ __html: t("home.state.title") }}
+                  />
                 </h2>
-
-                <div className="space-y-8 mt-12">
+                <p className={`text-lg mb-10 ${mutedTextClass}`}>
+                  {t("home.state.intro")}
+                </p>
+                <div className="space-y-7">
                   {[
-                    { icon: Heart, key: 'home.state.mood' },
-                    { icon: Activity, key: 'home.state.body' },
-                    { icon: Zap, key: 'home.state.activity' }
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex gap-5 items-start group">
-                      <div className="w-12 h-12 rounded-2xl bg-[#FAFAFA] text-[#4CAF93] flex items-center justify-center shrink-0 group-hover:bg-[#4CAF93] group-hover:text-white transition-colors duration-300">
-                        <item.icon size={22} strokeWidth={1.5} />
+                    { icon: HeartPulse, key: "home.state.body" },
+                    { icon: Activity, key: "home.state.mood" },
+                    { icon: Bell, key: "home.state.activity" },
+                  ].map(item => (
+                    <div
+                      key={item.key}
+                      className="flex gap-5 items-start group"
+                    >
+                      <div className="w-12 h-12 rounded-[1.1rem] bg-white text-[#5E8CD7] flex items-center justify-center shrink-0 shadow-soft ring-1 ring-[#E1EAF4] group-hover:bg-[#5E8CD7] group-hover:text-white transition-colors duration-300">
+                        <item.icon size={22} strokeWidth={1.7} />
                       </div>
                       <div>
-                        <h3 className="text-lg font-medium text-[#222222] mb-1">{t(item.key)}</h3>
-                        <p className="text-[#666666] font-light text-sm">{t(`${item.key}.desc`)}</p>
+                        <h3 className="text-lg font-semibold text-[#172033] mb-1">
+                          {t(item.key)}
+                        </h3>
+                        <p className="text-[#64748B] font-light text-sm">
+                          {t(`${item.key}.desc`)}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -308,186 +613,118 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. Suggestion Layer (The Core Value) */}
-        <section className="py-32 md:py-48 bg-[#FAFAFA] relative overflow-hidden">
-          {/* Decorative background element */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-r from-blue-50/50 to-green-50/50 rounded-full blur-3xl -z-10" />
-
+        <section className="py-22 md:py-32 bg-white overflow-hidden">
           <div className="container">
-            <motion.div {...fadeInUp} className="max-w-3xl mx-auto text-center mb-24 md:mb-32 relative z-10">
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-light mb-8 leading-[1.15] tracking-tight">
-                <span dangerouslySetInnerHTML={{ __html: t('home.suggestion.title') }} />
-              </h2>
-              <p className="text-lg md:text-xl text-[#666666] font-light max-w-xl mx-auto leading-relaxed">
-                {t('home.suggestion.desc')}
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-12 lg:gap-20 max-w-5xl mx-auto items-center relative z-10">
-              {/* Card 1: Low Energy (Image - Rest/Recover) */}
-              <motion.div
-                whileHover={{ scale: 1.03, rotate: -1, zIndex: 20 }}
-                initial={{ rotate: -2 }}
-                className="relative group cursor-pointer"
-              >
-                <div className="relative rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1)] border-[6px] border-white bg-white transform transition-all duration-500">
-                  <img
-                    src="/images/restRecommend.webp"
-                    alt="Rest Recommendations"
-                    className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-                    width="500"
-                    height="400"
-                    loading="lazy"
+            <div className="grid md:grid-cols-2 gap-14 md:gap-24 items-center max-w-6xl mx-auto">
+              <motion.div {...fadeInUp} className="max-w-md">
+                <span className="inline-flex items-center gap-2 rounded-full border border-[#DCE8F4] bg-[#F4F8FD] px-4 py-2 text-sm font-semibold text-[#456FAE]">
+                  <Layers3 size={16} />
+                  {t("home.suggestion.badge")}
+                </span>
+                <h2 className={`mt-7 mb-7 ${sectionHeadingClass}`}>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t("home.suggestion.title"),
+                    }}
                   />
-
-                  {/* Calm Overlay */}
-                  <div className="absolute inset-0 bg-blue-50/10 pointer-events-none group-hover:bg-transparent transition-colors" />
-                </div>
-
-                {/* Floating Badge - Rest */}
-                <div className="absolute -top-4 -left-2 bg-white px-4 py-2 rounded-full shadow-lg border border-gray-100 flex items-center gap-2 animate-float-delayed">
-                  <div className="p-1.5 bg-slate-100 rounded-full text-slate-500">
-                    <Moon size={14} />
-                  </div>
-                  <span className="text-xs font-bold text-slate-600 uppercase tracking-wide">{t('home.suggestion.rest_mode')}</span>
-                </div>
-              </motion.div>
-
-              {/* Card 2: High Energy (Image - Active/Challenge) */}
-              <motion.div
-                whileHover={{ scale: 1.03, rotate: 1, zIndex: 20 }}
-                initial={{ rotate: 2 }}
-                className="relative group cursor-pointer"
-              >
-                <div className="relative rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_-12px_rgba(249,115,22,0.15)] border-[6px] border-white bg-white transform transition-all duration-500">
-                  <img
-                    src="/images/recommend.webp"
-                    alt="Active Recommendations"
-                    className="w-full h-auto object-cover"
-                    width="500"
-                    height="400"
-                    loading="lazy"
-                  />
-
-                  {/* Vibrant Overlay */}
-                  <div className="absolute inset-0 bg-orange-50/5 pointer-events-none" />
-                </div>
-
-                {/* Floating Badge - Peak */}
-                <div className="absolute -top-6 -right-4 bg-white px-4 py-2 rounded-full shadow-lg border border-orange-100 flex items-center gap-2 animate-float-slow">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-orange-400 rounded-full animate-ping opacity-20" />
-                    <div className="p-1.5 bg-orange-100 rounded-full text-orange-500 relative">
-                      <Sun size={14} />
-                    </div>
-                  </div>
-                  <span className="text-xs font-bold text-orange-600 uppercase tracking-wide">{t('home.suggestion.peak_state')}</span>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* 4. Execution Layer (No Pressure) */}
-        <section className="py-32 md:py-48 bg-white overflow-hidden">
-          <div className="container">
-            <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 md:gap-24 items-center">
-              <motion.div {...fadeInUp} className="max-w-md order-1 md:ml-auto md:pr-4 flex flex-col items-center md:items-start text-center md:text-left">
-                <h2 className="text-3xl md:text-5xl font-light mb-8 leading-[1.15] tracking-tight">
-                  <span dangerouslySetInnerHTML={{ __html: t('home.execution.title') }} />
                 </h2>
-                <p className="text-lg md:text-xl text-[#666666] font-light leading-relaxed mb-10">
-                  {t('home.execution.desc')}
+                <p className={`text-lg md:text-xl ${mutedTextClass}`}>
+                  {t("home.suggestion.desc")}
                 </p>
-                <div className="flex items-center gap-3 text-[#4CAF93] font-medium tracking-wide">
-                  <CheckCircle2 size={22} />
-                  <span>Zero-friction Logging</span>
-                </div>
               </motion.div>
 
               <motion.div
-                initial={{ x: 100, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1 }}
-                className="relative order-2 flex justify-center md:justify-start md:pl-4 mt-10 md:mt-0"
+                {...fadeInUp}
+                className="relative grid grid-cols-2 gap-4 md:gap-5"
               >
-                {/* Wrapper to contain both Phone and Badge for precise relative positioning */}
-                <div className="relative">
-                  {/* Phone-like Video Container */}
-                  <div className="relative w-[260px] md:w-[280px] aspect-[9/19] rounded-[2.5rem] border-[8px] border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] bg-gray-50 overflow-hidden z-10">
-                    <video
-                      src="/mp4/habitDone.mp4"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="w-full h-full object-cover"
+                <div className="pt-12">
+                  <div className={phoneFrameClass}>
+                    <img
+                      src="/images/home-v109-today.webp"
+                      alt="DropDrop today habits"
+                      className="block w-full"
+                      width="260"
+                      height="564"
+                      loading="lazy"
                     />
                   </div>
-
-                  {/* Floating "Just a tap" Badge - Now anchored strictly to the phone container */}
-                  <div className="absolute bottom-12 -right-4 md:-right-10 bg-white px-5 py-3 rounded-2xl shadow-[0_10px_30px_-5px_rgba(0,0,0,0.1)] border border-gray-100 animate-float-delayed z-20 whitespace-nowrap">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-[#4CAF93] animate-pulse" />
-                      <span className="text-sm font-medium text-gray-600">Just a tap</span>
-                    </div>
+                </div>
+                <div>
+                  <div className={phoneFrameClass}>
+                    <img
+                      src="/images/home-v109-timeline.webp"
+                      alt="DropDrop timeline mode"
+                      className="block w-full"
+                      width="260"
+                      height="564"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
-
-                {/* Decorative background glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-gradient-to-tr from-[#FAFAFA] to-transparent rounded-full -z-10" />
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* 5. Review Layer (Long Termism) */}
-        <section className="py-32 md:py-48 bg-[#1A1A1A] text-white">
+        <section className="py-24 md:py-36 bg-[#101722] text-white overflow-hidden">
           <div className="container">
-            <div className="grid md:grid-cols-2 gap-20 md:gap-32 items-center">
-              <motion.div {...fadeInUp} className="order-2 md:order-1">
-                {/* Dark mode chart visualization */}
-                <div className="bg-[#2A2A2A] rounded-[2.5rem] p-10 border border-white/5 shadow-2xl">
-                  <div className="flex justify-between items-end mb-10">
-                    <div>
-                      <div className="text-white/40 text-xs mb-2 uppercase tracking-widest">Weekly Trend</div>
-                      <div className="text-2xl md:text-3xl font-light tracking-tight">Consistency Score</div>
-                    </div>
-                    <div className="text-[#4CAF93] font-medium">+12%</div>
+            <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+              <motion.div
+                {...fadeInUp}
+                className="order-2 md:order-1 grid grid-cols-2 gap-4 md:gap-5 relative"
+              >
+                <div className="absolute inset-x-0 top-1/2 h-48 -translate-y-1/2 bg-[#6D96D9]/10 blur-3xl pointer-events-none" />
+                <div className="pt-10">
+                  <div className={phoneFrameClass}>
+                    <img
+                      src="/images/home-v109-analytics.webp"
+                      alt="DropDrop advanced analytics screen"
+                      className="block w-full"
+                      width="280"
+                      height="607"
+                      loading="lazy"
+                    />
                   </div>
-                  <div className="h-48 w-full flex items-end gap-1">
-                    {[30, 45, 35, 60, 55, 70, 65, 50, 60, 75, 80, 70].map((h, i) => (
-                      <div key={i} className="flex-1 bg-[#4CAF93]/20 rounded-t-sm relative group">
-                        <div style={{ height: `${h}%` }} className="absolute bottom-0 w-full bg-[#4CAF93] rounded-t-sm opacity-60 group-hover:opacity-100 transition-opacity" />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-6 flex justify-between text-xs text-white/20">
-                    <span>Week 1</span>
-                    <span>Week 4</span>
-                    <span>Week 8</span>
-                    <span>Week 12</span>
+                </div>
+                <div>
+                  <div className={phoneFrameClass}>
+                    <img
+                      src="/images/statics.webp"
+                      alt="DropDrop weekly statistics screen"
+                      className="block w-full"
+                      width="280"
+                      height="607"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
               </motion.div>
 
               <motion.div {...fadeInUp} className="order-1 md:order-2">
-                <h2 className="text-3xl md:text-5xl font-light mb-8 leading-tight">
-                  <span dangerouslySetInnerHTML={{ __html: t('home.review.title') }} />
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.07] px-4 py-2 text-sm font-semibold text-white/78">
+                  <LineChart size={16} />
+                  {t("home.review.badge")}
+                </span>
+                <h2 className="mt-7 text-3xl md:text-5xl font-light mb-7 leading-tight tracking-tight text-white">
+                  <span
+                    dangerouslySetInnerHTML={{ __html: t("home.review.title") }}
+                  />
                 </h2>
-                <p className="text-lg text-white/60 font-light leading-relaxed mb-8">
-                  {t('home.review.desc')}
+                <p className="text-lg text-white/64 font-light leading-relaxed mb-9">
+                  {t("home.review.desc")}
                 </p>
                 <ul className="space-y-4">
                   {[
-                    "Monthly Heatmaps",
-                    "Recovery correlation",
-                    "Long-term adaptation"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-white/80 font-light">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#4CAF93]" />
-                      {item}
+                    { icon: BarChart3, key: "home.review.item1" },
+                    { icon: CalendarDays, key: "home.review.item2" },
+                    { icon: CheckCircle2, key: "home.review.item3" },
+                  ].map(item => (
+                    <li
+                      key={item.key}
+                      className="flex items-center gap-3 text-white/80 font-light"
+                    >
+                      <item.icon size={18} className="text-[#82D5C8]" />
+                      {t(item.key)}
                     </li>
                   ))}
                 </ul>
@@ -496,37 +733,34 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 5.5. Testimonials (Social Proof) */}
         <Testimonials />
 
-        {/* 6. Summary Layer (The "Why") */}
-        <section className="py-32 bg-white text-center">
+        <section className="py-24 md:py-28 bg-white text-center">
           <div className="container">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.94 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="max-w-3xl mx-auto border border-[#F0F0F0] rounded-[3rem] p-12 md:p-20 relative overflow-hidden"
+              className="max-w-3xl mx-auto border border-[#E1EAF4] rounded-[1.75rem] p-9 md:p-16 relative overflow-hidden bg-[#FBFDFF] shadow-[0_18px_54px_-44px_rgba(24,39,75,0.42)]"
             >
-              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-[#4CAF93] to-transparent opacity-50" />
-
-              <span className="text-[#4CAF93] text-sm tracking-[0.2em] uppercase font-medium mb-6 block">Philosophy</span>
-              <h2 className="text-3xl md:text-5xl font-light mb-8 text-[#222222]">
-                {t('home.summary.title')}
+              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#5E8CD7] to-transparent opacity-80" />
+              <span className="text-[#5E8CD7] text-sm tracking-[0.18em] uppercase font-semibold mb-6 block">
+                {t("home.summary.badge")}
+              </span>
+              <h2 className="text-3xl md:text-5xl font-light mb-8 text-[#172033]">
+                {t("home.summary.title")}
               </h2>
-              <p className="text-xl md:text-2xl text-[#666666] font-light italic font-serif">
-                "{t('home.summary.desc')}"
+              <p className="text-xl md:text-2xl text-[#64748B] font-light italic font-serif">
+                "{t("home.summary.desc")}"
               </p>
-
-              {/* Decorative background elements */}
-              <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-gray-50 rounded-full -z-10" />
-              <div className="absolute -top-20 -left-20 w-64 h-64 bg-gray-50 rounded-full -z-10" />
             </motion.div>
           </div>
         </section>
 
-        {/* 7. CTA (Trust) */}
-        <section id="download" className="py-24 md:py-32 bg-[#FAFAFA] border-t border-[#EAEAEA]">
+        <section
+          id="download"
+          className="py-24 md:py-32 bg-[#F7FAFE] border-t border-[#E1EAF4]"
+        >
           <div className="container text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -534,28 +768,33 @@ export default function Home() {
               viewport={{ once: true }}
               className="max-w-3xl mx-auto"
             >
-              <h2 className="text-3xl md:text-5xl font-light mb-10 text-[#222222] leading-tight">
-                <span dangerouslySetInnerHTML={{ __html: t('home.cta.title') }} />
+              <h2 className="text-3xl md:text-5xl font-light mb-10 text-[#172033] leading-tight tracking-tight">
+                <span
+                  dangerouslySetInnerHTML={{ __html: t("home.cta.title") }}
+                />
               </h2>
 
-              <div className="flex flex-col items-center gap-10">
-                <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                  <a
-                    href={appStoreUrl}
-                    target="_blank"
-                    className="btn-primary flex items-center justify-center gap-3 px-10 py-5 text-lg w-full sm:w-auto min-w-[240px] rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
-                  >
-                    <Smartphone size={22} />
-                    {t('home.cta.btn')}
-                  </a>
-                </div>
+              <div className="flex flex-col items-center gap-9">
+                <a
+                  href={appStoreUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary flex items-center justify-center gap-3 px-10 py-5 text-lg w-full sm:w-auto min-w-[240px] rounded-full shadow-soft transition-all hover:-translate-y-0.5"
+                >
+                  <Smartphone size={22} />
+                  {t("home.cta.btn")}
+                </a>
 
-                <div className="flex items-center gap-6 text-sm text-[#999999] opacity-80">
-                  <span className="flex items-center gap-1"><CheckCircle2 size={14} /> iOS Ready</span>
-                  <span className="w-1 h-1 bg-[#CCCCCC] rounded-full" />
-                  <span className="flex items-center gap-1"><CheckCircle2 size={14} /> Privacy First</span>
-                  <span className="w-1 h-1 bg-[#CCCCCC] rounded-full" />
-                  <span className="flex items-center gap-1"><CheckCircle2 size={14} /> No Ads</span>
+                <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-[#8190A3]">
+                  <span className="flex items-center gap-1.5">
+                    <CheckCircle2 size={14} /> iOS Ready
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <CheckCircle2 size={14} /> Privacy First
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <CheckCircle2 size={14} /> No Ads
+                  </span>
                 </div>
               </div>
             </motion.div>

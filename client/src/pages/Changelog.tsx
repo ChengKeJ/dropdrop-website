@@ -28,6 +28,51 @@ export default function Changelog() {
 
     const releases: ReleaseNote[] = [
         {
+            version: '1.1.1',
+            date: '2026-05-08',
+            title: {
+                zh: '计时习惯、周月历浏览与头像同步',
+                en: 'Timed habits, calendar browsing, and avatar sync'
+            },
+            features: [
+                {
+                    type: 'new',
+                    desc: {
+                        zh: '新增专门的计时习惯体验，达到目标时长后可自动完成。',
+                        en: 'Added a dedicated timed habit experience with automatic completion when the target duration is reached.'
+                    }
+                },
+                {
+                    type: 'new',
+                    desc: {
+                        zh: '加入 iOS Live Activity 支持基础能力，让进行中的计时习惯可以延伸到应用外查看。',
+                        en: 'Added iOS Live Activity support plumbing for active timer habit sessions.'
+                    }
+                },
+                {
+                    type: 'improve',
+                    desc: {
+                        zh: '优化周历与月历浏览体验，丰富周模式并统一月视图日期顺序。',
+                        en: 'Improved weekly and monthly calendar browsing with richer week mode and unified month date ordering.'
+                    }
+                },
+                {
+                    type: 'new',
+                    desc: {
+                        zh: '新增个人头像编辑、同步头像存储与可复用头像展示组件。',
+                        en: 'Added profile avatar editing with synced avatar storage and reusable avatar display components.'
+                    }
+                },
+                {
+                    type: 'improve',
+                    desc: {
+                        zh: '打磨计划页缓存、健康建议展示、小组件、CloudKit 同步，并更新 1.1.1+2 发布元数据。',
+                        en: 'Polished plan page caching, health suggestion display, widgets, CloudKit sync, and release metadata for 1.1.1+2.'
+                    }
+                },
+            ]
+        },
+        {
             version: '1.0.9',
             date: '2026-04-24',
             title: {
@@ -66,8 +111,8 @@ export default function Changelog() {
                 {
                     type: 'fix',
                     desc: {
-                        zh: '提升健康教练稳定性、习惯与待办数据可靠性，并更新 1.0.9 版本元数据。',
-                        en: 'Improved health coach stability, habit and todo data reliability, and 1.0.9 release metadata.'
+                        zh: '提升健康教练稳定性、小组件数据可靠性，并完善关键界面的本地化文案。',
+                        en: 'Improved health coach stability, widget data reliability, and localization across key screens.'
                     }
                 },
             ]
@@ -197,43 +242,43 @@ export default function Changelog() {
             version: '1.0.5',
             date: '2026-02-10',
             title: {
-                zh: '计划、HRV 与个性化推荐',
-                en: 'Plans, HRV, and smarter guidance'
+                zh: 'Timeline、健康页与模板库升级',
+                en: 'Timeline, Health page, and template library upgrades'
             },
             features: [
                 {
                     type: 'new',
                     desc: {
-                        zh: '新增「计划」功能，提供更结构化的习惯养成方案，帮助用户按目标推进。',
-                        en: 'Added Plans, giving users curated, goal-oriented habit-building programs.'
+                        zh: '新增 Timeline 模式，让用户可以一眼查看当天所有习惯。',
+                        en: 'New Timeline Mode: visualize all your habits for the day at a glance.'
                     }
                 },
                 {
                     type: 'new',
                     desc: {
-                        zh: '接入 HRV 监测，可结合 Health 数据查看压力与恢复趋势。',
-                        en: 'Introduced HRV monitoring with Health data to surface stress and recovery trends.'
+                        zh: '升级健康页，支持健康分趋势、习惯建议与计划推荐。',
+                        en: 'Upgraded Health Page: track health score trends and get habit and plan recommendations.'
                     }
                 },
                 {
                     type: 'new',
                     desc: {
-                        zh: '加入个性化习惯推荐，降低新用户开始时的选择成本。',
-                        en: 'Added personalized habit recommendations for easier onboarding.'
+                        zh: '扩展习惯与计划模板库，让创建和管理更容易。',
+                        en: 'Expanded Habit and Plan Library with more templates for easier creation and management.'
+                    }
+                },
+                {
+                    type: 'new',
+                    desc: {
+                        zh: '新增健康因子与趋势报告，支持周度和月度长期追踪。',
+                        en: 'Added Health Factors and Trend Reports with weekly and monthly trend analysis.'
                     }
                 },
                 {
                     type: 'improve',
                     desc: {
-                        zh: '优化情绪记录触发频率，加入更克制的冷却机制，减少打扰。',
-                        en: 'Improved mood tracking with a non-intrusive cooldown system.'
-                    }
-                },
-                {
-                    type: 'improve',
-                    desc: {
-                        zh: '细化习惯详情页和打卡过渡动画，整体体验更顺滑。',
-                        en: 'Polished the habit detail page and check-in transitions for a smoother experience.'
+                        zh: '增强周期与归档管理，并加入久坐、喝水等智能健康提醒。',
+                        en: 'Improved habit management with enhanced cycle and archiving features, plus smart health reminders.'
                     }
                 },
             ]
@@ -242,43 +287,43 @@ export default function Changelog() {
             version: '1.0.4',
             date: '2026-01-10',
             title: {
-                zh: '主题、进阶统计与云同步',
-                en: 'Themes, advanced analytics, and cloud sync'
+                zh: '计划行动、健康集成与情绪记录',
+                en: 'Plans, actions, health integration, and mood recording'
             },
             features: [
                 {
                     type: 'new',
                     desc: {
-                        zh: '支持自定义主题和更丰富的视觉配色，让习惯拥有更鲜明的个性化外观。',
-                        en: 'Added custom themes and richer color personalization for habits.'
+                        zh: '新增计划与行动相关能力，让习惯推进更有结构。',
+                        en: 'Added Plan and Action features for more structured habit progress.'
                     }
                 },
                 {
                     type: 'new',
                     desc: {
-                        zh: '上线 Advanced Stats 页面，提供完成率、趋势、周模式与时间分布等更深层统计。',
-                        en: 'Added an Advanced Stats page with completion trends, weekly patterns, and time-of-day insights.'
+                        zh: '接入健康集成、情绪记录与 HRV 折线图能力。',
+                        en: 'Added health integration, mood recording, and HRV line chart support.'
                     }
                 },
                 {
                     type: 'new',
                     desc: {
-                        zh: 'Pro 会员支持云同步、自动备份与跨设备恢复。',
-                        en: 'Added cloud sync, backup, and restore for Pro members.'
+                        zh: '新增引导页与 marker popup 功能。',
+                        en: 'Added the guide page and marker popup functionality.'
                     }
                 },
                 {
                     type: 'improve',
                     desc: {
-                        zh: '优化习惯详情页，加入补打卡、日期标签可读性提升和更清晰的日历指示。',
-                        en: 'Improved habit details with retroactive check-ins, clearer date labels, and better calendar indicators.'
+                        zh: '优化登录流程、图标尺寸和 marker popup 样式。',
+                        en: 'Optimized login flow, icon sizing, and marker popup styling.'
                     }
                 },
                 {
                     type: 'improve',
                     desc: {
-                        zh: '统计总览默认打开周视图，并改善单习惯与多习惯场景下的布局可读性。',
-                        en: 'Refined the statistics overview with a weekly default view and better readability.'
+                        zh: '细化 marker 规则，让提示和标记行为更准确。',
+                        en: 'Refined marker rules for more accurate prompts and marker behavior.'
                     }
                 },
             ]
@@ -287,36 +332,29 @@ export default function Changelog() {
             version: '1.0.3',
             date: '2025-11-22',
             title: {
-                zh: '免费 Premium 试用与稳定性强化',
-                en: 'Free Premium trial and stability improvements'
+                zh: '完成庆祝、深色模式与 Pro Hub',
+                en: 'Completion celebration, dark mode, and Pro Hub'
             },
             features: [
                 {
                     type: 'new',
                     desc: {
-                        zh: '推出限时 14 天高级版免费试用，让用户可以无门槛体验完整功能。',
-                        en: 'Launched a limited 14-day free Premium trial with full feature access.'
+                        zh: '完成全部习惯时新增庆祝彩带效果。',
+                        en: 'Added confetti when you complete all habits.'
                     }
                 },
                 {
                     type: 'improve',
                     desc: {
-                        zh: '更新 UI 细节与交互流畅度，整体使用更顺手。',
-                        en: 'Refined the UI and interaction flow for a smoother experience.'
+                        zh: '优化深色模式主题表现。',
+                        en: 'Improved the dark mode theme.'
                     }
                 },
                 {
                     type: 'improve',
                     desc: {
-                        zh: '提升性能与响应速度，日常使用更快更稳。',
-                        en: 'Improved app performance and responsiveness.'
-                    }
-                },
-                {
-                    type: 'fix',
-                    desc: {
-                        zh: '进行系统稳定性优化，减少使用过程中的异常情况。',
-                        en: 'Applied stability updates for better reliability.'
+                        zh: '增强 Pro Hub 体验。',
+                        en: 'Enhanced the Pro Hub experience.'
                     }
                 },
             ]
@@ -330,31 +368,41 @@ export default function Changelog() {
             },
             features: [
                 {
-                    type: 'improve',
+                    type: 'fix',
                     desc: {
-                        zh: '习惯追踪动画更顺滑，打卡过程更轻快。',
-                        en: 'Improved habit tracking with smoother animations.'
-                    }
-                },
-                {
-                    type: 'improve',
-                    desc: {
-                        zh: '统计数据可视化更清晰，洞察更直观。',
-                        en: 'Enhanced statistics visualization for clearer insights.'
+                        zh: '提升提醒稳定性。',
+                        en: 'Improved reminder stability.'
                     }
                 },
                 {
                     type: 'fix',
                     desc: {
-                        zh: '修复已知问题并进行常规性能优化。',
-                        en: 'Fixed known issues and improved overall performance.'
+                        zh: '修复通知相关问题。',
+                        en: 'Fixed notification issues.'
                     }
                 },
+            ]
+        },
+        {
+            version: '1.0.1',
+            date: '2025-09-20',
+            title: {
+                zh: '性能与界面微调',
+                en: 'Performance and UI tweaks'
+            },
+            features: [
                 {
                     type: 'improve',
                     desc: {
-                        zh: '优化数据同步流程，让更新更快。',
-                        en: 'Optimized sync for faster data updates.'
+                        zh: '进行性能与 UI 细节微调。',
+                        en: 'Performance and UI tweaks.'
+                    }
+                },
+                {
+                    type: 'fix',
+                    desc: {
+                        zh: '修复问题并提升整体稳定性。',
+                        en: 'Bug fixes and improvements.'
                     }
                 },
             ]
@@ -370,43 +418,29 @@ export default function Changelog() {
                 {
                     type: 'new',
                     desc: {
-                        zh: '上线时间轴模式，更直观地查看一天内的所有习惯。',
-                        en: 'Launched Timeline Mode for an at-a-glance view of the day’s habits.'
+                        zh: 'DropDrop 正式发布，提供核心习惯追踪能力。',
+                        en: 'DropDrop is officially released with core habit tracking functionality.'
                     }
                 },
                 {
                     type: 'new',
                     desc: {
-                        zh: '健康页升级，支持健康分趋势查看，并可基于状态推荐习惯与计划。',
-                        en: 'Introduced an upgraded Health page with score trends and habit or plan recommendations.'
+                        zh: '支持基础健康数据集成、用户认证与个人资料管理。',
+                        en: 'Added basic health data integration, user authentication, and profile management.'
                     }
                 },
                 {
                     type: 'new',
                     desc: {
-                        zh: '扩充习惯与计划模板库，降低创建门槛。',
-                        en: 'Expanded the habit and plan library with more ready-to-use templates.'
-                    }
-                },
-                {
-                    type: 'new',
-                    desc: {
-                        zh: '加入周报与月报维度的健康因子和趋势报告。',
-                        en: 'Added weekly and monthly health factor trend reports.'
-                    }
-                },
-                {
-                    type: 'new',
-                    desc: {
-                        zh: '增加久坐、喝水等智能健康提醒。',
-                        en: 'Added smart health reminders for sitting, hydration, and similar behaviors.'
+                        zh: '加入主题系统与中英文双语本地化。',
+                        en: 'Added the theme system and English/Chinese localization support.'
                     }
                 },
                 {
                     type: 'improve',
                     desc: {
-                        zh: '完善周期与归档管理，复盘和长期跟踪更方便。',
-                        en: 'Improved cycle and archive management for easier long-term review.'
+                        zh: '建立基础个人习惯管理与使用体验。',
+                        en: 'Established the foundational habit management experience.'
                     }
                 },
             ]
@@ -470,8 +504,8 @@ export default function Changelog() {
                             </p>
                             <p className="mt-4 text-sm text-[#999999] font-light">
                                 {language === 'zh'
-                                    ? '内容根据公开发版记录与项目内部 changelog 汇总，最后核对于 2026-04-24。'
-                                    : 'Compiled from public release history and the app project changelog, last verified on April 24, 2026.'}
+                                    ? '内容根据公开发版记录与项目内部 changelog 汇总，最后核对于 2026-05-08。'
+                                    : 'Compiled from public release history and the app project changelog, last verified on May 8, 2026.'}
                                 {' '}
                                 <a
                                     href={appStoreUrl}

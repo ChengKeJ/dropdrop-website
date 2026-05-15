@@ -56,10 +56,13 @@ export const getSoftwareAppSchema = (language: SiteLanguage) => ({
   sameAs: [appStoreUrl],
   image: `${siteUrl}/images/logo.png`,
   screenshot: [
-    `${siteUrl}/images/minPlan.webp`,
-    `${siteUrl}/images/habit.webp`,
-    `${siteUrl}/images/today.webp`,
-    `${siteUrl}/images/statics.webp`
+    `${siteUrl}/images/home-v109-today.webp`,
+    `${siteUrl}/images/home-v109-task.webp`,
+    `${siteUrl}/images/home-v109-analytics.webp`,
+    `${siteUrl}/images/home-v109-spark.webp`,
+    `${siteUrl}/images/home-v109-health.webp`,
+    `${siteUrl}/images/home-v109-timeline.webp`,
+    `${siteUrl}/images/home-v109-month.webp`
   ]
 });
 

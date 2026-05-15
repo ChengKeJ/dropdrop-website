@@ -45,82 +45,82 @@
 
 :root {
   /* Scientific / Gentle Color Scheme */
-  --primary: #4CAF93; /* Soft Green */
-  --primary-light: #E8F5E9;
-  --primary-dark: #388E3C;
-  --primary-foreground: #FFFFFF;
+  --primary: #4caf93; /* Soft Green */
+  --primary-light: #e8f5e9;
+  --primary-dark: #388e3c;
+  --primary-foreground: #ffffff;
 
-  --secondary: #F5F5F5;
+  --secondary: #f5f5f5;
   --secondary-foreground: #666666;
 
-  --background: #FAFAFA;
-  --foreground: #222222; /* Main text */
+  --background: #f7fafe;
+  --foreground: #172033; /* Main text */
 
-  --card: #FFFFFF;
-  --card-foreground: #222222;
+  --card: #ffffff;
+  --card-foreground: #172033;
 
-  --popover: #FFFFFF;
-  --popover-foreground: #222222;
+  --popover: #ffffff;
+  --popover-foreground: #172033;
 
-  --muted: #F5F5F5;
-  --muted-foreground: #999999; /* Notes/Annotation */
+  --muted: #f5f5f5;
+  --muted-foreground: #64748b; /* Notes/Annotation */
 
-  --accent: #4CAF93;
-  --accent-foreground: #FFFFFF;
+  --accent: #4caf93;
+  --accent-foreground: #ffffff;
 
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
 
-  --border: #E5E5E5;
-  --input: #F5F5F5;
-  --ring: #4CAF93;
+  --border: #e1eaf4;
+  --input: #f4f8fd;
+  --ring: #4caf93;
   --radius: 0.75rem;
 
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #222222;
-  --sidebar-primary: #4CAF93;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #E8F5E9;
-  --sidebar-accent-foreground: #4CAF93;
-  --sidebar-border: #E5E5E5;
-  --sidebar-ring: #4CAF93;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #172033;
+  --sidebar-primary: #4caf93;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8f5e9;
+  --sidebar-accent-foreground: #4caf93;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #4caf93;
 
-  --chart-1: #4CAF93;
-  --chart-2: #66BB6A;
-  --chart-3: #81C784;
-  --chart-4: #A5D6A7;
-  --chart-5: #C8E6C9;
+  --chart-1: #4caf93;
+  --chart-2: #66bb6a;
+  --chart-3: #81c784;
+  --chart-4: #a5d6a7;
+  --chart-5: #c8e6c9;
 }
 
 .dark {
   /* Dark mode adaptation if needed, keeping gentle vibes */
-  --background: #1A1C1E;
-  --foreground: #E0E0E0;
+  --background: #1a1c1e;
+  --foreground: #e0e0e0;
   --card: #222528;
-  --card-foreground: #E0E0E0;
+  --card-foreground: #e0e0e0;
   --popover: #222528;
-  --popover-foreground: #E0E0E0;
-  --primary: #4CAF93;
-  --primary-foreground: #FFFFFF;
-  --secondary: #2C3035;
-  --secondary-foreground: #A0A0A0;
-  --muted: #2C3035;
+  --popover-foreground: #e0e0e0;
+  --primary: #4caf93;
+  --primary-foreground: #ffffff;
+  --secondary: #2c3035;
+  --secondary-foreground: #a0a0a0;
+  --muted: #2c3035;
   --muted-foreground: #808080;
-  --accent: #4CAF93;
-  --accent-foreground: #FFFFFF;
-  --destructive: #CF6679;
-  --destructive-foreground: #FFFFFF;
+  --accent: #4caf93;
+  --accent-foreground: #ffffff;
+  --destructive: #cf6679;
+  --destructive-foreground: #ffffff;
   --border: #333333;
-  --input: #2C3035;
-  --ring: #4CAF93;
+  --input: #2c3035;
+  --ring: #4caf93;
   --sidebar: #222528;
-  --sidebar-foreground: #E0E0E0;
-  --sidebar-primary: #4CAF93;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #2C3035;
-  --sidebar-accent-foreground: #4CAF93;
+  --sidebar-foreground: #e0e0e0;
+  --sidebar-primary: #4caf93;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #2c3035;
+  --sidebar-accent-foreground: #4caf93;
   --sidebar-border: #333333;
-  --sidebar-ring: #4CAF93;
+  --sidebar-ring: #4caf93;
 }
 
 @layer base {
@@ -129,23 +129,36 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Source Han Sans CN', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "PingFang SC",
+      "Source Han Sans CN",
+      "Noto Sans SC",
+      "Microsoft YaHei",
+      sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    line-height: 1.8; /* More relaxed line height */
-    color: #333333; /* Softer black */
+    line-height: 1.75;
+    color: #243044;
   }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', 'PingFang SC', sans-serif; 
-    font-weight: 600; /* Standard bold for clarity */
-    letter-spacing: -0.02em;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Inter", "PingFang SC", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
     line-height: 1.25;
-    color: #111111;
+    color: #172033;
   }
   h1 {
     @apply text-5xl md:text-6xl;
-    font-weight: 500; /* Elegant Hero */
+    font-weight: 500;
   }
   h2 {
     @apply text-3xl md:text-4xl;
@@ -156,7 +169,7 @@
     font-weight: 600;
   }
   p {
-    @apply text-[#444444]; /* Slightly softer body text */
+    @apply text-[#475569];
   }
 }
 
@@ -165,18 +178,26 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
     max-width: 1280px;
   }
 
+  @media (min-width: 768px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
   .btn-primary {
-    @apply bg-[#4CAF93] text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-[#43A086] active:scale-95 shadow-sm hover:shadow-md;
-    letter-spacing: 0.02em;
+    @apply bg-[#172033] text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:bg-[#243044] active:scale-[0.98];
+    box-shadow: 0 16px 34px -24px rgba(23, 32, 51, 0.6);
+    letter-spacing: 0;
   }
 
   .btn-secondary {
-    @apply bg-white text-[#222222] border border-[#E5E5E5] px-8 py-3 rounded-full font-medium transition-all duration-300 hover:border-[#4CAF93] hover:text-[#4CAF93] active:scale-95;
+    @apply bg-white text-[#172033] border border-[#E1EAF4] px-8 py-3 rounded-full font-medium transition-all duration-300 hover:border-[#BFD0E4] hover:text-[#172033] active:scale-[0.98];
   }
 
   /* Gentle Fade In Animation */
@@ -195,14 +216,20 @@
 
   /* Soft shadow for cards */
   .shadow-soft {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 16px 40px -34px rgba(24, 39, 75, 0.42);
   }
 
   /* Float Animations */
   @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
   }
 
   .animate-float-slow {
